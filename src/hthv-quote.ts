@@ -1,7 +1,7 @@
 /**
  * @module http-header-value
  */
-import { DelimiterKind, delimiters } from './delimiters.impl';
+import { DelimiterKind, detectDelimiterKind } from './delimiters.impl';
 
 /**
  * Conditionally encloses HTTP header value or its part into double quotes.
@@ -24,9 +24,9 @@ export function hthvQuote(string: string): string {
   for (let i = 0; i < string.length; ++i) {
 
     const c = string[i];
-    const delimiterKind = delimiters[c];
+    const delimiterKind = detectDelimiterKind(c);
 
-    if (delimiterKind || c >= '\u0000' && c <= ' ' || c === '\u007f') {
+    if (delimiterKind) {
       if (delimiterKind === DelimiterKind.Escaped) {
         if (!escaped) {
           escaped = string.substring(0, i);

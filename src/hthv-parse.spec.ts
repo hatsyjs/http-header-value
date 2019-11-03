@@ -12,6 +12,9 @@ describe('hthvParse', () => {
   it('recognizes plain value', () => {
     expect(hthvParse('foo/bar:baz')).toEqual(items({ v: 'foo/bar:baz'}));
   });
+  it('recognizes plain value with special chars', () => {
+    expect(hthvParse('foo\u007fbar=baz')).toEqual(items({ v: 'foo\u007fbar=baz'}));
+  });
   it('recognizes name/value pair', () => {
     expect(hthvParse('foo=bar')).toEqual(items({ n: 'foo', v: 'bar'}));
   });

@@ -1,7 +1,7 @@
 /**
  * @module http-header-value
  */
-import { DelimiterKind, delimiters } from './delimiters.impl';
+import { DelimiterKind, detectDelimiterKind } from './delimiters.impl';
 import { hthvEscape } from './hthv-escape';
 import { HthvItem } from './hthv-item';
 import { PartialItem } from './partial.item';
@@ -150,7 +150,7 @@ export function hthvParse(value: string): HthvItem[] {
     while (index < value.length) {
 
       const c = value[index];
-      const delimiterKind = delimiters[c];
+      const delimiterKind = detectDelimiterKind(c);
 
       if (delimiterKind) {
         if (delimiterKind === DelimiterKind.Item) { // item end
