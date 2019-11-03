@@ -2,25 +2,25 @@
  * @module http-header-value
  */
 /**
- * Escapes HTTP header value.
+ * Escapes HTTP header value or its part.
  *
  * Replaces `\` with `\\`, and `"` with `\"`.
  *
- * @param value  A value to escape.
+ * @param string  A string to escape.
  *
- * @returns Escaped `value`.
+ * @returns Escaped `string`.
  */
-export function hthvEscape(value: string): string {
+export function hthvEscape(string: string): string {
 
   let escaped: undefined | string;
 
-  for (let i = 0; i < value.length; ++i) {
+  for (let i = 0; i < string.length; ++i) {
 
-    const c = value[i];
+    const c = string[i];
 
     if (c === '\\' || c === '\"') {
       if (!escaped) {
-        escaped = value.substring(0, i);
+        escaped = string.substring(0, i);
       }
       escaped += '\\' + c;
     } else if (escaped) {
@@ -28,5 +28,5 @@ export function hthvEscape(value: string): string {
     }
   }
 
-  return escaped != null ? escaped : value;
+  return escaped != null ? escaped : string;
 }

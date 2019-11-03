@@ -1,10 +1,10 @@
 import { hthvEscape } from './hthv-escape';
 
 describe('hthvEscape', () => {
-  it('does not alter safe value', () => {
+  it('does not alter safe string', () => {
     expect(hthvEscape('abc')).toBe('abc');
   });
-  it('does not alter empty value', () => {
+  it('does not alter empty string', () => {
     expect(hthvEscape('')).toBe('');
   });
   it('escapes backslash', () => {
