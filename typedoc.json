@@ -1,4 +1,5 @@
 {
+  "exclude": ["**/*.impl.ts"],
   "excludeNotExported": true,
   "mode": "file",
   "name": "HTTP Header Values",
