@@ -1,0 +1,8 @@
+{
+  "excludeNotExported": true,
+  "mode": "file",
+  "name": "HTTP Header Values",
+  "out": "./target/typedoc",
+  "theme": "minimal",
+  "tsconfig": "tsconfig.main.json"
+}

@@ -1,0 +1,56 @@
+{
+  "name": "http-header-value",
+  "version": "1.0.0",
+  "description": "Parse HTTP header value",
+  "keywords": [
+    "http",
+    "header"
+  ],
+  "homepage": "https://github.com/surol/http-header-value",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/surol/http-header-value.git"
+  },
+  "license": "MIT",
+  "author": "Ruslan Lopatin <ruslan.lopatin@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/surol/fun-events/issues"
+  },
+  "main": "dist/http-header-value.js",
+  "module": "dist/http-header-value.mjs",
+  "typings": "index.d.ts",
+  "devDependencies": {
+    "@types/jest": "^24.0.21",
+    "call-thru": "^2.5.3",
+    "codecov": "^3.6.1",
+    "fs-extra": "^8.1.0",
+    "gh-pages": "^2.1.1",
+    "jest": "^24.9.0",
+    "jest-junit": "^9.0.0",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^1.26.3",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-sourcemaps": "^0.4.2",
+    "rollup-plugin-typescript2": "^0.24.3",
+    "ts-jest": "^24.1.0",
+    "tslint": "^5.20.0",
+    "typedoc": "^0.15.0",
+    "typedoc-plugin-external-module-name": "^2.1.0",
+    "typescript": "^3.6.4"
+  },
+  "scripts": {
+    "all": "run-p rebuild lint test",
+    "build": "rollup --config ./rollup.config.js",
+    "ci:all": "run-p build lint ci:test",
+    "ci:test": "jest --ci --runInBand",
+    "clean": "node ./build/clean",
+    "doc": "typedoc",
+    "doc:gh-pages": "gh-pages --dist target/typedoc --dotfiles",
+    "doc:ci": "node ./build/doc-ci",
+    "doc:publish": "run-s doc doc:ci \"doc:gh-pages {@}\" --",
+    "lint": "tslint --project .",
+    "rebuild": "run-s clean build",
+    "test": "jest"
+  }
+}
