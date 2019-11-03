@@ -1,39 +1,13 @@
 /**
  * @module http-header-value
  */
+import { DelimiterKind, delimiters } from './delimiters.impl';
 import { hthvEscape } from './hthv-escape';
 import { HthvItem } from './hthv-item';
 import { PartialItem } from './partial.item';
 
 // tslint:disable-next-line:max-line-length
 const datePattern = /^(Mon|Tue|Wev|Thu|Fri|Sat|Sun), \d\d (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d\d\d\d \d\d:\d\d:\d\d GMT/;
-
-const enum DelimiterKind {
-  Token = 1,
-  Item = 2,
-}
-
-const delimiters: { readonly [sep: string]: 1 | 2 } = {
-  ' ': DelimiterKind.Item,
-  '\t': DelimiterKind.Item,
-  ',': DelimiterKind.Item,
-  ';': DelimiterKind.Item,
-  '"': DelimiterKind.Token,
-  '(': DelimiterKind.Token,
-  ')': DelimiterKind.Token,
-  '/': DelimiterKind.Token,
-  ':': DelimiterKind.Token,
-  '<': DelimiterKind.Token,
-  '=': DelimiterKind.Token,
-  '>': DelimiterKind.Token,
-  '?': DelimiterKind.Token,
-  '@': DelimiterKind.Token,
-  '[': DelimiterKind.Token,
-  '\\': DelimiterKind.Token,
-  ']': DelimiterKind.Token,
-  '{': DelimiterKind.Token,
-  '}': DelimiterKind.Token,
-};
 
 /**
  * Parses HTP header value.
