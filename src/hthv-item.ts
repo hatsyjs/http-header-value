@@ -10,22 +10,22 @@
  * contain separators or special characters.
  *
  * Item value can be followed by semicolon-separated parameters:
- * > `Set-Cookie: id=a3fWa; Secure; Domain=example.com; Max-Age=2592000` \
- * > `Content-Type: text/html; charset=UTF-8`
+ * > `Set-Cookie:` __`id=a3fWa; Secure; Domain=example.com; Max-Age=2592000`__ \
+ * > `Content-Type:` __`text/html; charset=UTF-8`__
  *
  * It also can be followed by comment:
- * > `User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:70.0)`
+ * > `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0)`__
  *
  * Such comment is treated as semicolon-separated list of statements (`X11`, `Linux x86_64`), and parameters
  * (`rv:70.0`).
  *
  * Item value itself, as well as parameter values, may be quoted:
- * > `WWW-Authenticate: Basic realm="Access to the staging site"`
+ * > `WWW-Authenticate:` __`Basic realm="Access to the staging site"`__
  *
  * This object contains them unquoted and unescaped.
  *
  * The quoted item value may be tagged:
- * > `ETag: W/"0815"`
+ * > `ETag:` __`W/"0815"`__
  *
  * In this case the tag is used as item name.
  */
