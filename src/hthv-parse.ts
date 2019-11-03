@@ -4,7 +4,7 @@
 import { DelimiterKind, detectDelimiterKind } from './delimiters.impl';
 import { hthvEscape } from './hthv-escape';
 import { HthvItem } from './hthv-item';
-import { PartialItem } from './partial.item';
+import { PartialItem } from './partial-item.impl';
 
 // tslint:disable-next-line:max-line-length
 const datePattern = /^(Mon|Tue|Wev|Thu|Fri|Sat|Sun), \d\d (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d\d\d\d \d\d:\d\d:\d\d GMT/;

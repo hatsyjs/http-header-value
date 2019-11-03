@@ -1,6 +1,6 @@
 import { HthvItem } from './hthv-item';
 import { hthvParse } from './hthv-parse';
-import { PartialItem } from './partial.item';
+import { PartialItem } from './partial-item.impl';
 
 describe('hthvParse', () => {
   it('recognizes date/time', () => {
