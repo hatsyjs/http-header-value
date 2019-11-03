@@ -3,18 +3,20 @@
  */
 export const enum DelimiterKind {
   Token = 1,
-  Item = 2,
+  Escaped = 2,
+  Item = 3,
 }
 
 /**
  * @internal
  */
-export const delimiters: { readonly [sep: string]: 1 | 2 } = {
+export const delimiters: { readonly [sep: string]: 1 | 2 | 3 } = {
   ' ': DelimiterKind.Item,
   '\t': DelimiterKind.Item,
   ',': DelimiterKind.Item,
   ';': DelimiterKind.Item,
-  '"': DelimiterKind.Token,
+  '"': DelimiterKind.Escaped,
+  '\\': DelimiterKind.Escaped,
   '(': DelimiterKind.Token,
   ')': DelimiterKind.Token,
   '/': DelimiterKind.Token,
@@ -25,7 +27,6 @@ export const delimiters: { readonly [sep: string]: 1 | 2 } = {
   '?': DelimiterKind.Token,
   '@': DelimiterKind.Token,
   '[': DelimiterKind.Token,
-  '\\': DelimiterKind.Token,
   ']': DelimiterKind.Token,
   '{': DelimiterKind.Token,
   '}': DelimiterKind.Token,

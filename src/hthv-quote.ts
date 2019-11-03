@@ -1,7 +1,7 @@
 /**
  * @module http-header-value
  */
-import { delimiters } from './delimiters.impl';
+import { DelimiterKind, delimiters } from './delimiters.impl';
 
 /**
  * Conditionally encloses HTTP header value or its part into double quotes.
@@ -24,9 +24,10 @@ export function hthvQuote(string: string): string {
   for (let i = 0; i < string.length; ++i) {
 
     const c = string[i];
+    const delimiterKind = delimiters[c];
 
-    if (c >= '\u0000' && c <= ' ' || delimiters[c] || c === '\u007f') {
-      if (c === '\\' || c === '\"') {
+    if (delimiterKind || c >= '\u0000' && c <= ' ' || c === '\u007f') {
+      if (delimiterKind === DelimiterKind.Escaped) {
         if (!escaped) {
           escaped = string.substring(0, i);
         }
@@ -38,5 +39,5 @@ export function hthvQuote(string: string): string {
     }
   }
 
-  return quote ? `"${escaped != null ? escaped : string}"` : string;
+  return quote ? `"${escaped || string}"` : string;
 }

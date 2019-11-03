@@ -28,5 +28,5 @@ export function hthvEscape(string: string): string {
     }
   }
 
-  return escaped != null ? escaped : string;
+  return escaped || string;
 }
