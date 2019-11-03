@@ -6,8 +6,8 @@
  *
  * HTTP header value may consist of multiple such items, either comma- or space- separated.
  *
- * Each item is either a plain value, or a `<name>=<value>` pair, where the name is a _token_, i.e. is may not contain
- * separators.
+ * Each item is either a plain value, or a `<name>=<value>` pair, where the `<name>` is a _token_, i.e. is may not
+ * contain separators or special characters.
  *
  * Item value can be followed by semicolon-separated parameters:
  * > `Set-Cookie: id=a3fWa; Secure; Domain=example.com; Max-Age=2592000` \
