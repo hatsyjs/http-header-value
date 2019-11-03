@@ -16,7 +16,7 @@ const datePattern = /^(Mon|Tue|Wev|Thu|Fri|Sat|Sun), \d\d (Jan|Feb|Mar|Apr|May|J
  *
  * Handles date/time in {@link https://tools.ietf.org/html/rfc7231#section-7.1.1.1 INF-fixdate} format only.
  *
- * Handles illegal characters just like ASCII letters.
+ * Treats illegal characters as ASCII letters.
  *
  * @param value  HTTP header value to parse.
  *
