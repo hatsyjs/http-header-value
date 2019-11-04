@@ -25,7 +25,34 @@ describe('hthvEscape', () => {
 });
 
 describe('hthvEscape', () => {
-  it('escapes right parent', () => {
+  it('does not alter safe string', () => {
+    expect(hthvEscapeComment('abc')).toBe('abc');
+  });
+  it('does not alter empty string', () => {
+    expect(hthvEscapeComment('')).toBe('');
+  });
+  it('escapes backslash', () => {
+    expect(hthvEscapeComment('ab\\cd')).toBe('ab\\\\cd');
+    expect(hthvEscapeComment('\\abcd')).toBe('\\\\abcd');
+    expect(hthvEscapeComment('abcd\\')).toBe('abcd\\\\');
+    expect(hthvEscapeComment('\\')).toBe('\\\\');
+  });
+  it('escapes quote', () => {
+    expect(hthvEscapeComment('ab"cd')).toBe('ab\\"cd');
+    expect(hthvEscapeComment('"abcd')).toBe('\\"abcd');
+    expect(hthvEscapeComment('abcd"')).toBe('abcd\\"');
+    expect(hthvEscapeComment('"')).toBe('\\"');
+  });
+  it('escapes multiple entries', () => {
+    expect(hthvEscapeComment('ab\\cd"ef"')).toBe('ab\\\\cd\\"ef\\"');
+  });
+  it('escapes closing parent', () => {
+    expect(hthvEscapeComment('ab(cd')).toBe('ab\\(cd');
+    expect(hthvEscapeComment('(abcd')).toBe('\\(abcd');
+    expect(hthvEscapeComment('abcd(')).toBe('abcd\\(');
+    expect(hthvEscapeComment('(')).toBe('\\(');
+  });
+  it('escapes opening parent', () => {
     expect(hthvEscapeComment('ab)cd')).toBe('ab\\)cd');
     expect(hthvEscapeComment(')abcd')).toBe('\\)abcd');
     expect(hthvEscapeComment('abcd)')).toBe('abcd\\)');
