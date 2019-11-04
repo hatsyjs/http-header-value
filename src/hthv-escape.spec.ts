@@ -24,7 +24,7 @@ describe('hthvEscape', () => {
   });
 });
 
-describe('hthvEscape', () => {
+describe('hthvEscapeComment', () => {
   it('does not alter safe string', () => {
     expect(hthvEscapeComment('abc')).toBe('abc');
   });
