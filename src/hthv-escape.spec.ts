@@ -43,9 +43,6 @@ describe('hthvEscapeC', () => {
     expect(hthvEscapeC('abcd"')).toBe('abcd\\"');
     expect(hthvEscapeC('"')).toBe('\\"');
   });
-  it('escapes multiple entries', () => {
-    expect(hthvEscapeC('ab\\cd"ef"')).toBe('ab\\\\cd\\"ef\\"');
-  });
   it('escapes closing parent', () => {
     expect(hthvEscapeC('ab(cd')).toBe('ab\\(cd');
     expect(hthvEscapeC('(abcd')).toBe('\\(abcd');
@@ -57,5 +54,8 @@ describe('hthvEscapeC', () => {
     expect(hthvEscapeC(')abcd')).toBe('\\)abcd');
     expect(hthvEscapeC('abcd)')).toBe('abcd\\)');
     expect(hthvEscapeC(')')).toBe('\\)');
+  });
+  it('escapes multiple entries', () => {
+    expect(hthvEscapeC('ab\\cd("ef")')).toBe('ab\\\\cd\\(\\"ef\\"\\)');
   });
 });
