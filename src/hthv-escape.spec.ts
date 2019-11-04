@@ -1,4 +1,4 @@
-import { hthvEscape } from './hthv-escape';
+import { hthvEscape, hthvEscapeComment } from './hthv-escape';
 
 describe('hthvEscape', () => {
   it('does not alter safe string', () => {
@@ -21,5 +21,14 @@ describe('hthvEscape', () => {
   });
   it('escapes multiple entries', () => {
     expect(hthvEscape('ab\\cd"ef"')).toBe('ab\\\\cd\\"ef\\"');
+  });
+});
+
+describe('hthvEscape', () => {
+  it('escapes right parent', () => {
+    expect(hthvEscapeComment('ab)cd')).toBe('ab\\)cd');
+    expect(hthvEscapeComment(')abcd')).toBe('\\)abcd');
+    expect(hthvEscapeComment('abcd)')).toBe('abcd\\)');
+    expect(hthvEscapeComment(')')).toBe('\\)');
   });
 });
