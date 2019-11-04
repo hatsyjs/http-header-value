@@ -1,61 +1,61 @@
-import { hthvEscape, hthvEscapeComment } from './hthv-escape';
+import { hthvEscapeQ, hthvEscapeC } from './hthv-escape';
 
-describe('hthvEscape', () => {
+describe('hthvQEscape', () => {
   it('does not alter safe string', () => {
-    expect(hthvEscape('abc')).toBe('abc');
+    expect(hthvEscapeQ('abc')).toBe('abc');
   });
   it('does not alter empty string', () => {
-    expect(hthvEscape('')).toBe('');
+    expect(hthvEscapeQ('')).toBe('');
   });
   it('escapes backslash', () => {
-    expect(hthvEscape('ab\\cd')).toBe('ab\\\\cd');
-    expect(hthvEscape('\\abcd')).toBe('\\\\abcd');
-    expect(hthvEscape('abcd\\')).toBe('abcd\\\\');
-    expect(hthvEscape('\\')).toBe('\\\\');
+    expect(hthvEscapeQ('ab\\cd')).toBe('ab\\\\cd');
+    expect(hthvEscapeQ('\\abcd')).toBe('\\\\abcd');
+    expect(hthvEscapeQ('abcd\\')).toBe('abcd\\\\');
+    expect(hthvEscapeQ('\\')).toBe('\\\\');
   });
   it('escapes quote', () => {
-    expect(hthvEscape('ab"cd')).toBe('ab\\"cd');
-    expect(hthvEscape('"abcd')).toBe('\\"abcd');
-    expect(hthvEscape('abcd"')).toBe('abcd\\"');
-    expect(hthvEscape('"')).toBe('\\"');
+    expect(hthvEscapeQ('ab"cd')).toBe('ab\\"cd');
+    expect(hthvEscapeQ('"abcd')).toBe('\\"abcd');
+    expect(hthvEscapeQ('abcd"')).toBe('abcd\\"');
+    expect(hthvEscapeQ('"')).toBe('\\"');
   });
   it('escapes multiple entries', () => {
-    expect(hthvEscape('ab\\cd"ef"')).toBe('ab\\\\cd\\"ef\\"');
+    expect(hthvEscapeQ('ab\\cd"ef"')).toBe('ab\\\\cd\\"ef\\"');
   });
 });
 
-describe('hthvEscapeComment', () => {
+describe('hthvCEscape', () => {
   it('does not alter safe string', () => {
-    expect(hthvEscapeComment('abc')).toBe('abc');
+    expect(hthvEscapeC('abc')).toBe('abc');
   });
   it('does not alter empty string', () => {
-    expect(hthvEscapeComment('')).toBe('');
+    expect(hthvEscapeC('')).toBe('');
   });
   it('escapes backslash', () => {
-    expect(hthvEscapeComment('ab\\cd')).toBe('ab\\\\cd');
-    expect(hthvEscapeComment('\\abcd')).toBe('\\\\abcd');
-    expect(hthvEscapeComment('abcd\\')).toBe('abcd\\\\');
-    expect(hthvEscapeComment('\\')).toBe('\\\\');
+    expect(hthvEscapeC('ab\\cd')).toBe('ab\\\\cd');
+    expect(hthvEscapeC('\\abcd')).toBe('\\\\abcd');
+    expect(hthvEscapeC('abcd\\')).toBe('abcd\\\\');
+    expect(hthvEscapeC('\\')).toBe('\\\\');
   });
   it('escapes quote', () => {
-    expect(hthvEscapeComment('ab"cd')).toBe('ab\\"cd');
-    expect(hthvEscapeComment('"abcd')).toBe('\\"abcd');
-    expect(hthvEscapeComment('abcd"')).toBe('abcd\\"');
-    expect(hthvEscapeComment('"')).toBe('\\"');
+    expect(hthvEscapeC('ab"cd')).toBe('ab\\"cd');
+    expect(hthvEscapeC('"abcd')).toBe('\\"abcd');
+    expect(hthvEscapeC('abcd"')).toBe('abcd\\"');
+    expect(hthvEscapeC('"')).toBe('\\"');
   });
   it('escapes multiple entries', () => {
-    expect(hthvEscapeComment('ab\\cd"ef"')).toBe('ab\\\\cd\\"ef\\"');
+    expect(hthvEscapeC('ab\\cd"ef"')).toBe('ab\\\\cd\\"ef\\"');
   });
   it('escapes closing parent', () => {
-    expect(hthvEscapeComment('ab(cd')).toBe('ab\\(cd');
-    expect(hthvEscapeComment('(abcd')).toBe('\\(abcd');
-    expect(hthvEscapeComment('abcd(')).toBe('abcd\\(');
-    expect(hthvEscapeComment('(')).toBe('\\(');
+    expect(hthvEscapeC('ab(cd')).toBe('ab\\(cd');
+    expect(hthvEscapeC('(abcd')).toBe('\\(abcd');
+    expect(hthvEscapeC('abcd(')).toBe('abcd\\(');
+    expect(hthvEscapeC('(')).toBe('\\(');
   });
   it('escapes opening parent', () => {
-    expect(hthvEscapeComment('ab)cd')).toBe('ab\\)cd');
-    expect(hthvEscapeComment(')abcd')).toBe('\\)abcd');
-    expect(hthvEscapeComment('abcd)')).toBe('abcd\\)');
-    expect(hthvEscapeComment(')')).toBe('\\)');
+    expect(hthvEscapeC('ab)cd')).toBe('ab\\)cd');
+    expect(hthvEscapeC(')abcd')).toBe('\\)abcd');
+    expect(hthvEscapeC('abcd)')).toBe('abcd\\)');
+    expect(hthvEscapeC(')')).toBe('\\)');
   });
 });

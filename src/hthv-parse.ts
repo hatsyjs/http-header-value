@@ -2,7 +2,7 @@
  * @module http-header-value
  */
 import { DelimiterKind, detectDelimiterKind } from './delimiters.impl';
-import { hthvEscape } from './hthv-escape';
+import { hthvEscapeQ } from './hthv-escape';
 import { HthvItem } from './hthv-item';
 import { PartialItem } from './partial-item.impl';
 
@@ -187,14 +187,14 @@ export function hthvParse(value: string): HthvItem[] {
             unquoted = true;
           } else if (unquoted) {
             if (!eq && name) {
-              val = `${name}"${hthvEscape(val)}""${hthvEscape(v)}"`;
+              val = `${name}"${hthvEscapeQ(val)}""${hthvEscapeQ(v)}"`;
               name = '';
             } else {
-              val = `"${hthvEscape(val)}""${hthvEscape(v)}"`;
+              val = `"${hthvEscapeQ(val)}""${hthvEscapeQ(v)}"`;
             }
             unquoted = false;
           } else {
-            val += `"${hthvEscape(v)}"`;
+            val += `"${hthvEscapeQ(v)}"`;
           }
         })) {
           quotes = true;
@@ -210,10 +210,10 @@ export function hthvParse(value: string): HthvItem[] {
         break;
       } else if (unquoted) {
         if (!eq && name) {
-          val = `${name}"${hthvEscape(val)}"${c}`;
+          val = `${name}"${hthvEscapeQ(val)}"${c}`;
           name = '';
         } else {
-          val = `"${hthvEscape(val)}"${c}`;
+          val = `"${hthvEscapeQ(val)}"${c}`;
         }
         unquoted = false;
       } else {

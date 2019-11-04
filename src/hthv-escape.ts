@@ -11,7 +11,8 @@ const stringEscaped: EscapedChars = {
 };
 
 /**
- * Escapes HTTP header value or its part.
+ * Escapes a `string` to be included into [quoted-string](https://tools.ietf.org/html/rfc7230#section-3.2.6) within HTTP
+ * header value.
  *
  * Replaces `\` with `\\`, and `"` with `\"`.
  *
@@ -19,7 +20,7 @@ const stringEscaped: EscapedChars = {
  *
  * @returns Escaped `string`.
  */
-export function hthvEscape(string: string): string {
+export function hthvEscapeQ(string: string): string {
   return escape(string, stringEscaped);
 }
 
@@ -31,15 +32,22 @@ const commentEscaped: EscapedChars = {
 };
 
 /**
- * Escapes HTTP header comment or its part.
+ * Escapes a `string` to be included into [comment](https://tools.ietf.org/html/rfc7230#section-3.2.6) withing HTTP
+ * header value.
  *
  * Replaces `\` with `\\`, `"` with `\"`, `(` with `\(`, and `)` with `\)`.
+ *
+ * According to [RFC7230] the sender should not escape a double quote in this case. However, it may be necessary
+ * to distinguish between plain double quote and nested [quoted-string].
+ *
+ * [RFC7230]: https://tools.ietf.org/html/rfc7230
+ * [quoted-string]: https://tools.ietf.org/html/rfc7230#section-3.2.6
  *
  * @param string  A string to escape.
  *
  * @returns Escaped `string`.
  */
-export function hthvEscapeComment(string: string): string {
+export function hthvEscapeC(string: string): string {
   return escape(string, commentEscaped);
 }
 
