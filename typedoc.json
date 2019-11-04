@@ -1,6 +1,7 @@
 {
   "exclude": ["**/*.impl.ts"],
   "excludeNotExported": true,
+  "listInvalidSymbolLinks": true,
   "mode": "file",
   "name": "HTTP Header Values",
   "out": "./target/typedoc",

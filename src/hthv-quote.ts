@@ -7,7 +7,7 @@ import { DelimiterKind, detectDelimiterKind } from './delimiters.impl';
  * Conditionally encloses HTTP header value or its part into double quotes.
  *
  * Quotes will be added if delimiter or special character is present in input `string`, or the input `string` is empty.
- * {@link hthvEscape Escapes} `"` and `\` symbols.
+ * {@link hthvEscapeQ Escapes} `"` and `\` symbols.
  *
  * @param string  A string to quote.
  *
