@@ -1,6 +1,6 @@
-import { hthvEscapeQ, hthvEscapeC } from './hthv-escape';
+import { hthvEscapeC, hthvEscapeQ } from './hthv-escape';
 
-describe('hthvQEscape', () => {
+describe('hthvEscapeQ', () => {
   it('does not alter safe string', () => {
     expect(hthvEscapeQ('abc')).toBe('abc');
   });
@@ -24,7 +24,7 @@ describe('hthvQEscape', () => {
   });
 });
 
-describe('hthvCEscape', () => {
+describe('hthvEscapeC', () => {
   it('does not alter safe string', () => {
     expect(hthvEscapeC('abc')).toBe('abc');
   });
