@@ -13,12 +13,6 @@
  * > `Set-Cookie:` __`id=a3fWa; Secure; Domain=example.com; Max-Age=2592000`__ \
  * > `Content-Type:` __`text/html; charset=UTF-8`__
  *
- * It also can be followed by comment:
- * > `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0)`__
- *
- * Such comment is treated as semicolon-separated list of statements (`X11`, `Linux x86_64`), and parameters
- * (`rv:70.0`).
- *
  * Item value itself, as well as parameter values, may be quoted:
  * > `WWW-Authenticate:` __`Basic realm="Access to the staging site"`__
  *
@@ -49,17 +43,5 @@ export interface HthvItem {
    * When parameter has no value (e.g. `...; HttpOnly; ...`), corresponding property value is set to `true`.
    */
   p: { [name: string]: string | true };
-
-  /**
-   * Item comment statements.
-   */
-  c: string[];
-
-  /**
-   * Item comment parameters.
-   *
-   * An object literal with properties named as comment parameters with their values.
-   */
-  cp: { [name: string]: string };
 
 }

@@ -32,8 +32,8 @@ export function hthvParse(value: string): HthvItem[] {
 
   return result;
 
-  function addItem({ n, v, p = {}, c = [], cp = {} }: PartialItem) {
-    result.push({ n, v, p, c, cp });
+  function addItem({ n, v, p = {} }: PartialItem) {
+    result.push({ n, v, p });
   }
 
   function parseItem(): boolean {

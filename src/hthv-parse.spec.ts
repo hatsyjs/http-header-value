@@ -130,6 +130,6 @@ function items(...list: PartialItem[]): HthvItem[] {
   return list.map(item);
 }
 
-function item({ n, v, p = {}, c = [], cp = {} }: PartialItem): HthvItem {
-  return { n, v, p, c, cp };
+function item({ n, v, p = {} }: PartialItem): HthvItem {
+  return { n, v, p };
 }
