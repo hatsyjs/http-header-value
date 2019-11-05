@@ -2,46 +2,119 @@
  * @module http-header-value
  */
 /**
+ * Item value type.
+ *
+ * This is one of:
+ * - `quoted-string` - A [quoted-string].
+ *   > `ETag:` __`W/"0815"`__
+ *
+ *   Item {@link HthvItem.v value} is unquoted for this type.
+ * - `tagged-string` - A tagged [quoted-string]:
+ *    > `ETag:` __`W/"0815"`__
+ *
+ *    Here `W/` is a {@link HthvItem.t tag}, while `0815` is {@link HthvItem.v unquoted value}.
+ * - `date-time` - A [date-time] value in [IMF-fixdate] format.
+ *    > `Date:` __`Sun, 06 Nov 1994 08:49:37 GMT`__
+ *
+ * - `raw` - This type is used, unless there is a more specific representation.
+ *
+ * [quoted-string]: https://tools.ietf.org/html/rfc7230#section-3.2.6
+ * [IMF-fixdate]: https://tools.ietf.org/html/rfc7231#section-7.1.1.1
+ * [date-time]: https://tools.ietf.org/html/rfc7231#section-7.1.1.1
+ */
+export type HthvItemType =
+    | 'raw'
+    | 'quoted-string'
+    | 'tagged-string'
+    | 'date-time';
+
+/**
  * Parsed HTTP header value item.
  *
  * HTTP header value may consist of multiple such items, either comma- or space- separated.
  *
- * Each item is either a plain value, or a `<name>=<value>` pair, where the `<name>` is a _token_, i.e. is may not
- * contain separators or special characters.
+ * Some items may be nested inside another ones. E.g. as item parameters, or as nested comments.
  *
- * Item value can be followed by semicolon-separated parameters:
- * > `Set-Cookie:` __`id=a3fWa; Secure; Domain=example.com; Max-Age=2592000`__ \
- * > `Content-Type:` __`text/html; charset=UTF-8`__
+ * Item may represent a `<name>=<value>` pair used as top level item or its parameter, or a `<name>:<value>` pair within
+ * comment.
  *
- * Item value itself, as well as parameter values, may be quoted:
- * > `WWW-Authenticate:` __`Basic realm="Access to the staging site"`__
- *
- * This object contains them unquoted and unescaped.
- *
- * The quoted item value may be tagged:
- * > `ETag:` __`W/"0815"`__
- *
- * In this case the tag is used as item name.
+ * @typeparam T  A type of value this item contains.
+ * @typeparam N  A type of item name.
  */
-export interface HthvItem {
+export interface HthvItem<T extends HthvItemType = HthvItemType, N extends string | undefined = string> {
 
   /**
-   * Either a name from the name/value pair, or a tag of the quoted item value.
+   * Item value type.
    */
-  n?: string;
+  $: T;
 
   /**
-   * Either plain item value, unquoted value, or the one from the name/value pair.
+   * A name of name/value item.
+   *
+   * This is always a [token].
+   *
+   * [token]: https://tools.ietf.org/html/rfc7230#section-3.2.6
+   */
+  n?: N;
+
+  /**
+   * A tag of tagged string.
+   *
+   * This is only set for `tagged-string` item type.
+   */
+  t?: string;
+
+  /**
+   * Item value.
    */
   v: string;
 
   /**
-   * Item parameters.
-   *
-   * An object literal with properties named after parameters, and containing corresponding parameter values.
-   *
-   * When parameter has no value (e.g. `...; HttpOnly; ...`), corresponding property value is set to `true`.
+   * Any extra items immediately following item value and preceding its parameters. Typically empty.
    */
-  p: { [name: string]: string | true };
+  x: HthvExtraItem[];
+
+  /**
+   * A map of item parameters.
+   */
+  p: HthvParamMap;
+
+  /**
+   * A list of all item parameters.
+   */
+  pl: HthvParamItem[];
 
 }
+
+/**
+ * An extra item following HTTP header value item value.
+ *
+ * Extra items are not present within standard headers, but may present in custom ones.
+ */
+export type HthvExtraItem = HthvItem<Exclude<HthvItemType, 'tagged-string'>, undefined>;
+
+/**
+ * A map of parameters of HTTP header value item.
+ *
+ * Parameters are semicolon-separated items following parameterized item's value.
+ *
+ * This is an object literal with parameter names as keys and corresponding parameter items as values.
+ *
+ * When parameter item has no name, an item value is used as its key.
+ *
+ * When multiple parameters have the same key, the first one is preferred, and the one with the name is always
+ * preferred over the one without it.
+ */
+export interface HthvParamMap {
+  [name: string]: HthvParamItem;
+}
+
+/**
+ * A parameter of HTTP header item.
+ *
+ * Parameters are semicolon-separated items following main item value. This is typically either a
+ * name/value pair, or just a value. But technically can be a quoted string too. But ever a tagged string.
+ *
+ * > `Set-Cookie:` __`id=a3fWa; Secure; Domain=example.com; Max-Age=2592000`__
+ */
+export type HthvParamItem = HthvItem<Exclude<HthvItemType, 'tagged-string'>>;

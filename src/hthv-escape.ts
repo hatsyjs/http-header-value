@@ -38,7 +38,7 @@ const commentEscaped: EscapedChars = {
  * Replaces `\` with `\\`, `"` with `\"`, `(` with `\(`, and `)` with `\)`.
  *
  * According to [RFC7230] the sender should not escape a double quote in this case. However, it may be necessary
- * to distinguish between plain double quote and nested [quoted-string].
+ * to distinguish between raw double quote and nested [quoted-string].
  *
  * [RFC7230]: https://tools.ietf.org/html/rfc7230
  * [quoted-string]: https://tools.ietf.org/html/rfc7230#section-3.2.6

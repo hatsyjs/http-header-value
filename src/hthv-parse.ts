@@ -2,9 +2,8 @@
  * @module http-header-value
  */
 import { DelimiterKind, detectDelimiterKind } from './delimiters.impl';
-import { hthvEscapeQ } from './hthv-escape';
-import { HthvItem } from './hthv-item';
-import { PartialItem } from './partial-item.impl';
+import { HthvExtraItem, HthvItem, HthvItemType, HthvParamItem } from './hthv-item';
+import { hthvItem } from './hthv-partial.impl';
 
 // tslint:disable-next-line:max-line-length
 const datePattern = /^(Mon|Tue|Wev|Thu|Fri|Sat|Sun), \d\d (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d\d\d\d \d\d:\d\d:\d\d GMT/;
@@ -14,41 +13,53 @@ const datePattern = /^(Mon|Tue|Wev|Thu|Fri|Sat|Sun), \d\d (Jan|Feb|Mar|Apr|May|J
  *
  * Splits the value onto {@link HthvItem items}.
  *
- * Handles date/time in {@link https://tools.ietf.org/html/rfc7231#section-7.1.1.1 INF-fixdate} format only.
+ * Handles date/time values in [IMF-fixdate] format only.
  *
  * Treats illegal characters as ASCII letters.
+ *
+ * [IMF-fixdate]: https://tools.ietf.org/html/rfc7231#section-7.1.1.1
  *
  * @param value  HTTP header value to parse.
  *
  * @returns An array of comma- and space- separated value items.
  */
-export function hthvParse(value: string): HthvItem[] {
+export function hthvParse(value: string): HthvItem[];
+
+export function hthvParse(input: string): HthvItem[] {
 
   const result: HthvItem[] = [];
   let index = 0;
 
   // noinspection StatementWithEmptyBodyJS
-  while (parseItem()); // tslint:disable-line
+  while (parseTopLevelItem()); // tslint:disable-line
 
   return result;
 
-  function addItem({ n, v, p = {} }: PartialItem) {
-    result.push({ n, v, p });
-  }
-
-  function parseItem(): boolean {
-    return index < value.length && (
+  function parseTopLevelItem(): boolean {
+    return index < input.length && (
         parseSpace()
         || parseComma()
-        || parseParam()
-        || parseDateTime(v => addItem({ v }))
-        || parseNameAndValue((v, n) => addItem({ n, v }))
+        || parseParam(param => {
+          if (!result.length) {
+            result.push(hthvItem({ $: 'raw', v: '' }));
+          }
+
+          const key = param.n || param.v;
+          const { p, pl } = result[result.length - 1];
+          const prev = p[key];
+
+          if (!prev || !prev.n && param.n) {
+            p[key] = param;
+          }
+          pl.push(param);
+        })
+        || parseItem(item => result.push(item))
     );
   }
 
   function parseSpace(): boolean {
 
-    const c = value[index];
+    const c = input[index];
 
     if (c === ' ' || c === '\t') {
       index++;
@@ -59,15 +70,15 @@ export function hthvParse(value: string): HthvItem[] {
   }
 
   function parseComma(): boolean {
-    if (value[index] === ',') {
+    if (input[index] === ',') {
       index++;
       return true;
     }
     return false;
   }
 
-  function parseParam(): boolean {
-    if (value[index] !== ';') {
+  function parseParam(out: (param: HthvParamItem) => void): boolean {
+    if (input[index] !== ';') {
       return false;
     }
 
@@ -75,47 +86,142 @@ export function hthvParse(value: string): HthvItem[] {
     // noinspection StatementWithEmptyBodyJS
     while (parseSpace()); // tslint:disable-line:curly
 
-    return parseNameAndValue((v, n) => {
-      if (!result.length) {
-        addItem({ v: '' });
+    return parseItem(out as any, { tagged: false });
+  }
+
+  function parseItem(
+      out: (param: HthvItem<any, any>) => void,
+      {
+        named = true,
+        tagged = true,
+        extra = true,
+      }: {
+        named?: boolean,
+        tagged?: boolean,
+        extra?: boolean,
+      } = {}
+  ): boolean {
+
+    let name = '';
+    let type: HthvItemType = 'raw';
+    let tag: string | undefined;
+    let value: string | undefined;
+
+    while (index < input.length) {
+
+      const c = input[index];
+      const delimiterKind = detectDelimiterKind(c);
+
+      if (delimiterKind) {
+        if (delimiterKind === DelimiterKind.Item) {
+          break;
+        }
+        if (value == null) {
+          if (c === '=') {
+            value = name ? '' : c;
+            ++index;
+            continue;
+          }
+          if (c === '"') {
+            if (tagged || !name) {
+              parseQuoted(v => {
+                if (name) {
+                  type = 'tagged-string';
+                  tag = name;
+                } else {
+                  type = 'quoted-string';
+                }
+                name = '';
+                value = v;
+              });
+            }
+            break;
+          }
+          value = name;
+          name = '';
+        } else if (c === '"') {
+          if (tagged || !value) {
+            parseQuoted(v => {
+              if (value) {
+                type = 'tagged-string';
+                tag = value;
+              } else {
+                type = 'quoted-string';
+              }
+              value = v;
+            });
+          }
+          break;
+        }
       }
 
-      const { p } = result[result.length - 1];
-
-      if (n) {
-        p[n] = v;
+      if (value == null) {
+        if (!name && parseDateTime(v => value = v)) {
+          type = 'date-time';
+          break;
+        }
+        if (named) {
+          name += c;
+        } else {
+          value = c;
+        }
+      } else if (!value && parseDateTime(v => value = v)) {
+        type = 'date-time';
+        break;
       } else {
-        p[v] = true;
+        value += c;
       }
-    });
+
+      ++index;
+    }
+
+    let item: HthvItem<any, any>;
+
+    if (value == null) {
+      if (!name) {
+        return false;
+      }
+      item = hthvItem({ $: type, v: name });
+    } else {
+      item = hthvItem({ $: type, n: name || undefined, t: tag, v: value });
+    }
+
+    if (extra) {
+      // noinspection StatementWithEmptyBodyJS
+      while (parseItem(
+          extraItem => item.x.push(extraItem as HthvExtraItem),
+          { tagged: false, named: false, extra: false }
+      )) ; // tslint:disable-line:curly
+    }
+
+    out(item);
+
+    return true;
   }
 
   function parseDateTime(out: (value: string) => void): boolean {
-    value = value.substring(index);
+    input = input.substring(index);
     index = 0;
-    if (value.match(datePattern)) {
-      out(value.substring(index, index += 29));
+    if (input.match(datePattern)) {
+      out(input.substring(index, index += 29));
       return true;
     }
     return false;
   }
 
   function parseQuoted(out: (value: string) => void): boolean {
-    if (value[index] !== '"') {
-      return false;
-    }
 
     let unquoted = '';
 
     ++index;
-    for (; index < value.length; ++index) {
+    for (; index < input.length; ++index) {
 
-      const c = value[index];
+      const c = input[index];
 
       switch (c) {
         case '\\':
 
-          const next = value[++index];
+          const next = input[++index];
 
           if (next) {
             unquoted += next;
@@ -138,97 +244,4 @@ export function hthvParse(value: string): HthvItem[] {
     return true;
   }
 
-  function parseNameAndValue(out: (v: string, n?: string) => void): boolean {
-
-    let isName = true;
-    let name = '';
-    let val = '';
-    let eq = false;
-    let quotes = false;
-    let unquoted = false;
-
-    while (index < value.length) {
-
-      const c = value[index];
-      const delimiterKind = detectDelimiterKind(c);
-
-      if (delimiterKind) {
-        if (delimiterKind === DelimiterKind.Item) { // item end
-          break;
-        }
-        if (isName) {
-          isName = false;
-          if (parseQuoted(v => {
-            val = v;
-            unquoted = true;
-          })) {
-            quotes = true;
-            continue;
-          }
-          if (c === '=') { // name/value pair
-            if (name) {
-              eq = true;
-            } else {
-              val = c;
-            }
-            ++index;
-            continue;
-          }
-          // not a valid token
-          val = name;
-          name = '';
-        } else if (parseQuoted(v => {
-          if (!val) {
-            val = v;
-            unquoted = true;
-          } else if (!eq && !quotes) {
-            name = val;
-            val = v;
-            unquoted = true;
-          } else if (unquoted) {
-            if (!eq && name) {
-              val = `${name}"${hthvEscapeQ(val)}""${hthvEscapeQ(v)}"`;
-              name = '';
-            } else {
-              val = `"${hthvEscapeQ(val)}""${hthvEscapeQ(v)}"`;
-            }
-            unquoted = false;
-          } else {
-            val += `"${hthvEscapeQ(v)}"`;
-          }
-        })) {
-          quotes = true;
-          continue;
-        }
-      }
-
-      if (isName) {
-        name += c;
-      } else if (!val && parseDateTime(v => {
-        val = v;
-      })) {
-        break;
-      } else if (unquoted) {
-        if (!eq && name) {
-          val = `${name}"${hthvEscapeQ(val)}"${c}`;
-          name = '';
-        } else {
-          val = `"${hthvEscapeQ(val)}"${c}`;
-        }
-        unquoted = false;
-      } else {
-        val += c;
-      }
-
-      ++index;
-    }
-
-    if (isName) {
-      out(name);
-    } else {
-      out(val, name || undefined);
-    }
-
-    return true;
-  }
 }
