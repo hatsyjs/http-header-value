@@ -3,17 +3,7 @@ import { HthvItem } from './hthv-item';
 /**
  * @internal
  */
-export type HthvItemTypeOf<I extends HthvItem<any, any>> = I extends HthvItem<infer T, any> ? T : never;
-
-/**
- * @internal
- */
-export type HthvNameTypeOf<I extends HthvItem<any, any>> = I extends HthvItem<any, infer N> ? N : never;
-
-/**
- * @internal
- */
-export interface HthvPartial<I extends HthvItem<any, any> = HthvItem> {
+export interface HthvPartial<I extends HthvItem<any, any, any> = HthvItem> {
   $: I['$'];
   n?: I['n'];
   t?: I['t'];
@@ -26,7 +16,7 @@ export interface HthvPartial<I extends HthvItem<any, any> = HthvItem> {
 /**
  * @internal
  */
-export function hthvItem<I extends HthvItem<any, any>>(
+export function hthvItem<I extends HthvItem<any, any, any>>(
     {
       $,
       n,

@@ -16,7 +16,7 @@
  * - `date-time` - A [date-time] value in [IMF-fixdate] format.
  *    > `Date:` __`Sun, 06 Nov 1994 08:49:37 GMT`__
  *
- * - `raw` - This type is used, unless there is a more specific representation.
+ * - `raw` - This type is used unless there is a more specific representation.
  *
  * [quoted-string]: https://tools.ietf.org/html/rfc7230#section-3.2.6
  * [IMF-fixdate]: https://tools.ietf.org/html/rfc7231#section-7.1.1.1
@@ -38,15 +38,19 @@ export type HthvItemType =
  * Item may represent a `<name>=<value>` pair used as top level item or its parameter, or a `<name>:<value>` pair within
  * comment.
  *
- * @typeparam T  A type of value this item contains.
- * @typeparam N  A type of item name.
+ * @typeparam N  Whether this item has a {@link n name}.
+ * @typeparam T  Whether this item has a {@link t tag}.
+ * @typeparam P  Whether this item has {@link p parameters}.
  */
-export interface HthvItem<T extends HthvItemType = HthvItemType, N extends string | undefined = string> {
+export interface HthvItem<
+    N extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
+    T extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
+    P extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> {
 
   /**
    * Item value type.
    */
-  $: T;
+  $: 'has-tag' extends T ? HthvItemType : Exclude<HthvItemType, 'tagged-string'>;
 
   /**
    * A name of name/value item.
@@ -55,14 +59,14 @@ export interface HthvItem<T extends HthvItemType = HthvItemType, N extends strin
    *
    * [token]: https://tools.ietf.org/html/rfc7230#section-3.2.6
    */
-  n?: N;
+  n: 'has-name' extends N ? ('no-name' extends N ? string | undefined : string) : undefined;
 
   /**
    * A tag of tagged string.
    *
    * This is only set for `tagged-string` item type.
    */
-  t?: string;
+  t: 'has-tag' extends T ? ('no-tag' extends T ? string | undefined : string) : undefined;
 
   /**
    * Item value.
@@ -77,21 +81,24 @@ export interface HthvItem<T extends HthvItemType = HthvItemType, N extends strin
   /**
    * A map of item parameters.
    */
-  p: HthvParamMap;
+  p: 'has-params' extends P ? HthvParamMap : { [name: string]: never };
 
   /**
    * A list of all item parameters.
    */
-  pl: HthvParamItem[];
+  pl: 'has-params' extends P ? HthvParamItem[] : [];
 
 }
 
 /**
- * An extra item following HTTP header value item value.
+ * An extra item following a value of another one and preceding its parameters.
  *
- * Extra items are not present within standard headers, but may present in custom ones.
+ * Extra items typically not present within standard headers, but may present in custom ones:
+ * > `Calculate`: __`"foo"+"bar";foo=2;bar=3`__
+ *
+ * Here `"a"` is a quoted string item, `+` and `"b"` - its extra items, while `foo=2` and `bar=3` its parameters.
  */
-export type HthvExtraItem = HthvItem<Exclude<HthvItemType, 'tagged-string'>, undefined>;
+export type HthvExtraItem = HthvItem<'no-name', 'no-tag', 'no-params'>;
 
 /**
  * A map of parameters of HTTP header value item.
@@ -117,4 +124,4 @@ export interface HthvParamMap {
  *
  * > `Set-Cookie:` __`id=a3fWa; Secure; Domain=example.com; Max-Age=2592000`__
  */
-export type HthvParamItem = HthvItem<Exclude<HthvItemType, 'tagged-string'>>;
+export type HthvParamItem = HthvItem<'has-name' | 'no-name', 'no-tag', 'no-params'>;

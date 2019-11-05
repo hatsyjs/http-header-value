@@ -90,7 +90,7 @@ export function hthvParse(input: string): HthvItem[] {
   }
 
   function parseItem(
-      out: (param: HthvItem<any, any>) => void,
+      out: (param: HthvItem<any, any, any>) => void,
       {
         named = true,
         tagged = true,
