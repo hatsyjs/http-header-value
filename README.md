@@ -13,7 +13,7 @@ import { hthvParse} from 'http-header-value';
 
 const [contentType] = hthvParse('text/html;charset=utf8'); // text/html
 contentType.v;          // text/html
-contentType.charset.v;  // utf8
+contentType.p.charset.v;  // utf8
 
 const [product, sysInfo, platform, version] = 
     hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0');
@@ -41,7 +41,7 @@ version.v;        // Firefox/70.0
 hthvParse()
 -----------
 
-This is a parser function for HTP header value, that splits it onto items of type `HthvItem`.
+This is a parser function for HTP header value. It splits the value string onto items of type `HthvItem`.
 
 The value of item is stored in its `v` property. While its `$` property contains a type of item, and may be one of:
 - `quoted-string`,
@@ -81,12 +81,12 @@ hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0'
 
 ### Item Parameters
 
-Each item may have a semicolon-separated parameters. Each parameter may have a name. The name of the value should be
-a valid token, while its value is separated from name by `=` sign, or by `:` sign within comments.
+Each item may have a semicolon-separated parameters. Each parameter may have a name. Parameter name should be a valid
+token, while its value is separated from the name by `=` sign, or by `:` sign within comments.
 > `Accept`: __`text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8`__ \
 > `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`__
 
-Parameters are available via the `p` property of `HthvItem`, that contains a parameter map. And via `pl` property
+Parameters are available via the `p` property of `HthvItem` that contains a parameter map. And via `pl` property
 that contains an array of all parameters.
 
 Each parameter is represented as `HthvItem` too. Parameter name is available from its `n` property.
@@ -125,7 +125,7 @@ Values can be enclosed into double quotes. This works both for item values and f
 > `Clear-Site-Data:` __`"cache"`__ \
 > `Public-Key-Pins:` __`pin-sha256="M8HztCzM3elUxkcjR2S5P4hhyBNf6lHkmjAHKhpGPWE="; max-age=5184000; includeSubDomains; report-uri="https://www.example.org/hpkp-report"`__
 
-The returned item would contain the value unquoted and unescaped, and the type of item would be `quoted-string`.
+The returned contains the value unquoted and unescaped. The type of such item is `quoted-string`.
 
 ```typescript
 import { hthvParse} from 'http-header-value';
@@ -160,7 +160,7 @@ hthvParse('W/"0815"')[0]; // { $: 'tagged-string', t: 'W/', v: '0815' }
 ### Date/Time
 
 Date and time has special format in headers.
-> `Date:` __`Wed, 21 Oct 2015 07:28:00 GMT`__
+> `Date:` __`Wed, 21 Oct 2015 07:28:00 GMT`__ \
 > `Set-Cookie:` __`id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT`__
 
 The parser represents such values as `HthvItem` of `date-time` type.
@@ -191,7 +191,7 @@ const wwwAuthenticate = `WWW-Authenticate: Basic realm="${hthvExcapeQ(realm)}"`;
 // WWW-Authenticate: Basic realm="Access to the \"Site\""
 ```
 
-[quoted-string]: (https://tools.ietf.org/html/rfc7230#section-3.2.6)
+[quoted-string]: https://tools.ietf.org/html/rfc7230#section-3.2.6
 
 
 ### hthvEscapeC()
