@@ -208,7 +208,7 @@ import { hthvExcapeC } from 'http-header-value';
 
 const comment = 'Custom ("quoted") comment'
 const customComment = `Custom-Comment: (${hthvExcapeC(comment)})`;
-// CustomComment: (Custom \(\"quoted\"\) comment)
+// Custom-Comment: (Custom \(\"quoted\"\) comment)
 ```
 
 [comment]: https://tools.ietf.org/html/rfc7230#section-3.2.6
