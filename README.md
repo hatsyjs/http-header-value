@@ -125,7 +125,7 @@ Values can be enclosed into double quotes. This works both for item values and f
 > `Clear-Site-Data:` __`"cache"`__ \
 > `Public-Key-Pins:` __`pin-sha256="M8HztCzM3elUxkcjR2S5P4hhyBNf6lHkmjAHKhpGPWE="; max-age=5184000; includeSubDomains; report-uri="https://www.example.org/hpkp-report"`__
 
-The returned contains the value unquoted and unescaped. The type of such item is `quoted-string`.
+The returned item contains the value unquoted and unescaped. The type of such item is `quoted-string`.
 
 ```typescript
 import { hthvParse } from 'http-header-value';
