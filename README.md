@@ -72,7 +72,7 @@ Header value may contain comments enclosed in parentheses.
 
 The parser recognizes top-level comments
 ```typescript
-import { hthvParse} from 'http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')
     .map(item => item.v); // ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];
@@ -91,7 +91,7 @@ that contains an array of all parameters.
 
 Each parameter is represented as `HthvItem` too. Parameter name is available from its `n` property.
 ```typescript
-import { hthvParse} from 'http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8')
     .map(({ v, p: { q } }) => ({ contentType: v, weight: q ? parseFloat(q.v) : 1.0 }));
@@ -107,12 +107,12 @@ const [, comment] = hthvParse(`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20
 comment.pl.map(({ n, v }) => n ? `${n}=${v}` : v); // [ 'Linux x86_64', 'rv=70.0' ]
 ```
 
-Item itself may be a name/value pair.
+Item itself can be a name/value pair.
 > `Cookie`: __`PHPSESSID=298zf09hf012fh2`__
 
 The parser correctly recognizes this.
 ```typescript
-import { hthvParse} from 'http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('PHPSESSID=298zf09hf012fh2'); // { n: 'PHPSESSID', v: '298zf09hf012fh2' }
 ```
@@ -128,7 +128,7 @@ Values can be enclosed into double quotes. This works both for item values and f
 The returned contains the value unquoted and unescaped. The type of such item is `quoted-string`.
 
 ```typescript
-import { hthvParse} from 'http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('"cache"')[0]; // { $: 'quoted-string', v: 'cache' }
 
@@ -151,7 +151,7 @@ Some headers, such as `ETag` have special syntax that allows to prepend a quoted
 The parser recognizes such item value (but not parameter ones!) as `HthvItem` with type `tagged-string`, and places
 the tag to its `t` property and unquoted string - to its `v` property..
 ```typescript
-import { hthvParse} from 'http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('W/"0815"')[0]; // { $: 'tagged-string', t: 'W/', v: '0815' }
 ```
@@ -165,7 +165,7 @@ Date and time has special format in headers.
 
 The parser represents such values as `HthvItem` of `date-time` type.
 ```typescript
-import { hthvParse} from 'http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('Wed, 21 Oct 2015 07:28:00 GMT')[0].v; // { $: 'date-time', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }
 
