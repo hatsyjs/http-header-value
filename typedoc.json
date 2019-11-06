@@ -1,5 +1,5 @@
 {
-  "exclude": ["**/*.impl.ts"],
+  "exclude": ["**/*.impl.ts", "./src/parser/*.ts"],
   "excludeNotExported": true,
   "listInvalidSymbolLinks": true,
   "mode": "file",

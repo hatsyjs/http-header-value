@@ -1,7 +1,7 @@
 /**
  * @module http-header-value
  */
-import { Delimiter, detectDelimiterKind } from './delimiters.impl';
+import { Delimiter, detectDelimiterKind } from './parser/delimiters';
 
 /**
  * Conditionally encloses HTTP header value or its part into double quotes.

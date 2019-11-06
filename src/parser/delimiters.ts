@@ -8,15 +8,10 @@ export const enum Delimiter {
   RecordEnd,
   Eq,
   Quote,
+  CommentEnd,
 }
 
-export type DelimiterKind =
-    | 0
-    | 1
-    | 2
-    | 3
-    | 4
-    | 5;
+export type DelimiterKind = 0 | 1 | 2 | 3 | 4 | 5 | 6;
 
 const delimiters: { readonly [sep: string]: DelimiterKind } = {
   ' ': Delimiter.RecordEnd,
