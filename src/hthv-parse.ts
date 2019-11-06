@@ -124,7 +124,7 @@ export function hthvParse(input: string): HthvItem[] {
             ++index;
             continue;
           }
-          if (c === '"') {
+          if (delimiterKind === Delimiter.Quote) {
             if (tagged || !name) {
               parseQuoted(v => {
                 if (name) {
@@ -141,7 +141,7 @@ export function hthvParse(input: string): HthvItem[] {
           }
           value = name;
           name = '';
-        } else if (c === '"') {
+        } else if (delimiterKind === Delimiter.Quote) {
           if (tagged || !value) {
             parseQuoted(v => {
               if (value) {
@@ -250,14 +250,14 @@ export function hthvParse(input: string): HthvItem[] {
 
     const c = input[index];
 
-    delimiterKind = detectDelimiterKind(c);
-    if (delimiterKind) {
-      if (c === '=') {
-        delimiterKind = Delimiter.Eq;
-      }
-    }
+    delimiterKind = itemDelimiters[c] || detectDelimiterKind(c);
 
     return c;
   }
 
 }
+
+const itemDelimiters: { [c: string]: DelimiterKind } = {
+  '=': Delimiter.Eq,
+  '"': Delimiter.Quote,
+};

@@ -2,11 +2,12 @@
  * @internal
  */
 export const enum Delimiter {
-  None = 0,
+  None,
   Token,
   QuotedChar,
   Record,
   Eq,
+  Quote,
 }
 
 export type DelimiterKind =
@@ -14,7 +15,8 @@ export type DelimiterKind =
     | 1
     | 2
     | 3
-    | 4;
+    | 4
+    | 5;
 
 const delimiters: { readonly [sep: string]: DelimiterKind } = {
   ' ': Delimiter.Record,
