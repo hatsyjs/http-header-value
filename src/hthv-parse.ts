@@ -1,7 +1,7 @@
 /**
  * @module http-header-value
  */
-import { DelimiterKind, detectDelimiterKind } from './delimiters.impl';
+import { Delimiter, DelimiterKind, detectDelimiterKind } from './delimiters.impl';
 import { HthvExtraItem, HthvItem, HthvItemType, HthvParamItem } from './hthv-item';
 import { hthvItem } from './hthv-partial.impl';
 
@@ -29,6 +29,7 @@ export function hthvParse(input: string): HthvItem[] {
 
   const result: HthvItem[] = [];
   let index = 0;
+  let delimiterKind: DelimiterKind;
 
   // noinspection StatementWithEmptyBodyJS
   while (parseTopLevelItem()); // tslint:disable-line
@@ -95,10 +96,12 @@ export function hthvParse(input: string): HthvItem[] {
         named = true,
         tagged = true,
         extra = true,
+        next = nextInItem,
       }: {
         named?: boolean,
         tagged?: boolean,
         extra?: boolean,
+        next?: () => string,
       } = {}
   ): boolean {
 
@@ -109,15 +112,14 @@ export function hthvParse(input: string): HthvItem[] {
 
     while (index < input.length) {
 
-      const c = input[index];
-      const delimiterKind = detectDelimiterKind(c);
+      const c = next();
 
       if (delimiterKind) {
-        if (delimiterKind === DelimiterKind.Item) {
+        if (delimiterKind === Delimiter.Record) {
           break;
         }
         if (value == null) {
-          if (c === '=') {
+          if (delimiterKind === Delimiter.Eq) {
             value = name ? '' : c;
             ++index;
             continue;
@@ -242,6 +244,20 @@ export function hthvParse(input: string): HthvItem[] {
     out(unquoted);
 
     return true;
+  }
+
+  function nextInItem(): string {
+
+    const c = input[index];
+
+    delimiterKind = detectDelimiterKind(c);
+    if (delimiterKind) {
+      if (c === '=') {
+        delimiterKind = Delimiter.Eq;
+      }
+    }
+
+    return c;
   }
 
 }
