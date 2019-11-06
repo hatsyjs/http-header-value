@@ -6,7 +6,7 @@ import { HthvExtraItem, HthvItem, HthvItemType, HthvParamItem } from './hthv-ite
 import { hthvItem } from './hthv-partial.impl';
 
 // tslint:disable-next-line:max-line-length
-const datePattern = /^(Mon|Tue|Wev|Thu|Fri|Sat|Sun), \d\d (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d\d\d\d \d\d:\d\d:\d\d GMT/;
+const datePattern = /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d\d (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d\d\d\d \d\d:\d\d:\d\d GMT/;
 
 /**
  * Parses HTP header value.
