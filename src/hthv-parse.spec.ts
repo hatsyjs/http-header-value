@@ -463,6 +463,25 @@ describe('hthvParse', () => {
         { $: 'raw', v: '', p: { 'test param': param }, pl: [param] },
     ));
   });
+  it('recognizes User-Agent string', () => {
+
+    const linux = paramItem({
+      $: 'raw',
+      v: 'Linux x86_64',
+    });
+    const rv = paramItem(({
+      $: 'raw',
+      n: 'rv',
+      v: '70.0',
+    }));
+
+     expect(hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')).toEqual(items(
+         { $: 'raw', v: 'Mozilla/5.0' },
+         { $: 'raw', v: 'X11', p: { 'Linux x86_64': linux, rv }, pl: [linux, rv] },
+         { $: 'raw', v: 'Gecko/20100101' },
+         { $: 'raw', v: 'Firefox/70.0' },
+     ));
+  });
 });
 
 function paramItem(item: HthvPartial<HthvParamItem>): HthvParamItem {

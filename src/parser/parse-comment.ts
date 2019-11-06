@@ -42,5 +42,5 @@ export function parseComment(input: ParserInput, out: (item: HthvItem) => void):
   ++input.i; // closing parent
   out(result || hthvItem({ $: 'raw', v: ''}));
 
-  return false;
+  return true;
 }
