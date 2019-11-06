@@ -145,7 +145,7 @@ pin.p['report-url'] // { $: 'quoted-string', n: 'report-uri', v: 'https://www.ex
 
 ### Tagged String
 
-Some headers, such as `ETag` have special syntax that allows to prepend a quoted string with a tag:
+Some headers, such as `ETag`, have special syntax that allows to prepend a quoted string with a tag:
 > `ETag:` __`W/"0815"`__
 
 The parser recognizes such item value (but not parameter ones!) as `HthvItem` with type `tagged-string`, and places
