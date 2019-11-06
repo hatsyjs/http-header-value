@@ -149,7 +149,7 @@ Some headers, such as `ETag`, have special syntax that allows to prepend a quote
 > `ETag:` __`W/"0815"`__
 
 The parser recognizes such item value (but not parameter ones!) as `HthvItem` with type `tagged-string`, and places
-the tag to its `t` property and unquoted string - to its `v` property..
+the tag into its `t` property, and unquoted string - into its `v` property.
 ```typescript
 import { hthvParse } from 'http-header-value';
 
@@ -159,11 +159,11 @@ hthvParse('W/"0815"')[0]; // { $: 'tagged-string', t: 'W/', v: '0815' }
 
 ### Date/Time
 
-Date and time has special format in headers.
+Date and time value has special format in headers.
 > `Date:` __`Wed, 21 Oct 2015 07:28:00 GMT`__ \
 > `Set-Cookie:` __`id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT`__
 
-The parser represents such values as `HthvItem` of `date-time` type.
+The parser represents such value as `HthvItem` of `date-time` type.
 ```typescript
 import { hthvParse } from 'http-header-value';
 
