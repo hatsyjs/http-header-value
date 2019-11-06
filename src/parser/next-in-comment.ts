@@ -2,10 +2,11 @@ import { Delimiter, DelimiterKind, detectDelimiterKind } from './delimiters';
 import { ParserInput } from './parser-input';
 
 const commentDelimiters: { [c: string]: DelimiterKind } = {
-  ':': Delimiter.CommentEnd,
-  ')': Delimiter.CommentEnd,
+  ':': Delimiter.Eq,
+  ')': Delimiter.RecordEnd,
   ',': Delimiter.TokenEnd,
   ' ': Delimiter.TokenEnd,
+  '"': Delimiter.Quote,
 };
 
 /**

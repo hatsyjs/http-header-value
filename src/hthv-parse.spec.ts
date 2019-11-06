@@ -380,6 +380,89 @@ describe('hthvParse', () => {
         { $: 'raw', v: 'baz', p: { p3 }, pl: [p3] },
     ));
   });
+  it('recognizes empty comment', () => {
+    expect(hthvParse('()')).toEqual(items(
+        { $: 'raw', v: '' },
+    ));
+  });
+  it('recognizes raw comment', () => {
+    expect(hthvParse('(comment)')).toEqual(items(
+        { $: 'raw', v: 'comment' },
+    ));
+  });
+  it('recognizes incomplete raw comment', () => {
+    expect(hthvParse('(comment')).toEqual(items(
+        { $: 'raw', v: 'comment' },
+    ));
+  });
+  it('recognizes parameter comment', () => {
+    expect(hthvParse('(comment:param)')).toEqual(items(
+        { $: 'raw', n: 'comment', v: 'param' },
+    ));
+  });
+  it('recognizes quoted comment', () => {
+    expect(hthvParse('("comment")')).toEqual(items(
+        { $: 'quoted-string', v: 'comment' },
+    ));
+  });
+  it('recognizes tagged comment', () => {
+    expect(hthvParse('(tag"comment")')).toEqual(items(
+        { $: 'tagged-string', t: 'tag', v: 'comment' },
+    ));
+  });
+  it('unescapes colon', () => {
+    expect(hthvParse('(comment\\:param)')).toEqual(items(
+        { $: 'raw', v: 'comment:param' },
+    ));
+  });
+  it('unescapes closing parent', () => {
+    expect(hthvParse('(comment\\)param)')).toEqual(items(
+        { $: 'raw', v: 'comment)param' },
+    ));
+  });
+  it('unescapes arbitrary symbol', () => {
+    expect(hthvParse('(com\\ment)')).toEqual(items(
+        { $: 'raw', v: 'comment' },
+    ));
+  });
+  it('does not unescape last backslash', () => {
+    expect(hthvParse('(comment\\')).toEqual(items(
+        { $: 'raw', v: 'comment\\' },
+    ));
+  });
+  it('accepts spaces an colons', () => {
+    expect(hthvParse('(some comment, for test)')).toEqual(items(
+        { $: 'raw', v: 'some comment, for test' },
+    ));
+  });
+  it('recognizes comment parameters', () => {
+
+    const p1 = paramItem({
+      $: 'raw',
+      n: 'p1',
+      v: 'value, with space and colon',
+    });
+    const p2 = paramItem({
+      $: 'quoted-string',
+      n: 'p2',
+      v: 'value in quotes',
+    });
+
+    expect(hthvParse('(comment; p1:value, with space and colon; p2:"value in quotes")')).toEqual(items(
+        { $: 'raw', v: 'comment', p: { p1, p2 }, pl: [p1, p2] },
+    ));
+  });
+  it('recognizes headless comment parameter', () => {
+
+    const param = paramItem({
+      $: 'raw',
+      v: 'test param',
+    });
+
+    expect(hthvParse('(;test param)')).toEqual(items(
+        { $: 'raw', v: '', p: { 'test param': param }, pl: [param] },
+    ));
+  });
 });
 
 function paramItem(item: HthvPartial<HthvParamItem>): HthvParamItem {

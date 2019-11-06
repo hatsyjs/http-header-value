@@ -6,6 +6,13 @@ import { parseDateTime } from './parse-date-time';
 import { parseQuotedString } from './parse-quoted-string';
 import { ParserInput } from './parser-input';
 
+export interface ItemParserOpts {
+  named?: boolean;
+  tagged?: boolean;
+  extra?: boolean;
+  next?: (input: ParserInput) => string;
+}
+
 /**
  * @internal
  */
@@ -17,12 +24,7 @@ export function parseItem(
       tagged = true,
       extra = true,
       next = nextInItem,
-    }: {
-      named?: boolean,
-      tagged?: boolean,
-      extra?: boolean,
-      next?: (input: ParserInput) => string,
-    } = {}
+    }: ItemParserOpts = {}
 ): boolean {
 
   let name = '';
@@ -113,7 +115,7 @@ export function parseItem(
     while (parseItem(
         input,
         extraItem => item.x.push(extraItem as HthvExtraItem),
-        { tagged: false, named: false, extra: false }
+        { next, tagged: false, named: false, extra: false }
     )) ; // tslint:disable-line:curly
   }
 
