@@ -9,11 +9,11 @@ HTTP Header Value
 
 Parse HTTP header value:
 ```typescript
-import { hthvParse} from 'http-header-value';
+import { hthvParse } from 'http-header-value';
 
-const [contentType] = hthvParse('text/html;charset=utf8'); // text/html
-contentType.v;          // text/html
-contentType.p.charset.v;  // utf8
+const [contentType] = hthvParse('text/html;charset=utf-8');
+contentType.v;           // text/html
+contentType.p.charset.v; // utf-8
 
 const [product, sysInfo, platform, version] = 
     hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0');
