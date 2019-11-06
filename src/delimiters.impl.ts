@@ -3,9 +3,9 @@
  */
 export const enum Delimiter {
   None,
-  Token,
+  TokenEnd,
   QuotedChar,
-  Record,
+  RecordEnd,
   Eq,
   Quote,
 }
@@ -19,25 +19,25 @@ export type DelimiterKind =
     | 5;
 
 const delimiters: { readonly [sep: string]: DelimiterKind } = {
-  ' ': Delimiter.Record,
-  '\t': Delimiter.Record,
-  ',': Delimiter.Record,
-  ';': Delimiter.Record,
+  ' ': Delimiter.RecordEnd,
+  '\t': Delimiter.RecordEnd,
+  ',': Delimiter.RecordEnd,
+  ';': Delimiter.RecordEnd,
   '"': Delimiter.QuotedChar,
   '\\': Delimiter.QuotedChar,
-  '(': Delimiter.Token,
-  ')': Delimiter.Token,
-  '/': Delimiter.Token,
-  ':': Delimiter.Token,
-  '<': Delimiter.Token,
-  '=': Delimiter.Token,
-  '>': Delimiter.Token,
-  '?': Delimiter.Token,
-  '@': Delimiter.Token,
-  '[': Delimiter.Token,
-  ']': Delimiter.Token,
-  '{': Delimiter.Token,
-  '}': Delimiter.Token,
+  '(': Delimiter.TokenEnd,
+  ')': Delimiter.TokenEnd,
+  '/': Delimiter.TokenEnd,
+  ':': Delimiter.TokenEnd,
+  '<': Delimiter.TokenEnd,
+  '=': Delimiter.TokenEnd,
+  '>': Delimiter.TokenEnd,
+  '?': Delimiter.TokenEnd,
+  '@': Delimiter.TokenEnd,
+  '[': Delimiter.TokenEnd,
+  ']': Delimiter.TokenEnd,
+  '{': Delimiter.TokenEnd,
+  '}': Delimiter.TokenEnd,
 };
 
 /**
@@ -47,5 +47,5 @@ export function detectDelimiterKind(c: string): DelimiterKind {
 
   const delimiterKind = delimiters[c];
 
-  return delimiterKind || (c >= '\u0000' && c <= ' ' || c === '\u007f' ? Delimiter.Token : Delimiter.None);
+  return delimiterKind || (c >= '\u0000' && c <= ' ' || c === '\u007f' ? Delimiter.TokenEnd : Delimiter.None);
 }

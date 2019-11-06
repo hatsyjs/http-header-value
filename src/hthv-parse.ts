@@ -115,7 +115,7 @@ export function hthvParse(input: string): HthvItem[] {
       const c = next();
 
       if (delimiterKind) {
-        if (delimiterKind === Delimiter.Record) {
+        if (delimiterKind === Delimiter.RecordEnd) {
           break;
         }
         if (value == null) {
