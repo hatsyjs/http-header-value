@@ -9,14 +9,14 @@ HTTP Header Value
 
 Parse HTTP header value:
 ```typescript
-import { hthvParse } from 'http-header-value';
+import { hthvParse, hthvParseCommented } from 'http-header-value';
 
 const [contentType] = hthvParse('text/html;charset=utf-8');
 contentType.v;           // text/html
 contentType.p.charset.v; // utf-8
 
 const [product, sysInfo, platform, version] = 
-    hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0');
+    hthvParseCommented('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0');
 
 product.v;        // Mozilla/5.0
 sysInfo.v;        // X11
@@ -38,10 +38,17 @@ version.v;        // Firefox/70.0
 [api-docs-url]: https://surol.github.io/http-header-value/
 
 
-hthvParse()
------------
+HthvParser
+----------
 
-This is a parser function for HTP header value. It splits the value string onto items of type `HthvItem`.
+`HthvParser` is a signature of parser function for HTP header value.
+
+The `httvParse()` function is parser with default configuration.
+
+The `newHthvParser()` function may be used to configure custom parser. There are also numerous custom parser suitable
+to parse specific headers ([see below][Custom Parsers]).
+
+The parser splits the header value string onto items of type `HthvItem`.
 
 The value of item is stored in its `v` property. While its `$` property contains a type of item, and may be one of:
 - `quoted-string`,
@@ -65,20 +72,6 @@ hthvParse('GET, POST, HEAD').map(item => item.v); // ['GET', 'POST', 'HEAD']
 hthvParse('Basic YWxhZGRpbjpvcGVuc2VzYW1l').map(item => item.v); // ['Basic', 'YWxhZGRpbjpvcGVuc2VzYW1l'];
 ```
 
-### Comments
-
-Header value may contain comments enclosed in parentheses.
-> `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`__
-
-The parser recognizes top-level comments
-```typescript
-import { hthvParse } from 'http-header-value';
-
-hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')
-    .map(item => item.v); // ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];
-```
-
-
 ### Item Parameters
 
 Each item may have a semicolon-separated parameters. Each parameter may have a name. Parameter name should be a valid
@@ -91,7 +84,7 @@ that contains an array of all parameters.
 
 Each parameter is represented as `HthvItem` too. Parameter name is available from its `n` property.
 ```typescript
-import { hthvParse } from 'http-header-value';
+import { hthvParse, hthvParseCommented } from 'http-header-value';
 
 hthvParse('text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8')
     .map(({ v, p: { q } }) => ({ contentType: v, weight: q ? parseFloat(q.v) : 1.0 }));
@@ -103,7 +96,7 @@ hthvParse('text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, 
 //    { contentType: '*/*', weight: 0.8 }
 //  ]
 
-const [, comment] = hthvParse(`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`);
+const [, comment] = hthvParseCommented(`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`);
 comment.pl.map(({ n, v }) => n ? `${n}=${v}` : v); // [ 'Linux x86_64', 'rv=70.0' ]
 ```
 
@@ -171,6 +164,66 @@ hthvParse('Wed, 21 Oct 2015 07:28:00 GMT')[0].v; // { $: 'date-time', v: 'Wed, 2
 
 hthvParse('id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT')[0].p.Expires;
 // { $: 'date-time', n: 'Expires', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }
+``` 
+
+
+Custom Parsers
+--------------
+
+[Custom Parsers]: #custom-parsers
+
+There is no standard for HTTP header value syntax. And there is no way to implement a parser suitable for all headers.
+
+The parser can be configured to understand different header formats. A `newHthvParser()` function can be used for that.
+But configuring it properly isn't a simple task. So, the `http-header-value` package contains some preconfigured
+parsers in addition to default one.
+
+
+### Comments
+
+Some headers may contain comments enclosed in parentheses.
+> `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`__
+
+Comments parsing is disabled by default. But can be enabled in custom parser. Such parser recognizes top-level comments.
+But typically it is enough to use an `hthvParseCommented()` parser.
+```typescript
+import { hthvParseCommented } from 'http-header-value';
+
+hthvParseCommented('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')
+    .map(item => item.v); // ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];
+``` 
+
+### URIs
+
+URLs may contain `,`, `;`, '(', ')', and `=` symbols, that treated specially by default.
+> `Location:` __`http://example.com/matrix;param=(value)?q=some`__
+
+The `httpParseURIs()` parser may be used to parse such header values.
+```typescript
+import { hthvParseURIs } from 'http-header-value';
+
+hthvParseURIs('http://example.com/matrix;param=(value)?q=some');
+// { $: 'raw', v: 'http://example.com/matrix;param=(value)?q=some' };
+``` 
+
+
+### Cookies
+
+Cookies can be set in response by `Set-Cookie` header, and in request by `Cookie` one:
+> `Set-Cookie:` __`id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT, SESSIONID=fdkafretercvx`__ \
+> `Cookie:` __`id=a3fWa; SESSIONID=fdkafretercvx`__
+
+The `Set-Cookie` value can be parsed by default `hthvParse()` parser. While the `Cookie` value contains cookies
+semicolon-separated. The `hthvParseSemSep()` parses handles this.
+```typescript
+import { hthvParseSemSep } from 'http-header-value';
+
+hthvParseSemSep('id=a3fWa; SESSIONID=fdkafretercvx')
+    .reduce((map, { n, v }) => ({ ...map, [n]: v }), {});
+// {
+//   id: '3fWa',
+//   SESSIONID: 'fdkafretercvx'
+// }
 ``` 
 
 

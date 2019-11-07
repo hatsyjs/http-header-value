@@ -3,7 +3,7 @@
  */
 import { ParserInput } from './parser-input';
 
-export function parseSpace(input: ParserInput): boolean {
+export function skipSpace(input: ParserInput): boolean {
 
   const c = input.s[input.i];
 

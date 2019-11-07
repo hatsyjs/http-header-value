@@ -1,7 +1,8 @@
 /**
  * @module http-header-value
  */
-import { Delimiter, detectDelimiterKind } from './parser';
+import { HthvDelimiter } from './hthv-delimiter';
+import { defaultParserConfig } from './parser';
 
 /**
  * Conditionally encloses HTTP header value or its part into double quotes.
@@ -24,10 +25,10 @@ export function hthvQuote(string: string): string {
   for (let i = 0; i < string.length; ++i) {
 
     const c = string[i];
-    const delimiterKind = detectDelimiterKind(c);
+    const delimiter = defaultParserConfig.delimiterOf(c);
 
-    if (delimiterKind) {
-      if (delimiterKind === Delimiter.QuotedChar) {
+    if (delimiter) {
+      if (delimiter & HthvDelimiter.Escaped) {
         if (!escaped) {
           escaped = string.substring(0, i);
         }

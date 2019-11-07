@@ -1,19 +1,16 @@
-import { Delimiter, DelimiterKind, detectDelimiterKind } from './delimiters';
+import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
-
-const itemDelimiters: { [c: string]: DelimiterKind } = {
-  '=': Delimiter.Eq,
-  '"': Delimiter.Quote,
-};
 
 /**
  * @internal
  */
-export function nextInItem(input: ParserInput): string {
+export function nextInItem(config: ParserConfig): (input: ParserInput) => string {
+  return input => {
 
-  const c = input.s[input.i];
+    const c = input.s[input.i];
 
-  input.d = itemDelimiters[c] || detectDelimiterKind(c);
+    input.d = config.delimiterOf(c);
 
-  return c;
+    return c;
+  };
 }
