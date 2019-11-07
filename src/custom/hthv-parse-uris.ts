@@ -2,8 +2,7 @@
  * @module http-header-value
  */
 import { HthvDelimiter } from '../hthv-delimiter';
-import { HthvItem } from '../hthv-item';
-import { newHthvParser } from '../hthv-parser';
+import { HthvParser, newHthvParser } from '../hthv-parser';
 
 /**
  * Parses HTTP header value containing URI(s) without parameters.
@@ -11,21 +10,19 @@ import { newHthvParser } from '../hthv-parser';
  * `,`, `;`, '(', ')', and `=` symbols can be part of URI. This function returns multiple items only if URIs are
  * space-separated.
  *
- * This is particularly useful to parse headers, such as:
- * - `Location`,
- * - `Content-Location`.
+ * This is particularly useful when parsing headers such as:
+ * - `Content-Location`
+ * - `Location`
+ * - `Referef`
  *
  * @param value  HTTP header value to parse.
  *
  * @returns An array of space-separated value items without parameters.
  */
-export const hthvParseURIs: (this: void, value: string) => HthvItem<'no-name', 'no-tag', 'no-params'>[] =
-    /*#__PURE__*/ newHthvParser(
-    {
-      delimit: {
-        ',': HthvDelimiter.NonToken,
-        ';': HthvDelimiter.NonToken,
-        '=': HthvDelimiter.NonToken,
-      },
-    }
-) as (value: string) => HthvItem<'no-name', 'no-tag', 'no-params'>[];
+export const hthvParseURIs: HthvParser<'no-name', 'no-tag', 'no-params'> = /*#__PURE__*/ newHthvParser({
+  delimit: {
+    ',': HthvDelimiter.NonToken,
+    ';': HthvDelimiter.NonToken,
+    '=': HthvDelimiter.NonToken,
+  },
+}) as HthvParser<'no-name', 'no-tag', 'no-params'>;
