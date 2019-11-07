@@ -9,14 +9,14 @@ HTTP Header Value
 
 Parse HTTP header value:
 ```typescript
-import { hthvParse } from 'http-header-value';
+import { hthvParse, hthvParseCommented } from 'http-header-value';
 
 const [contentType] = hthvParse('text/html;charset=utf-8');
 contentType.v;           // text/html
 contentType.p.charset.v; // utf-8
 
 const [product, sysInfo, platform, version] = 
-    hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0');
+    hthvParseCommented('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0');
 
 product.v;        // Mozilla/5.0
 sysInfo.v;        // X11
@@ -38,10 +38,17 @@ version.v;        // Firefox/70.0
 [api-docs-url]: https://surol.github.io/http-header-value/
 
 
-hthvParse()
------------
+HthvParser
+----------
 
-This is a parser function for HTP header value. It splits the value string onto items of type `HthvItem`.
+`HthvParser` is a signature of parser function for HTP header value.
+
+The `httvParse()` function is parser with default configuration.
+
+The `newHthvParser()` function may be used to configure custom parser. There are also numerous custom parser suitable
+to parse specific headers (see below).
+
+The parser splits the header value string onto items of type `HthvItem`.
 
 The value of item is stored in its `v` property. While its `$` property contains a type of item, and may be one of:
 - `quoted-string`,
@@ -70,11 +77,11 @@ hthvParse('Basic YWxhZGRpbjpvcGVuc2VzYW1l').map(item => item.v); // ['Basic', 'Y
 Header value may contain comments enclosed in parentheses.
 > `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`__
 
-The parser recognizes top-level comments
+Comments parsing is disabled by default. But can be enabled in custom parser. Such parser recognizes top-level comments.
 ```typescript
-import { hthvParse } from 'http-header-value';
+import { hthvParseCommented } from 'http-header-value';
 
-hthvParse('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')
+hthvParseCommented('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')
     .map(item => item.v); // ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];
 ```
 
@@ -91,7 +98,7 @@ that contains an array of all parameters.
 
 Each parameter is represented as `HthvItem` too. Parameter name is available from its `n` property.
 ```typescript
-import { hthvParse } from 'http-header-value';
+import { hthvParse, hthvParseCommented } from 'http-header-value';
 
 hthvParse('text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8')
     .map(({ v, p: { q } }) => ({ contentType: v, weight: q ? parseFloat(q.v) : 1.0 }));
@@ -103,7 +110,7 @@ hthvParse('text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, 
 //    { contentType: '*/*', weight: 0.8 }
 //  ]
 
-const [, comment] = hthvParse(`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`);
+const [, comment] = hthvParseCommented(`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`);
 comment.pl.map(({ n, v }) => n ? `${n}=${v}` : v); // [ 'Linux x86_64', 'rv=70.0' ]
 ```
 

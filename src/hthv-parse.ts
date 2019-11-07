@@ -1,14 +1,16 @@
 /**
  * @module http-header-value
  */
-import { newHthvParser } from './new-hthv-parser';
+import { HthvParser, newHthvParser } from './hthv-parser';
 
 /**
  * Parses HTTP header value.
  *
  * Splits the value onto {@link HthvItem items}.
  *
- * Recognizes top-level comments only. Not nested comments.
+ * Parser is configured with default {@link HthvParserConfig config}.
+ *
+ * Does not recognize comments.
  *
  * Handles date/time values in [IMF-fixdate] format only.
  *
@@ -20,4 +22,4 @@ import { newHthvParser } from './new-hthv-parser';
  *
  * @returns An array of comma- or space- separated value items.
  */
-export const hthvParse = /*#__PURE__*/ newHthvParser();
+export const hthvParse: HthvParser = /*#__PURE__*/ newHthvParser();

@@ -3,7 +3,7 @@
  */
 import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvItem } from '../hthv-item';
-import { newHthvParser } from '../new-hthv-parser';
+import { newHthvParser } from '../hthv-parser';
 
 /**
  * Parses HTTP header value containing URL(s) without parameters.
