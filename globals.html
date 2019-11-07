@@ -2377,11 +2377,23 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
+		<li class=" tsd-kind-enum">
+			<a href="enums/hthvdelimiter.html" class="tsd-kind-icon">Hthv<wbr>Delimiter</a>
+		</li>
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="interfaces/hthvitem.html" class="tsd-kind-icon">Hthv<wbr>Item</a>
 		</li>
 		<li class=" tsd-kind-interface">
 			<a href="interfaces/hthvparammap.html" class="tsd-kind-icon">Hthv<wbr>Param<wbr>Map</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="interfaces/hthvparserconfig.html" class="tsd-kind-icon">Hthv<wbr>Parser<wbr>Config</a>
+		</li>
+		<li class=" tsd-kind-type-alias">
+			<a href="globals.html#hthvdelimitconfig" class="tsd-kind-icon">Hthv<wbr>Delimit<wbr>Config</a>
+		</li>
+		<li class=" tsd-kind-type-alias">
+			<a href="globals.html#hthvdelimiterchar" class="tsd-kind-icon">Hthv<wbr>Delimiter<wbr>Char</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="globals.html#hthvextraitem" class="tsd-kind-icon">Hthv<wbr>Extra<wbr>Item</a>
@@ -2392,6 +2404,21 @@ img {
 		<li class=" tsd-kind-type-alias">
 			<a href="globals.html#hthvparamitem" class="tsd-kind-icon">Hthv<wbr>Param<wbr>Item</a>
 		</li>
+		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
+			<a href="globals.html#hthvparser" class="tsd-kind-icon">Hthv<wbr>Parser</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="globals.html#hthvparse" class="tsd-kind-icon">hthv<wbr>Parse</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="globals.html#hthvparsecommented" class="tsd-kind-icon">hthv<wbr>Parse<wbr>Commented</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="globals.html#hthvparsesemsep" class="tsd-kind-icon">hthv<wbr>Parse<wbr>Sem<wbr>Sep</a>
+		</li>
+		<li class=" tsd-kind-variable">
+			<a href="globals.html#hthvparseuris" class="tsd-kind-icon">hthv<wbr>ParseURIs</a>
+		</li>
 		<li class=" tsd-kind-function">
 			<a href="globals.html#hthvescapec" class="tsd-kind-icon">hthv<wbr>EscapeC</a>
 		</li>
@@ -2399,10 +2426,10 @@ img {
 			<a href="globals.html#hthvescapeq" class="tsd-kind-icon">hthv<wbr>EscapeQ</a>
 		</li>
 		<li class=" tsd-kind-function">
-			<a href="globals.html#hthvparse" class="tsd-kind-icon">hthv<wbr>Parse</a>
+			<a href="globals.html#hthvquote" class="tsd-kind-icon">hthv<wbr>Quote</a>
 		</li>
 		<li class=" tsd-kind-function">
-			<a href="globals.html#hthvquote" class="tsd-kind-icon">hthv<wbr>Quote</a>
+			<a href="globals.html#newhthvparser" class="tsd-kind-icon">new<wbr>Hthv<wbr>Parser</a>
 		</li>
 	</ul>
 </nav>
@@ -2418,14 +2445,14 @@ img {
 				<a href="https://github.com/surol/http-header-value"><img src="https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational" alt="GitHub Project"></a>
 			<a href="https://surol.github.io/http-header-value/"><img src="https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational" alt="API Documentation"></a></p>
 			<p>Parse HTTP header value:</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse} <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse, hthvParseCommented } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
 
-<span class="hljs-keyword">const</span> [contentType] = hthvParse(<span class="hljs-string">'text/html;charset=utf8'</span>); <span class="hljs-comment">// text/html</span>
-contentType.v;          <span class="hljs-comment">// text/html</span>
-contentType.p.charset.v;  <span class="hljs-comment">// utf8</span>
+<span class="hljs-keyword">const</span> [contentType] = hthvParse(<span class="hljs-string">'text/html;charset=utf-8'</span>);
+contentType.v;           <span class="hljs-comment">// text/html</span>
+contentType.p.charset.v; <span class="hljs-comment">// utf-8</span>
 
 <span class="hljs-keyword">const</span> [product, sysInfo, platform, version] = 
-    hthvParse(<span class="hljs-string">'Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0'</span>);
+    hthvParseCommented(<span class="hljs-string">'Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0'</span>);
 
 product.v;        <span class="hljs-comment">// Mozilla/5.0</span>
 sysInfo.v;        <span class="hljs-comment">// X11</span>
@@ -2433,10 +2460,14 @@ sysInfo.pl[<span class="hljs-number">0</span>].v;  <span class="hljs-comment">//
 sysInfo.p.rv.v;   <span class="hljs-comment">// 70.0</span>
 platform.v;       <span class="hljs-comment">// Gecko/20100101</span>
 version.v;        <span class="hljs-comment">// Firefox/70.0</span></code></pre>
-			<a href="#hthvparse" id="hthvparse" style="color: inherit; text-decoration: none;">
-				<h2>hthvParse()</h2>
+			<a href="#hthvparser" id="hthvparser" style="color: inherit; text-decoration: none;">
+				<h2>HthvParser</h2>
 			</a>
-			<p>This is a parser function for HTP header value. It splits the value string onto items of type <code>HthvItem</code>.</p>
+			<p><code>HthvParser</code> is a signature of parser function for HTP header value.</p>
+			<p>The <code>httvParse()</code> function is parser with default configuration.</p>
+			<p>The <code>newHthvParser()</code> function may be used to configure custom parser. There are also numerous custom parser suitable
+			to parse specific headers (<a href="#custom-parsers">see below</a>).</p>
+			<p>The parser splits the header value string onto items of type <code>HthvItem</code>.</p>
 			<p>The value of item is stored in its <code>v</code> property. While its <code>$</code> property contains a type of item, and may be one of:</p>
 			<ul>
 				<li><code>quoted-string</code>,</li>
@@ -2456,18 +2487,6 @@ version.v;        <span class="hljs-comment">// Firefox/70.0</span></code></pre>
 
 hthvParse(<span class="hljs-string">'GET, POST, HEAD'</span>).map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.v); <span class="hljs-comment">// ['GET', 'POST', 'HEAD']</span>
 hthvParse(<span class="hljs-string">'Basic YWxhZGRpbjpvcGVuc2VzYW1l'</span>).map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.v); <span class="hljs-comment">// ['Basic', 'YWxhZGRpbjpvcGVuc2VzYW1l'];</span></code></pre>
-			<a href="#comments" id="comments" style="color: inherit; text-decoration: none;">
-				<h3>Comments</h3>
-			</a>
-			<p>Header value may contain comments enclosed in parentheses.</p>
-			<blockquote>
-				<p><code>User-Agent:</code> <strong><code>Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0</code></strong></p>
-			</blockquote>
-			<p>The parser recognizes top-level comments</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse} <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
-
-hthvParse(<span class="hljs-string">'Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0'</span>)
-    .map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.v); <span class="hljs-comment">// ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];</span></code></pre>
 			<a href="#item-parameters" id="item-parameters" style="color: inherit; text-decoration: none;">
 				<h3>Item Parameters</h3>
 			</a>
@@ -2479,7 +2498,7 @@ hthvParse(<span class="hljs-string">'Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Ge
 			<p>Parameters are available via the <code>p</code> property of <code>HthvItem</code> that contains a parameter map. And via <code>pl</code> property
 			that contains an array of all parameters.</p>
 			<p>Each parameter is represented as <code>HthvItem</code> too. Parameter name is available from its <code>n</code> property.</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse} <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse, hthvParseCommented } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
 
 hthvParse(<span class="hljs-string">'text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8'</span>)
     .map(<span class="hljs-function">(<span class="hljs-params">{ v, p: { q } }</span>) =&gt;</span> ({ contentType: v, weight: q ? <span class="hljs-built_in">parseFloat</span>(q.v) : <span class="hljs-number">1.0</span> }));
@@ -2491,14 +2510,14 @@ hthvParse(<span class="hljs-string">'text/html, application/xhtml+xml, applicati
 <span class="hljs-comment">//    { contentType: '*/*', weight: 0.8 }</span>
 <span class="hljs-comment">//  ]</span>
 
-<span class="hljs-keyword">const</span> [, comment] = hthvParse(<span class="hljs-string">`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`</span>);
+<span class="hljs-keyword">const</span> [, comment] = hthvParseCommented(<span class="hljs-string">`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`</span>);
 comment.pl.map(<span class="hljs-function">(<span class="hljs-params">{ n, v }</span>) =&gt;</span> n ? <span class="hljs-string">`<span class="hljs-subst">${n}</span>=<span class="hljs-subst">${v}</span>`</span> : v); <span class="hljs-comment">// [ 'Linux x86_64', 'rv=70.0' ]</span></code></pre>
-			<p>Item itself may be a name/value pair.</p>
+			<p>Item itself can be a name/value pair.</p>
 			<blockquote>
 				<p><code>Cookie</code>: <strong><code>PHPSESSID=298zf09hf012fh2</code></strong></p>
 			</blockquote>
 			<p>The parser correctly recognizes this.</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse} <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
 
 hthvParse(<span class="hljs-string">'PHPSESSID=298zf09hf012fh2'</span>); <span class="hljs-comment">// { n: 'PHPSESSID', v: '298zf09hf012fh2' }</span></code></pre>
 			<a href="#quoted-string" id="quoted-string" style="color: inherit; text-decoration: none;">
@@ -2508,8 +2527,8 @@ hthvParse(<span class="hljs-string">'PHPSESSID=298zf09hf012fh2'</span>); <span c
 			<blockquote>
 				<p><code>Clear-Site-Data:</code> <strong><code>&quot;cache&quot;</code></strong> <br><code>Public-Key-Pins:</code> <strong><code>pin-sha256=&quot;M8HztCzM3elUxkcjR2S5P4hhyBNf6lHkmjAHKhpGPWE=&quot;; max-age=5184000; includeSubDomains; report-uri=&quot;https://www.example.org/hpkp-report&quot;</code></strong></p>
 			</blockquote>
-			<p>The returned contains the value unquoted and unescaped. The type of such item is <code>quoted-string</code>.</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse} <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+			<p>The returned item contains the value unquoted and unescaped. The type of such item is <code>quoted-string</code>.</p>
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
 
 hthvParse(<span class="hljs-string">'"cache"'</span>)[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { $: 'quoted-string', v: 'cache' }</span>
 
@@ -2524,29 +2543,78 @@ pin.p[<span class="hljs-string">'report-url'</span>] <span class="hljs-comment">
 			<a href="#tagged-string" id="tagged-string" style="color: inherit; text-decoration: none;">
 				<h3>Tagged String</h3>
 			</a>
-			<p>Some headers, such as <code>ETag</code> have special syntax that allows to prepend a quoted string with a tag:</p>
+			<p>Some headers, such as <code>ETag</code>, have special syntax that allows to prepend a quoted string with a tag:</p>
 			<blockquote>
 				<p><code>ETag:</code> <strong><code>W/&quot;0815&quot;</code></strong></p>
 			</blockquote>
 			<p>The parser recognizes such item value (but not parameter ones!) as <code>HthvItem</code> with type <code>tagged-string</code>, and places
-			the tag to its <code>t</code> property and unquoted string - to its <code>v</code> property..</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse} <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+			the tag into its <code>t</code> property, and unquoted string - into its <code>v</code> property.</p>
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
 
 hthvParse(<span class="hljs-string">'W/"0815"'</span>)[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { $: 'tagged-string', t: 'W/', v: '0815' }</span></code></pre>
 			<a href="#datetime" id="datetime" style="color: inherit; text-decoration: none;">
 				<h3>Date/Time</h3>
 			</a>
-			<p>Date and time has special format in headers.</p>
+			<p>Date and time value has special format in headers.</p>
 			<blockquote>
 				<p><code>Date:</code> <strong><code>Wed, 21 Oct 2015 07:28:00 GMT</code></strong> <br><code>Set-Cookie:</code> <strong><code>id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT</code></strong></p>
 			</blockquote>
-			<p>The parser represents such values as <code>HthvItem</code> of <code>date-time</code> type.</p>
-			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse} <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+			<p>The parser represents such value as <code>HthvItem</code> of <code>date-time</code> type.</p>
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
 
 hthvParse(<span class="hljs-string">'Wed, 21 Oct 2015 07:28:00 GMT'</span>)[<span class="hljs-number">0</span>].v; <span class="hljs-comment">// { $: 'date-time', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }</span>
 
 hthvParse(<span class="hljs-string">'id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT'</span>)[<span class="hljs-number">0</span>].p.Expires;
 <span class="hljs-comment">// { $: 'date-time', n: 'Expires', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }</span></code></pre>
+			<a href="#custom-parsers" id="custom-parsers" style="color: inherit; text-decoration: none;">
+				<h2>Custom Parsers</h2>
+			</a>
+			<p>There is no standard for HTTP header value syntax. And there is no way to implement a parser suitable for all headers.</p>
+			<p>The parser can be configured to understand different header formats. A <code>newHthvParser()</code> function can be used for that.
+				But configuring it properly isn&#39;t a simple task. So, the <code>http-header-value</code> package contains some preconfigured
+			parsers in addition to default one.</p>
+			<a href="#comments" id="comments" style="color: inherit; text-decoration: none;">
+				<h3>Comments</h3>
+			</a>
+			<p>Some headers may contain comments enclosed in parentheses.</p>
+			<blockquote>
+				<p><code>User-Agent:</code> <strong><code>Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0</code></strong></p>
+			</blockquote>
+			<p>Comments parsing is disabled by default. But can be enabled in custom parser. Such parser recognizes top-level comments.
+			But typically it is enough to use an <code>hthvParseCommented()</code> parser.</p>
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParseCommented } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+
+hthvParseCommented(<span class="hljs-string">'Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0'</span>)
+    .map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.v); <span class="hljs-comment">// ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];</span></code></pre>
+			<a href="#uris" id="uris" style="color: inherit; text-decoration: none;">
+				<h3>URIs</h3>
+			</a>
+			<p>URLs may contain <code>,</code>, <code>;</code>, &#39;(&#39;, &#39;)&#39;, and <code>=</code> symbols, that treated specially by default.</p>
+			<blockquote>
+				<p><code>Location:</code> <strong><code>http://example.com/matrix;param=(value)?q=some</code></strong></p>
+			</blockquote>
+			<p>The <code>httpParseURIs()</code> parser may be used to parse such header values.</p>
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParseURIs } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+
+hthvParseURIs(<span class="hljs-string">'http://example.com/matrix;param=(value)?q=some'</span>);
+<span class="hljs-comment">// { $: 'raw', v: 'http://example.com/matrix;param=(value)?q=some' };</span></code></pre>
+			<a href="#cookies" id="cookies" style="color: inherit; text-decoration: none;">
+				<h3>Cookies</h3>
+			</a>
+			<p>Cookies can be set in response by <code>Set-Cookie</code> header, and in request by <code>Cookie</code> one:</p>
+			<blockquote>
+				<p><code>Set-Cookie:</code> <strong><code>id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT, SESSIONID=fdkafretercvx</code></strong> <br><code>Cookie:</code> <strong><code>id=a3fWa; SESSIONID=fdkafretercvx</code></strong></p>
+			</blockquote>
+			<p>The <code>Set-Cookie</code> value can be parsed by default <code>hthvParse()</code> parser. While the <code>Cookie</code> value contains cookies
+			semicolon-separated. The <code>hthvParseSemSep()</code> parses handles this.</p>
+			<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParseSemSep } <span class="hljs-keyword">from</span> <span class="hljs-string">'http-header-value'</span>;
+
+hthvParseSemSep(<span class="hljs-string">'id=a3fWa; SESSIONID=fdkafretercvx'</span>)
+    .reduce(<span class="hljs-function">(<span class="hljs-params">map, { n, v }</span>) =&gt;</span> ({ ...map, [n]: v }), {});
+<span class="hljs-comment">// {</span>
+<span class="hljs-comment">//   id: '3fWa',</span>
+<span class="hljs-comment">//   SESSIONID: 'fdkafretercvx'</span>
+<span class="hljs-comment">// }</span></code></pre>
 			<a href="#utilities" id="utilities" style="color: inherit; text-decoration: none;">
 				<h2>Utilities</h2>
 			</a>
@@ -2571,7 +2639,7 @@ hthvParse(<span class="hljs-string">'id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00
 
 <span class="hljs-keyword">const</span> comment = <span class="hljs-string">'Custom ("quoted") comment'</span>
 <span class="hljs-keyword">const</span> customComment = <span class="hljs-string">`Custom-Comment: (<span class="hljs-subst">${hthvExcapeC(comment)}</span>)`</span>;
-<span class="hljs-comment">// CustomComment: (Custom \(\"quoted\"\) comment)</span></code></pre>
+<span class="hljs-comment">// Custom-Comment: (Custom \(\"quoted\"\) comment)</span></code></pre>
 			<a href="#hthvquote" id="hthvquote" style="color: inherit; text-decoration: none;">
 				<h3>hthvQuote()</h3>
 			</a>
@@ -2592,18 +2660,37 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
+						<h3>Enumerations</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-enum"><a href="enums/hthvdelimiter.html" class="tsd-kind-icon">Hthv<wbr>Delimiter</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
 						<h3>Interfaces</h3>
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-interface tsd-has-type-parameter"><a href="interfaces/hthvitem.html" class="tsd-kind-icon">Hthv<wbr>Item</a></li>
 							<li class="tsd-kind-interface"><a href="interfaces/hthvparammap.html" class="tsd-kind-icon">Hthv<wbr>Param<wbr>Map</a></li>
+							<li class="tsd-kind-interface"><a href="interfaces/hthvparserconfig.html" class="tsd-kind-icon">Hthv<wbr>Parser<wbr>Config</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Type aliases</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-type-alias"><a href="globals.html#hthvdelimitconfig" class="tsd-kind-icon">Hthv<wbr>Delimit<wbr>Config</a></li>
+							<li class="tsd-kind-type-alias"><a href="globals.html#hthvdelimiterchar" class="tsd-kind-icon">Hthv<wbr>Delimiter<wbr>Char</a></li>
 							<li class="tsd-kind-type-alias"><a href="globals.html#hthvextraitem" class="tsd-kind-icon">Hthv<wbr>Extra<wbr>Item</a></li>
 							<li class="tsd-kind-type-alias"><a href="globals.html#hthvitemtype" class="tsd-kind-icon">Hthv<wbr>Item<wbr>Type</a></li>
 							<li class="tsd-kind-type-alias"><a href="globals.html#hthvparamitem" class="tsd-kind-icon">Hthv<wbr>Param<wbr>Item</a></li>
+							<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#hthvparser" class="tsd-kind-icon">Hthv<wbr>Parser</a></li>
+						</ul>
+					</section>
+					<section class="tsd-index-section ">
+						<h3>Variables</h3>
+						<ul class="tsd-index-list">
+							<li class="tsd-kind-variable"><a href="globals.html#hthvparse" class="tsd-kind-icon">hthv<wbr>Parse</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#hthvparsecommented" class="tsd-kind-icon">hthv<wbr>Parse<wbr>Commented</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#hthvparsesemsep" class="tsd-kind-icon">hthv<wbr>Parse<wbr>Sem<wbr>Sep</a></li>
+							<li class="tsd-kind-variable"><a href="globals.html#hthvparseuris" class="tsd-kind-icon">hthv<wbr>ParseURIs</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
@@ -2611,8 +2698,8 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 						<ul class="tsd-index-list">
 							<li class="tsd-kind-function"><a href="globals.html#hthvescapec" class="tsd-kind-icon">hthv<wbr>EscapeC</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#hthvescapeq" class="tsd-kind-icon">hthv<wbr>EscapeQ</a></li>
-							<li class="tsd-kind-function"><a href="globals.html#hthvparse" class="tsd-kind-icon">hthv<wbr>Parse</a></li>
 							<li class="tsd-kind-function"><a href="globals.html#hthvquote" class="tsd-kind-icon">hthv<wbr>Quote</a></li>
+							<li class="tsd-kind-function"><a href="globals.html#newhthvparser" class="tsd-kind-icon">new<wbr>Hthv<wbr>Parser</a></li>
 						</ul>
 					</section>
 				</div>
@@ -2621,12 +2708,50 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Type aliases</h2>
 			<section class="tsd-panel tsd-member tsd-kind-type-alias">
+				<a name="hthvdelimitconfig" class="tsd-anchor"></a>
+				<h3>Hthv<wbr>Delimit<wbr>Config</h3>
+				<div class="tsd-signature tsd-kind-icon">Hthv<wbr>Delimit<wbr>Config<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-parser.ts#L72">hthv-parser.ts:72</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Delimits configuration for HTTP header value parser.</p>
+					</div>
+					<p>This is an object literal with <a href="globals.html#hthvdelimiterchar">supported delimiter characters</a> as keys
+					and corresponding <a href="enums/hthvdelimiter.html">delimiters</a> as values.</p>
+					<p>The default delimiter configuration is used for omitted characters.</p>
+				</div>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias">
+				<a name="hthvdelimiterchar" class="tsd-anchor"></a>
+				<h3>Hthv<wbr>Delimiter<wbr>Char</h3>
+				<div class="tsd-signature tsd-kind-icon">Hthv<wbr>Delimiter<wbr>Char<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">" "</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"	"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">","</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">";"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"&quot;"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"\"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"("</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">")"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"/"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">":"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"&lt;"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"&#x3D;"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"&gt;"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"?"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"@"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"["</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"]"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"{"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"}"</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L72">hthv-delimiter.ts:72</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Supported delimiter character.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias">
 				<a name="hthvextraitem" class="tsd-anchor"></a>
 				<h3>Hthv<wbr>Extra<wbr>Item</h3>
 				<div class="tsd-signature tsd-kind-icon">Hthv<wbr>Extra<wbr>Item<span class="tsd-signature-symbol">:</span> <a href="interfaces/hthvitem.html" class="tsd-signature-type">HthvItem</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"no-name"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"no-tag"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"no-params"</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/e7c2315/src/hthv-item.ts#L101">hthv-item.ts:101</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L101">hthv-item.ts:101</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2646,7 +2771,7 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 				<div class="tsd-signature tsd-kind-icon">Hthv<wbr>Item<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">"raw"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"quoted-string"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"tagged-string"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"date-time"</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/e7c2315/src/hthv-item.ts#L25">hthv-item.ts:25</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L25">hthv-item.ts:25</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2683,7 +2808,7 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 				<div class="tsd-signature tsd-kind-icon">Hthv<wbr>Param<wbr>Item<span class="tsd-signature-symbol">:</span> <a href="interfaces/hthvitem.html" class="tsd-signature-type">HthvItem</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"has-name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-name"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"no-tag"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"no-params"</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/e7c2315/src/hthv-item.ts#L127">hthv-item.ts:127</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L127">hthv-item.ts:127</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2695,6 +2820,181 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 					<blockquote>
 						<p><code>Set-Cookie:</code> <strong><code>id=a3fWa; Secure; Domain=example.com; Max-Age=2592000</code></strong></p>
 					</blockquote>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
+				<a name="hthvparser" class="tsd-anchor"></a>
+				<h3>Hthv<wbr>Parser</h3>
+				<div class="tsd-signature tsd-kind-icon">Hthv<wbr>Parser&lt;N, T, P&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-parser.ts#L29">hthv-parser.ts:29</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>HTTP header value parser signature.</p>
+					</div>
+					<p>Splits the value onto <a href="interfaces/hthvitem.html">items</a>.</p>
+				</div>
+				<h4 class="tsd-type-parameters-title">Type parameters</h4>
+				<ul class="tsd-type-parameters">
+					<li>
+						<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"has-name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-name"</span></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Whether parsed items have <a href="interfaces/hthvitem.html#n">names</a>.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"has-tag"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-tag"</span></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Whether parsed items have <a href="interfaces/hthvitem.html#t">tags</a>.</p>
+							</div>
+						</div>
+					</li>
+					<li>
+						<h4>P<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"has-params"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-params"</span></h4>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Whether parsed items have <a href="interfaces/hthvitem.html#p">parameters</a>.</p>
+							</div>
+						</div>
+					</li>
+				</ul>
+				<div class="tsd-type-declaration">
+					<h4>Type declaration</h4>
+					<ul class="tsd-parameters">
+						<li class="tsd-parameter-siganture">
+							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/hthvitem.html" class="tsd-signature-type">HthvItem</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></li>
+							</ul>
+							<ul class="tsd-descriptions">
+								<li class="tsd-description">
+									<div class="tsd-comment tsd-typography">
+									</div>
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>this: <span class="tsd-signature-type">void</span></h5>
+										</li>
+										<li>
+											<h5>value: <span class="tsd-signature-type">string</span></h5>
+											<div class="tsd-comment tsd-typography">
+												<div class="lead">
+													<p>HTTP header value to parse.</p>
+												</div>
+											</div>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <a href="interfaces/hthvitem.html" class="tsd-signature-type">HthvItem</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">N</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">P</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">[]</span></h4>
+									<p>An array of parsed value items.</p>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</section>
+		<section class="tsd-panel-group tsd-member-group ">
+			<h2>Variables</h2>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="hthvparse" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> hthv<wbr>Parse</h3>
+				<div class="tsd-signature tsd-kind-icon">hthv<wbr>Parse<span class="tsd-signature-symbol">:</span> <a href="globals.html#hthvparser" class="tsd-signature-type">HthvParser</a><span class="tsd-signature-symbol"> =&nbsp;/*#__PURE__*/ newHthvParser()</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-parse.ts#L25">hthv-parse.ts:25</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Parses HTTP header value.</p>
+					</div>
+					<p>Splits the value onto <a href="interfaces/hthvitem.html">items</a>.</p>
+					<p>Parser is configured with default <a href="interfaces/hthvparserconfig.html">config</a>.</p>
+					<p>Does not recognize comments.</p>
+					<p>Handles date/time values in <a href="https://tools.ietf.org/html/rfc7231#section-7.1.1.1">IMF-fixdate</a> format only.</p>
+					<p>Treats illegal characters as ASCII letters.</p>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>HTTP header value to parse.</p>
+						</dd>
+						<dt>returns</dt>
+						<dd><p>An array of comma- or space- separated value items.</p>
+						</dd>
+					</dl>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="hthvparsecommented" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> hthv<wbr>Parse<wbr>Commented</h3>
+				<div class="tsd-signature tsd-kind-icon">hthv<wbr>Parse<wbr>Commented<span class="tsd-signature-symbol">:</span> <a href="globals.html#hthvparser" class="tsd-signature-type">HthvParser</a><span class="tsd-signature-symbol"> =&nbsp;/*#__PURE__*/ newHthvParser({ comments: true })</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/custom/hthv-parse-commented.ts#L10">custom/hthv-parse-commented.ts:10</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Parses HTTP header value that may contain comments.</p>
+					</div>
+					<p>This is particularly useful when parsing headers such as:</p>
+					<ul>
+						<li><code>User-Agent</code></li>
+						<li><code>Server</code></li>
+					</ul>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="hthvparsesemsep" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> hthv<wbr>Parse<wbr>Sem<wbr>Sep</h3>
+				<div class="tsd-signature tsd-kind-icon">hthv<wbr>Parse<wbr>Sem<wbr>Sep<span class="tsd-signature-symbol">:</span> <a href="globals.html#hthvparser" class="tsd-signature-type">HthvParser</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"has-name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-name"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"has-tag"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-tag"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"no-params"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;/*#__PURE__*/ newHthvParser({delimit: {&#x27;;&#x27;: HthvDelimiter.NonToken | HthvDelimiter.Item,},}) as HthvParser&lt;&#x27;has-name&#x27; | &#x27;no-name&#x27;, &#x27;has-tag&#x27; | &#x27;no-tag&#x27;, &#x27;no-params&#x27;&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/custom/hthv-parse-sem-sep.ts#L13">custom/hthv-parse-sem-sep.ts:13</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Parses semicolon-separated HTTP header value items.</p>
+					</div>
+					<p>Treats &#39;;&#39; just like &#39;,&#39;.</p>
+					<p>This is particularly useful when parsing a <code>Cookies</code> header.</p>
+					<p>The parsed items won&#39;t have any parameters.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-variable">
+				<a name="hthvparseuris" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> hthv<wbr>ParseURIs</h3>
+				<div class="tsd-signature tsd-kind-icon">hthv<wbr>ParseURIs<span class="tsd-signature-symbol">:</span> <a href="globals.html#hthvparser" class="tsd-signature-type">HthvParser</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">"no-name"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"no-tag"</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"no-params"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> =&nbsp;/*#__PURE__*/ newHthvParser({delimit: {&#x27;,&#x27;: HthvDelimiter.NonToken,&#x27;;&#x27;: HthvDelimiter.NonToken,&#x27;&#x3D;&#x27;: HthvDelimiter.NonToken,},}) as HthvParser&lt;&#x27;no-name&#x27;, &#x27;no-tag&#x27;, &#x27;no-params&#x27;&gt;</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/custom/hthv-parse-uris.ts#L22">custom/hthv-parse-uris.ts:22</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Parses HTTP header value containing URI(s) without parameters.</p>
+					</div>
+					<p><code>,</code>, <code>;</code>, &#39;(&#39;, &#39;)&#39;, and <code>=</code> symbols can be part of URI. This function returns multiple items only if URIs are
+					space-separated.</p>
+					<p>This is particularly useful when parsing headers such as:</p>
+					<ul>
+						<li><code>Content-Location</code></li>
+						<li><code>Location</code></li>
+						<li><code>Referef</code></li>
+					</ul>
+					<dl class="tsd-comment-tags">
+						<dt>param</dt>
+						<dd><p>HTTP header value to parse.</p>
+						</dd>
+						<dt>returns</dt>
+						<dd><p>An array of space-separated value items without parameters.</p>
+						</dd>
+					</dl>
 				</div>
 			</section>
 		</section>
@@ -2710,7 +3010,7 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/surol/http-header-value/blob/e7c2315/src/hthv-escape.ts#L50">hthv-escape.ts:50</a></li>
+								<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-escape.ts#L37">hthv-escape.ts:37</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2746,7 +3046,7 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/surol/http-header-value/blob/e7c2315/src/hthv-escape.ts#L23">hthv-escape.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-escape.ts#L17">hthv-escape.ts:17</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2771,42 +3071,6 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function">
-				<a name="hthvparse" class="tsd-anchor"></a>
-				<h3>hthv<wbr>Parse</h3>
-				<ul class="tsd-signatures tsd-kind-function">
-					<li class="tsd-signature tsd-kind-icon">hthv<wbr>Parse<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interfaces/hthvitem.html" class="tsd-signature-type">HthvItem</a><span class="tsd-signature-symbol">[]</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/surol/http-header-value/blob/e7c2315/src/hthv-parse.ts#L25">hthv-parse.ts:25</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>Parses HTP header value.</p>
-							</div>
-							<p>Splits the value onto <a href="interfaces/hthvitem.html">items</a>.</p>
-							<p>Recognizes top-level comments only. Not nested comments.</p>
-							<p>Handles date/time values in <a href="https://tools.ietf.org/html/rfc7231#section-7.1.1.1">IMF-fixdate</a> format only.</p>
-							<p>Treats illegal characters as ASCII letters.</p>
-						</div>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>value: <span class="tsd-signature-type">string</span></h5>
-								<div class="tsd-comment tsd-typography">
-									<p>HTTP header value to parse.</p>
-								</div>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interfaces/hthvitem.html" class="tsd-signature-type">HthvItem</a><span class="tsd-signature-symbol">[]</span></h4>
-						<p>An array of comma- and space- separated value items.</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-function">
 				<a name="hthvquote" class="tsd-anchor"></a>
 				<h3>hthv<wbr>Quote</h3>
 				<ul class="tsd-signatures tsd-kind-function">
@@ -2816,7 +3080,7 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/surol/http-header-value/blob/e7c2315/src/hthv-quote.ts#L16">hthv-quote.ts:16</a></li>
+								<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-quote.ts#L17">hthv-quote.ts:17</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -2837,6 +3101,38 @@ forwardedHeader(<span class="hljs-string">'[2001:db8:cafe::17]:4711'</span>); <s
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
 						<p>Either a string enclosed in double quotes, or original <code>string</code> if there is no need to quote it.</p>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function">
+				<a name="newhthvparser" class="tsd-anchor"></a>
+				<h3>new<wbr>Hthv<wbr>Parser</h3>
+				<ul class="tsd-signatures tsd-kind-function">
+					<li class="tsd-signature tsd-kind-icon">new<wbr>Hthv<wbr>Parser<span class="tsd-signature-symbol">(</span>config<span class="tsd-signature-symbol">?: </span><a href="interfaces/hthvparserconfig.html" class="tsd-signature-type">HthvParserConfig</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#hthvparser" class="tsd-signature-type">HthvParser</a></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-parser.ts#L81">hthv-parser.ts:81</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Creates and configures new HTTP header value parser.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> config: <a href="interfaces/hthvparserconfig.html" class="tsd-signature-type">HthvParserConfig</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>New parser configuration.</p>
+								</div>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <a href="globals.html#hthvparser" class="tsd-signature-type">HthvParser</a></h4>
+						<p>New HTTP header value parser function.</p>
 					</li>
 				</ul>
 			</section>

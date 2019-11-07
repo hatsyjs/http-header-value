@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HthvItem | HTTP Header Values</title>
+	<title>HthvDelimiter | HTTP Header Values</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -2377,40 +2377,43 @@ img {
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class=" tsd-kind-enum">
-			<a href="../enums/hthvdelimiter.html" class="tsd-kind-icon">Hthv<wbr>Delimiter</a>
-		</li>
-		<li class="current tsd-kind-interface tsd-has-type-parameter">
-			<a href="hthvitem.html" class="tsd-kind-icon">Hthv<wbr>Item</a>
+		<li class="current tsd-kind-enum">
+			<a href="hthvdelimiter.html" class="tsd-kind-icon">Hthv<wbr>Delimiter</a>
 			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="hthvitem.html#_" class="tsd-kind-icon">$</a>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#assignment" class="tsd-kind-icon">Assignment</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="hthvitem.html#n" class="tsd-kind-icon">n</a>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#escaped" class="tsd-kind-icon">Escaped</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="hthvitem.html#p" class="tsd-kind-icon">p</a>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#item" class="tsd-kind-icon">Item</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="hthvitem.html#pl" class="tsd-kind-icon">pl</a>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#nontoken" class="tsd-kind-icon">Non<wbr>Token</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="hthvitem.html#t" class="tsd-kind-icon">t</a>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#none" class="tsd-kind-icon">None</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="hthvitem.html#v" class="tsd-kind-icon">v</a>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#parameter" class="tsd-kind-icon">Parameter</a>
 				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="hthvitem.html#x" class="tsd-kind-icon">x</a>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#quotedstring" class="tsd-kind-icon">Quoted<wbr>String</a>
+				</li>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#space" class="tsd-kind-icon">Space</a>
 				</li>
 			</ul>
 		</li>
-		<li class=" tsd-kind-interface">
-			<a href="hthvparammap.html" class="tsd-kind-icon">Hthv<wbr>Param<wbr>Map</a>
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
+			<a href="../interfaces/hthvitem.html" class="tsd-kind-icon">Hthv<wbr>Item</a>
 		</li>
 		<li class=" tsd-kind-interface">
-			<a href="hthvparserconfig.html" class="tsd-kind-icon">Hthv<wbr>Parser<wbr>Config</a>
+			<a href="../interfaces/hthvparammap.html" class="tsd-kind-icon">Hthv<wbr>Param<wbr>Map</a>
+		</li>
+		<li class=" tsd-kind-interface">
+			<a href="../interfaces/hthvparserconfig.html" class="tsd-kind-icon">Hthv<wbr>Parser<wbr>Config</a>
 		</li>
 		<li class=" tsd-kind-type-alias">
 			<a href="../globals.html#hthvdelimitconfig" class="tsd-kind-icon">Hthv<wbr>Delimit<wbr>Config</a>
@@ -2461,177 +2464,159 @@ img {
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>Parsed HTTP header value item.</p>
+					<p>Constants for various kinds of delimiters.</p>
 				</div>
-				<p>HTTP header value may consist of multiple such items, either comma- or space- separated.</p>
-				<p>Some items may be nested inside another ones. E.g. as item parameters, or as nested comments.</p>
-				<p>Item may represent a <code>&lt;name&gt;=&lt;value&gt;</code> pair used as top level item or its parameter, or a <code>&lt;name&gt;:&lt;value&gt;</code> pair within
-				comment.</p>
+				<p>Each value is a bit mask that can be used to check whether the given delimiter kind corresponds to it.</p>
 			</div>
-		</section>
-		<section class="tsd-panel tsd-type-parameters">
-			<h3>Type parameters</h3>
-			<ul class="tsd-type-parameters">
-				<li>
-					<h4>N<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"has-name"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-name"</span></h4>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether this item has a <a href="hthvitem.html#n">name</a>.</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<h4>T<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"has-tag"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-tag"</span></h4>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether this item has a <a href="hthvitem.html#t">tag</a>.</p>
-						</div>
-					</div>
-				</li>
-				<li>
-					<h4>P<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">"has-params"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"no-params"</span></h4>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Whether this item has <a href="hthvitem.html#p">parameters</a>.</p>
-						</div>
-					</div>
-				</li>
-			</ul>
-		</section>
-		<section class="tsd-panel tsd-hierarchy">
-			<h3>Hierarchy</h3>
-			<ul class="tsd-hierarchy">
-				<li>
-					<span class="target">HthvItem</span>
-				</li>
-			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
 			<h2>Index</h2>
 			<section class="tsd-panel tsd-index-panel">
 				<div class="tsd-index-content">
 					<section class="tsd-index-section ">
-						<h3>Properties</h3>
+						<h3>Enumeration members</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hthvitem.html#_" class="tsd-kind-icon">$</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hthvitem.html#n" class="tsd-kind-icon">n</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hthvitem.html#p" class="tsd-kind-icon">p</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hthvitem.html#pl" class="tsd-kind-icon">pl</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hthvitem.html#t" class="tsd-kind-icon">t</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hthvitem.html#v" class="tsd-kind-icon">v</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="hthvitem.html#x" class="tsd-kind-icon">x</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#assignment" class="tsd-kind-icon">Assignment</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#escaped" class="tsd-kind-icon">Escaped</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#item" class="tsd-kind-icon">Item</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#nontoken" class="tsd-kind-icon">Non<wbr>Token</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#none" class="tsd-kind-icon">None</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#parameter" class="tsd-kind-icon">Parameter</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#quotedstring" class="tsd-kind-icon">Quoted<wbr>String</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#space" class="tsd-kind-icon">Space</a></li>
 						</ul>
 					</section>
 				</div>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
-			<h2>Properties</h2>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="_" class="tsd-anchor"></a>
-				<h3>$</h3>
-				<div class="tsd-signature tsd-kind-icon">$<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;has-tag&quot; extends T ? HthvItemType : &quot;raw&quot; | &quot;quoted-string&quot; | &quot;date-time&quot;</span></div>
+			<h2>Enumeration members</h2>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="assignment" class="tsd-anchor"></a>
+				<h3>Assignment</h3>
+				<div class="tsd-signature tsd-kind-icon">Assignment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;16</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L53">hthv-item.ts:53</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L53">hthv-delimiter.ts:53</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Item value type.</p>
+						<p>An assignment of value to some name.</p>
+					</div>
+					<p>A delimiter between name token and value.</p>
+					<p>This is a <code>=</code> sign by default. Or <code>:</code> sign in comments.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="escaped" class="tsd-anchor"></a>
+				<h3>Escaped</h3>
+				<div class="tsd-signature tsd-kind-icon">Escaped<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;32</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L58">hthv-delimiter.ts:58</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>A delimiter that should be escaped with a backslash.</p>
 					</div>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="n" class="tsd-anchor"></a>
-				<h3>n</h3>
-				<div class="tsd-signature tsd-kind-icon">n<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;has-name&quot; extends N ? &quot;no-name&quot; extends N ? string | undefined : string : undefined</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="item" class="tsd-anchor"></a>
+				<h3>Item</h3>
+				<div class="tsd-signature tsd-kind-icon">Item<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;4</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L62">hthv-item.ts:62</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L37">hthv-delimiter.ts:37</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A name of name/value item.</p>
+						<p>Items delimiter.</p>
 					</div>
-					<p>This is always a <a href="https://tools.ietf.org/html/rfc7230#section-3.2.6">token</a>.</p>
+					<p>This is either a <a href="hthvdelimiter.html#space">space character</a>, or colon (U+002C) by default.</p>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="p" class="tsd-anchor"></a>
-				<h3>p</h3>
-				<div class="tsd-signature tsd-kind-icon">p<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;has-params&quot; extends P ? HthvParamMap : { [name: string]: never; }</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="nontoken" class="tsd-anchor"></a>
+				<h3>Non<wbr>Token</h3>
+				<div class="tsd-signature tsd-kind-icon">Non<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L84">hthv-item.ts:84</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L23">hthv-delimiter.ts:23</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A map of item parameters.</p>
+						<p>A delimiter that can not be included into toke.</p>
 					</div>
+					<p>Any <a href="../globals.html#hthvdelimiterchar">delimiter character</a> considered non-token by default.</p>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="pl" class="tsd-anchor"></a>
-				<h3>pl</h3>
-				<div class="tsd-signature tsd-kind-icon">pl<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;has-params&quot; extends P ? HthvItem&lt;&quot;has-name&quot; | &quot;no-name&quot;, &quot;no-tag&quot;, &quot;no-params&quot;&gt;[] : []</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="none" class="tsd-anchor"></a>
+				<h3>None</h3>
+				<div class="tsd-signature tsd-kind-icon">None<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L89">hthv-item.ts:89</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L16">hthv-delimiter.ts:16</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A list of all item parameters.</p>
+						<p>Not a delimiter.</p>
 					</div>
+					<p>Corresponds to any non-delimiting character.</p>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="t" class="tsd-anchor"></a>
-				<h3>t</h3>
-				<div class="tsd-signature tsd-kind-icon">t<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">&quot;has-tag&quot; extends T ? &quot;no-tag&quot; extends T ? string | undefined : string : undefined</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="parameter" class="tsd-anchor"></a>
+				<h3>Parameter</h3>
+				<div class="tsd-signature tsd-kind-icon">Parameter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;8</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L69">hthv-item.ts:69</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L44">hthv-delimiter.ts:44</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A tag of tagged string.</p>
+						<p>Parameters delimiter.</p>
 					</div>
-					<p>This is only set for <code>tagged-string</code> item type.</p>
+					<p>This is a <code>;</code> sign by default.</p>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="v" class="tsd-anchor"></a>
-				<h3>v</h3>
-				<div class="tsd-signature tsd-kind-icon">v<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="quotedstring" class="tsd-anchor"></a>
+				<h3>Quoted<wbr>String</h3>
+				<div class="tsd-signature tsd-kind-icon">Quoted<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;65536</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L74">hthv-item.ts:74</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L65">hthv-delimiter.ts:65</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Item value.</p>
+						<p>A quoted-string delimiter.</p>
 					</div>
+					<p>This is a <code>&quot;</code> sign by default.</p>
 				</div>
 			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="x" class="tsd-anchor"></a>
-				<h3>x</h3>
-				<div class="tsd-signature tsd-kind-icon">x<span class="tsd-signature-symbol">:</span> <a href="../globals.html#hthvextraitem" class="tsd-signature-type">HthvExtraItem</a><span class="tsd-signature-symbol">[]</span></div>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="space" class="tsd-anchor"></a>
+				<h3>Space</h3>
+				<div class="tsd-signature tsd-kind-icon">Space<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;2</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-item.ts#L79">hthv-item.ts:79</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/9b39f2b/src/hthv-delimiter.ts#L30">hthv-delimiter.ts:30</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Any extra items immediately following item value and preceding its parameters. Typically empty.</p>
+						<p>Space character.</p>
 					</div>
+					<p>This is either space (U+0020), or horizontal tab (U+0009) characters.</p>
 				</div>
 			</section>
 		</section>
