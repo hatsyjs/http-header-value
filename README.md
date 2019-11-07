@@ -207,6 +207,26 @@ hthvParseURIs('http://example.com/matrix;param=(value)?q=some');
 ``` 
 
 
+### Cookies
+
+Cookies can be set in response by `Set-Cookie` header, and in request by `Cookie` one:
+> `Set-Cookie:` __`id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT, SESSIONID=fdkafretercvx`__ \
+> `Cookie:` __`id=a3fWa; SESSIONID=fdkafretercvx`__
+
+The `Set-Cookie` value can be parsed by default `hthvParse()` parser. While the `Cookie` value contains cookies
+semicolon-separated. The `hthvParseSemSep()` parses handles this.
+```typescript
+import { hthvParseSemSep } from 'http-header-value';
+
+hthvParseSemSep('id=a3fWa; SESSIONID=fdkafretercvx')
+    .reduce((map, { n, v }) => ({ ...map, [n]: v }), {});
+// {
+//   id: '3fWa',
+//   SESSIONID: 'fdkafretercvx'
+// }
+``` 
+
+
 Utilities
 ---------
 
