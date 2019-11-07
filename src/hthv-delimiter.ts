@@ -1,7 +1,6 @@
 /**
  * @module http-header-value
  */
-
 /**
  * Constants for various kinds of delimiters.
  *

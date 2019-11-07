@@ -1,6 +1,7 @@
 /**
  * @module http-header-value
  */
+export * from './custom';
 export * from './hthv-escape';
 export * from './hthv-item';
 export * from './hthv-parse';

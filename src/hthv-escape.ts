@@ -1,14 +1,8 @@
 /**
  * @module http-header-value
  */
-interface EscapedChars {
-  [char: string]: 1;
-}
-
-const stringEscaped: EscapedChars = {
-  '\\': 1,
-  '"': 1,
-};
+import { HthvDelimiter } from './hthv-delimiter';
+import { commentParserConfig, defaultParserConfig, ParserConfig } from './parser';
 
 /**
  * Escapes a `string` to be included into [quoted-string](https://tools.ietf.org/html/rfc7230#section-3.2.6) within HTTP
@@ -21,15 +15,8 @@ const stringEscaped: EscapedChars = {
  * @returns Escaped `string`.
  */
 export function hthvEscapeQ(string: string): string {
-  return escape(string, stringEscaped);
+  return escape(string, defaultParserConfig);
 }
-
-const commentEscaped: EscapedChars = {
-  '\\': 1,
-  '"': 1,
-  '(': 1,
-  ')': 1,
-};
 
 /**
  * Escapes a `string` to be included into [comment](https://tools.ietf.org/html/rfc7230#section-3.2.6) withing HTTP
@@ -48,10 +35,10 @@ const commentEscaped: EscapedChars = {
  * @returns Escaped `string`.
  */
 export function hthvEscapeC(string: string): string {
-  return escape(string, commentEscaped);
+  return escape(string, commentParserConfig);
 }
 
-function escape(string: string, escapedChars: { [char: string]: 1 }): string {
+function escape(string: string, config: ParserConfig): string {
 
   let escaped: undefined | string;
 
@@ -59,7 +46,7 @@ function escape(string: string, escapedChars: { [char: string]: 1 }): string {
 
     const c = string[i];
 
-    if (escapedChars[c]) {
+    if (config.delimiterOf(c) & HthvDelimiter.Escaped) {
       if (!escaped) {
         escaped = string.substring(0, i);
       }

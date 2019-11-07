@@ -1,6 +1,5 @@
-import { HthvExtraItem, HthvItem, HthvParamItem } from './hthv-item';
 import { hthvParse } from './hthv-parse';
-import { hthvItem, HthvPartial } from './hthv-partial.impl';
+import { extras, items, paramItem } from './spec/items';
 
 describe('hthvParse', () => {
   it('recognizes date/time', () => {
@@ -483,15 +482,3 @@ describe('hthvParse', () => {
      ));
   });
 });
-
-function paramItem(item: HthvPartial<HthvParamItem>): HthvParamItem {
-  return hthvItem(item);
-}
-
-function items<I extends HthvItem>(...list: HthvPartial<I>[]): I[] {
-  return list.map(hthvItem);
-}
-
-function extras(...list: HthvPartial<HthvExtraItem>[]): HthvExtraItem[] {
-  return list.map(hthvItem);
-}

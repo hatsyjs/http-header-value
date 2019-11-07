@@ -9,6 +9,7 @@ import {
   buildParserConfig,
   commentParser,
   commentParserConfig,
+  defaultParserConfig,
   itemDelimitParser,
   itemParser,
   paramParser,
@@ -22,9 +23,9 @@ import {
  *
  * @returns New HTTP header value parser function.
  */
-export function newHthvParser(config: HthvParserConfig = {}): HthvParser {
+export function newHthvParser(config?: HthvParserConfig): HthvParser {
 
-  const parserConfig = buildParserConfig(config.delimit);
+  const parserConfig = config ? buildParserConfig(config.delimit) : defaultParserConfig;
   const parseItemDelimit = itemDelimitParser(parserConfig);
   const parseParam = paramParser(parserConfig);
   const parseItem = itemParser(parserConfig);
