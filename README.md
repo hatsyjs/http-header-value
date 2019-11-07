@@ -37,6 +37,11 @@ version.v;        // Firefox/70.0
 [api-docs-image]: https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational
 [api-docs-url]: https://surol.github.io/http-header-value/
 
+Supported Headers
+-----------------
+
+[See the list of supported HTTP headers and parsers best suited for them](https://github.com/surol/http-header-value/wiki/Supported-Headers)
+
 
 HthvParser
 ----------
