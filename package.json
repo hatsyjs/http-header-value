@@ -45,7 +45,7 @@
     "ci:all": "run-p build lint ci:test",
     "ci:test": "jest --ci --runInBand",
     "clean": "node ./build/clean",
-    "doc": "typedoc",
+    "doc": "typedoc --ignoreCompilerErrors",
     "doc:gh-pages": "gh-pages --dist target/typedoc --dotfiles",
     "doc:ci": "node ./build/doc-ci",
     "doc:publish": "run-s doc doc:ci \"doc:gh-pages {@}\" --",
