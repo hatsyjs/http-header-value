@@ -1,12 +1,12 @@
 import { items } from '../spec/items';
-import { hthvParseURLs } from './hthv-parse-urls';
+import { hthvParseURIs } from './hthv-parse-uris';
 
-describe('hthv-parse-urls', () => {
+describe('hthvParseURIs', () => {
   it('recognizes URL with comma, semicolon and equality sign', () => {
 
     const url = 'http://localhost/some/path?param=1;2,3';
 
-    expect(hthvParseURLs(url)).toEqual(items(
+    expect(hthvParseURIs(url)).toEqual(items(
         { $: 'raw', v: url },
     ));
   });
@@ -16,7 +16,7 @@ describe('hthv-parse-urls', () => {
     const url2 = '//localhost/2';
     const url3 = '/3';
 
-    expect(hthvParseURLs(` ${url1} \t ${url2} ${url3} \t`)).toEqual(items(
+    expect(hthvParseURIs(` ${url1} \t ${url2} ${url3} \t`)).toEqual(items(
         { $: 'raw', v: url1 },
         { $: 'raw', v: url2 },
         { $: 'raw', v: url3 },

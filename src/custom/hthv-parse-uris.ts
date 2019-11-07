@@ -6,9 +6,10 @@ import { HthvItem } from '../hthv-item';
 import { newHthvParser } from '../hthv-parser';
 
 /**
- * Parses HTTP header value containing URL(s) without parameters.
+ * Parses HTTP header value containing URI(s) without parameters.
  *
- * `,`, `;`, and `=` symbols can be part of URL. This function returns multiple items only if URLs are space-separated.
+ * `,`, `;`, '(', ')', and `=` symbols can be part of URI. This function returns multiple items only if URIs are
+ * space-separated.
  *
  * This is particularly useful to parse headers, such as:
  * - `Location`,
@@ -18,7 +19,7 @@ import { newHthvParser } from '../hthv-parser';
  *
  * @returns An array of space-separated value items without parameters.
  */
-export const hthvParseURLs: (this: void, value: string) => HthvItem<'no-name', 'no-tag', 'no-params'>[] =
+export const hthvParseURIs: (this: void, value: string) => HthvItem<'no-name', 'no-tag', 'no-params'>[] =
     /*#__PURE__*/ newHthvParser(
     {
       delimit: {

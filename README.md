@@ -46,7 +46,7 @@ HthvParser
 The `httvParse()` function is parser with default configuration.
 
 The `newHthvParser()` function may be used to configure custom parser. There are also numerous custom parser suitable
-to parse specific headers (see below).
+to parse specific headers ([see below][Custom Parsers]).
 
 The parser splits the header value string onto items of type `HthvItem`.
 
@@ -71,20 +71,6 @@ import { hthvParse} from 'http-header-value';
 hthvParse('GET, POST, HEAD').map(item => item.v); // ['GET', 'POST', 'HEAD']
 hthvParse('Basic YWxhZGRpbjpvcGVuc2VzYW1l').map(item => item.v); // ['Basic', 'YWxhZGRpbjpvcGVuc2VzYW1l'];
 ```
-
-### Comments
-
-Header value may contain comments enclosed in parentheses.
-> `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`__
-
-Comments parsing is disabled by default. But can be enabled in custom parser. Such parser recognizes top-level comments.
-```typescript
-import { hthvParseCommented } from 'http-header-value';
-
-hthvParseCommented('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')
-    .map(item => item.v); // ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];
-```
-
 
 ### Item Parameters
 
@@ -178,6 +164,46 @@ hthvParse('Wed, 21 Oct 2015 07:28:00 GMT')[0].v; // { $: 'date-time', v: 'Wed, 2
 
 hthvParse('id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT')[0].p.Expires;
 // { $: 'date-time', n: 'Expires', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }
+``` 
+
+
+Custom Parsers
+--------------
+
+[Custom Parsers]: #custom-parsers
+
+There is no standard for HTTP header value syntax. And there is no way to implement a parser suitable for all headers.
+
+The parser can be configured to understand different header formats. A `newHthvParser()` function can be used for that.
+But configuring it properly isn't a simple task. So, the `http-header-value` package contains some preconfigured
+parsers in addition to default one.
+
+
+### Comments
+
+Some headers may contain comments enclosed in parentheses.
+> `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`__
+
+Comments parsing is disabled by default. But can be enabled in custom parser. Such parser recognizes top-level comments.
+But typically it is enough to use an `hthvParseCommented()` parser.
+```typescript
+import { hthvParseCommented } from 'http-header-value';
+
+hthvParseCommented('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')
+    .map(item => item.v); // ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];
+``` 
+
+### URIs
+
+URLs may contain `,`, `;`, '(', ')', and `=` symbols, that treated specially by default.
+> `Location:` __`http://example.com/matrix;param=(value)?q=some`__
+
+The `httpParseURIs()` parser may be used to parse such header values.
+```typescript
+import { hthvParseURIs } from 'http-header-value';
+
+hthvParseURIs('http://example.com/matrix;param=(value)?q=some');
+// { $: 'raw', v: 'http://example.com/matrix;param=(value)?q=some' };
 ``` 
 
 

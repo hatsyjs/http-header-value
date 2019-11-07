@@ -1,2 +1,2 @@
 export * from './hthv-parse-commented';
-export * from './hthv-parse-urls';
+export * from './hthv-parse-uris';
