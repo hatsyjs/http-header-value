@@ -4,7 +4,7 @@ import { addParam } from './add-param';
 import { itemParser, ItemParserOpts } from './item-parser';
 import { nextInComment } from './next-in-comment';
 import { paramParser } from './param-parser';
-import { skipSpace } from './skip-space';
+import { skipSpaces } from './skip-spaces';
 import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
 
@@ -30,7 +30,7 @@ export function commentParser(config: ParserConfig): (input: ParserInput, out: (
 
     // noinspection StatementWithEmptyBodyJS
     while (
-        skipSpace(input)
+        skipSpaces(input)
         || parseParam(
             input,
             param => {

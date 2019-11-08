@@ -1,9 +1,9 @@
 import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvParamItem } from '../hthv-item';
 import { itemParser, ItemParserOpts } from './item-parser';
-import { skipSpace } from './skip-space';
 import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
+import { skipSpaces } from './skip-spaces';
 
 /**
  * @internal
@@ -21,8 +21,7 @@ export function paramParser(
     }
 
     ++input.i;
-    // noinspection StatementWithEmptyBodyJS
-    while (skipSpace(input)) ; // tslint:disable-line:curly
+    skipSpaces(input);
 
     return parseItem(input, out);
   };
