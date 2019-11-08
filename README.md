@@ -229,7 +229,27 @@ hthvParseSemiSep('id=a3fWa; SESSIONID=fdkafretercvx')
 //   id: '3fWa',
 //   SESSIONID: 'fdkafretercvx'
 // }
-``` 
+```
+
+
+### Directives
+
+Some headers contain directives. Directives are parameterized items using spaces instead of semicolons to delimit
+parameters. While semicolons and colons are used to delimit items.
+> `Content-Security-Policy:` __`default-src 'self' http://example.com; connect-src 'none'`__ \
+> `Via`: __`HTTP/1.1 GWA, 1.0 fred, 1.1 p.example.net`__
+
+`hthvParseDirectives()` parser support this format
+```typescript
+import { hthvFlatten, hthvParseDirectives } from 'http-header-value';
+
+const { map: { defaultSrc, connectSrc } } =
+    hthvFlatten(hthvParseDirectives(`default-src 'self' http://example.com; connect-src 'none'`));
+
+defaultSrc.p[0].v; // 'self'
+defaultSrc.p[1].v; // http://example.com
+connectSrc.p[0].v; // 'none'
+```
 
 
 Utilities
