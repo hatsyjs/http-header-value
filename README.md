@@ -58,6 +58,7 @@ The parser splits the header value string onto items of type `HthvItem`.
 The value of item is stored in its `v` property. While its `$` property contains a type of item, and may be one of:
 - `quoted-string`,
 - `tagged-string`,
+- `angle-bracketed-string`,
 - `date-time`,
 - `raw` (the default).
 
