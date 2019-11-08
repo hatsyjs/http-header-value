@@ -1,3 +1,4 @@
+import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvParamItem } from '../hthv-item';
 import { itemParser, ItemParserOpts } from './item-parser';
 import { skipSpace } from './skip-space';
@@ -15,7 +16,7 @@ export function paramParser(
   const parseItem = itemParser(config, { ...opts, tagged: false });
 
   return (input, out) => {
-    if (input.s[input.i] !== ';') {
+    if (!(config.delimiterOf(input.s[input.i]) & HthvDelimiter.Parameter)) {
       return false;
     }
 
