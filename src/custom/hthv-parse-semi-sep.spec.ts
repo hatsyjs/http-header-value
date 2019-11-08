@@ -9,7 +9,5 @@ describe('hthvParseSemiSep', () => {
       { $: 'raw', n: 'cookie3', v: 'value3' },
       { $: 'raw', n: 'cookie4', v: 'value4' },
     ));
-    console.log(hthvParseSemiSep('id=a3fWa; SESSIONID=fdkafretercvx')
-        .reduce((map, { n, v }) => ({ ...map, [n!]: v }), {}));
   });
 });
