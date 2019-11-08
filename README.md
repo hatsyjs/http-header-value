@@ -235,6 +235,35 @@ hthvParseSemiSep('id=a3fWa; SESSIONID=fdkafretercvx')
 Utilities
 ---------
 
+### hthvFlatten()
+
+Flattens HTTP header value items by extracting their parameters.
+
+The result is an items collection containing original `items`, as well as their parameters.
+
+Recursively places `items` and their parameters to result map in their original order, and:
+- prefers named items over unnamed ones,
+- prefers original items over their parameters,
+- prefers items added first.
+
+```typescript
+import { hthvFlatten, hthvParseSemiSep } from 'http-header-value';
+
+hthvFlatten(hthvParseSemiSep('id=a3fWa; SESSIONID=fdkafretercvx'));
+// {
+//   list: [
+//     { $: 'raw', n: 'id', v: 'a3fWa' },
+//     { $: 'raw', n: 'SESSIONID', v: 'fdkafretercvx' },
+//   ],
+//   map: {
+//     id: { $: 'raw', n: 'id', v: 'a3fWa' },
+//     SESSIONID: { $: 'raw', n: 'SESSIONID', v: 'fdkafretercvx' },     
+//   },  
+// }
+
+```
+
+
 ### hthvEscapeQ()
 
 Escapes a string to be included into [quoted-string] within HTTP header value.

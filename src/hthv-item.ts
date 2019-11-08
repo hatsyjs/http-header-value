@@ -107,7 +107,7 @@ export type HthvExtraItem = HthvItem<'no-name', 'no-tag', 'no-params'>;
  *
  * This is an object literal with parameter names as keys and corresponding parameter items as values.
  *
- * When parameter item has no name, an item value is used as its key.
+ * When parameter has no name, then its value is used as a key.
  *
  * When multiple parameters have the same key, the first one is preferred, and the one with the name is always
  * preferred over the one without it.
