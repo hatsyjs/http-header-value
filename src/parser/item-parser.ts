@@ -1,6 +1,7 @@
 import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvExtraItem, HthvItem, HthvItemType } from '../hthv-item';
 import { hthvItem } from '../hthv-partial.impl';
+import { angleBracketsParser } from './angle-brackets-parser';
 import { nextInItem } from './next-in-item';
 import { parseDateTime } from './parse-date-time';
 import { parseNone } from './parse-none';
@@ -32,6 +33,7 @@ export function itemParser(
 ): (input: ParserInput, out: (param: HthvItem<any, any, any>) => void) => boolean {
 
   const parseQuotedString = quotedStringParser(config);
+  const parseAngleBrackets = angleBracketsParser(config);
   const parseExtra = extra ? itemParser(config, { next, tagged: false, named: false, extra: false }) : parseNone;
 
   return (input, out) => {
@@ -55,7 +57,7 @@ export function itemParser(
             ++input.i;
             continue;
           }
-          if (input.d & HthvDelimiter.QuotedString) {
+          if (input.d & HthvDelimiter.Quote) {
             if (tagged || !name) {
               parseQuotedString(input, v => {
                 if (name) {
@@ -70,9 +72,15 @@ export function itemParser(
             }
             break;
           }
+          if (!name && parseAngleBrackets(input, v => {
+            type = 'angle-bracketed-string';
+            value = v;
+          })) {
+            break;
+          }
           value = name;
           name = '';
-        } else if (input.d & HthvDelimiter.QuotedString) {
+        } else if (input.d & HthvDelimiter.Quote) {
           if (tagged || !value) {
             parseQuotedString(input, v => {
               if (value) {
@@ -84,6 +92,11 @@ export function itemParser(
               value = v;
             });
           }
+          break;
+        } else if (!value && parseAngleBrackets(input, v => {
+          type = 'angle-bracketed-string';
+          value = v;
+        })) {
           break;
         }
       }

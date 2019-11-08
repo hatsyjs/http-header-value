@@ -62,7 +62,7 @@ export const enum HthvDelimiter {
    *
    * This is a `"` sign by default.
    */
-  QuotedString = 0x1_0000,
+  Quote = 0x1_0000,
 
   /**
    * Delimiter starting a comment.
@@ -70,6 +70,20 @@ export const enum HthvDelimiter {
    * This is a '(' sign when comments enabled.
    */
   Comment = 0x2_0000,
+
+  /**
+   * Delimiter staring and angle-bracketed-string.
+   *
+   * This is a `<` sign by default.
+   */
+  AngleBracketStart = 0x4_0000,
+
+  /**
+   * Delimiter staring and angle-bracketed-string.
+   *
+   * This is a `>` sign by default.
+   */
+  AngleBracketEnd = 0x80000,
 
 }
 

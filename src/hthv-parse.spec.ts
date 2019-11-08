@@ -71,8 +71,43 @@ describe('hthvParse', () => {
   it('unescapes quoted string', () => {
     expect(hthvParse('"\\\\so me\\\t"')).toEqual(items({ $: 'quoted-string', v: '\\so me\t' }));
   });
-  it('does not unescape incomplete escape sequence', () => {
+  it('does not unescape incomplete escape sequence inside quoted string', () => {
     expect(hthvParse('"incomp\\')).toEqual(items({ $: 'quoted-string', v: 'incomp\\' }));
+  });
+  it('recognizes angle-bracketed-string', () => {
+    expect(hthvParse('<string content>')).toEqual(items(
+        { $: 'angle-bracketed-string', v: 'string content' },
+    ));
+  });
+  it('recognizes empty angle-bracketed-string', () => {
+    expect(hthvParse('<>')).toEqual(items(
+        { $: 'angle-bracketed-string', v: '' },
+    ));
+  });
+  it('recognizes incomplete angle-bracketed-string', () => {
+    expect(hthvParse('<incom...')).toEqual(items(
+        { $: 'angle-bracketed-string', v: 'incom...' },
+    ));
+  });
+  it('allows opening angle bracket inside angle-bracketed-string', () => {
+    expect(hthvParse('<<>')).toEqual(items(
+        { $: 'angle-bracketed-string', v: '<' },
+    ));
+  });
+  it('allows backslash inside angle-bracketed-string', () => {
+    expect(hthvParse('< \\ >')).toEqual(items(
+        { $: 'angle-bracketed-string', v: ' \\ ' },
+    ));
+  });
+  it('allows angle bracket after token', () => {
+    expect(hthvParse('a<b')).toEqual(items(
+        { $: 'raw', v: 'a<b' },
+    ));
+  });
+  it('allows angle bracket after as part of value', () => {
+    expect(hthvParse('a*b<c')).toEqual(items(
+        { $: 'raw', v: 'a*b<c' },
+    ));
   });
   it('recognizes name/value parameter', () => {
 
@@ -98,6 +133,16 @@ describe('hthvParse', () => {
           p: { foo: param },
           pl: [param],
         },
+    ));
+  });
+  it('recognizes angle-bracketed-string in name/value', () => {
+    expect(hthvParse('foo=<bar>')).toEqual(items(
+        { $: 'angle-bracketed-string', n: 'foo', v: 'bar' },
+    ));
+  });
+  it('allows angle brackets as part of value in name/value', () => {
+    expect(hthvParse('if=a<b')).toEqual(items(
+        { $: 'raw', n: 'if', v: 'a<b' },
     ));
   });
   it('recognizes parameter of name/value pair', () => {

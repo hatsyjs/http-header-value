@@ -1,4 +1,5 @@
 export * from './add-param';
+export * from './angle-brackets-parser';
 export * from './comment-parser';
 export * from './item-delimit-parser';
 export * from './item-parser';

@@ -7,7 +7,7 @@ import { ParserInput } from './parser-input';
  */
 export function quotedStringParser(
     config: ParserConfig,
-): (input: ParserInput, out: (value: string) => void) => boolean {
+): (input: ParserInput, out: (value: string) => void) => void {
   return (input, out) => {
 
     let unquoted = '';
@@ -18,6 +18,7 @@ export function quotedStringParser(
       const c = input.s[input.i];
 
       if (c === '\\') {
+
         const next = input.s[++input.i];
 
         if (next) {
@@ -25,18 +26,15 @@ export function quotedStringParser(
         } else {
           unquoted += c;
         }
-
-      } else if (config.delimiterOf(c) & HthvDelimiter.QuotedString) {
+      } else if (config.delimiterOf(c) & HthvDelimiter.Quote) {
         ++input.i;
         out(unquoted);
-        return true;
+        return;
       } else {
         unquoted += c;
       }
     }
 
     out(unquoted);
-
-    return true;
   };
 }

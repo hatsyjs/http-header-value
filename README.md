@@ -143,7 +143,7 @@ pin.p['report-url'] // { $: 'quoted-string', n: 'report-uri', v: 'https://www.ex
 
 ### Tagged String
 
-Some headers, such as `ETag`, have special syntax that allows to prepend a quoted string with a tag:
+Some headers have special syntax that allows to prepend a quoted string with a tag:
 > `ETag:` __`W/"0815"`__
 
 The parser recognizes such item value (but not parameter ones!) as `HthvItem` with type `tagged-string`, and places
@@ -153,6 +153,29 @@ import { hthvParse } from 'http-header-value';
 
 hthvParse('W/"0815"')[0]; // { $: 'tagged-string', t: 'W/', v: '0815' }
 ```
+
+
+### Angle brackets
+
+Some headers uses angle brackets to enclose strings with special symbols. E.g. URLs:
+> `Link:` __`<https://example.com/index.html?mode=preconnect>; rel="preconnect"`__
+
+The parser recognizes such item or parameter value as `HthvItem` with type `angle-bracketed-string` and value without
+brackets. Escape sequences are not supported inside angle brackets.
+```typescript
+import { hthvParse } from 'http-header-value';
+hthvParse('<https://example.com/index.html?mode=preconnect>; rel="preconnect"');
+// [{ 
+//   $: 'angle-bracketed-string',
+//   v: 'https://example.com/index.html?mode=preconnect',
+//   p: {
+//     rel: { $: 'raw', n: 'rel', v: 'preconnect' }
+//   },
+//   pl: [{ $: 'raw', n: 'rel', v: 'preconnect' }]
+// }]                                        
+//
+```
+
 
 
 ### Date/Time
