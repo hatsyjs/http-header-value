@@ -10,7 +10,7 @@ import { HthvParser, newHthvParser } from '../hthv-parser';
  *
  * The parsed items won't have any parameters.
  */
-export const hthvParseSemSep: HthvParser<'has-name' | 'no-name', 'has-tag' | 'no-tag', 'no-params'> =
+export const hthvParseSemiSep: HthvParser<'has-name' | 'no-name', 'has-tag' | 'no-tag', 'no-params'> =
     /*#__PURE__*/ newHthvParser({
   delimit: {
     ';': HthvDelimiter.NonToken | HthvDelimiter.Item,
