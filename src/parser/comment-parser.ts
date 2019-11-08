@@ -1,3 +1,4 @@
+import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvItem } from '../hthv-item';
 import { hthvItem } from '../hthv-partial.impl';
 import { addParam } from './add-param';
@@ -21,7 +22,7 @@ export function commentParser(config: ParserConfig): (input: ParserInput, out: (
   const parseParam = paramParser(config, commentParserOpts);
 
   return (input, out) => {
-    if (input.s[input.i] !== '(') {
+    if (!(config.delimiterOf(input.s[input.i]) & HthvDelimiter.Comment)) {
       return false;
     }
 

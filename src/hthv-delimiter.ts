@@ -64,6 +64,13 @@ export const enum HthvDelimiter {
    */
   QuotedString = 0x1_0000,
 
+  /**
+   * Delimiter starting a comment.
+   *
+   * This is a '(' sign when comments enabled.
+   */
+  Comment = 0x2_0000,
+
 }
 
 /**

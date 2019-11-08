@@ -69,8 +69,8 @@ export const defaultParserConfig = /*#__PURE__*/ buildParserConfig();
 export const commentParserConfig = /*#__PURE__*/ buildParserConfig({
   delimit: {
     ':': HthvDelimiter.NonToken | HthvDelimiter.Assignment,
-    ')': HthvDelimiter.NonToken | HthvDelimiter.Item | HthvDelimiter.Escaped,
-    '(': HthvDelimiter.NonToken | HthvDelimiter.Escaped,
+    '(': HthvDelimiter.NonToken | HthvDelimiter.Escaped | HthvDelimiter.Comment,
+    ')': HthvDelimiter.NonToken | HthvDelimiter.Escaped | HthvDelimiter.Item,
     ' ': HthvDelimiter.NonToken | HthvDelimiter.Space,
     '\t': HthvDelimiter.NonToken | HthvDelimiter.Space,
     '=': HthvDelimiter.NonToken,
