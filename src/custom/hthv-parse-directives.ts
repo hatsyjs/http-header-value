@@ -23,8 +23,8 @@ import { HthvParser, newHthvParser } from '../hthv-parser';
  */
 export const hthvParseDirectives: HthvParser = /*#__PURE__*/ newHthvParser({
   delimit: {
-    ' ': HthvDelimiter.NonToken | HthvDelimiter.Parameter,
-    '\t': HthvDelimiter.NonToken | HthvDelimiter.Parameter,
+    ' ': HthvDelimiter.NonToken | HthvDelimiter.Space | HthvDelimiter.Parameter,
+    '\t': HthvDelimiter.NonToken | HthvDelimiter.Space | HthvDelimiter.Parameter,
     ';': HthvDelimiter.NonToken | HthvDelimiter.Item,
   },
 });

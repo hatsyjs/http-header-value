@@ -80,7 +80,7 @@ export type HthvDelimitConfig = { readonly [char in HthvDelimiterChar]?: number 
  */
 export function newHthvParser(config?: HthvParserConfig): HthvParser {
 
-  const parserConfig = config ? buildParserConfig(config.delimit) : defaultParserConfig;
+  const parserConfig = config ? buildParserConfig(config) : defaultParserConfig;
   const parseItemDelimit = itemDelimitParser(parserConfig);
   const parseParam = paramParser(parserConfig);
   const parseItem = itemParser(parserConfig);

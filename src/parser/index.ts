@@ -10,4 +10,4 @@ export * from './parse-quoted-string';
 export * from './parse-none';
 export * from './parser-config';
 export * from './parser-input';
-export * from './skip-spaces';
+export * from './spaces-parser';

@@ -4,7 +4,7 @@ import { addParam } from './add-param';
 import { itemParser, ItemParserOpts } from './item-parser';
 import { nextInComment } from './next-in-comment';
 import { paramParser } from './param-parser';
-import { skipSpaces } from './skip-spaces';
+import { spacesParser } from './spaces-parser';
 import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
 
@@ -13,6 +13,7 @@ import { ParserInput } from './parser-input';
  */
 export function commentParser(config: ParserConfig): (input: ParserInput, out: (item: HthvItem) => void) => boolean {
 
+  const skipSpaces = spacesParser(config);
   const commentParserOpts: ItemParserOpts = {
     next: nextInComment(config),
   };

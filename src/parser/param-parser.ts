@@ -3,7 +3,7 @@ import { HthvParamItem } from '../hthv-item';
 import { itemParser, ItemParserOpts } from './item-parser';
 import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
-import { skipSpaces } from './skip-spaces';
+import { spacesParser } from './spaces-parser';
 
 /**
  * @internal
@@ -13,6 +13,7 @@ export function paramParser(
     opts: ItemParserOpts = {},
 ): (input: ParserInput, out: (param: HthvParamItem) => void) => boolean {
 
+  const skipSpaces = spacesParser(config);
   const parseItem = itemParser(config, { ...opts, tagged: false });
 
   return (input, out) => {
