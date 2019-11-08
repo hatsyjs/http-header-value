@@ -2381,7 +2381,16 @@ img {
 			<a href="hthvdelimiter.html" class="tsd-kind-icon">Hthv<wbr>Delimiter</a>
 			<ul>
 				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#anglebracketend" class="tsd-kind-icon">Angle<wbr>Bracket<wbr>End</a>
+				</li>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#anglebracketstart" class="tsd-kind-icon">Angle<wbr>Bracket<wbr>Start</a>
+				</li>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 					<a href="hthvdelimiter.html#assignment" class="tsd-kind-icon">Assignment</a>
+				</li>
+				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
+					<a href="hthvdelimiter.html#comment" class="tsd-kind-icon">Comment</a>
 				</li>
 				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 					<a href="hthvdelimiter.html#escaped" class="tsd-kind-icon">Escaped</a>
@@ -2399,7 +2408,7 @@ img {
 					<a href="hthvdelimiter.html#parameter" class="tsd-kind-icon">Parameter</a>
 				</li>
 				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
-					<a href="hthvdelimiter.html#quotedstring" class="tsd-kind-icon">Quoted<wbr>String</a>
+					<a href="hthvdelimiter.html#quote" class="tsd-kind-icon">Quote</a>
 				</li>
 				<li class=" tsd-kind-enum-member tsd-parent-kind-enum">
 					<a href="hthvdelimiter.html#space" class="tsd-kind-icon">Space</a>
@@ -2485,13 +2494,16 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Enumeration members</h3>
 						<ul class="tsd-index-list">
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#anglebracketend" class="tsd-kind-icon">Angle<wbr>Bracket<wbr>End</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#anglebracketstart" class="tsd-kind-icon">Angle<wbr>Bracket<wbr>Start</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#assignment" class="tsd-kind-icon">Assignment</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#comment" class="tsd-kind-icon">Comment</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#escaped" class="tsd-kind-icon">Escaped</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#item" class="tsd-kind-icon">Item</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#nontoken" class="tsd-kind-icon">Non<wbr>Token</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#none" class="tsd-kind-icon">None</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#parameter" class="tsd-kind-icon">Parameter</a></li>
-							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#quotedstring" class="tsd-kind-icon">Quoted<wbr>String</a></li>
+							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#quote" class="tsd-kind-icon">Quote</a></li>
 							<li class="tsd-kind-enum-member tsd-parent-kind-enum"><a href="hthvdelimiter.html#space" class="tsd-kind-icon">Space</a></li>
 						</ul>
 					</section>
@@ -2501,12 +2513,44 @@ img {
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Enumeration members</h2>
 			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="anglebracketend" class="tsd-anchor"></a>
+				<h3>Angle<wbr>Bracket<wbr>End</h3>
+				<div class="tsd-signature tsd-kind-icon">Angle<wbr>Bracket<wbr>End<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;524288</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L86">hthv-delimiter.ts:86</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Delimiter staring and angle-bracketed-string.</p>
+					</div>
+					<p>This is a <code>&gt;</code> sign by default.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="anglebracketstart" class="tsd-anchor"></a>
+				<h3>Angle<wbr>Bracket<wbr>Start</h3>
+				<div class="tsd-signature tsd-kind-icon">Angle<wbr>Bracket<wbr>Start<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;262144</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L79">hthv-delimiter.ts:79</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Delimiter staring and angle-bracketed-string.</p>
+					</div>
+					<p>This is a <code>&lt;</code> sign by default.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 				<a name="assignment" class="tsd-anchor"></a>
 				<h3>Assignment</h3>
 				<div class="tsd-signature tsd-kind-icon">Assignment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;16</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/649b086/src/hthv-delimiter.ts#L53">hthv-delimiter.ts:53</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L53">hthv-delimiter.ts:53</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2518,12 +2562,28 @@ img {
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
+				<a name="comment" class="tsd-anchor"></a>
+				<h3>Comment</h3>
+				<div class="tsd-signature tsd-kind-icon">Comment<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;131072</span></div>
+				<aside class="tsd-sources">
+					<ul>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L72">hthv-delimiter.ts:72</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Delimiter starting a comment.</p>
+					</div>
+					<p>This is a &#39;(&#39; sign when comments enabled.</p>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
 				<a name="escaped" class="tsd-anchor"></a>
 				<h3>Escaped</h3>
 				<div class="tsd-signature tsd-kind-icon">Escaped<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;32</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/649b086/src/hthv-delimiter.ts#L58">hthv-delimiter.ts:58</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L58">hthv-delimiter.ts:58</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2538,7 +2598,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">Item<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;4</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/649b086/src/hthv-delimiter.ts#L37">hthv-delimiter.ts:37</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L37">hthv-delimiter.ts:37</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2554,7 +2614,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">Non<wbr>Token<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;1</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/649b086/src/hthv-delimiter.ts#L23">hthv-delimiter.ts:23</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L23">hthv-delimiter.ts:23</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2570,7 +2630,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">None<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;0</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/649b086/src/hthv-delimiter.ts#L16">hthv-delimiter.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L16">hthv-delimiter.ts:16</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2586,7 +2646,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">Parameter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;8</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/649b086/src/hthv-delimiter.ts#L44">hthv-delimiter.ts:44</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L44">hthv-delimiter.ts:44</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2597,12 +2657,12 @@ img {
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-enum-member tsd-parent-kind-enum">
-				<a name="quotedstring" class="tsd-anchor"></a>
-				<h3>Quoted<wbr>String</h3>
-				<div class="tsd-signature tsd-kind-icon">Quoted<wbr>String<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;65536</span></div>
+				<a name="quote" class="tsd-anchor"></a>
+				<h3>Quote</h3>
+				<div class="tsd-signature tsd-kind-icon">Quote<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;65536</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/649b086/src/hthv-delimiter.ts#L65">hthv-delimiter.ts:65</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L65">hthv-delimiter.ts:65</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
@@ -2618,7 +2678,7 @@ img {
 				<div class="tsd-signature tsd-kind-icon">Space<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol"> =&nbsp;2</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/649b086/src/hthv-delimiter.ts#L30">hthv-delimiter.ts:30</a></li>
+						<li>Defined in <a href="https://github.com/surol/http-header-value/blob/0e19d9f/src/hthv-delimiter.ts#L30">hthv-delimiter.ts:30</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
