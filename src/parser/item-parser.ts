@@ -8,6 +8,9 @@ import { quotedStringParser } from './quoted-string-parser';
 import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
 
+/**
+ * @internal
+ */
 export interface ItemParserOpts {
   named?: boolean;
   tagged?: boolean;

@@ -58,8 +58,14 @@ export function buildParserConfig(
   };
 }
 
+/**
+ * @internal
+ */
 export const defaultParserConfig = /*#__PURE__*/ buildParserConfig();
 
+/**
+ * @internal
+ */
 export const commentParserConfig = /*#__PURE__*/ buildParserConfig({
   delimit: {
     ':': HthvDelimiter.NonToken | HthvDelimiter.Assignment,

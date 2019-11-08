@@ -1,10 +1,10 @@
-/**
- * @internal
- */
 import { HthvDelimiter } from '../hthv-delimiter';
 import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
 
+/**
+ * @internal
+ */
 export function spacesParser(config: ParserConfig): (input: ParserInput) => boolean {
   return input => {
 
