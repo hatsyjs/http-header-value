@@ -8,7 +8,7 @@ import { HthvItem } from './hthv-item';
  *
  * Contains a map of named items, as well as their list.
  *
- * This is constructed by [[hthvMap]] function.
+ * This is constructed by [[hthvFlatten]] function.
  */
 export interface HthvItems<
     N extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
