@@ -4,7 +4,7 @@ import { hthvItem } from '../hthv-partial.impl';
 import { nextInItem } from './next-in-item';
 import { parseDateTime } from './parse-date-time';
 import { parseNone } from './parse-none';
-import { parseQuotedString } from './parse-quoted-string';
+import { quotedStringParser } from './quoted-string-parser';
 import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
 
@@ -28,6 +28,7 @@ export function itemParser(
     }: ItemParserOpts = {}
 ): (input: ParserInput, out: (param: HthvItem<any, any, any>) => void) => boolean {
 
+  const parseQuotedString = quotedStringParser(config);
   const parseExtra = extra ? itemParser(config, { next, tagged: false, named: false, extra: false }) : parseNone;
 
   return (input, out) => {
