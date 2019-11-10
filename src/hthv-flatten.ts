@@ -1,5 +1,5 @@
 /**
- * @internal
+ * @module http-header-value
  */
 import { HthvItem } from './hthv-item';
 
