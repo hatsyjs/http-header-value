@@ -158,7 +158,7 @@ hthvParse('W/"0815"')[0]; // { $: 'tagged-string', t: 'W/', v: '0815' }
 
 ### Angle brackets
 
-Some headers uses angle brackets to enclose strings with special symbols. E.g. URLs:
+Some headers use angle brackets to enclose strings with special symbols. E.g. URLs:
 > `Link:` __`<https://example.com/index.html?mode=preconnect>; rel="preconnect"`__
 
 The parser recognizes such item or parameter value as `HthvItem` with type `angle-bracketed-string` and value without
