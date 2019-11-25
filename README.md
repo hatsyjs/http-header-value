@@ -243,7 +243,7 @@ Cookies can be set in response by `Set-Cookie` header, and in request by `Cookie
 > `Cookie:` __`id=a3fWa; SESSIONID=fdkafretercvx`__
 
 The `Set-Cookie` value can be parsed by default `hthvParse()` parser. While the `Cookie` value contains cookies
-semicolon-separated. The `hthvParseSemiSep()` parses handles this.
+semicolon-separated. The `hthvParseSemiSep()` parser handles this.
 ```typescript
 import { hthvParseSemiSep } from 'http-header-value';
 
