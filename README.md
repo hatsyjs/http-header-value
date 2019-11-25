@@ -263,7 +263,7 @@ parameters. While semicolons and colons are used to delimit items.
 > `Content-Security-Policy:` __`default-src 'self' http://example.com; connect-src 'none'`__ \
 > `Via`: __`HTTP/1.1 GWA, 1.0 fred, 1.1 p.example.net`__
 
-`hthvParseDirectives()` parser support this format
+The `hthvParseDirectives()` parser supports this format.
 ```typescript
 import { hthvFlatten, hthvParseDirectives } from 'http-header-value';
 
