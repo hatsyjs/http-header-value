@@ -40,7 +40,7 @@ export function commentParser(config: ParserConfig): (input: ParserInput, out: (
                 result = hthvItem({ $: 'raw', v: '' });
               }
               addParam(result, param);
-            }
+            },
         )
         || parseItem(input, item => result = item)
         ) ; /* tslint:disable-line:curly */

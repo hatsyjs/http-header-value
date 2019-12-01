@@ -29,7 +29,7 @@ export function itemParser(
       tagged = true,
       extra = true,
       next = nextInItem(config),
-    }: ItemParserOpts = {}
+    }: ItemParserOpts = {},
 ): (input: ParserInput, out: (param: HthvItem<any, any, any>) => void) => boolean {
 
   const parseQuotedString = quotedStringParser(config);
