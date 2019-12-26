@@ -21,7 +21,8 @@ import { HthvParser, newHthvParser } from '../hthv-parser';
  *
  * @returns An array of comma-separated value items with space-separated parameters.
  */
-export const hthvParseDirectives: HthvParser = /*#__PURE__*/ newHthvParser({
+export const hthvParseDirectives: HthvParser =
+    /*#__PURE__*/ newHthvParser({
   delimit: {
     ' ': HthvDelimiter.NonToken | HthvDelimiter.Space | HthvDelimiter.Parameter,
     '\t': HthvDelimiter.NonToken | HthvDelimiter.Space | HthvDelimiter.Parameter,
