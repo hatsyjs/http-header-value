@@ -52,12 +52,13 @@ export function hthvFlatten<
   const list: HthvItem<N, T, P>[] = [];
   const depths: { [name: string]: number } = {};
 
-  const put = (item: HthvItem<any, any, any>, depth: number) => {
+  const put = (item: HthvItem<any, any, any>, depth: number): void => {
     list.push(item);
 
     const key = item.n as string || item.v;
     const prev = map[key];
 
+    // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
     if (prev) {
       if (item.n) {
         if (prev.n && depths[key] <= depth) {
@@ -72,7 +73,7 @@ export function hthvFlatten<
     depths[key] = depth;
   };
 
-  const add = (item: HthvItem<N, T, P>, depth: number) => {
+  const add = (item: HthvItem<N, T, P>, depth: number): void => {
     put(item, depth);
     ++depth;
     item.pl.forEach(p => add(p as HthvItem<any, any, any>, depth));

@@ -19,11 +19,12 @@ import { HthvParser, newHthvParser } from '../hthv-parser';
  *
  * @returns An array of space-separated value items without parameters.
  */
-export const hthvParseURIs: HthvParser<'no-name', 'no-tag', 'no-params'> =
+export const hthvParseURIs: HthvParser<'no-name', 'no-tag', 'no-params'> = (
     /*#__PURE__*/ newHthvParser({
-  delimit: {
-    ',': HthvDelimiter.NonToken,
-    ';': HthvDelimiter.NonToken,
-    '=': HthvDelimiter.NonToken,
-  },
-}) as HthvParser<'no-name', 'no-tag', 'no-params'>;
+      delimit: {
+        ',': HthvDelimiter.NonToken,
+        ';': HthvDelimiter.NonToken,
+        '=': HthvDelimiter.NonToken,
+      },
+    }) as HthvParser<'no-name', 'no-tag', 'no-params'>
+);

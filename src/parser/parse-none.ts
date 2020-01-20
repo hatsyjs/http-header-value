@@ -1,4 +1,4 @@
 /**
  * @internal
  */
-export const parseNone = () => false;
+export const parseNone = (): false => false;

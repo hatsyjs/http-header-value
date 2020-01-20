@@ -22,5 +22,4 @@ import { HthvParser, newHthvParser } from './hthv-parser';
  *
  * @returns An array of comma- or space- separated value items.
  */
-export const hthvParse: HthvParser =
-    /*#__PURE__*/ newHthvParser();
+export const hthvParse: HthvParser = (/*#__PURE__*/ newHthvParser());

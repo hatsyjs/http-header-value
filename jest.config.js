@@ -21,12 +21,12 @@ module.exports = {
     [
       'jest-junit',
       {
-        'suiteName': 'http-header-value',
-        'outputDirectory': './target/test-results',
-        'classNameTemplate': '{classname}: {title}',
-        'titleTemplate': '{classname}: {title}',
-        'ancestorSeparator': ' › ',
-        'usePathForSuiteName': 'true',
+        suiteName: 'http-header-value',
+        outputDirectory: './target/test-results',
+        classNameTemplate: '{classname}: {title}',
+        titleTemplate: '{classname}: {title}',
+        ancestorSeparator: ' › ',
+        usePathForSuiteName: 'true',
       },
     ],
   ],

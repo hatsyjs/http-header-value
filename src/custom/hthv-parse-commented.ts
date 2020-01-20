@@ -7,5 +7,4 @@ import { HthvParser, newHthvParser } from '../hthv-parser';
  * - `User-Agent`
  * - `Server`
  */
-export const hthvParseCommented: HthvParser =
-    /*#__PURE__*/ newHthvParser({ comments: true });
+export const hthvParseCommented: HthvParser = (/*#__PURE__*/ newHthvParser({ comments: true }));

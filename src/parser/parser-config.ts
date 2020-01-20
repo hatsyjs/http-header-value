@@ -61,12 +61,12 @@ export function buildParserConfig(
 /**
  * @internal
  */
-export const defaultParserConfig = /*#__PURE__*/ buildParserConfig();
+export const defaultParserConfig = (/*#__PURE__*/ buildParserConfig());
 
 /**
  * @internal
  */
-export const commentParserConfig = /*#__PURE__*/ buildParserConfig({
+export const commentParserConfig = (/*#__PURE__*/ buildParserConfig({
   delimit: {
     ':': HthvDelimiter.NonToken | HthvDelimiter.Assignment,
     '(': HthvDelimiter.NonToken | HthvDelimiter.Escaped | HthvDelimiter.Comment,
@@ -76,4 +76,4 @@ export const commentParserConfig = /*#__PURE__*/ buildParserConfig({
     '=': HthvDelimiter.NonToken,
     ',': HthvDelimiter.NonToken,
   },
-});
+}));
