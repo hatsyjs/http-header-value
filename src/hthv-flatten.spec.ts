@@ -34,7 +34,7 @@ describe('hthvFlatten', () => {
 
     expect(hthvFlatten([item1, item2])).toEqual({
       map: { item1, item2: p11, p21 },
-      list: [item1, p11, item2, p21 ],
+      list: [item1, p11, item2, p21],
     });
   });
   it('prefers named items added later', () => {

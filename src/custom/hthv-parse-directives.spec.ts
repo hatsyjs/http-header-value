@@ -20,10 +20,10 @@ describe('hthvParseDirectives', () => {
   });
   it('recognizes semicolon-separated directives', () => {
 
-    const p11 = paramItem({ $: 'raw', v: `'self'`});
+    const p11 = paramItem({ $: 'raw', v: `'self'` });
     const p12 = paramItem({ $: 'raw', v: 'http://example.com' });
 
-    const p21 = paramItem({ $: 'raw', v: `'none'`});
+    const p21 = paramItem({ $: 'raw', v: `'none'` });
 
     expect(hthvParseDirectives(
         `default-src 'self' http://example.com; connect-src 'none'`,

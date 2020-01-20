@@ -133,8 +133,7 @@ export function itemParser(
     }
 
     // noinspection StatementWithEmptyBodyJS
-    while (parseExtra(input, extraItem => item.x.push(extraItem as HthvExtraItem),
-    )) ; // tslint:disable-line:curly
+    while (parseExtra(input, extraItem => item.x.push(extraItem as HthvExtraItem)));
 
     out(item);
 

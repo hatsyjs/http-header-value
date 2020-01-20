@@ -46,7 +46,8 @@ export function buildParserConfig(
       delimit,
     }: {
       delimit?: HthvDelimitConfig;
-    } = {}): ParserConfig {
+    } = {},
+): ParserConfig {
 
   const delimitConfig: DelimitConfig = delimit ? { ...defaultDelimit, ...delimit } : defaultDelimit;
 

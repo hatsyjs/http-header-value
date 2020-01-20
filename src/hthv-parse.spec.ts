@@ -9,16 +9,16 @@ describe('hthvParse', () => {
     expect(hthvParse(timestamp)).toEqual(items({ $: 'date-time', v: timestamp }));
   });
   it('recognizes raw value', () => {
-    expect(hthvParse('foo/bar:baz')).toEqual(items({ $: 'raw', v: 'foo/bar:baz'}));
+    expect(hthvParse('foo/bar:baz')).toEqual(items({ $: 'raw', v: 'foo/bar:baz' }));
   });
   it('recognizes raw value with special chars', () => {
-    expect(hthvParse('foo\u007fbar=baz')).toEqual(items({ $: 'raw', v: 'foo\u007fbar=baz'}));
+    expect(hthvParse('foo\u007fbar=baz')).toEqual(items({ $: 'raw', v: 'foo\u007fbar=baz' }));
   });
   it('recognizes name/value pair', () => {
-    expect(hthvParse('foo=bar')).toEqual(items({ $: 'raw', n: 'foo', v: 'bar'}));
+    expect(hthvParse('foo=bar')).toEqual(items({ $: 'raw', n: 'foo', v: 'bar' }));
   });
   it('recognizes broken name/value pair', () => {
-    expect(hthvParse('=bar')).toEqual(items({ $: 'raw', v: '=bar'}));
+    expect(hthvParse('=bar')).toEqual(items({ $: 'raw', v: '=bar' }));
   });
   it('recognizes quoted string', () => {
     expect(hthvParse('"foo"')).toEqual(items({ $: 'quoted-string', v: 'foo' }));
