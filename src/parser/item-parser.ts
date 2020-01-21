@@ -133,7 +133,7 @@ export function itemParser(
     }
 
     // noinspection StatementWithEmptyBodyJS
-    while (parseExtra(input, extraItem => item.x.push(extraItem as HthvExtraItem)));
+    while (parseExtra(input, extraItem => item.x.push(extraItem as HthvExtraItem))); // eslint-disable-line curly
 
     out(item);
 

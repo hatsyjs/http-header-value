@@ -92,7 +92,7 @@ export function newHthvParser(config?: HthvParserConfig): HthvParser {
     const input: ParserInput = { i: 0, s: headerValue };
 
     // noinspection StatementWithEmptyBodyJS
-    while (parseTopLevelItem()); // tslint:disable-line
+    while (parseTopLevelItem()); // eslint-disable-line curly
 
     return result;
 
