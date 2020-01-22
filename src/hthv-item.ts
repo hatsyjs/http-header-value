@@ -1,4 +1,5 @@
 /**
+ * @packageDocumentation
  * @module http-header-value
  */
 /**
