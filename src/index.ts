@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module http-header-value
- */
 export * from './custom';
 export * from './hthv-escape';
 export * from './hthv-flatten';

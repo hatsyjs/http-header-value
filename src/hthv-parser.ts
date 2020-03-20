@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module http-header-value
+ * @module @proc7ts/http-header-value
  */
 import { HthvDelimiterChar } from './hthv-delimiter';
 import { HthvItem } from './hthv-item';

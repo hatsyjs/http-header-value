@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module http-header-value
+ * @module @proc7ts/http-header-value
  */
 /**
  * Item value type.

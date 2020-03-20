@@ -1,5 +1,11 @@
 {
-  "exclude": ["**/*.impl.ts", "./src/parser/*.ts", "./src/spec/*.ts"],
+  "exclude": [
+    "**/index.ts",
+    "**/*.impl.ts",
+    "**/*.spec.ts",
+    "./src/parser/*.ts",
+    "./src/spec/*.ts"
+  ],
   "excludeNotExported": true,
   "listInvalidSymbolLinks": true,
   "mode": "file",
