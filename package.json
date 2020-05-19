@@ -1,6 +1,6 @@
 {
   "name": "@proc7ts/http-header-value",
-  "version": "2.0.2",
+  "version": "2.1.0",
   "description": "Parse HTTP header value",
   "keywords": [
     "http",
