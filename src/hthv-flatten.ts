@@ -70,14 +70,14 @@ export function hthvFlatten<
       }
     }
 
-    map[key] = item;
+    map[key] = item as HthvItem<N, T, P>;
     depths[key] = depth;
   };
 
-  const add = (item: HthvItem<N, T, P>, depth: number): void => {
+  const add = (item: HthvItem<any, any, any>, depth: number): void => {
     put(item, depth);
     ++depth;
-    item.pl.forEach(p => add(p as HthvItem<any, any, any>, depth));
+    item.pl.forEach(p => add(p, depth));
   };
 
   items.forEach(item => add(item, 0));
