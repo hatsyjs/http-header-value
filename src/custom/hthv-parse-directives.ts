@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module @proc7ts/http-header-value
+ * @module @hatsy/http-header-value
  */
 import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvParser, newHthvParser } from '../hthv-parser';

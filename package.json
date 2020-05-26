@@ -1,20 +1,20 @@
 {
-  "name": "@proc7ts/http-header-value",
+  "name": "@hatsy/http-header-value",
   "version": "2.1.0",
   "description": "Parse HTTP header value",
   "keywords": [
     "http",
     "header"
   ],
-  "homepage": "https://github.com/proc7ts/http-header-value",
+  "homepage": "https://github.com/hatsyjs/http-header-value",
   "repository": {
     "type": "git",
-    "url": "ssh://git@github.com:proc7ts/http-header-value.git"
+    "url": "ssh://git@github.com:hatsyjs/http-header-value.git"
   },
   "license": "MIT",
   "author": "Ruslan Lopatin <ruslan.lopatin@gmail.com>",
   "bugs": {
-    "url": "https://github.com/proc7ts/fun-events/issues"
+    "url": "https://github.com/hatsyjs/fun-events/issues"
   },
   "main": "dist/http-header-value.js",
   "module": "dist/http-header-value.mjs",

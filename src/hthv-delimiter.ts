@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module @proc7ts/http-header-value
+ * @module @hatsy/http-header-value
  */
 /**
  * Constants for various kinds of delimiters.
