@@ -1,4 +1,4 @@
-const fs = require('fs-extra');
+const fs = require('fs').promises;
 const path = require('path');
 
 (async () => {
@@ -7,9 +7,9 @@ const path = require('path');
     const rootDir = path.resolve(__dirname, '..');
 
     await Promise.all([
-      fs.remove(path.resolve(rootDir, 'd.ts')),
-      fs.remove(path.resolve(rootDir, 'dist')),
-      fs.remove(path.resolve(rootDir, 'target')),
+      fs.rmdir(path.resolve(rootDir, 'd.ts'), { recursive: true }),
+      fs.rmdir(path.resolve(rootDir, 'dist'), { recursive: true }),
+      fs.rmdir(path.resolve(rootDir, 'target'), { recursive: true }),
     ]);
   } catch (e) {
     console.error('Failed to clean build artifacts');

@@ -2,7 +2,7 @@ HTTP Header Value
 =================
 
 [![NPM][npm-image]][npm-url]
-[![CircleCI][ci-image]][ci-url]
+[![Build Status][build-status-img]][build-status-link]
 [![codecov][codecov-image]][codecov-url]
 [![GitHub Project][github-image]][github-url]
 [![API Documentation][api-docs-image]][api-docs-url]
@@ -28,8 +28,8 @@ version.v;        // Firefox/70.0
 
 [npm-image]: https://img.shields.io/npm/v/@proc7ts/http-header-value.svg?logo=npm
 [npm-url]: https://www.npmjs.com/package/@proc7ts/http-header-value
-[ci-image]: https://img.shields.io/circleci/build/github/proc7ts/http-header-value?logo=circleci
-[ci-url]: https://circleci.com/gh/proc7ts/http-header-value
+[build-status-img]: https://github.com/proc7ts/http-header-value/workflows/Build/badge.svg
+[build-status-link]: https://github.com/proc7ts/http-header-value/actions?query=workflow%3ABuild
 [codecov-image]: https://codecov.io/gh/proc7ts/http-header-value/branch/master/graph/badge.svg
 [codecov-url]: https://codecov.io/gh/proc7ts/http-header-value
 [github-image]: https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational
