@@ -5,20 +5,20 @@ import { ParserInput } from './parser-input';
 /**
  * @internal
  */
-export function nextInComment(config: ParserConfig): (input: ParserInput) => string {
+export function nextInComment({ delimiterOf }: ParserConfig): (input: ParserInput) => string {
   return input => {
 
     let c = input.s[input.i];
 
     if (c !== '\\') {
-      input.d = config.delimiterOf(c);
+      input.d = delimiterOf(c);
       return c;
     }
 
     ++input.i;
     if (input.i < input.s.length) {
       c = input.s[input.i];
-      input.d = config.delimiterOf(c) ? HthvDelimiter.NonToken : HthvDelimiter.None;
+      input.d = delimiterOf(c) ? HthvDelimiter.NonToken : HthvDelimiter.None;
     } else {
       input.d = HthvDelimiter.NonToken;
     }

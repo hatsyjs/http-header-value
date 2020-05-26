@@ -1,5 +1,5 @@
-HTTP Header Value
-=================
+HTTP Header Value Parser
+========================
 
 [![NPM][npm-image]][npm-url]
 [![Build Status][build-status-img]][build-status-link]
@@ -37,6 +37,7 @@ version.v;        // Firefox/70.0
 [api-docs-image]: https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational
 [api-docs-url]: https://hatsyjs.github.io/http-header-value/
 
+
 Supported Headers
 -----------------
 
@@ -46,12 +47,12 @@ Supported Headers
 HthvParser
 ----------
 
-`HthvParser` is a signature of parser function for HTP header value.
+`HthvParser` is a signature of parser function for HTTP header value.
 
 The `httvParse()` function is parser with default configuration.
 
-The `newHthvParser()` function may be used to configure custom parser. There are also numerous custom parser suitable
-to parse specific headers ([see below][Custom Parsers]).
+The `newHthvParser()` function may be used to configure a custom parser. There are also several custom parsers available
+suitable to parse specific headers ([see below][Custom Parsers]).
 
 The parser splits the header value string onto items of type `HthvItem`.
 
@@ -77,6 +78,7 @@ import { hthvParse} from '@hatsy/http-header-value';
 hthvParse('GET, POST, HEAD').map(item => item.v); // ['GET', 'POST', 'HEAD']
 hthvParse('Basic YWxhZGRpbjpvcGVuc2VzYW1l').map(item => item.v); // ['Basic', 'YWxhZGRpbjpvcGVuc2VzYW1l'];
 ```
+
 
 ### Item Parameters
 
@@ -109,7 +111,7 @@ comment.pl.map(({ n, v }) => n ? `${n}=${v}` : v); // [ 'Linux x86_64', 'rv=70.0
 Item itself can be a name/value pair.
 > `Cookie`: __`PHPSESSID=298zf09hf012fh2`__
 
-The parser correctly recognizes this.
+The parser correctly recognizes that.
 ```typescript
 import { hthvParse } from '@hatsy/http-header-value';
 
@@ -147,7 +149,7 @@ pin.p['report-url'] // { $: 'quoted-string', n: 'report-uri', v: 'https://www.ex
 Some headers have special syntax that allows to prepend a quoted string with a tag:
 > `ETag:` __`W/"0815"`__
 
-The parser recognizes such item value (but not parameter ones!) as `HthvItem` with type `tagged-string`, and places
+The parser recognizes such item value (but not the parameter ones!) as `HthvItem` with type `tagged-string`, and places
 the tag into its `t` property, and unquoted string - into its `v` property.
 ```typescript
 import { hthvParse } from '@hatsy/http-header-value';
@@ -162,7 +164,7 @@ Some headers use angle brackets to enclose strings with special symbols. E.g. UR
 > `Link:` __`<https://example.com/index.html?mode=preconnect>; rel="preconnect"`__
 
 The parser recognizes such item or parameter value as `HthvItem` with type `angle-bracketed-string` and value without
-brackets. Escape sequences are not supported inside angle brackets.
+brackets. Escape sequences not supported inside angle brackets.
 ```typescript
 import { hthvParse } from '@hatsy/http-header-value';
 hthvParse('<https://example.com/index.html?mode=preconnect>; rel="preconnect"');
@@ -178,6 +180,17 @@ hthvParse('<https://example.com/index.html?mode=preconnect>; rel="preconnect"');
 ```
 
 
+Custom Parsers
+--------------
+
+[Custom Parsers]: #custom-parsers
+
+There is no standard for HTTP header value syntax. So, there is no way to implement a parser suitable for all headers.
+
+The parser can be configured to understand different header formats. A `newHthvParser()` function can be used for that.
+Configuring it properly isn't a simple task. So, the package contains some preconfigured parsers in addition to default
+one.
+
 
 ### Date/Time
 
@@ -185,27 +198,16 @@ Date and time value has special format in headers.
 > `Date:` __`Wed, 21 Oct 2015 07:28:00 GMT`__ \
 > `Set-Cookie:` __`id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT`__
 
-The parser represents such value as `HthvItem` of `date-time` type.
+Date/time parsing disabled by default. It can be enabled in a custom parser. Then it would recognize date/time values at
+top-level and as parameter values. It is typically enough to use an `hthvParseDT()` parser though.
 ```typescript
-import { hthvParse } from '@hatsy/http-header-value';
+import { hthvParseDT } from '@hatsy/http-header-value';
 
-hthvParse('Wed, 21 Oct 2015 07:28:00 GMT')[0].v; // { $: 'date-time', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }
+hthvParseDT('Wed, 21 Oct 2015 07:28:00 GMT')[0].v; // { $: 'date-time', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }
 
-hthvParse('id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT')[0].p.Expires;
+hthvParseDT('id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT')[0].p.Expires;
 // { $: 'date-time', n: 'Expires', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }
-``` 
-
-
-Custom Parsers
---------------
-
-[Custom Parsers]: #custom-parsers
-
-There is no standard for HTTP header value syntax. And there is no way to implement a parser suitable for all headers.
-
-The parser can be configured to understand different header formats. A `newHthvParser()` function can be used for that.
-But configuring it properly isn't a simple task. So, the `http-header-value` package contains some preconfigured
-parsers in addition to default one.
+```
 
 
 ### Comments
@@ -213,14 +215,15 @@ parsers in addition to default one.
 Some headers may contain comments enclosed in parentheses.
 > `User-Agent:` __`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`__
 
-Comments parsing is disabled by default. But can be enabled in custom parser. Such parser recognizes top-level comments.
-But typically it is enough to use an `hthvParseCommented()` parser.
+Comments parsing disabled by default. It can be enabled in a custom parser. Then it would recognize top-level comments.
+It is typically enough to use an `hthvParseCommented()` parser though.
 ```typescript
 import { hthvParseCommented } from '@hatsy/http-header-value';
 
 hthvParseCommented('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0')
     .map(item => item.v); // ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];
 ``` 
+
 
 ### URIs
 
@@ -242,8 +245,8 @@ Cookies can be set in response by `Set-Cookie` header, and in request by `Cookie
 > `Set-Cookie:` __`id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT, SESSIONID=fdkafretercvx`__ \
 > `Cookie:` __`id=a3fWa; SESSIONID=fdkafretercvx`__
 
-The `Set-Cookie` value can be parsed by default `hthvParse()` parser. While the `Cookie` value contains cookies
-semicolon-separated. The `hthvParseSemiSep()` parser handles this.
+The `Set-Cookie` value can be parsed by `hthvParseDT()` parser (as it may contain a date/value). While the `Cookie`
+value contains cookies semicolon-separated. The `hthvParseSemiSep()` parser handles this.
 ```typescript
 import { hthvParseSemiSep } from '@hatsy/http-header-value';
 
@@ -259,7 +262,7 @@ hthvParseSemiSep('id=a3fWa; SESSIONID=fdkafretercvx')
 ### Directives
 
 Some headers contain directives. Directives are parameterized items using spaces instead of semicolons to delimit
-parameters. While semicolons and colons are used to delimit items.
+parameters. While semicolons and colons delimit items.
 > `Content-Security-Policy:` __`default-src 'self' http://example.com; connect-src 'none'`__ \
 > `Via`: __`HTTP/1.1 GWA, 1.0 fred, 1.1 p.example.net`__
 
@@ -283,7 +286,7 @@ Utilities
 
 Flattens HTTP header value items by extracting their parameters.
 
-The result is an items collection containing original `items`, as well as their parameters.
+The result is an item collection containing original `items`, as well as their parameters.
 
 Recursively places `items` and their parameters to result map in their original order, and:
 - prefers named items over unnamed ones,

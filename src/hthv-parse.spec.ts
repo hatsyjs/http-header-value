@@ -1,12 +1,12 @@
-import { hthvParse } from './hthv-parse';
+import { hthvParse, hthvParseDT } from './hthv-parse';
 import { extras, items, paramItem } from './spec/items';
 
 describe('hthvParse', () => {
-  it('recognizes date/time', () => {
+  it('does not recognizes date/time', () => {
 
     const timestamp = new Date().toUTCString();
 
-    expect(hthvParse(timestamp)).toEqual(items({ $: 'date-time', v: timestamp }));
+    expect(hthvParse(timestamp)).not.toEqual(items({ $: 'date-time', v: timestamp }));
   });
   it('recognizes raw value', () => {
     expect(hthvParse('foo/bar:baz')).toEqual(items({ $: 'raw', v: 'foo/bar:baz' }));
@@ -308,7 +308,7 @@ describe('hthvParse', () => {
         { $: 'raw', v: 'value', p: { foo: param }, pl: [param] },
     ));
   });
-  it('recognizes date/time parameter value', () => {
+  it('does not recognize date/time parameter value', () => {
 
     const timestamp = new Date().toUTCString();
     const param = paramItem({
@@ -317,7 +317,7 @@ describe('hthvParse', () => {
       v: timestamp,
     });
 
-    expect(hthvParse(`id=fg12dhd; Expires=${timestamp}`)).toEqual(items(
+    expect(hthvParse(`id=fg12dhd; Expires=${timestamp}`)).not.toEqual(items(
         { $: 'raw', n: 'id', v: 'fg12dhd', p: { Expires: param }, pl: [param] },
     ));
   });
@@ -428,6 +428,28 @@ describe('hthvParse', () => {
     expect(hthvParse('(comment1), (comment2)')).toEqual(items(
         { $: 'raw', v: '(comment1)' },
         { $: 'raw', v: '(comment2)' },
+    ));
+  });
+});
+
+describe('hthvParseDT', () => {
+  it('recognizes date/time', () => {
+
+    const timestamp = new Date().toUTCString();
+
+    expect(hthvParseDT(timestamp)).toEqual(items({ $: 'date-time', v: timestamp }));
+  });
+  it('recognizes date/time parameter value', () => {
+
+    const timestamp = new Date().toUTCString();
+    const param = paramItem({
+      $: 'date-time',
+      n: 'Expires',
+      v: timestamp,
+    });
+
+    expect(hthvParseDT(`id=fg12dhd; Expires=${timestamp}`)).toEqual(items(
+        { $: 'raw', n: 'id', v: 'fg12dhd', p: { Expires: param }, pl: [param] },
     ));
   });
 });

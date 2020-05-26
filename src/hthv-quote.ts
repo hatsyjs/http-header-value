@@ -20,13 +20,14 @@ export function hthvQuote(string: string): string {
     return '""';
   }
 
+  const { delimiterOf } = defaultParserConfig;
   let escaped: undefined | string;
   let quote = false;
 
   for (let i = 0; i < string.length; ++i) {
 
     const c = string[i];
-    const delimiter = defaultParserConfig.delimiterOf(c);
+    const delimiter = delimiterOf(c);
 
     if (delimiter) {
       if (delimiter & HthvDelimiter.Escaped) {

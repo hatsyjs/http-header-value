@@ -11,6 +11,8 @@ import { HthvParser, newHthvParser } from '../hthv-parser';
  * Directives are parameterized items using spaces instead of semicolons to delimit parameters. While semicolons and
  * colons are used to delimit items.
  *
+ * Date/time values within directives are usually enclosed into quotes. So, no need to parse them in a special way.
+ *
  * This is particularly useful when parsing headers such as:
  * - `Content-Security-Policy`
  * - `Content-Security-Policy-Report-Only`

@@ -54,9 +54,16 @@ export interface HthvParserConfig {
   readonly delimit?: HthvDelimitConfig;
 
   /**
+   * Whether to parse date/time values.
+   *
+   * @default `false`
+   */
+  readonly dateTime?: boolean;
+
+  /**
    * Whether to parse comments.
    *
-   * `false` by default.
+   * @default `false`.
    */
   readonly comments?: boolean;
 

@@ -4,12 +4,12 @@ import { ParserInput } from './parser-input';
 /**
  * @internal
  */
-export function nextInItem(config: ParserConfig): (input: ParserInput) => string {
+export function nextInItem({ delimiterOf }: ParserConfig): (input: ParserInput) => string {
   return input => {
 
     const c = input.s[input.i];
 
-    input.d = config.delimiterOf(c);
+    input.d = delimiterOf(c);
 
     return c;
   };
