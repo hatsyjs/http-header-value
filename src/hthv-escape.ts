@@ -16,7 +16,7 @@ import { commentParserConfig, defaultParserConfig, ParserConfig } from './parser
  * @returns Escaped `string`.
  */
 export function hthvEscapeQ(string: string): string {
-  return escape(string, defaultParserConfig);
+  return hthvEscape(string, defaultParserConfig);
 }
 
 /**
@@ -36,10 +36,13 @@ export function hthvEscapeQ(string: string): string {
  * @returns Escaped `string`.
  */
 export function hthvEscapeC(string: string): string {
-  return escape(string, commentParserConfig);
+  return hthvEscape(string, commentParserConfig);
 }
 
-function escape(string: string, config: ParserConfig): string {
+/**
+ * @internal
+ */
+function hthvEscape(string: string, config: ParserConfig): string {
 
   let escaped: undefined | string;
 
