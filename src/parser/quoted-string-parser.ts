@@ -6,7 +6,7 @@ import { ParserInput } from './parser-input';
  * @internal
  */
 export function quotedStringParser(
-    config: ParserConfig,
+    { delimiterOf }: ParserConfig,
 ): (input: ParserInput, out: (value: string) => void) => void {
   return (input, out) => {
 
@@ -26,7 +26,7 @@ export function quotedStringParser(
         } else {
           unquoted += c;
         }
-      } else if (config.delimiterOf(c) & HthvDelimiter.Quote) {
+      } else if (delimiterOf(c) & HthvDelimiter.Quote) {
         ++input.i;
         out(unquoted);
         return;

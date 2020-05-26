@@ -42,7 +42,7 @@ export function hthvEscapeC(string: string): string {
 /**
  * @internal
  */
-function hthvEscape(string: string, config: ParserConfig): string {
+function hthvEscape(string: string, { delimiterOf }: ParserConfig): string {
 
   let escaped: undefined | string;
 
@@ -50,7 +50,7 @@ function hthvEscape(string: string, config: ParserConfig): string {
 
     const c = string[i];
 
-    if (config.delimiterOf(c) & HthvDelimiter.Escaped) {
+    if (delimiterOf(c) & HthvDelimiter.Escaped) {
       if (!escaped) {
         escaped = string.substring(0, i);
       }

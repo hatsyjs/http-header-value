@@ -5,7 +5,7 @@ import { ParserInput } from './parser-input';
 /**
  * @internal
  */
-export function spacesParser(config: ParserConfig): (input: ParserInput) => boolean {
+export function spacesParser({ delimiterOf }: ParserConfig): (input: ParserInput) => boolean {
   return input => {
 
     const start = input.i;
@@ -14,7 +14,7 @@ export function spacesParser(config: ParserConfig): (input: ParserInput) => bool
 
       const c = input.s[input.i];
 
-      if (!(config.delimiterOf(c) & HthvDelimiter.Space)) {
+      if (!(delimiterOf(c) & HthvDelimiter.Space)) {
         break;
       }
       input.i++;

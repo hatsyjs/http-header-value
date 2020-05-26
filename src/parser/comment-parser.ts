@@ -2,27 +2,28 @@ import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvItem } from '../hthv-item';
 import { hthvItem } from '../hthv-partial.impl';
 import { addParam } from './add-param';
-import { itemParser, ItemParserOpts } from './item-parser';
+import { itemParser, ItemParserConfig } from './item-parser';
 import { nextInComment } from './next-in-comment';
 import { paramParser } from './param-parser';
-import { spacesParser } from './spaces-parser';
 import { ParserConfig } from './parser-config';
 import { ParserInput } from './parser-input';
+import { spacesParser } from './spaces-parser';
 
 /**
  * @internal
  */
 export function commentParser(config: ParserConfig): (input: ParserInput, out: (item: HthvItem) => void) => boolean {
 
+  const { delimiterOf } = config;
   const skipSpaces = spacesParser(config);
-  const commentParserOpts: ItemParserOpts = {
+  const commentParserConfig: ItemParserConfig = {
     next: nextInComment(config),
   };
-  const parseItem = itemParser(config, commentParserOpts);
-  const parseParam = paramParser(config, commentParserOpts);
+  const parseItem = itemParser(config, commentParserConfig);
+  const parseParam = paramParser(config, commentParserConfig);
 
   return (input, out) => {
-    if (!(config.delimiterOf(input.s[input.i]) & HthvDelimiter.Comment)) {
+    if (!(delimiterOf(input.s[input.i]) & HthvDelimiter.Comment)) {
       return false;
     }
 

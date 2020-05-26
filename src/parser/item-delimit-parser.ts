@@ -8,10 +8,11 @@ import { spacesParser } from './spaces-parser';
  */
 export function itemDelimitParser(config: ParserConfig): (input: ParserInput) => boolean {
 
+  const { delimiterOf } = config;
   const skipSpaces = spacesParser(config);
 
   return input => {
-    if (config.delimiterOf(input.s[input.i]) & HthvDelimiter.Item) {
+    if (delimiterOf(input.s[input.i]) & HthvDelimiter.Item) {
       input.i++;
       skipSpaces(input);
       return true;

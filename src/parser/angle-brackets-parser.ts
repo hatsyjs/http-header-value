@@ -6,10 +6,10 @@ import { ParserInput } from './parser-input';
  * @internal
  */
 export function angleBracketsParser(
-    config: ParserConfig,
+    { delimiterOf }: ParserConfig,
 ): (input: ParserInput, out: (v: string) => void) => boolean {
   return (input, out) => {
-     if (!(config.delimiterOf(input.s[input.i]) & HthvDelimiter.AngleBracketStart)) {
+     if (!(delimiterOf(input.s[input.i]) & HthvDelimiter.AngleBracketStart)) {
        return false;
      }
 
@@ -20,7 +20,7 @@ export function angleBracketsParser(
 
        const c = input.s[input.i++];
 
-       if (config.delimiterOf(c) & HthvDelimiter.AngleBracketEnd) {
+       if (delimiterOf(c) & HthvDelimiter.AngleBracketEnd) {
          break;
        }
        result += c;
