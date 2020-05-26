@@ -1,7 +1,7 @@
 {
   "name": "@hatsy/http-header-value",
   "version": "2.1.0",
-  "description": "Parse HTTP header value",
+  "description": "HTTP header value parser",
   "keywords": [
     "http",
     "header"
