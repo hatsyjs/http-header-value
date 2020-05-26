@@ -11,16 +11,17 @@
  *
  *   Item {@link HthvItem.v value} is unquoted and unescaped for this type.
  * - `tagged-string` - A tagged [quoted-string]:
- *    > `ETag:` __`W/"0815"`__
+ *   > `ETag:` __`W/"0815"`__
  *
  *   Here `W/` is a {@link HthvItem.t tag}, while `0815` is {@link HthvItem.v unquoted value}.
  * - `angle-bracketed-string` - A string in angle brackets. This is typically used for URLs:
- *    > `Link:` __`<https://example.com/index.html?mode=preconnect>; rel="preconnect"`__
+ *   > `Link:` __`<https://example.com/index.html?mode=preconnect>; rel="preconnect"`__
  *
  *   Item {@link HthvItem.v value} is a string with angle brackets removed. Escape sequences are not supported inside
  *   angle brackets.
  * - `date-time` - A [date-time] value in [IMF-fixdate] format.
- *    > `Date:` __`Sun, 06 Nov 1994 08:49:37 GMT`__
+ *   Available only when {@link HthvParserConfig.dateTime explicitly enabled}.
+ *   > `Date:` __`Sun, 06 Nov 1994 08:49:37 GMT`__
  *
  * - `raw` - This type is used unless there is a more specific representation.
  *

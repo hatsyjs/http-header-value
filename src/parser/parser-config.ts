@@ -1,11 +1,12 @@
 import { HthvDelimiter, HthvDelimiterChar } from '../hthv-delimiter';
-import { HthvDelimitConfig } from '../hthv-parser';
+import { HthvParserConfig } from '../hthv-parser';
 
 /**
  * @internal
  */
 export interface ParserConfig {
-  delimiterOf(char: string): number;
+  readonly dateTime?: boolean
+  delimiterOf(this: void, char: string): number;
 }
 
 /**
@@ -44,14 +45,14 @@ export const defaultDelimit: DelimitConfig = {
 export function buildParserConfig(
     {
       delimit,
-    }: {
-      delimit?: HthvDelimitConfig;
-    } = {},
+      dateTime,
+    }: HthvParserConfig = {},
 ): ParserConfig {
 
   const delimitConfig: DelimitConfig = delimit ? { ...defaultDelimit, ...delimit } : defaultDelimit;
 
   return {
+    dateTime,
     delimiterOf(c) {
       return delimitConfig[c as HthvDelimiterChar]
           || (c >= '\u0000' && c <= ' ' || c === '\u007f' ? HthvDelimiter.NonToken : HthvDelimiter.None);
