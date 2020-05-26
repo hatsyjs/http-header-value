@@ -40,7 +40,7 @@ version.v;        // Firefox/70.0
 Supported Headers
 -----------------
 
-[See the list of supported HTTP headers and parsers best suited for them](https://github.com/surol/http-header-value/wiki/Supported-Headers)
+[See the list of supported HTTP headers and parsers best suited for them](https://github.com/hatsyjs/http-header-value/wiki/Supported-Headers)
 
 
 HthvParser
