@@ -21,7 +21,7 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-    
+
     - name: Cache
       uses: actions/cache@v1
       env:
@@ -40,3 +40,5 @@ jobs:
       run: yarn
     - name: Build the project
       run: yarn ci:all
+    - name: Upload code coverage report
+      run: yarn codecov --disable=gcov
