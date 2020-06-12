@@ -1,3 +1,4 @@
+import { hthvParse } from '../hthv-parse';
 import { HthvForwarded } from './hthv-forwarded';
 
 describe('HthvForwarded', () => {
@@ -130,6 +131,52 @@ describe('HthvForwarded', () => {
       host: 'test2',
       proto: 'https',
       secret: 'some',
+    });
+  });
+  it('parses `X-Forwarded-For` header', () => {
+    headers = { 'x-forwarded-for': 'proxy1,proxy2,proxy3' };
+    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'], xForwarded: true })).toEqual({
+      ...defaults,
+      for: 'proxy2',
+    });
+  });
+  it('does not extract forwarding info if there is no `X-Forwarded-For` header', () => {
+    expect(HthvForwarded.parse(headers, defaults, { trusted: true, xForwarded: true })).toEqual(defaults);
+  });
+  it('extracts first item of `X-Forwarded-Host` header', () => {
+    headers = {
+      'x-forwarded-for': 'proxy1, proxy2, proxy3',
+      'x-forwarded-host': 'host1, host2',
+    };
+    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'], xForwarded: true })).toEqual({
+      ...defaults,
+      for: 'proxy2',
+      host: 'host1',
+    });
+  });
+  it('extracts first item of `X-Forwarded-Proto` header', () => {
+    headers = {
+      'x-forwarded-for': 'proxy1, proxy2, proxy3',
+      'x-forwarded-host': 'host1, host2',
+      'x-forwarded-proto': 'https, http',
+    };
+    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'], xForwarded: true })).toEqual({
+      ...defaults,
+      for: 'proxy2',
+      host: 'host1',
+      proto: 'https',
+    });
+  });
+
+  describe('isTrusted', () => {
+    it('always returns `false` by default', () => {
+      expect((HthvForwarded.isTrusted() as any)()).toBe(false);
+    });
+  });
+
+  describe('by', () => {
+    it('does not trust forwarding info by default', () => {
+      expect(HthvForwarded.by(hthvParse('host=test'), defaults)).toEqual(defaults);
     });
   });
 });

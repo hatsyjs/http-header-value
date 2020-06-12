@@ -2,9 +2,10 @@
  * @packageDocumentation
  * @module @hatsy/http-header-value
  */
-import { HthvItem } from '../hthv-item';
+import { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
 import { hthvParse } from '../hthv-parse';
 import { hthvItem } from '../hthv-partial.impl';
+import { hthvParseFirstTrivial, hthvParseTrivial } from './hthv-parse-primitive.impl';
 
 /**
  * Proxy forwarding information.
@@ -284,10 +285,51 @@ export const HthvForwarded = {
     } else if (!trust.xForwarded) {
       return { ...defaults };
     } else {
-      items = []; // TODO parse X-Forwarded-... headers
+      items = hthvXForwardedItems(headers);
     }
 
     return HthvForwarded.by(items, defaults, trust);
   },
 
 };
+
+/**
+ * @internal
+ */
+function hthvXForwardedItems(headers: HthvForwarded.Headers): HthvItem[] {
+
+  const forwardedForValue = headers['x-forwarded-for'];
+
+  if (!forwardedForValue) {
+    return [];
+  }
+
+  const forwardedFor = hthvParseTrivial(forwardedForValue);
+  const forwardedHost = hthvParseFirstTrivial(headers['x-forwarded-host']);
+  const forwardedProto = hthvParseFirstTrivial(headers['x-forwarded-proto']);
+
+  const host = forwardedHost && hthvItem({ n: 'host', v: forwardedHost });
+  const proto = forwardedProto && hthvItem({ n: 'proto', v: forwardedProto });
+
+  const items: HthvItem[] = [];
+
+  for (const v of forwardedFor) {
+
+    const p: HthvParamMap = {};
+    const pl: HthvParamItem[] = [];
+
+    if (host) {
+      p.host = host;
+      pl.push(host);
+    }
+    if (proto) {
+      p.proto = proto;
+      pl.push(proto);
+    }
+
+    items.push(hthvItem({ n: 'for', v, p, pl }));
+  }
+
+  return items;
+}
+
