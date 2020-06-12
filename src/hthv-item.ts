@@ -88,6 +88,8 @@ export interface HthvItem<
 
   /**
    * A map of item parameters.
+   *
+   * Includes an entry for this item if it has a {@link n name}.
    */
   p: 'has-params' extends P ? HthvParamMap : { [name: string]: never };
 

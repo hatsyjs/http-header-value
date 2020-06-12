@@ -9,22 +9,48 @@ describe('hthvParse', () => {
     expect(hthvParse(timestamp)).not.toEqual(items({ $: 'date-time', v: timestamp }));
   });
   it('recognizes raw value', () => {
-    expect(hthvParse('foo/bar:baz')).toEqual(items({ $: 'raw', v: 'foo/bar:baz' }));
+
+    const parsed = hthvParse('foo/bar:baz');
+
+    expect(parsed).toEqual(items({ $: 'raw', v: 'foo/bar:baz' }));
+    expect(parsed[0].p).toEqual({});
   });
   it('recognizes raw value with special chars', () => {
-    expect(hthvParse('foo\u007fbar=baz')).toEqual(items({ $: 'raw', v: 'foo\u007fbar=baz' }));
+
+    const parsed = hthvParse('foo\u007fbar=baz');
+
+    expect(parsed).toEqual(items({ $: 'raw', v: 'foo\u007fbar=baz' }));
+    expect(parsed[0].p).toEqual({});
   });
   it('recognizes name/value pair', () => {
-    expect(hthvParse('foo=bar')).toEqual(items({ $: 'raw', n: 'foo', v: 'bar' }));
+
+    const parsed = hthvParse('foo=bar');
+
+    expect(parsed).toEqual(items({ $: 'raw', n: 'foo', v: 'bar' }));
+    expect(parsed[0].p).toEqual({
+      foo: { $: 'raw', n: 'foo', v: 'bar', x: [], p: {}, pl: [] },
+    });
   });
   it('recognizes broken name/value pair', () => {
-    expect(hthvParse('=bar')).toEqual(items({ $: 'raw', v: '=bar' }));
+
+    const parsed = hthvParse('=bar');
+
+    expect(parsed).toEqual(items({ $: 'raw', v: '=bar' }));
+    expect(parsed[0].p).toEqual({});
   });
   it('recognizes quoted string', () => {
-    expect(hthvParse('"foo"')).toEqual(items({ $: 'quoted-string', v: 'foo' }));
+
+    const parsed = hthvParse('"foo"');
+
+    expect(parsed).toEqual(items({ $: 'quoted-string', v: 'foo' }));
+    expect(parsed[0].p).toEqual({});
   });
   it('recognizes tagged string', () => {
-    expect(hthvParse('tag"value"')).toEqual(items({ $: 'tagged-string', t: 'tag', v: 'value' }));
+
+    const parsed = hthvParse('tag"value"');
+
+    expect(parsed).toEqual(items({ $: 'tagged-string', t: 'tag', v: 'value' }));
+    expect(parsed[0].p).toEqual({});
   });
   it('recognizes quoted string with suffix', () => {
     expect(hthvParse('"value"suffix')).toEqual(items(
@@ -112,8 +138,9 @@ describe('hthvParse', () => {
   it('recognizes name/value parameter', () => {
 
     const param = paramItem({ $: 'raw', n: 'foo', v: 'bar' });
+    const parsed = hthvParse('some;foo=bar');
 
-    expect(hthvParse('some;foo=bar')).toEqual(items(
+    expect(parsed).toEqual(items(
         {
           $: 'raw',
           v: 'some',
@@ -121,12 +148,14 @@ describe('hthvParse', () => {
           pl: [param],
         },
     ));
+    expect(parsed[0].p).toEqual({ foo: param });
   });
   it('recognizes raw parameter', () => {
 
     const param = paramItem({ $: 'raw', v: 'foo' });
+    const parsed = hthvParse('some;foo');
 
-    expect(hthvParse('some;foo')).toEqual(items(
+    expect(parsed).toEqual(items(
         {
           $: 'raw',
           v: 'some',
@@ -134,22 +163,32 @@ describe('hthvParse', () => {
           pl: [param],
         },
     ));
+    expect(parsed[0].p).toEqual({ foo: param });
   });
   it('recognizes angle-bracketed-string in name/value', () => {
-    expect(hthvParse('foo=<bar>')).toEqual(items(
-        { $: 'angle-bracketed-string', n: 'foo', v: 'bar' },
-    ));
+
+    const parsed = hthvParse('foo=<bar>');
+
+    expect(parsed).toEqual(items({ $: 'angle-bracketed-string', n: 'foo', v: 'bar' }));
+    expect(parsed[0].p).toEqual({
+      foo: { $: 'angle-bracketed-string', n: 'foo', v: 'bar', x: [], p: {}, pl: [] },
+    });
   });
   it('allows angle brackets as part of value in name/value', () => {
-    expect(hthvParse('if=a<b')).toEqual(items(
-        { $: 'raw', n: 'if', v: 'a<b' },
-    ));
+
+    const parsed = hthvParse('if=a<b');
+
+    expect(parsed).toEqual(items({ $: 'raw', n: 'if', v: 'a<b' }));
+    expect(parsed[0].p).toEqual({
+      if: { $: 'raw', n: 'if', v: 'a<b', x: [], p: {}, pl: [] },
+    });
   });
   it('recognizes parameter of name/value pair', () => {
 
     const param = paramItem({ $: 'raw', n: 'param', v: 'val' });
+    const parsed = hthvParse('foo=bar;param=val');
 
-    expect(hthvParse('foo=bar;param=val')).toEqual(items(
+    expect(parsed).toEqual(items(
         {
           $: 'raw',
           n: 'foo',
@@ -158,46 +197,50 @@ describe('hthvParse', () => {
           pl: [param],
         },
     ));
+    expect(parsed[0].p).toEqual({
+      foo: { $: 'raw', n: 'foo', v: 'bar', x: [], p: {}, pl: [] },
+      param,
+    });
   });
   it('recognizes headless parameter', () => {
 
     const param = paramItem({ $: 'raw', n: 'foo', v: 'bar' });
+    const parsed = hthvParse(';foo=bar');
 
-    expect(hthvParse(';foo=bar')).toEqual(items(
-        { $: 'raw', v: '', p: { foo: param }, pl: [param] },
-    ));
+    expect(parsed).toEqual(items({ $: 'raw', v: '', p: { foo: param }, pl: [param] }));
+    expect(parsed[0].p).toEqual({ foo: param });
   });
   it('recognizes quoted parameter', () => {
 
     const param = paramItem({ $: 'quoted-string', v: 'param' });
+    const parsed = hthvParse('value;"param"');
 
-    expect(hthvParse('value;"param"')).toEqual(items(
-        { $: 'raw', v: 'value', p: { param }, pl: [param] },
-    ));
+    expect(parsed).toEqual(items({ $: 'raw', v: 'value', p: { param }, pl: [param] }));
+    expect(parsed[0].p).toEqual({ param });
   });
   it('recognizes tagged parameter', () => {
 
     const param = paramItem({ $: 'raw', v: 'tag', x: extras({ $: 'quoted-string', v: 'param' }) });
+    const parsed = hthvParse('value;tag"param"');
 
-    expect(hthvParse('value;tag"param"')).toEqual(items(
-        { $: 'raw', v: 'value', p: { tag: param }, pl: [param] },
-    ));
+    expect(parsed).toEqual(items({ $: 'raw', v: 'value', p: { tag: param }, pl: [param] }));
+    expect(parsed[0].p).toEqual({ tag: param });
   });
   it('recognizes etag parameter', () => {
 
     const param = paramItem({ $: 'raw', v: 'W/', x: extras({ $: 'quoted-string', v: 'etag' }) });
+    const parsed = hthvParse('value;W/"etag"');
 
-    expect(hthvParse('value;W/"etag"')).toEqual(items(
-        { $: 'raw', v: 'value', p: { 'W/': param }, pl: [param] },
-    ));
+    expect(parsed).toEqual(items({ $: 'raw', v: 'value', p: { 'W/': param }, pl: [param] }));
+    expect(parsed[0].p).toEqual({ 'W/': param });
   });
   it('recognizes quoted parameter value', () => {
 
     const param = paramItem({ $: 'quoted-string', n: 'param', v: 'val' });
+    const parsed = hthvParse('value;param="val"');
 
-    expect(hthvParse('value;param="val"')).toEqual(items(
-        { $: 'raw', v: 'value', p: { param }, pl: [param] },
-    ));
+    expect(parsed).toEqual(items({ $: 'raw', v: 'value', p: { param }, pl: [param] }));
+    expect(parsed[0].p).toEqual({ param });
   });
   it('recognizes tagged parameter value', () => {
 
@@ -209,10 +252,10 @@ describe('hthvParse', () => {
           { $: 'quoted-string', v: 'val' },
       ),
     });
+    const parsed = hthvParse('value;param=prefix"val"');
 
-    expect(hthvParse('value;param=prefix"val"')).toEqual(items(
-        { $: 'raw', v: 'value', p: { param }, pl: [param] },
-    ));
+    expect(parsed).toEqual(items({ $: 'raw', v: 'value', p: { param }, pl: [param] }));
+    expect(parsed[0].p).toEqual({ param });
   });
   it('recognizes quoted parameter value with suffix', () => {
 
@@ -224,10 +267,10 @@ describe('hthvParse', () => {
           { $: 'raw', v: 'suffix' },
       ),
     });
+    const parsed = hthvParse('value;param="val"suffix');
 
-    expect(hthvParse('value;param="val"suffix')).toEqual(items(
-        { $: 'raw', v: 'value', p: { param }, pl: [param] },
-    ));
+    expect(parsed).toEqual(items({ $: 'raw', v: 'value', p: { param }, pl: [param] }));
+    expect(parsed[0].p).toEqual({ param });
   });
   it('recognizes quoted parameter value with prefix and suffix', () => {
 

@@ -27,6 +27,9 @@ export function hthvItem<I extends HthvItem<any, any, any>>(
       pl = [],
     }: HthvPartial<I>,
 ): I {
+  if (n) {
+    (p as any)[n] = { $, n, v, x: [], p: {}, pl: [] };
+  }
   return {
     $,
     n,
