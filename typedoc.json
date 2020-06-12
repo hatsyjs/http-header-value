@@ -12,6 +12,6 @@
   "mode": "file",
   "name": "HTTP Header Values",
   "out": "./target/typedoc",
-  "theme": "minimal",
+  "theme": "file",
   "tsconfig": "tsconfig.main.json"
 }
