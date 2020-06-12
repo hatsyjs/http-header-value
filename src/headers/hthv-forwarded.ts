@@ -5,7 +5,7 @@
 import { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
 import { hthvParse } from '../hthv-parse';
 import { hthvItem } from '../hthv-partial.impl';
-import { hthvParseFirstTrivial, hthvParseTrivial } from './hthv-parse-primitive.impl';
+import { hthvParseFirstTrivial, hthvParseTrivial } from './hthv-parse-trivial.impl';
 
 /**
  * Proxy forwarding information.
