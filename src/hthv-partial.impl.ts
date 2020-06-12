@@ -4,7 +4,7 @@ import { HthvItem } from './hthv-item';
  * @internal
  */
 export interface HthvPartial<I extends HthvItem<any, any, any> = HthvItem> {
-  $: I['$'];
+  $?: I['$'];
   n?: I['n'];
   t?: I['t'];
   v: I['v'];
@@ -18,7 +18,7 @@ export interface HthvPartial<I extends HthvItem<any, any, any> = HthvItem> {
  */
 export function hthvItem<I extends HthvItem<any, any, any>>(
     {
-      $,
+      $ = 'raw',
       n,
       t,
       v,
