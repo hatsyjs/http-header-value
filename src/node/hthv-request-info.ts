@@ -10,7 +10,7 @@ import { HthvForwarded } from '../headers';
 /**
  * HTTP request information.
  *
- * Collected accordingly to proxy forwarding information.
+ * Collected with respect to trusted proxy forwarding information.
  */
 export interface HthvRequestInfo {
 
@@ -20,9 +20,14 @@ export interface HthvRequestInfo {
   readonly forwarded: HthvForwarded;
 
   /**
-   * Request URL constructed with respect proxy forwarding information.
+   * Request URL.
    */
   readonly requestURL: URL;
+
+  /**
+   * Remote address.
+   */
+  readonly remoteAddress: string;
 
 }
 
@@ -77,6 +82,7 @@ export const HthvRequestInfo = {
 
     return {
       forwarded,
+      remoteAddress: forwarded.for,
       get requestURL(): URL {
         return requestURL || (requestURL = new URL(
             request.url || '',

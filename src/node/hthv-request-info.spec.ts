@@ -7,7 +7,7 @@ describe('HthvRequestInfo', () => {
   let url: string | undefined;
   let request: IncomingMessage;
   let headers: IncomingHttpHeaders;
-  let connection: { encrypted?: boolean, localAddress: string, localPort: number };
+  let connection: { encrypted?: boolean, localAddress: string, localPort: number, remoteAddress?: string };
 
   beforeEach(() => {
     headers = {};
@@ -48,9 +48,36 @@ describe('HthvRequestInfo', () => {
       url = '/path';
       expect(requestURL({ trusted: true }).href).toBe('https://test-host:8443/path');
     });
+    it('is cached once evaluated', () => {
+      headers = { forwarded: 'by=proxy;host=test-host:8443;proto=https' };
+      url = '/path';
+
+      const info = HthvRequestInfo.collect(request, { trusted: true });
+
+      expect(info.requestURL).toBe(info.requestURL);
+    });
 
     function requestURL(trust?: HthvForwarded.Trust): URL {
       return HthvRequestInfo.collect(request, trust).requestURL;
+    }
+  });
+
+  describe('remoteAddress', () => {
+    it('is `unknown` if not present in request and proxy forwarding info', () => {
+      expect(remoteAddress()).toBe('unknown');
+    });
+    it('is remote address of the request', () => {
+      connection.remoteAddress = '192.168.2.100';
+      expect(remoteAddress()).toBe('192.168.2.100');
+    });
+    it('is extracted from trusted forwarding info', () => {
+      headers = { forwarded: 'by=proxy;for=192.168.2.200;host=test-host:8443;proto=https' };
+      connection.remoteAddress = '192.168.2.100';
+      expect(remoteAddress({ trusted: true })).toBe('192.168.2.200');
+    });
+
+    function remoteAddress(trust?: HthvForwarded.Trust): string {
+      return HthvRequestInfo.collect(request, trust).remoteAddress;
     }
   });
 });
