@@ -17,8 +17,8 @@ export default {
     sourcemaps(),
   ],
   input: {
-    'http-header-values': './src/index.ts',
-    'http-header-values.headers': './src/headers/index.ts',
+    'http-header-value': './src/index.ts',
+    'http-header-value.headers': './src/headers/index.ts',
   },
   output: [
     {
