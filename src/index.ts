@@ -1,5 +1,4 @@
 export * from './custom';
-export * from './headers';
 export * from './hthv-escape';
 export * from './hthv-flatten';
 export * from './hthv-item';

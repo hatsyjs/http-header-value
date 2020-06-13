@@ -9,9 +9,8 @@
   ],
   "excludeNotExported": true,
   "listInvalidSymbolLinks": true,
-  "mode": "file",
+  "mode": "modules",
   "name": "HTTP Header Values",
   "out": "./target/typedoc",
-  "theme": "file",
   "tsconfig": "tsconfig.main.json"
 }

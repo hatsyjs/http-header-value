@@ -1,3 +1,7 @@
+/**
+ * @packageDocumentation
+ * @module @hatsy/http-header-value
+ */
 import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvParser, newHthvParser } from '../hthv-parser';
 

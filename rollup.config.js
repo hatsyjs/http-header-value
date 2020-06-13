@@ -3,7 +3,6 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 import ts from 'rollup-plugin-typescript2';
 import typescript from 'typescript';
-import pkg from './package.json';
 
 export default {
   plugins: [
@@ -17,17 +16,26 @@ export default {
     nodeResolve(),
     sourcemaps(),
   ],
-  input: './src/index.ts',
+  input: {
+    'http-header-values': './src/index.ts',
+    'http-header-values.headers': './src/headers/index.ts',
+  },
   output: [
     {
-      file: pkg.main,
       format: 'cjs',
       sourcemap: true,
+      dir: './dist',
+      entryFileNames: '[name].js',
+      chunkFileNames: '_[name].js',
+      hoistTransitiveImports: false,
     },
     {
-      file: pkg.module,
       format: 'esm',
       sourcemap: true,
+      dir: './dist',
+      entryFileNames: '[name].mjs',
+      chunkFileNames: '_[name].mjs',
+      hoistTransitiveImports: false,
     },
   ],
 };
