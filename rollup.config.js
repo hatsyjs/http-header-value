@@ -19,6 +19,7 @@ export default {
   input: {
     'http-header-value': './src/index.ts',
     'http-header-value.headers': './src/headers/index.ts',
+    'http-header-value.node': './src/node/index.ts',
   },
   output: [
     {

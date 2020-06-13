@@ -13,11 +13,11 @@
     "importHelpers": true,
     "noEmitHelpers": true,
     "lib": [
-      "dom",
-      "es2018"
+      "ES2018"
     ],
     "types": [
-      "jest"
+      "jest",
+      "node"
     ],
     "outDir": "target/js",
     "sourceMap": true,
