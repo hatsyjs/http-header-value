@@ -102,9 +102,11 @@ describe('HthvForwarded', () => {
   });
   it('extracts first trusted record after trust chain broken', () => {
     headers = {
-      forwarded: 'by=proxy1;host=test1;proto=http;secret=some,'
-          + 'by=proxy2;host=test2;proto=https,'
-          + 'by=proxy3;host=test3;proto=https;secret=some',
+      forwarded: [
+        'by=proxy1;host=test1;proto=http;secret=some',
+        'by=proxy2;host=test2;proto=https',
+        'by=proxy3;host=test3;proto=https;secret=some',
+      ],
     };
     expect(HthvForwarded.parse(headers, defaults, { trusted: [['secret', 'some']] })).toEqual({
       ...defaults,
@@ -133,20 +135,31 @@ describe('HthvForwarded', () => {
       secret: 'some',
     });
   });
-  it('parses `X-Forwarded-For` header', () => {
+  it('parses `X-Forwarded-For` header by default', () => {
     headers = { 'x-forwarded-for': 'proxy1,proxy2,proxy3' };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'], xForwarded: true })).toEqual({
+    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'] })).toEqual({
       ...defaults,
       for: 'proxy2',
     });
   });
+  it('parses all `X-Forwarded-For` headers', () => {
+    headers = { 'x-forwarded-for': ['proxy1,proxy2', 'proxy3'] };
+    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'] })).toEqual({
+      ...defaults,
+      for: 'proxy2',
+    });
+  });
+  it('does not parse `X-Forwarded-For` header when disabled', () => {
+    headers = { 'x-forwarded-for': 'proxy1,proxy2,proxy3' };
+    expect(HthvForwarded.parse(headers, defaults, { trusted: true, xForwarded: false })).toEqual(defaults);
+  });
   it('does not extract forwarding info if there is no `X-Forwarded-For` header', () => {
-    expect(HthvForwarded.parse(headers, defaults, { trusted: true, xForwarded: true })).toEqual(defaults);
+    expect(HthvForwarded.parse(headers, defaults, { trusted: true })).toEqual(defaults);
   });
   it('extracts first item of `X-Forwarded-Host` header', () => {
     headers = {
       'x-forwarded-for': 'proxy1, proxy2, proxy3',
-      'x-forwarded-host': 'host1, host2',
+      'x-forwarded-host': ['host1, host2', 'host3', 'host4'],
     };
     expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'], xForwarded: true })).toEqual({
       ...defaults,
@@ -158,7 +171,7 @@ describe('HthvForwarded', () => {
     headers = {
       'x-forwarded-for': 'proxy1, proxy2, proxy3',
       'x-forwarded-host': 'host1, host2',
-      'x-forwarded-proto': 'https, http',
+      'x-forwarded-proto': ['https', 'http'],
     };
     expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'], xForwarded: true })).toEqual({
       ...defaults,

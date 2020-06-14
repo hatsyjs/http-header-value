@@ -73,7 +73,7 @@ export const HthvRequestInfo = {
   collect(request: IncomingMessage, trust?: HthvForwarded.Trust): HthvRequestInfo {
 
     const forwarded = HthvForwarded.parse(
-        request.headers as HthvForwarded.Headers,
+        request.headers,
         HthvRequestInfo.defaults(request),
         trust,
     );

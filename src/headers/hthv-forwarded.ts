@@ -34,27 +34,29 @@ export namespace HthvForwarded {
     /**
      * [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) header value.
      */
-    readonly forwarded?: string;
+    readonly forwarded?: string | Iterable<string>;
 
     /**
      * [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For) header value.
      */
-    readonly 'x-forwarded-for'?: string;
+    readonly 'x-forwarded-for'?: string | Iterable<string>;
 
     /**
      * [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host) header value.
      */
-    readonly 'x-forwarded-host'?: string;
+    readonly 'x-forwarded-host'?: string | Iterable<string>;
 
     /**
      * [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto) header value.
      */
-    readonly 'x-forwarded-proto'?: string;
+    readonly 'x-forwarded-proto'?: string | Iterable<string>;
 
     /**
      * Header value with its lower-case name as property name.
+     *
+     * The value is either a single one or iterable.
      */
-    readonly [name: string]: string | undefined;
+    readonly [name: string]: string | Iterable<string> | undefined;
 
   }
 
@@ -281,8 +283,15 @@ export const HthvForwarded = {
     let items: HthvItem[];
 
     if (forwarded) {
-      items = hthvParse(forwarded);
-    } else if (!trust.xForwarded) {
+      if (typeof forwarded === 'string') {
+        items = hthvParse(forwarded);
+      } else {
+        items = [];
+        for (const fwd of forwarded) {
+          items.push(...hthvParse(fwd));
+        }
+      }
+    } else if (trust.xForwarded === false) {
       return { ...defaults };
     } else {
       items = hthvXForwardedItems(headers);
