@@ -5,6 +5,7 @@
 import { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
 import { hthvParse } from '../hthv-parse';
 import { hthvItem } from '../hthv-partial.impl';
+import { HthvForwardTrust } from './hthv-forward-trust';
 import { hthvParseFirstTrivial, hthvParseTrivial } from './hthv-parse-trivial.impl';
 
 /**
@@ -34,27 +35,29 @@ export namespace HthvForwarded {
     /**
      * [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) header value.
      */
-    readonly forwarded?: string;
+    readonly forwarded?: string | Iterable<string>;
 
     /**
      * [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For) header value.
      */
-    readonly 'x-forwarded-for'?: string;
+    readonly 'x-forwarded-for'?: string | Iterable<string>;
 
     /**
      * [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host) header value.
      */
-    readonly 'x-forwarded-host'?: string;
+    readonly 'x-forwarded-host'?: string | Iterable<string>;
 
     /**
      * [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto) header value.
      */
-    readonly 'x-forwarded-proto'?: string;
+    readonly 'x-forwarded-proto'?: string | Iterable<string>;
 
     /**
      * Header value with its lower-case name as property name.
+     *
+     * The value is either a single one or iterable.
      */
-    readonly [name: string]: string | undefined;
+    readonly [name: string]: string | Iterable<string> | undefined;
 
   }
 
@@ -89,74 +92,18 @@ export namespace HthvForwarded {
 
   }
 
-  /**
-   * Signature of predicate function that checks whether the forwarding record value can be trusted.
-   *
-   * This predicate is called for each forwarding record in reverse order. The very last record is always trusted
-   * as it contains local address info.
-   */
-  export type IsTrusted =
-  /**
-   * @param item  An item of the `Forwarded` header value containing a record to check.
-   * @param index  Reverse `item` index. I.e. the last one has `0` index.
-   *
-   * @returns `true` if the record can be trusted, `"prev"` if the preceding record can be trusted,
-   * or `false` otherwise.
-   */
-      (this: void, item: HthvItem, index: number) => boolean | 'prev';
-
-  /**
-   * A trust policy to proxy forwarding records.
-   *
-   * Defines how to treat proxy forwarding information contained in request headers.
-   */
-  export interface Trust {
-
-    /**
-     * Whether the forwarding records in HTTP request headers are trusted.
-     *
-     * When this information is trusted the host and protocol in request header is used as a request ones.
-     *
-     * This can be one of:
-     * - `false` to never trust any proxies,
-     * - `true` to trust all proxies,
-     * - {@link IsTrusted trust predicate function},
-     * - a string containing a proxy address that can be trusted,
-     * - an array of trusted records specifiers;
-     *   each item in this array is either a string containing a trusted proxy address, or a tuple consisting of
-     *   attribute name and value parameter of trusted record (e.g. `['secret', 'some_secret_hash']`).
-     *
-     * @default `false` which means the `Forwarded` and `X-Forwarded-...` headers won't be parsed.
-     */
-    readonly trusted?:
-        | IsTrusted
-        | boolean
-        | string
-        | readonly (string | readonly [string, string])[];
-
-    /**
-     * Whether to consider `X-Forwarded-...` headers if `Forwarded` is absent.
-     *
-     * An {@link HthvItem}s corresponding to `Forwarded` records are constructed by these record values.
-     *
-     * @default `true` which means these headers are processed.
-     */
-    readonly xForwarded?: boolean;
-
-  }
-
 }
 
 export const HthvForwarded = {
 
   /**
-   * Builds trust predicate function by forwarding info trust policy.
+   * Builds trust checker function by forwarding info trust policy.
    *
    * @param trust  A trust policy to proxy forwarding records.
    *
    * @returns Constructed trust predicate function.
    */
-  isTrusted(trust: HthvForwarded.Trust = {}): HthvForwarded.IsTrusted {
+  trust(trust: HthvForwardTrust = {}): HthvForwardTrust.Checker {
 
     const { trusted = false } = trust;
 
@@ -164,26 +111,25 @@ export const HthvForwarded = {
       return trusted; // Already a function.
     }
     if (typeof trusted === 'boolean') {
-      return () => trusted; // Never trust.
+
+      const mask = trusted ? HthvForwardTrust.Mask.AlwaysTrust : HthvForwardTrust.Mask.DontTrust;
+
+      return () => mask;
     }
 
-    const policies: readonly (string | readonly [string, string])[] = typeof trusted === 'string'
-        ? [trusted]
-        : trusted;
+    const params: HthvForwardTrust.Params = trusted;
+    const checkItem = ({ n, v }: HthvItem<any, any, any>): HthvForwardTrust.Mask => (n && params[n]?.[v])
+        || HthvForwardTrust.Mask.DontTrust;
 
     return item => {
-      for (const policy of policies) {
-        if (typeof policy === 'string') {
-          if (item.p.for?.v === policy) {
-            return 'prev';
-          } if (item.p.by?.v === policy) {
-            return true;
-          }
-        } else if (item.p[policy[0]]?.v === policy[1]) {
-          return true;
-        }
+
+      let result = checkItem(item);
+
+      for (const p of item.pl) {
+        result |= checkItem(p);
       }
-      return false;
+
+      return result;
     };
   },
 
@@ -200,10 +146,10 @@ export const HthvForwarded = {
       this: void,
       items: readonly HthvItem[],
       defaults: HthvForwarded.Defaults,
-      trust: HthvForwarded.Trust = {},
+      trust: HthvForwardTrust = {},
   ): HthvForwarded {
 
-    const isTrusted = HthvForwarded.isTrusted(trust);
+    const trustChecker = HthvForwarded.trust(trust);
     let {
       by: trustedBy,
       for: trustedFor,
@@ -218,7 +164,7 @@ export const HthvForwarded = {
       p: { host: lastHost, proto: lastProto },
       pl: [lastHost, lastProto],
     });
-    let trustedFlag = isTrusted(trusted, 0) || true; // The last item is always trusted
+    let trustedFlag = trustChecker(trusted, 0); // The last item is always trusted
     let index = 0;
 
     for (let i = items.length - 1; i >= 0; --i) {
@@ -226,10 +172,10 @@ export const HthvForwarded = {
       const item = items[i];
 
       // Either explicitly trusted or trusted by previous item.
-      trustedFlag = isTrusted(item, ++index) || (trustedFlag === 'prev');
+      trustedFlag = trustChecker(item, ++index) | ((trustedFlag & HthvForwardTrust.Mask.TrustPrevious) >>> 1);
 
-      if (!trustedFlag) {
-        break;
+      if (!(trustedFlag & HthvForwardTrust.Mask.TrustCurrent)) {
+        break; // Current record is not trusted even though the previous could be trusted here.
       }
 
       const { p } = item;
@@ -274,15 +220,22 @@ export const HthvForwarded = {
       this: void,
       headers: HthvForwarded.Headers,
       defaults: HthvForwarded.Defaults,
-      trust: HthvForwarded.Trust = {},
+      trust: HthvForwardTrust = {},
   ): HthvForwarded {
 
     const { forwarded } = headers;
     let items: HthvItem[];
 
     if (forwarded) {
-      items = hthvParse(forwarded);
-    } else if (!trust.xForwarded) {
+      if (typeof forwarded === 'string') {
+        items = hthvParse(forwarded);
+      } else {
+        items = [];
+        for (const fwd of forwarded) {
+          items.push(...hthvParse(fwd));
+        }
+      }
+    } else if (trust.xForwarded === false) {
       return { ...defaults };
     } else {
       items = hthvXForwardedItems(headers);

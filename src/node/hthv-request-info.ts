@@ -5,7 +5,7 @@
 import { IncomingHttpHeaders, IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
-import { HthvForwarded } from '../headers';
+import { HthvForwarded, HthvForwardTrust } from '../headers';
 
 /**
  * HTTP request information.
@@ -70,10 +70,10 @@ export const HthvRequestInfo = {
    *
    * @returns  Collected HTTP request info.
    */
-  collect(request: IncomingMessage, trust?: HthvForwarded.Trust): HthvRequestInfo {
+  collect(request: IncomingMessage, trust?: HthvForwardTrust): HthvRequestInfo {
 
     const forwarded = HthvForwarded.parse(
-        request.headers as HthvForwarded.Headers,
+        request.headers,
         HthvRequestInfo.defaults(request),
         trust,
     );
