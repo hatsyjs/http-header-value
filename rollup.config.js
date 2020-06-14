@@ -1,10 +1,24 @@
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
+import builtins from 'builtin-modules';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 import ts from 'rollup-plugin-typescript2';
 import typescript from 'typescript';
 
+const externals = [
+  ...builtins,
+];
+
+function external(id) {
+  return externals.some(ext => (id + '/').startsWith(ext + '/'));
+}
+
 export default {
+  input: {
+    'http-header-value': './src/index.ts',
+    'http-header-value.headers': './src/headers/index.ts',
+    'http-header-value.node': './src/node/index.ts',
+  },
   plugins: [
     commonjs(),
     ts({
@@ -16,11 +30,7 @@ export default {
     nodeResolve(),
     sourcemaps(),
   ],
-  input: {
-    'http-header-value': './src/index.ts',
-    'http-header-value.headers': './src/headers/index.ts',
-    'http-header-value.node': './src/node/index.ts',
-  },
+  external,
   output: [
     {
       format: 'cjs',
