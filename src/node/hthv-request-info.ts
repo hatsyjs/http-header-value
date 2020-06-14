@@ -5,6 +5,7 @@
 import { IncomingHttpHeaders, IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
+import { URL } from 'url';
 import { HthvForwarded, HthvForwardTrust } from '../headers';
 
 /**

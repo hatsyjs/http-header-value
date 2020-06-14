@@ -1,4 +1,5 @@
 import { IncomingHttpHeaders, IncomingMessage } from 'http';
+import { URL } from 'url';
 import { HthvForwardTrust } from '../headers';
 import { HthvRequestInfo } from './hthv-request-info';
 
