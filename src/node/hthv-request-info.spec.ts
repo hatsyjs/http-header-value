@@ -1,5 +1,5 @@
 import { IncomingHttpHeaders, IncomingMessage } from 'http';
-import { HthvForwarded } from '../headers';
+import { HthvForwardTrust } from '../headers';
 import { HthvRequestInfo } from './hthv-request-info';
 
 describe('HthvRequestInfo', () => {
@@ -57,7 +57,7 @@ describe('HthvRequestInfo', () => {
       expect(info.requestURL).toBe(info.requestURL);
     });
 
-    function requestURL(trust?: HthvForwarded.Trust): URL {
+    function requestURL(trust?: HthvForwardTrust): URL {
       return HthvRequestInfo.collect(request, trust).requestURL;
     }
   });
@@ -76,7 +76,7 @@ describe('HthvRequestInfo', () => {
       expect(remoteAddress({ trusted: true })).toBe('192.168.2.200');
     });
 
-    function remoteAddress(trust?: HthvForwarded.Trust): string {
+    function remoteAddress(trust?: HthvForwardTrust): string {
       return HthvRequestInfo.collect(request, trust).remoteAddress;
     }
   });

@@ -1,4 +1,5 @@
 import { hthvParse } from '../hthv-parse';
+import { HthvForwardTrust } from './hthv-forward-trust';
 import { HthvForwarded } from './hthv-forwarded';
 
 describe('HthvForwarded', () => {
@@ -32,7 +33,17 @@ describe('HthvForwarded', () => {
           + 'by=proxy1;host=test1;proto=http,'
           + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: 'proxy2' })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: {
+            by: {
+              proxy2: HthvForwardTrust.Mask.TrustCurrent,
+            },
+          },
+        },
+    )).toEqual({
       ...defaults,
       by: 'proxy2',
       host: 'test2',
@@ -45,14 +56,20 @@ describe('HthvForwarded', () => {
           + 'by=proxy1;host=test1;proto=http,'
           + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: defaults.for })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: { for: { [defaults.for]: HthvForwardTrust.Mask.TrustPrevious } },
+        },
+    )).toEqual({
       ...defaults,
       by: 'proxy2',
       host: 'test2',
       proto: 'https',
     });
   });
-  it('extracts record trusted by predicate', () => {
+  it('extracts record trusted by checker', () => {
     headers = {
       forwarded: 'host=test;proto=http,'
           + 'by=proxy1;host=test1;proto=http,'
@@ -63,7 +80,7 @@ describe('HthvForwarded', () => {
         defaults,
         {
           trusted(_, index) {
-            return index <= 2;
+            return index <= 2 ? HthvForwardTrust.Mask.TrustCurrent : HthvForwardTrust.Mask.DontTrust;
           },
         },
     )).toEqual({
@@ -79,7 +96,18 @@ describe('HthvForwarded', () => {
           + 'by=proxy1;host=test1;proto=http,'
           + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: ['proxy1', 'proxy2'] })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: {
+            by: {
+              proxy1: HthvForwardTrust.Mask.TrustCurrent,
+              proxy2: HthvForwardTrust.Mask.TrustCurrent,
+            },
+          },
+        },
+    )).toEqual({
       ...defaults,
       by: 'proxy1',
       host: 'test1',
@@ -88,7 +116,13 @@ describe('HthvForwarded', () => {
   });
   it('extracts first trusted record with requested key', () => {
     headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;host=test2;proto=https;secret=some' };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [['secret', 'some']] })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: { secret: { some: HthvForwardTrust.Mask.TrustCurrent } },
+        },
+    )).toEqual({
       ...defaults,
       by: 'proxy2',
       host: 'test2',
@@ -98,7 +132,13 @@ describe('HthvForwarded', () => {
   });
   it('does not extract untrusted records', () => {
     headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;host=test2;proto=https;secret=some' };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [['secret', 'other']] })).toEqual(defaults);
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: { secret: { other: HthvForwardTrust.Mask.TrustCurrent } },
+        },
+    )).toEqual(defaults);
   });
   it('extracts first trusted record after trust chain broken', () => {
     headers = {
@@ -108,7 +148,13 @@ describe('HthvForwarded', () => {
         'by=proxy3;host=test3;proto=https;secret=some',
       ],
     };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [['secret', 'some']] })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: { secret: { some: HthvForwardTrust.Mask.TrustCurrent } },
+        },
+    )).toEqual({
       ...defaults,
       by: 'proxy3',
       host: 'test3',
@@ -118,7 +164,13 @@ describe('HthvForwarded', () => {
   });
   it('handles items without names', () => {
     headers = { forwarded: 'by=proxy1;host=test1;proto=http,wrong;host=test2;proto=https;secret=some' };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [['secret', 'some']] })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: { secret: { some: HthvForwardTrust.Mask.TrustCurrent } },
+        },
+    )).toEqual({
       ...defaults,
       host: 'test2',
       proto: 'https',
@@ -127,7 +179,13 @@ describe('HthvForwarded', () => {
   });
   it('handles parameters without names', () => {
     headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;wrong;host=test2;proto=https;secret=some' };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [['secret', 'some']] })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: { secret: { some: HthvForwardTrust.Mask.TrustCurrent } },
+        },
+    )).toEqual({
       ...defaults,
       by: 'proxy2',
       host: 'test2',
@@ -137,14 +195,36 @@ describe('HthvForwarded', () => {
   });
   it('parses `X-Forwarded-For` header by default', () => {
     headers = { 'x-forwarded-for': 'proxy1,proxy2,proxy3' };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'] })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: {
+            for: {
+              [defaults.for]: HthvForwardTrust.Mask.TrustPrevious,
+              proxy3: HthvForwardTrust.Mask.TrustPrevious,
+            },
+          },
+        },
+    )).toEqual({
       ...defaults,
       for: 'proxy2',
     });
   });
   it('parses all `X-Forwarded-For` headers', () => {
     headers = { 'x-forwarded-for': ['proxy1,proxy2', 'proxy3'] };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'] })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: {
+            for: {
+              [defaults.for]: HthvForwardTrust.Mask.TrustPrevious,
+              proxy3: HthvForwardTrust.Mask.TrustPrevious,
+            },
+          },
+        },
+    )).toEqual({
       ...defaults,
       for: 'proxy2',
     });
@@ -161,7 +241,18 @@ describe('HthvForwarded', () => {
       'x-forwarded-for': 'proxy1, proxy2, proxy3',
       'x-forwarded-host': ['host1, host2', 'host3', 'host4'],
     };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'], xForwarded: true })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: {
+            for: {
+              [defaults.for]: HthvForwardTrust.Mask.TrustPrevious,
+              proxy3: HthvForwardTrust.Mask.TrustPrevious,
+            },
+          },
+        },
+    )).toEqual({
       ...defaults,
       for: 'proxy2',
       host: 'host1',
@@ -173,7 +264,18 @@ describe('HthvForwarded', () => {
       'x-forwarded-host': 'host1, host2',
       'x-forwarded-proto': ['https', 'http'],
     };
-    expect(HthvForwarded.parse(headers, defaults, { trusted: [defaults.for, 'proxy3'], xForwarded: true })).toEqual({
+    expect(HthvForwarded.parse(
+        headers,
+        defaults,
+        {
+          trusted: {
+            for: {
+              [defaults.for]: HthvForwardTrust.Mask.TrustPrevious,
+              proxy3: HthvForwardTrust.Mask.TrustPrevious,
+            },
+          },
+        },
+    )).toEqual({
       ...defaults,
       for: 'proxy2',
       host: 'host1',
@@ -181,9 +283,9 @@ describe('HthvForwarded', () => {
     });
   });
 
-  describe('isTrusted', () => {
-    it('always returns `false` by default', () => {
-      expect((HthvForwarded.isTrusted() as any)()).toBe(false);
+  describe('trust', () => {
+    it('always returns `DontTrues` by default', () => {
+      expect((HthvForwarded.trust() as any)()).toBe(HthvForwardTrust.Mask.DontTrust);
     });
   });
 
