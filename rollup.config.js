@@ -1,6 +1,7 @@
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import builtins from 'builtin-modules';
+import path from 'path';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 import ts from 'rollup-plugin-typescript2';
 import typescript from 'typescript';
@@ -31,6 +32,18 @@ export default {
     sourcemaps(),
   ],
   external,
+  manualChunks(id) {
+    if (id.startsWith(path.join(__dirname, 'src', 'headers') + path.sep)) {
+      return 'http-header-value.headers';
+    }
+    if (id.startsWith(path.join(__dirname, 'src', 'node') + path.sep)) {
+      return 'http-header-value.node';
+    }
+    if (id.startsWith(path.join(__dirname, 'src', 'impl') + path.sep)) {
+      return 'http-header-value.base';
+    }
+    return 'http-header-value';
+  },
   output: [
     {
       format: 'cjs',

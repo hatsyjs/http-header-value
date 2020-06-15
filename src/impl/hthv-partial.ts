@@ -12,4 +12,3 @@ export interface HthvPartial<I extends HthvItem<any, any, any> = HthvItem> {
   p?: I['p'];
   pl?: I['pl'];
 }
-
