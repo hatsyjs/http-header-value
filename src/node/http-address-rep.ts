@@ -23,12 +23,12 @@ export interface HttpAddressRep {
   /**
    * Request URL.
    */
-  readonly requestURL: URL;
+  readonly url: URL;
 
   /**
    * Remote address.
    */
-  readonly remoteAddress: string;
+  readonly ip: string;
 
 }
 
@@ -83,8 +83,8 @@ export const HttpAddressRep = {
 
     return {
       forward: forwarded,
-      remoteAddress: forwarded.for,
-      get requestURL(): URL {
+      ip: forwarded.for,
+      get url(): URL {
         return requestURL || (requestURL = new URL(
             request.url || '',
             `${forwarded.proto}://${forwarded.host}`,

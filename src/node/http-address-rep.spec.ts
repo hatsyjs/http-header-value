@@ -55,11 +55,11 @@ describe('HthvAddressRep', () => {
 
       const info = HttpAddressRep.collect(request, { trusted: true });
 
-      expect(info.requestURL).toBe(info.requestURL);
+      expect(info.url).toBe(info.url);
     });
 
     function requestURL(trust?: HttpForwardTrust): URL {
-      return HttpAddressRep.collect(request, trust).requestURL;
+      return HttpAddressRep.collect(request, trust).url;
     }
   });
 
@@ -78,7 +78,7 @@ describe('HthvAddressRep', () => {
     });
 
     function remoteAddress(trust?: HttpForwardTrust): string {
-      return HttpAddressRep.collect(request, trust).remoteAddress;
+      return HttpAddressRep.collect(request, trust).ip;
     }
   });
 });
