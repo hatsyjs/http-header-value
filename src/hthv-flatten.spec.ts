@@ -1,5 +1,5 @@
 import { hthvFlatten } from './hthv-flatten';
-import { hthvItem } from './hthv-partial.impl';
+import { hthvItem } from './impl/hthv-item';
 import { paramItem } from './spec/items';
 
 describe('hthvFlatten', () => {

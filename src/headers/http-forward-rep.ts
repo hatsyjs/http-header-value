@@ -4,8 +4,7 @@
  */
 import { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
 import { hthvParse } from '../hthv-parse';
-import { hthvItem } from '../hthv-partial.impl';
-import { hthvParseFirstTrivial, hthvParseTrivial } from './hthv-parse-trivial.impl';
+import { hthvItem, hthvParseFirstTrivial, hthvParseTrivial } from '../impl';
 import { HttpForwardTrust, HttpForwardTrustMask } from './http-forward-trust';
 
 /**

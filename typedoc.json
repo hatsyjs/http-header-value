@@ -4,8 +4,9 @@
     "**/index.ts",
     "**/*.impl.ts",
     "**/*.spec.ts",
-    "./src/parser/*.ts",
-    "./src/spec/*.ts"
+    "./src/impl/**/*.ts",
+    "./src/parser/**/*.ts",
+    "./src/spec/**/*.ts"
   ],
   "excludeNotExported": true,
   "listInvalidSymbolLinks": true,

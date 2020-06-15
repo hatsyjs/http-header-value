@@ -1,6 +1,6 @@
 import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvExtraItem, HthvItem, HthvItemType } from '../hthv-item';
-import { hthvItem } from '../hthv-partial.impl';
+import { hthvItem } from '../impl/hthv-item';
 import { angleBracketsParser } from './angle-brackets-parser';
 import { dateTimeParser } from './date-time-parser';
 import { nextInItem } from './next-in-item';

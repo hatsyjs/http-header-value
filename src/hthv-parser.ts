@@ -4,7 +4,7 @@
  */
 import { HthvDelimiterChar } from './hthv-delimiter';
 import { HthvItem } from './hthv-item';
-import { hthvItem } from './hthv-partial.impl';
+import { hthvItem } from './impl/hthv-item';
 import {
   addParam,
   buildParserConfig,

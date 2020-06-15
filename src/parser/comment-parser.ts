@@ -1,6 +1,6 @@
 import { HthvDelimiter } from '../hthv-delimiter';
 import { HthvItem } from '../hthv-item';
-import { hthvItem } from '../hthv-partial.impl';
+import { hthvItem } from '../impl/hthv-item';
 import { addParam } from './add-param';
 import { itemParser, ItemParserConfig } from './item-parser';
 import { nextInComment } from './next-in-comment';
