@@ -5,17 +5,17 @@
 import { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
 import { hthvParse } from '../hthv-parse';
 import { hthvItem } from '../hthv-partial.impl';
-import { HthvForwardTrust } from './hthv-forward-trust';
 import { hthvParseFirstTrivial, hthvParseTrivial } from './hthv-parse-trivial.impl';
+import { HttpForwardTrust, HttpForwardTrustMask } from './http-forward-trust';
 
 /**
- * Proxy forwarding information.
+ * HTTP request forwarding report.
  *
  * This information is collected from [Forwarded] and `X-Forwarded-...` request headers.
  *
  * [Forwarded]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded
  */
-export interface HthvForwarded {
+export interface HttpForwardRep {
 
   readonly by: string;
   readonly for: string;
@@ -25,7 +25,7 @@ export interface HthvForwarded {
 
 }
 
-export namespace HthvForwarded {
+export namespace HttpForwardRep {
 
   /**
    * Request headers representation.
@@ -94,62 +94,25 @@ export namespace HthvForwarded {
 
 }
 
-export const HthvForwarded = {
+export const HttpForwardRep = {
 
   /**
-   * Builds trust checker function by forwarding info trust policy.
-   *
-   * @param trust  A trust policy to proxy forwarding records.
-   *
-   * @returns Constructed trust predicate function.
-   */
-  trust(trust: HthvForwardTrust = {}): HthvForwardTrust.Checker {
-
-    const { trusted = false } = trust;
-
-    if (typeof trusted === 'function') {
-      return trusted; // Already a function.
-    }
-    if (typeof trusted === 'boolean') {
-
-      const mask = trusted ? HthvForwardTrust.Mask.AlwaysTrust : HthvForwardTrust.Mask.DontTrust;
-
-      return () => mask;
-    }
-
-    const params: HthvForwardTrust.Params = trusted;
-    const checkItem = ({ n, v }: HthvItem<any, any, any>): HthvForwardTrust.Mask => (n && params[n]?.[v])
-        || HthvForwardTrust.Mask.DontTrust;
-
-    return item => {
-
-      let result = checkItem(item);
-
-      for (const p of item.pl) {
-        result |= checkItem(p);
-      }
-
-      return result;
-    };
-  },
-
-  /**
-   * Builds trusted proxy forwarding information.
+   * Builds trusted proxy forwarding report.
    *
    * @param items  `Forwarded` header value items.
    * @param defaults  Forwarding info defaults.
    * @param trust  A trust policy to proxy forwarding records.
    *
-   * @returns Trusted proxy forwarding information.
+   * @returns Trusted proxy forwarding report.
    */
   by(
       this: void,
       items: readonly HthvItem[],
-      defaults: HthvForwarded.Defaults,
-      trust: HthvForwardTrust = {},
-  ): HthvForwarded {
+      defaults: HttpForwardRep.Defaults,
+      trust: HttpForwardTrust = {},
+  ): HttpForwardRep {
 
-    const trustChecker = HthvForwarded.trust(trust);
+    const trustChecker = HttpForwardTrust.by(trust);
     let {
       by: trustedBy,
       for: trustedFor,
@@ -172,9 +135,9 @@ export const HthvForwarded = {
       const item = items[i];
 
       // Either explicitly trusted or trusted by previous item.
-      trustedFlag = trustChecker(item, ++index) | ((trustedFlag & HthvForwardTrust.Mask.TrustPrevious) >>> 1);
+      trustedFlag = trustChecker(item, ++index) | ((trustedFlag & HttpForwardTrustMask.TrustPrevious) >>> 1);
 
-      if (!(trustedFlag & HthvForwardTrust.Mask.TrustCurrent)) {
+      if (!(trustedFlag & HttpForwardTrustMask.TrustCurrent)) {
         break; // Current record is not trusted even though the previous could be trusted here.
       }
 
@@ -204,24 +167,24 @@ export const HthvForwarded = {
     result.host = trustedHost;
     result.proto = trustedProto;
 
-    return result as HthvForwarded;
+    return result as HttpForwardRep;
   },
 
   /**
-   * Parses trusted proxy forwarding information.
+   * Parses trusted proxy forwarding report.
    *
    * @param headers  Request headers.
    * @param defaults  Forwarding info defaults.
    * @param trust  A trust policy to proxy forwarding records.
    *
-   * @returns Trusted proxy forwarding information.
+   * @returns Trusted proxy forwarding report.
    */
   parse(
       this: void,
-      headers: HthvForwarded.Headers,
-      defaults: HthvForwarded.Defaults,
-      trust: HthvForwardTrust = {},
-  ): HthvForwarded {
+      headers: HttpForwardRep.Headers,
+      defaults: HttpForwardRep.Defaults,
+      trust: HttpForwardTrust = {},
+  ): HttpForwardRep {
 
     const { forwarded } = headers;
     let items: HthvItem[];
@@ -241,7 +204,7 @@ export const HthvForwarded = {
       items = hthvXForwardedItems(headers);
     }
 
-    return HthvForwarded.by(items, defaults, trust);
+    return HttpForwardRep.by(items, defaults, trust);
   },
 
 };
@@ -249,7 +212,7 @@ export const HthvForwarded = {
 /**
  * @internal
  */
-function hthvXForwardedItems(headers: HthvForwarded.Headers): HthvItem[] {
+function hthvXForwardedItems(headers: HttpForwardRep.Headers): HthvItem[] {
 
   const forwardedForValue = headers['x-forwarded-for'];
 

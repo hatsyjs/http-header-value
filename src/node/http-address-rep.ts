@@ -6,19 +6,19 @@ import { IncomingHttpHeaders, IncomingMessage } from 'http';
 import { Socket } from 'net';
 import { TLSSocket } from 'tls';
 import { URL } from 'url';
-import { HthvForwarded, HthvForwardTrust } from '../headers';
+import { HttpForwardRep, HttpForwardTrust } from '../headers';
 
 /**
- * HTTP request information.
+ * HTTP request addressing report.
  *
  * Collected with respect to trusted proxy forwarding information.
  */
-export interface HthvRequestInfo {
+export interface HttpAddressRep {
 
   /**
-   * Trusted proxy forwarding information.
+   * Trusted proxy forwarding report.
    */
-  readonly forwarded: HthvForwarded;
+  readonly forward: HttpForwardRep;
 
   /**
    * Request URL.
@@ -32,10 +32,10 @@ export interface HthvRequestInfo {
 
 }
 
-export const HthvRequestInfo = {
+export const HttpAddressRep = {
 
   /**
-   * Collects {@link HthvForwarded.Defaults proxy forwarding defaults} from HTTP request.
+   * Collects {@link HttpForwardRep.Defaults proxy forwarding defaults} from HTTP request.
    *
    * This information does not rely on proxy forwarding information.
    *
@@ -43,7 +43,7 @@ export const HthvRequestInfo = {
    *
    * @returns Collected proxy forwarding defaults.
    */
-  defaults(request: IncomingMessage): HthvForwarded.Defaults {
+  defaults(request: IncomingMessage): HttpForwardRep.Defaults {
 
     const {
       connection,
@@ -64,25 +64,25 @@ export const HthvRequestInfo = {
   /**
    * Collects information from HTTP request.
    *
-   * Uses {@link HthvForwarded.parse} to collect trusted proxy forwarding information.
+   * Uses {@link HttpForwardRep.parse} to collect trusted proxy forwarding information.
    *
    * @param request  HTTP request to collect information from.
    * @param trust  A trust policy to proxy forwarding records.
    *
    * @returns  Collected HTTP request info.
    */
-  collect(request: IncomingMessage, trust?: HthvForwardTrust): HthvRequestInfo {
+  collect(request: IncomingMessage, trust?: HttpForwardTrust): HttpAddressRep {
 
-    const forwarded = HthvForwarded.parse(
+    const forwarded = HttpForwardRep.parse(
         request.headers,
-        HthvRequestInfo.defaults(request),
+        HttpAddressRep.defaults(request),
         trust,
     );
 
     let requestURL: URL | undefined;
 
     return {
-      forwarded,
+      forward: forwarded,
       remoteAddress: forwarded.for,
       get requestURL(): URL {
         return requestURL || (requestURL = new URL(

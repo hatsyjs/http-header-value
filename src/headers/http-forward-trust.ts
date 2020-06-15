@@ -5,11 +5,11 @@
 import { HthvItem } from '../hthv-item';
 
 /**
- * A trust policy to proxy forwarding records.
+ * A trust policy to HTTP proxy forwarding records.
  *
  * Defines how to treat proxy forwarding information contained in request headers.
  */
-export interface HthvForwardTrust {
+export interface HttpForwardTrust {
 
   /**
    * Whether the forwarding records in HTTP request headers are trusted.
@@ -19,15 +19,15 @@ export interface HthvForwardTrust {
    * This can be one of:
    * - `false` to never trust any proxies,
    * - `true` to trust all proxies,
-   * - a {@link HthvForwardTrust.Checker trust checker function},
-   * - a {@link HthvForwardTrust.Params trusted parameters map}.
+   * - a {@link HttpForwardTrust.Checker trust checker function},
+   * - a {@link HttpForwardTrust.Params trusted parameters map}.
    *
    * @default `false` which means the `Forwarded` and `X-Forwarded-...` headers won't be parsed.
    */
   readonly trusted?:
       | boolean
-      | HthvForwardTrust.Checker
-      | HthvForwardTrust.Params;
+      | HttpForwardTrust.Checker
+      | HttpForwardTrust.Params;
 
   /**
    * Whether to consider `X-Forwarded-...` headers if `Forwarded` is absent.
@@ -40,7 +40,7 @@ export interface HthvForwardTrust {
 
 }
 
-export namespace HthvForwardTrust {
+export namespace HttpForwardTrust {
 
   /**
    * Signature of function that checks whether the forwarding record value can be trusted.
@@ -53,36 +53,9 @@ export namespace HthvForwardTrust {
    * @param item  An item of the `Forwarded` header value containing a record to check.
    * @param index  Reverse `item` index. I.e. the last one has `0` index.
    *
-   * @returns Bitwise {@link Mask mask} of the trust.
+   * @returns Bitwise {@link HttpForwardTrustMask mask} of the trust.
    */
-      (this: void, item: HthvItem, index: number) => Mask;
-
-  /**
-   * Bitwise mask of the trust.
-   */
-  export const enum Mask {
-
-    /**
-     * Do not trust mask.
-     */
-    DontTrust = 0,
-
-    /**
-     * Trust the checked record flag.
-     */
-    TrustCurrent = 1,
-
-    /**
-     * Trust a record preceding to checked one flag.
-     */
-    TrustPrevious = 2,
-
-    /**
-     * Always trust mask.
-     */
-    AlwaysTrust = TrustCurrent | TrustPrevious,
-
-  }
+      (this: void, item: HthvItem, index: number) => HttpForwardTrustMask;
 
   /**
    * A map of trusted parameters.
@@ -110,8 +83,76 @@ export namespace HthvForwardTrust {
     /**
      * Maps forwarding record parameter value to {@link Mask bitwise mask of the trust}.
      */
-    readonly [value: string]: Mask | undefined;
+    readonly [value: string]: HttpForwardTrustMask | undefined;
 
   }
+
+}
+
+/**
+ * Bitwise mask of the trust to proxy forwarding information.
+ */
+export const enum HttpForwardTrustMask {
+
+  /**
+   * Do not trust mask.
+   */
+  DontTrust = 0,
+
+  /**
+   * Trust the checked record flag.
+   */
+  TrustCurrent = 1,
+
+  /**
+   * Trust a record preceding to checked one flag.
+   */
+  TrustPrevious = 2,
+
+  /**
+   * Always trust mask.
+   */
+  AlwaysTrust = TrustCurrent | TrustPrevious,
+
+}
+
+export const HttpForwardTrust = {
+
+  /**
+   * Builds HTTP request forwarding trust checker function by forwarding info trust policy.
+   *
+   * @param trust  A trust policy to proxy forwarding records.
+   *
+   * @returns Constructed trust predicate function.
+   */
+  by(trust: HttpForwardTrust = {}): HttpForwardTrust.Checker {
+
+    const { trusted = false } = trust;
+
+    if (typeof trusted === 'function') {
+      return trusted; // Already a function.
+    }
+    if (typeof trusted === 'boolean') {
+
+      const mask = trusted ? HttpForwardTrustMask.AlwaysTrust : HttpForwardTrustMask.DontTrust;
+
+      return () => mask;
+    }
+
+    const params: HttpForwardTrust.Params = trusted;
+    const checkItem = ({ n, v }: HthvItem<any, any, any>): HttpForwardTrustMask => (n && params[n]?.[v])
+        || HttpForwardTrustMask.DontTrust;
+
+    return item => {
+
+      let result = checkItem(item);
+
+      for (const p of item.pl) {
+        result |= checkItem(p);
+      }
+
+      return result;
+    };
+  },
 
 }

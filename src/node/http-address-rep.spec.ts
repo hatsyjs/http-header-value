@@ -1,9 +1,9 @@
 import { IncomingHttpHeaders, IncomingMessage } from 'http';
 import { URL } from 'url';
-import { HthvForwardTrust } from '../headers';
-import { HthvRequestInfo } from './hthv-request-info';
+import { HttpForwardTrust } from '../headers';
+import { HttpAddressRep } from './http-address-rep';
 
-describe('HthvRequestInfo', () => {
+describe('HthvAddressRep', () => {
 
   let url: string | undefined;
   let request: IncomingMessage;
@@ -53,13 +53,13 @@ describe('HthvRequestInfo', () => {
       headers = { forwarded: 'by=proxy;host=test-host:8443;proto=https' };
       url = '/path';
 
-      const info = HthvRequestInfo.collect(request, { trusted: true });
+      const info = HttpAddressRep.collect(request, { trusted: true });
 
       expect(info.requestURL).toBe(info.requestURL);
     });
 
-    function requestURL(trust?: HthvForwardTrust): URL {
-      return HthvRequestInfo.collect(request, trust).requestURL;
+    function requestURL(trust?: HttpForwardTrust): URL {
+      return HttpAddressRep.collect(request, trust).requestURL;
     }
   });
 
@@ -77,8 +77,8 @@ describe('HthvRequestInfo', () => {
       expect(remoteAddress({ trusted: true })).toBe('192.168.2.200');
     });
 
-    function remoteAddress(trust?: HthvForwardTrust): string {
-      return HthvRequestInfo.collect(request, trust).remoteAddress;
+    function remoteAddress(trust?: HttpForwardTrust): string {
+      return HttpAddressRep.collect(request, trust).remoteAddress;
     }
   });
 });
