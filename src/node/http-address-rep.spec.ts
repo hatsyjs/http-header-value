@@ -23,7 +23,7 @@ describe('HthvAddressRep', () => {
     } as IncomingMessage;
   });
 
-  describe('requestURL', () => {
+  describe('url', () => {
     it('detects host name by local address by default', () => {
       expect(requestURL().href).toBe('http://127.0.0.1/');
     });
@@ -53,32 +53,32 @@ describe('HthvAddressRep', () => {
       headers = { forwarded: 'by=proxy;host=test-host:8443;proto=https' };
       url = '/path';
 
-      const info = HttpAddressRep.collect(request, { trusted: true });
+      const info = HttpAddressRep.by(request, { trusted: true });
 
       expect(info.url).toBe(info.url);
     });
 
     function requestURL(trust?: HttpForwardTrust): URL {
-      return HttpAddressRep.collect(request, trust).url;
+      return HttpAddressRep.by(request, trust).url;
     }
   });
 
-  describe('remoteAddress', () => {
+  describe('ip', () => {
     it('is `unknown` if not present in request and proxy forwarding info', () => {
-      expect(remoteAddress()).toBe('unknown');
+      expect(requestIp()).toBe('unknown');
     });
     it('is remote address of the request', () => {
       connection.remoteAddress = '192.168.2.100';
-      expect(remoteAddress()).toBe('192.168.2.100');
+      expect(requestIp()).toBe('192.168.2.100');
     });
     it('is extracted from trusted forwarding info', () => {
       headers = { forwarded: 'by=proxy;for=192.168.2.200;host=test-host:8443;proto=https' };
       connection.remoteAddress = '192.168.2.100';
-      expect(remoteAddress({ trusted: true })).toBe('192.168.2.200');
+      expect(requestIp({ trusted: true })).toBe('192.168.2.200');
     });
 
-    function remoteAddress(trust?: HttpForwardTrust): string {
-      return HttpAddressRep.collect(request, trust).ip;
+    function requestIp(trust?: HttpForwardTrust): string {
+      return HttpAddressRep.by(request, trust).ip;
     }
   });
 });

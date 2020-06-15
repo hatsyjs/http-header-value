@@ -13,15 +13,15 @@ describe('HttpForwardRep', () => {
   });
 
   it('does not extract absent forwarding info', () => {
-    expect(HttpForwardRep.parse(headers, defaults, { trusted: true })).toEqual(defaults);
+    expect(HttpForwardRep.by(headers, defaults, { trusted: true })).toEqual(defaults);
   });
   it('does not trust forwarding info by default', () => {
     headers = { forwarded: 'host=test' };
-    expect(HttpForwardRep.parse(headers, defaults)).toEqual(defaults);
+    expect(HttpForwardRep.by(headers, defaults)).toEqual(defaults);
   });
   it('extracts first record when trust all', () => {
     headers = { forwarded: 'host=test1;proto=http,host=test2;proto=https' };
-    expect(HttpForwardRep.parse(headers, defaults, { trusted: true })).toEqual({
+    expect(HttpForwardRep.by(headers, defaults, { trusted: true })).toEqual({
       ...defaults,
       host: 'test1',
       proto: 'http',
@@ -33,7 +33,7 @@ describe('HttpForwardRep', () => {
           + 'by=proxy1;host=test1;proto=http,'
           + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -56,7 +56,7 @@ describe('HttpForwardRep', () => {
           + 'by=proxy1;host=test1;proto=http,'
           + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -75,7 +75,7 @@ describe('HttpForwardRep', () => {
           + 'by=proxy1;host=test1;proto=http,'
           + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -96,7 +96,7 @@ describe('HttpForwardRep', () => {
           + 'by=proxy1;host=test1;proto=http,'
           + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -116,7 +116,7 @@ describe('HttpForwardRep', () => {
   });
   it('extracts first trusted record with requested key', () => {
     headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;host=test2;proto=https;secret=some' };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -132,7 +132,7 @@ describe('HttpForwardRep', () => {
   });
   it('does not extract untrusted records', () => {
     headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;host=test2;proto=https;secret=some' };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -148,7 +148,7 @@ describe('HttpForwardRep', () => {
         'by=proxy3;host=test3;proto=https;secret=some',
       ],
     };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -164,7 +164,7 @@ describe('HttpForwardRep', () => {
   });
   it('handles items without names', () => {
     headers = { forwarded: 'by=proxy1;host=test1;proto=http,wrong;host=test2;proto=https;secret=some' };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -179,7 +179,7 @@ describe('HttpForwardRep', () => {
   });
   it('handles parameters without names', () => {
     headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;wrong;host=test2;proto=https;secret=some' };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -195,7 +195,7 @@ describe('HttpForwardRep', () => {
   });
   it('parses `X-Forwarded-For` header by default', () => {
     headers = { 'x-forwarded-for': 'proxy1,proxy2,proxy3' };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -213,7 +213,7 @@ describe('HttpForwardRep', () => {
   });
   it('parses all `X-Forwarded-For` headers', () => {
     headers = { 'x-forwarded-for': ['proxy1,proxy2', 'proxy3'] };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -231,17 +231,17 @@ describe('HttpForwardRep', () => {
   });
   it('does not parse `X-Forwarded-For` header when disabled', () => {
     headers = { 'x-forwarded-for': 'proxy1,proxy2,proxy3' };
-    expect(HttpForwardRep.parse(headers, defaults, { trusted: true, xForwarded: false })).toEqual(defaults);
+    expect(HttpForwardRep.by(headers, defaults, { trusted: true, xForwarded: false })).toEqual(defaults);
   });
   it('does not extract forwarding info if there is no `X-Forwarded-For` header', () => {
-    expect(HttpForwardRep.parse(headers, defaults, { trusted: true })).toEqual(defaults);
+    expect(HttpForwardRep.by(headers, defaults, { trusted: true })).toEqual(defaults);
   });
   it('extracts first item of `X-Forwarded-Host` header', () => {
     headers = {
       'x-forwarded-for': 'proxy1, proxy2, proxy3',
       'x-forwarded-host': ['host1, host2', 'host3', 'host4'],
     };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -264,7 +264,7 @@ describe('HttpForwardRep', () => {
       'x-forwarded-host': 'host1, host2',
       'x-forwarded-proto': ['https', 'http'],
     };
-    expect(HttpForwardRep.parse(
+    expect(HttpForwardRep.by(
         headers,
         defaults,
         {
@@ -283,9 +283,9 @@ describe('HttpForwardRep', () => {
     });
   });
 
-  describe('by', () => {
+  describe('build', () => {
     it('does not trust forwarding info by default', () => {
-      expect(HttpForwardRep.by(hthvParse('host=test'), defaults)).toEqual(defaults);
+      expect(HttpForwardRep.build(hthvParse('host=test'), defaults)).toEqual(defaults);
     });
   });
 });

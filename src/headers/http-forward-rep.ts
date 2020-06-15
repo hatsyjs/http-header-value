@@ -96,7 +96,7 @@ export namespace HttpForwardRep {
 export const HttpForwardRep = {
 
   /**
-   * Builds trusted proxy forwarding report.
+   * Builds trusted proxy forwarding report by proxy forwarding records.
    *
    * @param items  `Forwarded` header value items.
    * @param defaults  Forwarding info defaults.
@@ -104,7 +104,7 @@ export const HttpForwardRep = {
    *
    * @returns Trusted proxy forwarding report.
    */
-  by(
+  build(
       this: void,
       items: readonly HthvItem[],
       defaults: HttpForwardRep.Defaults,
@@ -170,7 +170,7 @@ export const HttpForwardRep = {
   },
 
   /**
-   * Parses trusted proxy forwarding report.
+   * Builds trusted proxy forwarding report by HTTP request.
    *
    * @param headers  Request headers.
    * @param defaults  Forwarding info defaults.
@@ -178,7 +178,7 @@ export const HttpForwardRep = {
    *
    * @returns Trusted proxy forwarding report.
    */
-  parse(
+  by(
       this: void,
       headers: HttpForwardRep.Headers,
       defaults: HttpForwardRep.Defaults,
@@ -203,7 +203,7 @@ export const HttpForwardRep = {
       items = hthvXForwardedItems(headers);
     }
 
-    return HttpForwardRep.by(items, defaults, trust);
+    return HttpForwardRep.build(items, defaults, trust);
   },
 
 };

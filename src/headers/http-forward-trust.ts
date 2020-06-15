@@ -125,7 +125,7 @@ export const HttpForwardTrust = {
    *
    * @returns Constructed trust predicate function.
    */
-  by(trust: HttpForwardTrust = {}): HttpForwardTrust.Checker {
+  by(this: void, trust: HttpForwardTrust = {}): HttpForwardTrust.Checker {
 
     const { trusted = false } = trust;
 

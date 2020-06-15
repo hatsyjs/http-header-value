@@ -43,7 +43,7 @@ export const HttpAddressRep = {
    *
    * @returns Collected proxy forwarding defaults.
    */
-  defaults(request: IncomingMessage): HttpForwardRep.Defaults {
+  defaults(this: void, request: IncomingMessage): HttpForwardRep.Defaults {
 
     const {
       connection,
@@ -62,18 +62,18 @@ export const HttpAddressRep = {
   },
 
   /**
-   * Collects information from HTTP request.
+   * Builds addressing report by HTTP request.
    *
-   * Uses {@link HttpForwardRep.parse} to collect trusted proxy forwarding information.
+   * Uses {@link HttpForwardRep.by} to collect trusted proxy forwarding information.
    *
    * @param request  HTTP request to collect information from.
    * @param trust  A trust policy to proxy forwarding records.
    *
    * @returns  Collected HTTP request info.
    */
-  collect(request: IncomingMessage, trust?: HttpForwardTrust): HttpAddressRep {
+  by(this: void, request: IncomingMessage, trust?: HttpForwardTrust): HttpAddressRep {
 
-    const forwarded = HttpForwardRep.parse(
+    const forwarded = HttpForwardRep.by(
         request.headers,
         HttpAddressRep.defaults(request),
         trust,
