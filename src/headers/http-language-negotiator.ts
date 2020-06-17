@@ -30,6 +30,9 @@ const httpLanguageWildcard = '*';
  */
 const httpLanguageWildcards = [httpLanguageWildcard] as const;
 
+/**
+ * @internal
+ */
 function httpLanguageNegotiationWildcards(key: string): readonly [string, ...string[]] {
   if (key === httpLanguageWildcard) {
     return httpLanguageWildcards;
