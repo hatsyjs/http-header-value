@@ -42,7 +42,7 @@ export namespace HttpContentNegotiator {
    * @returns All wildcards the `key` matches, starting from the most specific one (the key itself) and ending with the
    * most generic one (i.e. a match-all wildcard).
    */
-      (this: void, key: string) => readonly string[];
+      (this: void, key: string) => readonly [string, ...string[]];
 
   /**
    * A map of values corresponding to content negotiation keys.
@@ -86,7 +86,12 @@ export function httpContentNegotiator<T>(
 /**
  * @internal
  */
-type HttpContentNegotiationMap<T> = Map<string, readonly [T, readonly string[]]>;
+type HttpContentNegotiationEntry<T> = readonly [T, readonly [string, ...string[]]];
+
+/**
+ * @internal
+ */
+type HttpContentNegotiationMap<T> = Map<string, HttpContentNegotiationEntry<T>>;
 
 /**
  * @internal
@@ -104,9 +109,9 @@ function httpContentNegotiationMap<T>(
 
     for (const wildcard of keyWildcards) {
 
-      const prevKeyAndWildcards = result.get(wildcard);
+      const prevEntry = result.get(wildcard);
 
-      if (!prevKeyAndWildcards || keyWildcards.length < prevKeyAndWildcards[1].length) {
+      if (!prevEntry || keyWildcards.length < prevEntry[1].length) {
         result.set(wildcard, [value, keyWildcards]);
       }
     }
@@ -123,7 +128,7 @@ function httpContentNegotiation<T>(
     request: Iterable<HthvItem>,
 ): T | undefined | 0 {
 
-  const candidates: (readonly [T, readonly string[]])[] = [];
+  const candidates: HttpContentNegotiationEntry<T>[] = [];
   const qFactor = httpContentNegotiationCandidates(map, request, candidates);
 
   if (!candidates.length) {
@@ -153,7 +158,7 @@ function httpContentNegotiation<T>(
 function httpContentNegotiationCandidates<T>(
     map: HttpContentNegotiationMap<T>,
     request: Iterable<HthvItem>,
-    candidates: (readonly [T, readonly string[]])[],
+    candidates: HttpContentNegotiationEntry<T>[],
 ): number {
 
   let qFactor = 0;
