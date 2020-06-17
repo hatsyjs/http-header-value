@@ -69,9 +69,24 @@
 				<section class="tsd-panel tsd-index-panel">
 					<div class="tsd-index-content">
 						<section class="tsd-index-section ">
+							<h3>Namespaces</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-namespace tsd-parent-kind-module tsd-has-type-parameter"><a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-kind-icon">Http<wbr>Content<wbr>Negotiator</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
 							<h3>Enumerations</h3>
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-enum tsd-parent-kind-module"><a href="../enums/@hatsy_http-header-value_headers.HttpForwardTrustMask.html" class="tsd-kind-icon">Http<wbr>Forward<wbr>Trust<wbr>Mask</a></li>
+							</ul>
+						</section>
+						<section class="tsd-index-section ">
+							<h3>Functions</h3>
+							<ul class="tsd-index-list">
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="@hatsy_http-header-value_headers.html#httpContentNegotiator" class="tsd-kind-icon">http<wbr>Content<wbr>Negotiator</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="@hatsy_http-header-value_headers.html#httpEncodingNegotiator" class="tsd-kind-icon">http<wbr>Encoding<wbr>Negotiator</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="@hatsy_http-header-value_headers.html#httpLanguageNegotiator" class="tsd-kind-icon">http<wbr>Language<wbr>Negotiator</a></li>
+								<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="@hatsy_http-header-value_headers.html#httpMimeNegotiator" class="tsd-kind-icon">http<wbr>Mime<wbr>Negotiator</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
@@ -85,6 +100,185 @@
 				</section>
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
+				<h2>Functions</h2>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="httpContentNegotiator" class="tsd-anchor"></a>
+					<h3>http<wbr>Content<wbr>Negotiator</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">http<wbr>Content<wbr>Negotiator&lt;T&gt;<span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, wildcards<span class="tsd-signature-symbol">: </span><a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html#Wildcards" class="tsd-signature-type">Wildcards</a>, map<span class="tsd-signature-symbol">: </span><a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-signature-type">Map</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-signature-type">HttpContentNegotiator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-content-negotiator.ts#L72">headers/http-content-negotiator.ts:72</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Builds HTTP content negotiator.</p>
+								</div>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>A type of the matching values.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>this: <span class="tsd-signature-type">void</span></h5>
+								</li>
+								<li>
+									<h5>wildcards: <a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html#Wildcards" class="tsd-signature-type">Wildcards</a></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A function extracting all possible wildcards the content negotiation key matches.</p>
+									</div>
+								</li>
+								<li>
+									<h5>map: <a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-signature-type">Map</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of values corresponding to content negotiation keys.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-signature-type">HttpContentNegotiator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>New HTTP content negotiator function.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="httpEncodingNegotiator" class="tsd-anchor"></a>
+					<h3>http<wbr>Encoding<wbr>Negotiator</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">http<wbr>Encoding<wbr>Negotiator&lt;T&gt;<span class="tsd-signature-symbol">(</span>map<span class="tsd-signature-symbol">: </span><a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-signature-type">Map</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-signature-type">HttpContentNegotiator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-encoding-negotiator.ts#L19">headers/http-encoding-negotiator.ts:19</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Builds requested content encoding negotiator.</p>
+								</div>
+								<p>This is used to process <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding">Accept-Encoding</a> request header.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>A type of the matching values.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>map: <a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-signature-type">Map</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of values corresponding to content encodings or wildcard.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-signature-type">HttpContentNegotiator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>New requested content encoding negotiator function.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="httpLanguageNegotiator" class="tsd-anchor"></a>
+					<h3>http<wbr>Language<wbr>Negotiator</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">http<wbr>Language<wbr>Negotiator&lt;T&gt;<span class="tsd-signature-symbol">(</span>map<span class="tsd-signature-symbol">: </span><a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-signature-type">Map</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-signature-type">HttpContentNegotiator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-language-negotiator.ts#L19">headers/http-language-negotiator.ts:19</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Builds requested language negotiator.</p>
+								</div>
+								<p>This is used to process <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language">Accept-Language</a> request header.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>A type of the matching values.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>map: <a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-signature-type">Map</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of values corresponding to language codes or wildcard.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-signature-type">HttpContentNegotiator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>New requested language negotiator function.</p>
+						</li>
+					</ul>
+				</section>
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+					<a name="httpMimeNegotiator" class="tsd-anchor"></a>
+					<h3>http<wbr>Mime<wbr>Negotiator</h3>
+					<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">http<wbr>Mime<wbr>Negotiator&lt;T&gt;<span class="tsd-signature-symbol">(</span>map<span class="tsd-signature-symbol">: </span><a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-signature-type">Map</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-signature-type">HttpContentNegotiator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+					</ul>
+					<ul class="tsd-descriptions">
+						<li class="tsd-description">
+							<aside class="tsd-sources">
+								<ul>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-mime-negotiator.ts#L19">headers/http-mime-negotiator.ts:19</a></li>
+								</ul>
+							</aside>
+							<div class="tsd-comment tsd-typography">
+								<div class="lead">
+									<p>Builds requested MIME negotiator.</p>
+								</div>
+								<p>This is used to process <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept">Accept</a> request header.</p>
+							</div>
+							<h4 class="tsd-type-parameters-title">Type parameters</h4>
+							<ul class="tsd-type-parameters">
+								<li>
+									<h4>T</h4>
+									<div class="tsd-comment tsd-typography">
+										<p>A type of the matching values.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-parameters-title">Parameters</h4>
+							<ul class="tsd-parameters">
+								<li>
+									<h5>map: <a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-signature-type">Map</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
+									<div class="tsd-comment tsd-typography">
+										<p>A map of values corresponding to MIME types or wildcards.</p>
+									</div>
+								</li>
+							</ul>
+							<h4 class="tsd-returns-title">Returns <a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html" class="tsd-signature-type">HttpContentNegotiator</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
+							<p>New requested MIME negotiator function.</p>
+						</li>
+					</ul>
+				</section>
+			</section>
+			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Object literals</h2>
 				<section class="tsd-panel tsd-member tsd-kind-object-literal tsd-parent-kind-module">
 					<a name="HttpForwardRep" class="tsd-anchor"></a>
@@ -92,9 +286,9 @@
 					<div class="tsd-signature tsd-kind-icon">Http<wbr>Forward<wbr>Rep<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L17">headers/http-forward-rep.ts:17</a></li>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L27">headers/http-forward-rep.ts:27</a></li>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L96">headers/http-forward-rep.ts:96</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L17">headers/http-forward-rep.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L27">headers/http-forward-rep.ts:27</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L96">headers/http-forward-rep.ts:96</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -109,7 +303,7 @@
 						<div class="tsd-signature tsd-kind-icon">Defaults<span class="tsd-signature-symbol">:</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L68">headers/http-forward-rep.ts:68</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L68">headers/http-forward-rep.ts:68</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -124,7 +318,7 @@
 							<div class="tsd-signature tsd-kind-icon">by<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L73">headers/http-forward-rep.ts:73</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L73">headers/http-forward-rep.ts:73</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -139,7 +333,7 @@
 							<div class="tsd-signature tsd-kind-icon">for<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L78">headers/http-forward-rep.ts:78</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L78">headers/http-forward-rep.ts:78</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -154,7 +348,7 @@
 							<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L83">headers/http-forward-rep.ts:83</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L83">headers/http-forward-rep.ts:83</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -169,7 +363,7 @@
 							<div class="tsd-signature tsd-kind-icon">proto<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L90">headers/http-forward-rep.ts:90</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L90">headers/http-forward-rep.ts:90</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -186,7 +380,7 @@
 						<div class="tsd-signature tsd-kind-icon">Headers<span class="tsd-signature-symbol">:</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L32">headers/http-forward-rep.ts:32</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L32">headers/http-forward-rep.ts:32</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -200,7 +394,7 @@
 							<div class="tsd-signature tsd-kind-icon">forwarded<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L37">headers/http-forward-rep.ts:37</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L37">headers/http-forward-rep.ts:37</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -215,7 +409,7 @@
 							<div class="tsd-signature tsd-kind-icon">x-<wbr>forwarded-<wbr>for<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L42">headers/http-forward-rep.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L42">headers/http-forward-rep.ts:42</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -230,7 +424,7 @@
 							<div class="tsd-signature tsd-kind-icon">x-<wbr>forwarded-<wbr>host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L47">headers/http-forward-rep.ts:47</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L47">headers/http-forward-rep.ts:47</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -245,7 +439,7 @@
 							<div class="tsd-signature tsd-kind-icon">x-<wbr>forwarded-<wbr>proto<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Iterable</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">&gt;</span></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L52">headers/http-forward-rep.ts:52</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L52">headers/http-forward-rep.ts:52</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -265,7 +459,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L181">headers/http-forward-rep.ts:181</a></li>
+										<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L181">headers/http-forward-rep.ts:181</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -314,7 +508,7 @@
 						<div class="tsd-signature tsd-kind-icon">for<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L20">headers/http-forward-rep.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L20">headers/http-forward-rep.ts:20</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -324,7 +518,7 @@
 						<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L21">headers/http-forward-rep.ts:21</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L21">headers/http-forward-rep.ts:21</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -334,7 +528,7 @@
 						<div class="tsd-signature tsd-kind-icon">proto<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L22">headers/http-forward-rep.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L22">headers/http-forward-rep.ts:22</a></li>
 							</ul>
 						</aside>
 					</section>
@@ -348,7 +542,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-rep.ts#L107">headers/http-forward-rep.ts:107</a></li>
+										<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-rep.ts#L107">headers/http-forward-rep.ts:107</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -392,9 +586,9 @@
 					<div class="tsd-signature tsd-kind-icon">Http<wbr>Forward<wbr>Trust<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">object</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L12">headers/http-forward-trust.ts:12</a></li>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L43">headers/http-forward-trust.ts:43</a></li>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L119">headers/http-forward-trust.ts:119</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L12">headers/http-forward-trust.ts:12</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L43">headers/http-forward-trust.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L119">headers/http-forward-trust.ts:119</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -409,7 +603,7 @@
 						<div class="tsd-signature tsd-kind-icon">Params<span class="tsd-signature-symbol">:</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L66">headers/http-forward-trust.ts:66</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L66">headers/http-forward-trust.ts:66</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -425,7 +619,7 @@
 							<div class="tsd-signature tsd-kind-icon">by<span class="tsd-signature-symbol">:</span> <a href="@hatsy_http-header-value_headers.html#HttpForwardTrust.Values" class="tsd-signature-type">Values</a></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L68">headers/http-forward-trust.ts:68</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L68">headers/http-forward-trust.ts:68</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -435,7 +629,7 @@
 							<div class="tsd-signature tsd-kind-icon">for<span class="tsd-signature-symbol">:</span> <a href="@hatsy_http-header-value_headers.html#HttpForwardTrust.Values" class="tsd-signature-type">Values</a></div>
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L69">headers/http-forward-trust.ts:69</a></li>
+									<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L69">headers/http-forward-trust.ts:69</a></li>
 								</ul>
 							</aside>
 						</section>
@@ -446,7 +640,7 @@
 						<div class="tsd-signature tsd-kind-icon">Values<span class="tsd-signature-symbol">:</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L81">headers/http-forward-trust.ts:81</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L81">headers/http-forward-trust.ts:81</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -461,7 +655,7 @@
 						<div class="tsd-signature tsd-kind-icon">Checker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/@hatsy_http-header-value.HthvItem.html" class="tsd-signature-type">HthvItem</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../enums/@hatsy_http-header-value_headers.HttpForwardTrustMask.html" class="tsd-signature-type">HttpForwardTrustMask</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L51">headers/http-forward-trust.ts:51</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L51">headers/http-forward-trust.ts:51</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -518,7 +712,7 @@
 						<div class="tsd-signature tsd-kind-icon">trusted<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span><span class="tsd-signature-symbol"> | </span><a href="@hatsy_http-header-value_headers.html#HttpForwardTrust.Checker" class="tsd-signature-type">Checker</a><span class="tsd-signature-symbol"> | </span><a href="@hatsy_http-header-value_headers.html#HttpForwardTrust.Params" class="tsd-signature-type">Params</a></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L27">headers/http-forward-trust.ts:27</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L27">headers/http-forward-trust.ts:27</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -546,7 +740,7 @@
 						<div class="tsd-signature tsd-kind-icon">x<wbr>Forwarded<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">false</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">true</span></div>
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L39">headers/http-forward-trust.ts:39</a></li>
+								<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L39">headers/http-forward-trust.ts:39</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
@@ -571,7 +765,7 @@
 							<li class="tsd-description">
 								<aside class="tsd-sources">
 									<ul>
-										<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/a745a58/src/headers/http-forward-trust.ts#L128">headers/http-forward-trust.ts:128</a></li>
+										<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/03840b2/src/headers/http-forward-trust.ts#L128">headers/http-forward-trust.ts:128</a></li>
 									</ul>
 								</aside>
 								<div class="tsd-comment tsd-typography">
@@ -620,6 +814,18 @@
 				<ul class="before-current">
 					<li class=" tsd-kind-enum tsd-parent-kind-module">
 						<a href="../enums/@hatsy_http-header-value_headers.HttpForwardTrustMask.html" class="tsd-kind-icon">Http<wbr>Forward<wbr>Trust<wbr>Mask</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="@hatsy_http-header-value_headers.html#httpContentNegotiator" class="tsd-kind-icon">http<wbr>Content<wbr>Negotiator</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="@hatsy_http-header-value_headers.html#httpEncodingNegotiator" class="tsd-kind-icon">http<wbr>Encoding<wbr>Negotiator</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="@hatsy_http-header-value_headers.html#httpLanguageNegotiator" class="tsd-kind-icon">http<wbr>Language<wbr>Negotiator</a>
+					</li>
+					<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
+						<a href="@hatsy_http-header-value_headers.html#httpMimeNegotiator" class="tsd-kind-icon">http<wbr>Mime<wbr>Negotiator</a>
 					</li>
 					<li class=" tsd-kind-object-literal tsd-parent-kind-module">
 						<a href="@hatsy_http-header-value_headers.html#HttpForwardRep" class="tsd-kind-icon">Http<wbr>Forward<wbr>Rep</a>
