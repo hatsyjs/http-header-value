@@ -10,7 +10,7 @@ import { hthvParse } from '../hthv-parse';
  *
  * Extracts a value matching the given HTTP content negotiation request.
  *
- * This is used to process headers like [Accept], [Accept-Encoding], [Accept-Language], etc.
+ * This is used to process request headers like [Accept], [Accept-Encoding], [Accept-Language], etc.
  *
  * The content negotiator can be constructed by {@link httpContentNegotiator} function.
  *
@@ -28,10 +28,7 @@ export type HttpContentNegotiator<T> =
  * @returns The best matching value, `undefined` if there is no matching value, or `0` is the matching
  * value is explicitly prohibited (i.e. `;q=0` is used in matching request item).
  */
-    (
-        this: void,
-        request: string | Iterable<HthvItem>,
-    ) => T | undefined | 0;
+    (this: void, request: string | Iterable<HthvItem>) => T | undefined | 0;
 
 export namespace HttpContentNegotiator {
 
@@ -42,13 +39,10 @@ export namespace HttpContentNegotiator {
   /**
    * @param key  Source key.
    *
-   * @returns All wildcards the `key` matches, starting from the most specific one and ending with the most generic one
-   * (i.e. a match-all wildcard). Should not contain the key itself.
+   * @returns All wildcards the `key` matches, starting from the most specific one (the key itself) and ending with the
+   * most generic one (i.e. a match-all wildcard).
    */
-      (
-          this: void,
-          key: string,
-      ) => readonly string[];
+      (this: void, key: string) => readonly string[];
 
   /**
    * A map of values corresponding to content negotiation keys.
