@@ -31,7 +31,7 @@ describe('httpMimeNegotiator', () => {
       text: 'text',
     });
 
-    it('does not match arbitrary request', () => {
+    it('does not match more precise request', () => {
       expect(negotiator('text/html')).toBeUndefined();
       expect(shorthand('text/html')).toBeUndefined();
     });
