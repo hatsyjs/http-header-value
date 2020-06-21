@@ -1,18 +1,10 @@
+import { externalModules } from '@proc7ts/rollup-helpers';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import builtins from 'builtin-modules';
 import path from 'path';
 import sourcemaps from 'rollup-plugin-sourcemaps';
 import ts from 'rollup-plugin-typescript2';
 import typescript from 'typescript';
-
-const externals = [
-  ...builtins,
-];
-
-function external(id) {
-  return externals.some(ext => (id + '/').startsWith(ext + '/'));
-}
 
 export default {
   input: {
@@ -31,7 +23,7 @@ export default {
     nodeResolve(),
     sourcemaps(),
   ],
-  external,
+  external: externalModules(),
   manualChunks(id) {
     if (id.startsWith(path.join(__dirname, 'src', 'headers') + path.sep)) {
       return 'http-header-value.headers';
