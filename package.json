@@ -18,7 +18,7 @@
   },
   "main": "dist/http-header-value.js",
   "module": "dist/http-header-value.mjs",
-  "typings": "index.d.ts",
+  "types": "index.d.ts",
   "engines": {
     "node": ">=12"
   },
