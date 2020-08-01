@@ -5,7 +5,7 @@ import { HthvParserConfig } from '../hthv-parser';
  * @internal
  */
 export interface ParserConfig {
-  readonly dateTime?: boolean
+  readonly dateTime?: boolean;
   delimiterOf(this: void, char: string): number;
 }
 
