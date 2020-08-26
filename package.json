@@ -19,6 +19,20 @@
   "main": "dist/http-header-value.js",
   "module": "dist/http-header-value.mjs",
   "types": "index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./dist/http-header-value.mjs",
+      "require": "./dist/http-header-value.js"
+    },
+    "./headers": {
+      "import": "./dist/http-header-value.headers.mjs",
+      "require": "./dist/http-header-value.headers.js"
+    },
+    "./node": {
+      "import": "./dist/http-header-value.node.mjs",
+      "require": "./dist/http-header-value.node.js"
+    }
+  },
   "engines": {
     "node": ">=12"
   },
