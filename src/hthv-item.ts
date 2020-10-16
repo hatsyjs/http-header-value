@@ -46,9 +46,9 @@ export type HthvItemType =
  * Item may represent a `<name>=<value>` pair used as top level item or its parameter, or a `<name>:<value>` pair within
  * comment.
  *
- * @typeparam N  Whether this item has a {@link n name}.
- * @typeparam T  Whether this item has a {@link t tag}.
- * @typeparam P  Whether this item has {@link p parameters}.
+ * @typeParam N  Whether this item has a {@link n name}.
+ * @typeParam T  Whether this item has a {@link t tag}.
+ * @typeParam P  Whether this item has {@link p parameters}.
  */
 export interface HthvItem<
     N extends 'has-name' | 'no-name' = 'has-name' | 'no-name',

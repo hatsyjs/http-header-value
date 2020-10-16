@@ -18,7 +18,7 @@ import { hthvParse } from '../hthv-parse';
  * [Accept-Encoding]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding
  * [Accept-Language]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language
  *
- * @typeparam T  A type of the matching value.
+ * @typeParam T  A type of the matching value.
  */
 export type HttpContentNegotiator<T> =
 /**
@@ -47,7 +47,7 @@ export namespace HttpContentNegotiator {
   /**
    * A map of values corresponding to content negotiation keys.
    *
-   * @typeparam T  A type of content.
+   * @typeParam T  A type of content.
    */
   export interface Map<T> {
 
@@ -63,7 +63,7 @@ export namespace HttpContentNegotiator {
 /**
  * Builds HTTP content negotiator.
  *
- * @typeparam T  A type of the matching values.
+ * @typeParam T  A type of the matching values.
  * @param wildcards  A function extracting all possible wildcards the content negotiation key matches.
  * @param map  A map of values corresponding to content negotiation keys.
  *

@@ -11,7 +11,7 @@ import { httpContentNegotiator, HttpContentNegotiator } from './http-content-neg
  *
  * [Accept-Language]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language
  *
- * @typeparam T  A type of the matching values.
+ * @typeParam T  A type of the matching values.
  * @param map  A map of values corresponding to language codes or wildcard.
  *
  * @returns New requested language negotiator function.

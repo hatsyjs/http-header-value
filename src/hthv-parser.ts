@@ -23,9 +23,9 @@ import {
  *
  * Splits the value onto {@link HthvItem items}.
  *
- * @typeparam N  Whether parsed items have {@link HthvItem.n names}.
- * @typeparam T  Whether parsed items have {@link HthvItem.t tags}.
- * @typeparam P  Whether parsed items have {@link HthvItem.p parameters}.
+ * @typeParam N  Whether parsed items have {@link HthvItem.n names}.
+ * @typeParam T  Whether parsed items have {@link HthvItem.t tags}.
+ * @typeParam P  Whether parsed items have {@link HthvItem.p parameters}.
  */
 export type HthvParser<
     N extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
