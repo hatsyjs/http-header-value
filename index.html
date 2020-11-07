@@ -132,7 +132,7 @@ hthvParse(<span class="hljs-string">&#x27;Basic YWxhZGRpbjpvcGVuc2VzYW1l&#x27;</
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse, hthvParseCommented } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
 
 hthvParse(<span class="hljs-string">&#x27;text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8&#x27;</span>)
-    .map(<span class="hljs-function">(<span class="hljs-params">{ v, p: { q } }</span>) =&gt;</span> ({ contentType: v, weight: q ? <span class="hljs-built_in">parseFloat</span>(q.v) : <span class="hljs-number">1.0</span> }));
+    .map(<span class="hljs-function">(<span class="hljs-params">{ v, p: { q } }</span>) =&gt;</span> ({ <span class="hljs-attr">contentType</span>: v, <span class="hljs-attr">weight</span>: q ? <span class="hljs-built_in">parseFloat</span>(q.v) : <span class="hljs-number">1.0</span> }));
 <span class="hljs-comment">//  [</span>
 <span class="hljs-comment">//    { contentType: &#x27;text/html&#x27;, weight: 1 },</span>
 <span class="hljs-comment">//    { contentType: &#x27;application/xhtml+xml&#x27;, weight: 1 },</span>
@@ -278,7 +278,7 @@ hthvParseSemiSep(<span class="hljs-string">&#x27;id=a3fWa; SESSIONID=fdkafreterc
 				<p>The <code>hthvParseDirectives()</code> parser supports this format.</p>
 				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvFlatten, hthvParseDirectives } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
 
-<span class="hljs-keyword">const</span> { map: { defaultSrc, connectSrc } } =
+<span class="hljs-keyword">const</span> { <span class="hljs-attr">map</span>: { defaultSrc, connectSrc } } =
     hthvFlatten(hthvParseDirectives(<span class="hljs-string">`default-src &#x27;self&#x27; http://example.com; connect-src &#x27;none&#x27;`</span>));
 
 defaultSrc.p[<span class="hljs-number">0</span>].v; <span class="hljs-comment">// &#x27;self&#x27;</span>
@@ -401,6 +401,5 @@ forwardedHeader(<span class="hljs-string">&#x27;[2001:db8:cafe::17]:4711&#x27;</
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
