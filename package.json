@@ -16,21 +16,22 @@
   "bugs": {
     "url": "https://github.com/hatsyjs/fun-events/issues"
   },
-  "main": "dist/http-header-value.js",
-  "module": "dist/http-header-value.mjs",
+  "type": "module",
+  "main": "dist/http-header-value.cjs",
+  "module": "dist/http-header-value.js",
   "types": "index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/http-header-value.mjs",
-      "require": "./dist/http-header-value.js"
+      "import": "./dist/http-header-value.js",
+      "require": "./dist/http-header-value.cjs"
     },
     "./headers": {
-      "import": "./dist/http-header-value.headers.mjs",
-      "require": "./dist/http-header-value.headers.js"
+      "import": "./dist/http-header-value.headers.js",
+      "require": "./dist/http-header-value.headers.cjs"
     },
     "./node": {
-      "import": "./dist/http-header-value.node.mjs",
-      "require": "./dist/http-header-value.node.js"
+      "import": "./dist/http-header-value.node.js",
+      "require": "./dist/http-header-value.node.cjs"
     }
   },
   "engines": {
