@@ -1,6 +1,5 @@
-import { HthvExtraItem, HthvItem, HthvParamItem } from '../hthv-item';
-import { hthvItem } from '../impl/hthv-item';
-import { HthvPartial } from '../impl/hthv-partial';
+import type { HthvExtraItem, HthvItem, HthvParamItem } from '../hthv-item';
+import { hthvItem, HthvPartial } from '../impl';
 
 /**
  * @internal

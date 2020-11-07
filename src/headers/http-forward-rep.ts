@@ -2,7 +2,7 @@
  * @packageDocumentation
  * @module @hatsy/http-header-value/headers
  */
-import { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
+import type { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
 import { hthvParse } from '../hthv-parse';
 import { hthvItem, hthvParseFirstTrivial, hthvParseTrivial } from '../impl';
 import { HttpForwardTrust, HttpForwardTrustMask } from './http-forward-trust';

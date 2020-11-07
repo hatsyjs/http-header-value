@@ -1,12 +1,12 @@
 import { HthvDelimiter } from '../hthv-delimiter';
-import { HthvItem } from '../hthv-item';
-import { hthvItem } from '../impl/hthv-item';
+import type { HthvItem } from '../hthv-item';
+import { hthvItem } from '../impl';
 import { addParam } from './add-param';
 import { itemParser, ItemParserConfig } from './item-parser';
 import { nextInComment } from './next-in-comment';
 import { paramParser } from './param-parser';
-import { ParserConfig } from './parser-config';
-import { ParserInput } from './parser-input';
+import type { ParserConfig } from './parser-config';
+import type { ParserInput } from './parser-input';
 import { spacesParser } from './spaces-parser';
 
 /**

@@ -1,8 +1,8 @@
 import { HthvDelimiter } from '../hthv-delimiter';
-import { HthvParamItem } from '../hthv-item';
+import type { HthvParamItem } from '../hthv-item';
 import { itemParser, ItemParserConfig } from './item-parser';
-import { ParserConfig } from './parser-config';
-import { ParserInput } from './parser-input';
+import type { ParserConfig } from './parser-config';
+import type { ParserInput } from './parser-input';
 import { spacesParser } from './spaces-parser';
 
 /**

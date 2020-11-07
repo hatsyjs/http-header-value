@@ -2,7 +2,7 @@
  * @packageDocumentation
  * @module @hatsy/http-header-value/headers
  */
-import { HthvItem } from '../hthv-item';
+import type { HthvItem } from '../hthv-item';
 import { hthvParse } from '../hthv-parse';
 
 /**

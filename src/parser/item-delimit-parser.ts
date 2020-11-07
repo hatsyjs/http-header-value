@@ -1,6 +1,6 @@
 import { HthvDelimiter } from '../hthv-delimiter';
-import { ParserConfig } from './parser-config';
-import { ParserInput } from './parser-input';
+import type { ParserConfig } from './parser-config';
+import type { ParserInput } from './parser-input';
 import { spacesParser } from './spaces-parser';
 
 /**

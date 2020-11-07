@@ -1,12 +1,12 @@
 import { HthvDelimiter } from '../hthv-delimiter';
-import { HthvExtraItem, HthvItem, HthvItemType } from '../hthv-item';
-import { hthvItem } from '../impl/hthv-item';
+import type { HthvExtraItem, HthvItem, HthvItemType } from '../hthv-item';
+import { hthvItem } from '../impl';
 import { angleBracketsParser } from './angle-brackets-parser';
 import { dateTimeParser } from './date-time-parser';
 import { nextInItem } from './next-in-item';
 import { parseNone } from './parse-none';
-import { ParserConfig } from './parser-config';
-import { ParserInput } from './parser-input';
+import type { ParserConfig } from './parser-config';
+import type { ParserInput } from './parser-input';
 import { quotedStringParser } from './quoted-string-parser';
 
 /**

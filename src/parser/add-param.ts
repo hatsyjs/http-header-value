@@ -1,4 +1,4 @@
-import { HthvItem, HthvParamItem } from '../hthv-item';
+import type { HthvItem, HthvParamItem } from '../hthv-item';
 
 /**
  * @internal

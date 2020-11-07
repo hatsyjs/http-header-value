@@ -1,5 +1,5 @@
-import { ParserConfig } from './parser-config';
-import { ParserInput } from './parser-input';
+import type { ParserConfig } from './parser-config';
+import type { ParserInput } from './parser-input';
 
 /**
  * @internal

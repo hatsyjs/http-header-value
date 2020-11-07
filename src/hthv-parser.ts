@@ -2,9 +2,9 @@
  * @packageDocumentation
  * @module @hatsy/http-header-value
  */
-import { HthvDelimiterChar } from './hthv-delimiter';
-import { HthvItem } from './hthv-item';
-import { hthvItem } from './impl/hthv-item';
+import type { HthvDelimiterChar } from './hthv-delimiter';
+import type { HthvItem } from './hthv-item';
+import { hthvItem } from './impl';
 import {
   addParam,
   buildParserConfig,

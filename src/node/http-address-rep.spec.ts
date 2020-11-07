@@ -1,6 +1,6 @@
-import { IncomingHttpHeaders, IncomingMessage } from 'http';
-import { URL } from 'url';
-import { HttpForwardTrust } from '../headers';
+import type { IncomingHttpHeaders, IncomingMessage } from 'http';
+import type { URL } from 'url';
+import type { HttpForwardTrust } from '../headers';
 import { HttpAddressRep } from './http-address-rep';
 
 describe('HthvAddressRep', () => {

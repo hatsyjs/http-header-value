@@ -2,9 +2,9 @@
  * @packageDocumentation
  * @module @hatsy/http-header-value/node
  */
-import { IncomingHttpHeaders, IncomingMessage } from 'http';
-import { Socket } from 'net';
-import { TLSSocket } from 'tls';
+import type { IncomingHttpHeaders, IncomingMessage } from 'http';
+import type { Socket } from 'net';
+import type { TLSSocket } from 'tls';
 import { URL } from 'url';
 import { HttpForwardRep, HttpForwardTrust } from '../headers';
 
