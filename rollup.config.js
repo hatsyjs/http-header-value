@@ -49,7 +49,7 @@ export default {
       format: 'esm',
       sourcemap: true,
       entryFileNames: 'dist/[name].js',
-      chunkFileNames: 'dist/_[name].cjs',
+      chunkFileNames: 'dist/_[name].js',
       plugins: [
         flatDts({
           tsconfig: 'tsconfig.main.json',
