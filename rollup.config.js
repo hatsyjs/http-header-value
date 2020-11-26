@@ -1,4 +1,5 @@
 import { externalModules } from '@proc7ts/rollup-helpers';
+import flatDts from '@proc7ts/rollup-plugin-flat-dts';
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import path from 'path';
@@ -18,40 +19,49 @@ export default {
       typescript,
       tsconfig: 'tsconfig.main.json',
       cacheRoot: 'target/.rts2_cache',
-      useTsconfigDeclarationDir: true,
     }),
     nodeResolve(),
     sourcemaps(),
   ],
   external: externalModules(),
   manualChunks(id) {
-    if (id.startsWith(path.join(__dirname, 'src', 'headers') + path.sep)) {
+    if (id.startsWith(path.resolve('src', 'headers') + path.sep)) {
       return 'http-header-value.headers';
     }
-    if (id.startsWith(path.join(__dirname, 'src', 'node') + path.sep)) {
+    if (id.startsWith(path.resolve('src', 'node') + path.sep)) {
       return 'http-header-value.node';
     }
-    if (id.startsWith(path.join(__dirname, 'src', 'impl') + path.sep)) {
+    if (id.startsWith(path.resolve('src', 'impl') + path.sep)) {
       return 'http-header-value.base';
     }
     return 'http-header-value';
   },
   output: [
     {
+      dir: 'dist',
       format: 'cjs',
       sourcemap: true,
-      dir: './dist',
       entryFileNames: '[name].cjs',
       chunkFileNames: '_[name].cjs',
-      hoistTransitiveImports: false,
     },
     {
+      dir: '.',
       format: 'esm',
       sourcemap: true,
-      dir: './dist',
-      entryFileNames: '[name].js',
-      chunkFileNames: '_[name].js',
-      hoistTransitiveImports: false,
+      entryFileNames: 'dist/[name].js',
+      chunkFileNames: 'dist/_[name].cjs',
+      plugins: [
+        flatDts({
+          tsconfig: 'tsconfig.main.json',
+          lib: true,
+          entries: {
+            headers: {},
+            node: {
+              file: 'node/index.d.ts',
+            },
+          },
+        }),
+      ],
     },
   ],
 };
