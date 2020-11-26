@@ -55,7 +55,9 @@ export default {
           tsconfig: 'tsconfig.main.json',
           lib: true,
           entries: {
-            headers: {},
+            headers: {
+              file: 'headers/index.d.ts',
+            },
             node: {
               file: 'node/index.d.ts',
             },
