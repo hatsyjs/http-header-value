@@ -47,7 +47,7 @@ export type HthvItemType =
  * comment.
  *
  * @typeParam TNameMode - Whether this item has a {@link n name}.
- * @typeParam TTagMode  Whether this item has a {@link t tag}.
+ * @typeParam TTagMode - Whether this item has a {@link t tag}.
  * @typeParam TParamsMode - Whether this item has {@link p parameters}.
  */
 export interface HthvItem<

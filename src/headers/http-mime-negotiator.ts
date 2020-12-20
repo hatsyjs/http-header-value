@@ -11,7 +11,7 @@ import { httpContentNegotiator, HttpContentNegotiator } from './http-content-neg
  *
  * [Accept]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept
  *
- * @typeParam T  A type of the matching values.
+ * @typeParam T - A type of the matching values.
  * @param map - A map of values corresponding to MIME types or wildcards.
  *
  * @returns New requested MIME negotiator function.

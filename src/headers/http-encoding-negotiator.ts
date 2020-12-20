@@ -11,7 +11,7 @@ import { httpContentNegotiator, HttpContentNegotiator } from './http-content-neg
  *
  * [Accept-Encoding]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding
  *
- * @typeParam T  A type of the matching values.
+ * @typeParam T - A type of the matching values.
  * @param map - A map of values corresponding to content encodings or wildcard.
  *
  * @returns New requested content encoding negotiator function.

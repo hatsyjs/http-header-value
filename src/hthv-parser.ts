@@ -24,7 +24,7 @@ import {
  * Splits the value onto {@link HthvItem items}.
  *
  * @typeParam TNameMode - Whether parsed items have {@link HthvItem.n names}.
- * @typeParam TTagMode  Whether parsed items have {@link HthvItem.t tags}.
+ * @typeParam TTagMode - Whether parsed items have {@link HthvItem.t tags}.
  * @typeParam TParamsMode - Whether parsed items have {@link HthvItem.p parameters}.
  */
 export type HthvParser<

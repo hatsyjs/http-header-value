@@ -12,7 +12,7 @@ import type { HthvItem } from './hthv-item';
  * This is constructed by {@link hthvFlatten} function.
  *
  * @typeParam TNameMode - Whether items has a {@link n name}.
- * @typeParam TTagMode  Whether items has a {@link t tag}.
+ * @typeParam TTagMode - Whether items has a {@link t tag}.
  * @typeParam TParamsMode - Whether items has {@link p parameters}.
  */
 export interface HthvItems<
@@ -45,7 +45,7 @@ export interface HthvItems<
  * - prefers items added first.
  *
  * @typeParam TNameMode - Whether items has a {@link n name}.
- * @typeParam TTagMode  Whether items has a {@link t tag}.
+ * @typeParam TTagMode - Whether items has a {@link t tag}.
  * @typeParam TParamsMode - Whether items has {@link p parameters}.
  * @param items Items collection.
  */
