@@ -9,24 +9,28 @@ import type { HthvItem } from './hthv-item';
  *
  * Contains a map of named items, as well as their list.
  *
- * This is constructed by [[hthvFlatten]] function.
+ * This is constructed by {@link hthvFlatten} function.
+ *
+ * @typeParam TNameMode - Whether items has a {@link n name}.
+ * @typeParam TTagMode  Whether items has a {@link t tag}.
+ * @typeParam TParamsMode - Whether items has {@link p parameters}.
  */
 export interface HthvItems<
-    N extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
-    T extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
-    P extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> {
+    TNameMode extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
+    TTagMode extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
+    TParamsMode extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> {
 
   /**
    * A map of HTTP header value items.
    *
    * When item has no name, then its value is used as a key.
    */
-  map: { [name: string]: HthvItem<N, T, P> };
+  map: { [name: string]: HthvItem<TNameMode, TTagMode, TParamsMode> };
 
   /**
    * A list of items and their parameters.
    */
-  list: HthvItem<N, T, P>[];
+  list: HthvItem<TNameMode, TTagMode, TParamsMode>[];
 
 }
 
@@ -40,17 +44,20 @@ export interface HthvItems<
  * - prefers original items over their parameters,
  * - prefers items added first.
  *
+ * @typeParam TNameMode - Whether items has a {@link n name}.
+ * @typeParam TTagMode  Whether items has a {@link t tag}.
+ * @typeParam TParamsMode - Whether items has {@link p parameters}.
  * @param items Items collection.
  */
 export function hthvFlatten<
-    N extends 'has-name' | 'no-name',
-    T extends 'has-tag' | 'no-tag',
-    P extends 'has-params' | 'no-params'>(
-    items: HthvItem<N, T, P>[],
-): HthvItems<N, T, P> {
+    TNameMode extends 'has-name' | 'no-name',
+    TTagMode extends 'has-tag' | 'no-tag',
+    TParamsMode extends 'has-params' | 'no-params'>(
+    items: HthvItem<TNameMode, TTagMode, TParamsMode>[],
+): HthvItems<TNameMode, TTagMode, TParamsMode> {
 
-  const map: { [name: string]: HthvItem<N, T, P> } = {};
-  const list: HthvItem<N, T, P>[] = [];
+  const map: { [name: string]: HthvItem<TNameMode, TTagMode, TParamsMode> } = {};
+  const list: HthvItem<TNameMode, TTagMode, TParamsMode>[] = [];
   const depths: { [name: string]: number } = {};
 
   const put = (item: HthvItem<any, any, any>, depth: number): void => {
@@ -70,7 +77,7 @@ export function hthvFlatten<
       }
     }
 
-    map[key] = item as HthvItem<N, T, P>;
+    map[key] = item as HthvItem<TNameMode, TTagMode, TParamsMode>;
     depths[key] = depth;
   };
 

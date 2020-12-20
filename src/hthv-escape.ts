@@ -11,7 +11,7 @@ import { commentParserConfig, defaultParserConfig, ParserConfig } from './parser
  *
  * Replaces `\` with `\\`, and `"` with `\"`.
  *
- * @param string  A string to escape.
+ * @param string - A string to escape.
  *
  * @returns Escaped `string`.
  */
@@ -31,7 +31,7 @@ export function hthvEscapeQ(string: string): string {
  * [RFC7230]: https://tools.ietf.org/html/rfc7230
  * [quoted-string]: https://tools.ietf.org/html/rfc7230#section-3.2.6
  *
- * @param string  A string to escape.
+ * @param string - A string to escape.
  *
  * @returns Escaped `string`.
  */

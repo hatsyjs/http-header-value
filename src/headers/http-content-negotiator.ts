@@ -22,7 +22,7 @@ import { hthvParse } from '../hthv-parse';
  */
 export type HttpContentNegotiator<T> =
 /**
- * @param request  Content negotiation request. This an `Accept...` header value, either {@link hthvParse parsed}, or
+ * @param request - Content negotiation request. This an `Accept...` header value, either {@link hthvParse parsed}, or
  * as a raw string.
  *
  * @returns The best matching value, `undefined` if there is no matching value, or `0` is the matching
@@ -37,7 +37,7 @@ export namespace HttpContentNegotiator {
    */
   export type Wildcards =
   /**
-   * @param key  Source key.
+   * @param key - Source key.
    *
    * @returns All wildcards the `key` matches, starting from the most specific one (the key itself) and ending with the
    * most generic one (i.e. a match-all wildcard).
@@ -64,8 +64,8 @@ export namespace HttpContentNegotiator {
  * Builds HTTP content negotiator.
  *
  * @typeParam T  A type of the matching values.
- * @param wildcards  A function extracting all possible wildcards the content negotiation key matches.
- * @param map  A map of values corresponding to content negotiation keys.
+ * @param wildcards - A function extracting all possible wildcards the content negotiation key matches.
+ * @param map - A map of values corresponding to content negotiation keys.
  *
  * @returns New HTTP content negotiator function.
  */

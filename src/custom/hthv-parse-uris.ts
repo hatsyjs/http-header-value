@@ -16,7 +16,7 @@ import { HthvParser, newHthvParser } from '../hthv-parser';
  * - `Location`
  * - `Referef`
  *
- * @param value  HTTP header value to parse.
+ * @param value - HTTP header value to parse.
  *
  * @returns An array of space-separated value items without parameters.
  */

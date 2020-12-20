@@ -11,7 +11,7 @@ import { defaultParserConfig } from './parser';
  * Quotes will be added if delimiter or special character is present in input `string`, or the input `string` is empty.
  * {@link hthvEscapeQ Escapes} `"` and `\` symbols.
  *
- * @param string  A string to quote.
+ * @param string - A string to quote.
  *
  * @returns Either a string enclosed in double quotes, or original `string` if there is no need to quote it.
  */

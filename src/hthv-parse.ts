@@ -15,7 +15,7 @@ import { HthvParser, newHthvParser } from './hthv-parser';
  *
  * Treats illegal characters as ASCII letters.
  *
- * @param value  HTTP header value to parse.
+ * @param value - HTTP header value to parse.
  *
  * @returns An array of comma- or space- separated value items.
  */
@@ -36,7 +36,7 @@ export const hthvParse: HthvParser = (/*#__PURE__*/ newHthvParser());
  *
  * [IMF-fixdate]: https://tools.ietf.org/html/rfc7231#section-7.1.1.1
  *
- * @param value  HTTP header value to parse.
+ * @param value - HTTP header value to parse.
  *
  * @returns An array of comma- or space- separated value items.
  */

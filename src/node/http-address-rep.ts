@@ -39,7 +39,7 @@ export const HttpAddressRep = {
    *
    * This information does not rely on proxy forwarding information.
    *
-   * @param request  HTTP request to collect information from.
+   * @param request - HTTP request to collect information from.
    *
    * @returns Collected proxy forwarding defaults.
    */
@@ -66,8 +66,8 @@ export const HttpAddressRep = {
    *
    * Uses {@link HttpForwardRep.by} to collect trusted proxy forwarding information.
    *
-   * @param request  HTTP request to collect information from.
-   * @param trust  A trust policy to proxy forwarding records.
+   * @param request - HTTP request to collect information from.
+   * @param trust - A trust policy to proxy forwarding records.
    *
    * @returns  Collected HTTP request info.
    */

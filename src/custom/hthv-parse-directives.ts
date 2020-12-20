@@ -20,7 +20,7 @@ import { HthvParser, newHthvParser } from '../hthv-parser';
  * - `Via`
  * - `Warning`
  *
- * @param value  HTTP header value to parse.
+ * @param value - HTTP header value to parse.
  *
  * @returns An array of comma-separated value items with space-separated parameters.
  */

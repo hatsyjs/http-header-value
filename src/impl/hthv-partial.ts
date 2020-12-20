@@ -3,12 +3,12 @@ import type { HthvItem } from '../hthv-item';
 /**
  * @internal
  */
-export interface HthvPartial<I extends HthvItem<any, any, any> = HthvItem> {
-  $?: I['$'];
-  n?: I['n'];
-  t?: I['t'];
-  v: I['v'];
-  x?: I['x'];
-  p?: I['p'];
-  pl?: I['pl'];
+export interface HthvPartial<TItem extends HthvItem<any, any, any> = HthvItem> {
+  $?: TItem['$'];
+  n?: TItem['n'];
+  t?: TItem['t'];
+  v: TItem['v'];
+  x?: TItem['x'];
+  p?: TItem['p'];
+  pl?: TItem['pl'];
 }

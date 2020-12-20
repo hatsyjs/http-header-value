@@ -23,20 +23,20 @@ import {
  *
  * Splits the value onto {@link HthvItem items}.
  *
- * @typeParam N  Whether parsed items have {@link HthvItem.n names}.
- * @typeParam T  Whether parsed items have {@link HthvItem.t tags}.
- * @typeParam P  Whether parsed items have {@link HthvItem.p parameters}.
+ * @typeParam TNameMode - Whether parsed items have {@link HthvItem.n names}.
+ * @typeParam TTagMode  Whether parsed items have {@link HthvItem.t tags}.
+ * @typeParam TParamsMode - Whether parsed items have {@link HthvItem.p parameters}.
  */
 export type HthvParser<
-    N extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
-    T extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
-    P extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> =
+    TNameMode extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
+    TTagMode extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
+    TParamsMode extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> =
 /**
- * @param value  HTTP header value to parse.
+ * @param value - HTTP header value to parse.
  *
  * @returns An array of parsed value items.
  */
-    (this: void, value: string) => HthvItem<N, T, P>[];
+    (this: void, value: string) => HthvItem<TNameMode, TTagMode, TParamsMode>[];
 
 /**
  * A configuration of HTTP header value parser.
@@ -82,7 +82,7 @@ export type HthvDelimitConfig = { readonly [char in HthvDelimiterChar]?: number 
 /**
  * Creates and configures new HTTP header value parser.
  *
- * @param config  New parser configuration.
+ * @param config - New parser configuration.
  *
  * @returns New HTTP header value parser function.
  */

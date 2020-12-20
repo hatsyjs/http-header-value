@@ -50,8 +50,8 @@ export namespace HttpForwardTrust {
    */
   export type Checker =
   /**
-   * @param item  An item of the `Forwarded` header value containing a record to check.
-   * @param index  Reverse `item` index. I.e. the last one has `0` index.
+   * @param item - An item of the `Forwarded` header value containing a record to check.
+   * @param index - Reverse `item` index. I.e. the last one has `0` index.
    *
    * @returns Bitwise {@link HttpForwardTrustMask mask} of the trust.
    */
@@ -121,7 +121,7 @@ export const HttpForwardTrust = {
   /**
    * Builds HTTP request forwarding trust checker function by forwarding info trust policy.
    *
-   * @param trust  A trust policy to proxy forwarding records.
+   * @param trust - A trust policy to proxy forwarding records.
    *
    * @returns Constructed trust predicate function.
    */

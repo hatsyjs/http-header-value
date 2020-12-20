@@ -11,7 +11,7 @@ export function paramItem(item: HthvPartial<HthvParamItem>): HthvParamItem {
 /**
  * @internal
  */
-export function items<I extends HthvItem>(...list: HthvPartial<I>[]): I[] {
+export function items<TItem extends HthvItem>(...list: HthvPartial<TItem>[]): TItem[] {
   return list.map(hthvItem);
 }
 

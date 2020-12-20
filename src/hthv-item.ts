@@ -46,19 +46,19 @@ export type HthvItemType =
  * Item may represent a `<name>=<value>` pair used as top level item or its parameter, or a `<name>:<value>` pair within
  * comment.
  *
- * @typeParam N  Whether this item has a {@link n name}.
- * @typeParam T  Whether this item has a {@link t tag}.
- * @typeParam P  Whether this item has {@link p parameters}.
+ * @typeParam TNameMode - Whether this item has a {@link n name}.
+ * @typeParam TTagMode  Whether this item has a {@link t tag}.
+ * @typeParam TParamsMode - Whether this item has {@link p parameters}.
  */
 export interface HthvItem<
-    N extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
-    T extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
-    P extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> {
+    TNameMode extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
+    TTagMode extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
+    TParamsMode extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> {
 
   /**
    * Item value type.
    */
-  $: 'has-tag' extends T ? HthvItemType : Exclude<HthvItemType, 'tagged-string'>;
+  $: 'has-tag' extends TTagMode ? HthvItemType : Exclude<HthvItemType, 'tagged-string'>;
 
   /**
    * A name of name/value item.
@@ -67,14 +67,14 @@ export interface HthvItem<
    *
    * [token]: https://tools.ietf.org/html/rfc7230#section-3.2.6
    */
-  n: 'has-name' extends N ? ('no-name' extends N ? string | undefined : string) : undefined;
+  n: 'has-name' extends TNameMode ? ('no-name' extends TNameMode ? string | undefined : string) : undefined;
 
   /**
    * A tag of tagged string.
    *
    * This is only set for `tagged-string` item type.
    */
-  t: 'has-tag' extends T ? ('no-tag' extends T ? string | undefined : string) : undefined;
+  t: 'has-tag' extends TTagMode ? ('no-tag' extends TTagMode ? string | undefined : string) : undefined;
 
   /**
    * Item value.
@@ -91,12 +91,12 @@ export interface HthvItem<
    *
    * Includes an entry for this item if it has a {@link n name}.
    */
-  p: 'has-params' extends P ? HthvParamMap : { [name: string]: never };
+  p: 'has-params' extends TParamsMode ? HthvParamMap : { [name: string]: never };
 
   /**
    * A list of all item parameters.
    */
-  pl: 'has-params' extends P ? HthvParamItem[] : [];
+  pl: 'has-params' extends TParamsMode ? HthvParamItem[] : [];
 
 }
 

@@ -98,9 +98,9 @@ export const HttpForwardRep = {
   /**
    * Builds trusted proxy forwarding report by proxy forwarding records.
    *
-   * @param items  `Forwarded` header value items.
-   * @param defaults  Forwarding info defaults.
-   * @param trust  A trust policy to proxy forwarding records.
+   * @param items - `Forwarded` header value items.
+   * @param defaults - Forwarding info defaults.
+   * @param trust - A trust policy to proxy forwarding records.
    *
    * @returns Trusted proxy forwarding report.
    */
@@ -172,9 +172,9 @@ export const HttpForwardRep = {
   /**
    * Builds trusted proxy forwarding report by HTTP request.
    *
-   * @param headers  Request headers.
-   * @param defaults  Forwarding info defaults.
-   * @param trust  A trust policy to proxy forwarding records.
+   * @param headers - Request headers.
+   * @param defaults - Forwarding info defaults.
+   * @param trust - A trust policy to proxy forwarding records.
    *
    * @returns Trusted proxy forwarding report.
    */

@@ -4,7 +4,7 @@ import type { HthvPartial } from './hthv-partial';
 /**
  * @internal
  */
-export function hthvItem<I extends HthvItem<any, any, any>>(
+export function hthvItem<TItem extends HthvItem<any, any, any>>(
     {
       $ = 'raw',
       n,
@@ -13,8 +13,8 @@ export function hthvItem<I extends HthvItem<any, any, any>>(
       x = [],
       p = {},
       pl = [],
-    }: HthvPartial<I>,
-): I {
+    }: HthvPartial<TItem>,
+): TItem {
   if (n) {
     (p as Record<string, HthvPartial>)[n as string] = { $, n, v, x: [], p: {}, pl: [] };
   }
@@ -26,5 +26,5 @@ export function hthvItem<I extends HthvItem<any, any, any>>(
     x,
     p,
     pl,
-  } as I;
+  } as TItem;
 }
