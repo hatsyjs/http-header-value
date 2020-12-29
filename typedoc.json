@@ -1,16 +1,9 @@
 {
-  "disableAutoModuleName": true,
-  "exclude": [
-    "**/index.ts",
-    "**/*.impl.ts",
-    "**/*.spec.ts",
-    "./src/impl/**/*.ts",
-    "./src/parser/**/*.ts",
-    "./src/spec/**/*.ts"
+  "entryPoints": [
+    "src/index.ts",
+    "src/headers/index.ts",
+    "src/node/index.ts"
   ],
-  "excludeNotExported": true,
-  "listInvalidSymbolLinks": true,
-  "mode": "modules",
   "name": "HTTP Header Values",
   "out": "./target/typedoc",
   "tsconfig": "tsconfig.main.json"

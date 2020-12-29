@@ -1,3 +1,7 @@
+/**
+ * @packageDocumentation
+ * @module @hatsy/http-header-value/headers
+ */
 export * from './http-content-negotiator';
 export * from './http-encoding-negotiator';
 export * from './http-forward-trust';
