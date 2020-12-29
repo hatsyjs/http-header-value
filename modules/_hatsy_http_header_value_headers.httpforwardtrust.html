@@ -3,10 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>HttpContentNegotiator | HTTP Header Values</title>
+	<title>HttpForwardTrust | HTTP Header Values</title>
 	<meta name="description" content="Documentation for HTTP Header Values">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -51,45 +52,22 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">HTTP Header Values</a>
 				</li>
 				<li>
-					<a href="@hatsy_http-header-value_headers.html">@hatsy/http-header-value/headers</a>
+					<a href="_hatsy_http_header_value_headers.html">@hatsy/http-header-value/headers</a>
 				</li>
 				<li>
-					<a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html">HttpContentNegotiator</a>
+					<a href="_hatsy_http_header_value_headers.httpforwardtrust.html">HttpForwardTrust</a>
 				</li>
 			</ul>
-			<h1>Namespace HttpContentNegotiator&lt;T&gt;</h1>
+			<h1>Namespace HttpForwardTrust</h1>
 		</div>
 	</div>
 </header>
 <div class="container container-main">
 	<div class="row">
 		<div class="col-8 col-content">
-			<section class="tsd-panel tsd-comment">
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>HTTP content negotiator signature.</p>
-					</div>
-					<p>Extracts a value matching the given HTTP content negotiation request.</p>
-					<p>This is used to process request headers like <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept">Accept</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Encoding">Accept-Encoding</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language">Accept-Language</a>, etc.</p>
-					<p>The content negotiator can be constructed by <a href="@hatsy_http-header-value_headers.html#httpContentNegotiator">httpContentNegotiator</a> function.</p>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>A type of the matching value.</p>
-							</div>
-						</div>
-					</li>
-				</ul>
-			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
 				<section class="tsd-panel tsd-index-panel">
@@ -97,13 +75,14 @@
 						<section class="tsd-index-section ">
 							<h3>Interfaces</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter"><a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-kind-icon">Map</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-namespace"><a href="../interfaces/_hatsy_http_header_value_headers.httpforwardtrust.params.html" class="tsd-kind-icon">Params</a></li>
+								<li class="tsd-kind-interface tsd-parent-kind-namespace"><a href="../interfaces/_hatsy_http_header_value_headers.httpforwardtrust.values.html" class="tsd-kind-icon">Values</a></li>
 							</ul>
 						</section>
 						<section class="tsd-index-section ">
 							<h3>Type aliases</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html#Wildcards" class="tsd-kind-icon">Wildcards</a></li>
+								<li class="tsd-kind-type-alias tsd-parent-kind-namespace"><a href="_hatsy_http_header_value_headers.httpforwardtrust.html#checker" class="tsd-kind-icon">Checker</a></li>
 							</ul>
 						</section>
 					</div>
@@ -112,47 +91,50 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Type aliases</h2>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-parent-kind-namespace">
-					<a name="Wildcards" class="tsd-anchor"></a>
-					<h3>Wildcards</h3>
-					<div class="tsd-signature tsd-kind-icon">Wildcards<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]</span></div>
+					<a name="checker" class="tsd-anchor"></a>
+					<h3>Checker</h3>
+					<div class="tsd-signature tsd-kind-icon">Checker<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/_hatsy_http_header_value.hthvitem.html" class="tsd-signature-type" data-tsd-kind="Interface">HthvItem</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><a href="../enums/_hatsy_http_header_value_headers.httpforwardtrustmask.html" class="tsd-signature-type" data-tsd-kind="Enumeration">HttpForwardTrustMask</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/ace9d94/src/headers/http-content-negotiator.ts#L38">headers/http-content-negotiator.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/796d6e1/src/headers/http-forward-trust.ts#L51">headers/http-forward-trust.ts:51</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>A signature of function that extracts all wildcards the given content negotiation key matches.</p>
+							<p>Signature of function that checks whether the forwarding record value can be trusted.</p>
 						</div>
+						<p>This function is called for each forwarding record in reverse order. The very last record is always trusted
+						as it contains local address info.</p>
 					</div>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
 							<li class="tsd-parameter-signature">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, key<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]</span></li>
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-namespace">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>this<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span>, item<span class="tsd-signature-symbol">: </span><a href="../interfaces/_hatsy_http_header_value.hthvitem.html" class="tsd-signature-type" data-tsd-kind="Interface">HthvItem</a>, index<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../enums/_hatsy_http_header_value_headers.httpforwardtrustmask.html" class="tsd-signature-type" data-tsd-kind="Enumeration">HttpForwardTrustMask</a></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
-										<div class="tsd-comment tsd-typography">
-										</div>
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
 												<h5>this: <span class="tsd-signature-type">void</span></h5>
 											</li>
 											<li>
-												<h5>key: <span class="tsd-signature-type">string</span></h5>
+												<h5>item: <a href="../interfaces/_hatsy_http_header_value.hthvitem.html" class="tsd-signature-type" data-tsd-kind="Interface">HthvItem</a></h5>
 												<div class="tsd-comment tsd-typography">
-													<div class="lead">
-														<p>Source key.</p>
-													</div>
+													<p>An item of the <code>Forwarded</code> header value containing a record to check.</p>
+												</div>
+											</li>
+											<li>
+												<h5>index: <span class="tsd-signature-type">number</span></h5>
+												<div class="tsd-comment tsd-typography">
+													<p>Reverse <code>item</code> index. I.e. the last one has <code>0</code> index.</p>
 												</div>
 											</li>
 										</ul>
-										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]</span></h4>
-										<p>All wildcards the <code>key</code> matches, starting from the most specific one (the key itself) and ending with the
-										most generic one (i.e. a match-all wildcard).</p>
+										<h4 class="tsd-returns-title">Returns <a href="../enums/_hatsy_http_header_value_headers.httpforwardtrustmask.html" class="tsd-signature-type" data-tsd-kind="Enumeration">HttpForwardTrustMask</a></h4>
+										<p>Bitwise <a href="../enums/_hatsy_http_header_value_headers.httpforwardtrustmask.html">mask</a> of the trust.</p>
 									</li>
 								</ul>
 							</li>
@@ -164,18 +146,21 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Modules</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
-					<li class=" tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter">
-						<a href="../interfaces/@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-kind-icon">Map</a>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="../interfaces/_hatsy_http_header_value_headers.httpforwardtrust.params.html" class="tsd-kind-icon">Params</a>
+					</li>
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="../interfaces/_hatsy_http_header_value_headers.httpforwardtrust.values.html" class="tsd-kind-icon">Values</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="@hatsy_http-header-value_headers.HttpContentNegotiator.html#Wildcards" class="tsd-kind-icon">Wildcards</a>
+						<a href="_hatsy_http_header_value_headers.httpforwardtrust.html#checker" class="tsd-kind-icon">Checker</a>
 					</li>
 				</ul>
 			</nav>
@@ -187,7 +172,7 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>

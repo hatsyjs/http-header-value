@@ -7,6 +7,7 @@
 	<meta name="description" content="Documentation for HTTP Header Values">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
+	<script async src="assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -49,11 +50,6 @@
 	</div>
 	<div class="tsd-page-title">
 		<div class="container">
-			<ul class="tsd-breadcrumb">
-				<li>
-					<a href="globals.html">Globals</a>
-				</li>
-			</ul>
 			<h1>HTTP Header Values</h1>
 		</div>
 	</div>
@@ -71,21 +67,22 @@
 					<a href="https://github.com/hatsyjs/http-header-value"><img src="https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational" alt="GitHub Project"></a>
 				<a href="https://hatsyjs.github.io/http-header-value/"><img src="https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational" alt="API Documentation"></a></p>
 				<p>Parse HTTP header value:</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse, hthvParseCommented } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParse</span><span style="color: #000000">, </span><span style="color: #001080">hthvParseCommented</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> [contentType] = hthvParse(<span class="hljs-string">&#x27;text/html;charset=utf-8&#x27;</span>);
-contentType.v;           <span class="hljs-comment">// text/html</span>
-contentType.p.charset.v; <span class="hljs-comment">// utf-8</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> [</span><span style="color: #0070C1">contentType</span><span style="color: #000000">] = </span><span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;text/html;charset=utf-8&#039;</span><span style="color: #000000">);</span>
+<span style="color: #001080">contentType</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">;           </span><span style="color: #008000">// text/html</span>
+<span style="color: #001080">contentType</span><span style="color: #000000">.</span><span style="color: #001080">p</span><span style="color: #000000">.</span><span style="color: #001080">charset</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">; </span><span style="color: #008000">// utf-8</span>
 
-<span class="hljs-keyword">const</span> [product, sysInfo, platform, version] = 
-    hthvParseCommented(<span class="hljs-string">&#x27;Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0&#x27;</span>);
+<span style="color: #0000FF">const</span><span style="color: #000000"> [</span><span style="color: #0070C1">product</span><span style="color: #000000">, </span><span style="color: #0070C1">sysInfo</span><span style="color: #000000">, </span><span style="color: #0070C1">platform</span><span style="color: #000000">, </span><span style="color: #0070C1">version</span><span style="color: #000000">] = </span>
+<span style="color: #000000">    </span><span style="color: #795E26">hthvParseCommented</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0&#039;</span><span style="color: #000000">);</span>
 
-product.v;        <span class="hljs-comment">// Mozilla/5.0</span>
-sysInfo.v;        <span class="hljs-comment">// X11</span>
-sysInfo.pl[<span class="hljs-number">0</span>].v;  <span class="hljs-comment">// Linux x86_64</span>
-sysInfo.p.rv.v;   <span class="hljs-comment">// 70.0</span>
-platform.v;       <span class="hljs-comment">// Gecko/20100101</span>
-version.v;        <span class="hljs-comment">// Firefox/70.0</span></code></pre>
+<span style="color: #001080">product</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">;        </span><span style="color: #008000">// Mozilla/5.0</span>
+<span style="color: #001080">sysInfo</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">;        </span><span style="color: #008000">// X11</span>
+<span style="color: #001080">sysInfo</span><span style="color: #000000">.</span><span style="color: #001080">pl</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">v</span><span style="color: #000000">;  </span><span style="color: #008000">// Linux x86_64</span>
+<span style="color: #001080">sysInfo</span><span style="color: #000000">.</span><span style="color: #001080">p</span><span style="color: #000000">.</span><span style="color: #001080">rv</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">;   </span><span style="color: #008000">// 70.0</span>
+<span style="color: #001080">platform</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">;       </span><span style="color: #008000">// Gecko/20100101</span>
+<span style="color: #001080">version</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">;        </span><span style="color: #008000">// Firefox/70.0</span>
+</code></pre>
 				<a href="#supported-headers" id="supported-headers" style="color: inherit; text-decoration: none;">
 					<h2>Supported Headers</h2>
 				</a>
@@ -114,10 +111,11 @@ version.v;        <span class="hljs-comment">// Firefox/70.0</span></code></pre>
 					<p><code>Allow</code>: <strong><code>GET, POST, HEAD</code></strong> <br><code>Authorization</code>: <strong><code>Basic YWxhZGRpbjpvcGVuc2VzYW1l</code></strong></p>
 				</blockquote>
 				<p>That&#39;s why the parser returns an array of items.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse} <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParse</span><span style="color: #000000">} </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParse(<span class="hljs-string">&#x27;GET, POST, HEAD&#x27;</span>).map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.v); <span class="hljs-comment">// [&#x27;GET&#x27;, &#x27;POST&#x27;, &#x27;HEAD&#x27;]</span>
-hthvParse(<span class="hljs-string">&#x27;Basic YWxhZGRpbjpvcGVuc2VzYW1l&#x27;</span>).map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.v); <span class="hljs-comment">// [&#x27;Basic&#x27;, &#x27;YWxhZGRpbjpvcGVuc2VzYW1l&#x27;];</span></code></pre>
+<span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;GET, POST, HEAD&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">item</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">); </span><span style="color: #008000">// [&#039;GET&#039;, &#039;POST&#039;, &#039;HEAD&#039;]</span>
+<span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Basic YWxhZGRpbjpvcGVuc2VzYW1l&#039;</span><span style="color: #000000">).</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">item</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">); </span><span style="color: #008000">// [&#039;Basic&#039;, &#039;YWxhZGRpbjpvcGVuc2VzYW1l&#039;];</span>
+</code></pre>
 				<a href="#item-parameters" id="item-parameters" style="color: inherit; text-decoration: none;">
 					<h3>Item Parameters</h3>
 				</a>
@@ -129,28 +127,30 @@ hthvParse(<span class="hljs-string">&#x27;Basic YWxhZGRpbjpvcGVuc2VzYW1l&#x27;</
 				<p>Parameters are available via the <code>p</code> property of <code>HthvItem</code> that contains a parameter map. And via <code>pl</code> property
 				that contains an array of all parameters.</p>
 				<p>Each parameter is represented as <code>HthvItem</code> too. Parameter name is available from its <code>n</code> property.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse, hthvParseCommented } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParse</span><span style="color: #000000">, </span><span style="color: #001080">hthvParseCommented</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParse(<span class="hljs-string">&#x27;text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8&#x27;</span>)
-    .map(<span class="hljs-function">(<span class="hljs-params">{ v, p: { q } }</span>) =&gt;</span> ({ <span class="hljs-attr">contentType</span>: v, <span class="hljs-attr">weight</span>: q ? <span class="hljs-built_in">parseFloat</span>(q.v) : <span class="hljs-number">1.0</span> }));
-<span class="hljs-comment">//  [</span>
-<span class="hljs-comment">//    { contentType: &#x27;text/html&#x27;, weight: 1 },</span>
-<span class="hljs-comment">//    { contentType: &#x27;application/xhtml+xml&#x27;, weight: 1 },</span>
-<span class="hljs-comment">//    { contentType: &#x27;application/xml&#x27;, weight: 0.9 },</span>
-<span class="hljs-comment">//    { contentType: &#x27;image/webp&#x27;, weight: 1 },</span>
-<span class="hljs-comment">//    { contentType: &#x27;*/*&#x27;, weight: 0.8 }</span>
-<span class="hljs-comment">//  ]</span>
+<span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">map</span><span style="color: #000000">(({ </span><span style="color: #001080">v</span><span style="color: #000000">, </span><span style="color: #001080">p</span><span style="color: #000000">: { </span><span style="color: #001080">q</span><span style="color: #000000"> } }) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({ </span><span style="color: #001080">contentType:</span><span style="color: #000000"> </span><span style="color: #001080">v</span><span style="color: #000000">, </span><span style="color: #001080">weight:</span><span style="color: #000000"> </span><span style="color: #001080">q</span><span style="color: #000000"> ? </span><span style="color: #795E26">parseFloat</span><span style="color: #000000">(</span><span style="color: #001080">q</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">) : </span><span style="color: #098658">1.0</span><span style="color: #000000"> }));</span>
+<span style="color: #008000">//  [</span>
+<span style="color: #008000">//    { contentType: &#039;text/html&#039;, weight: 1 },</span>
+<span style="color: #008000">//    { contentType: &#039;application/xhtml+xml&#039;, weight: 1 },</span>
+<span style="color: #008000">//    { contentType: &#039;application/xml&#039;, weight: 0.9 },</span>
+<span style="color: #008000">//    { contentType: &#039;image/webp&#039;, weight: 1 },</span>
+<span style="color: #008000">//    { contentType: &#039;*/*&#039;, weight: 0.8 }</span>
+<span style="color: #008000">//  ]</span>
 
-<span class="hljs-keyword">const</span> [, comment] = hthvParseCommented(<span class="hljs-string">`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`</span>);
-comment.pl.map(<span class="hljs-function">(<span class="hljs-params">{ n, v }</span>) =&gt;</span> n ? <span class="hljs-string">`<span class="hljs-subst">${n}</span>=<span class="hljs-subst">${v}</span>`</span> : v); <span class="hljs-comment">// [ &#x27;Linux x86_64&#x27;, &#x27;rv=70.0&#x27; ]</span></code></pre>
+<span style="color: #0000FF">const</span><span style="color: #000000"> [, </span><span style="color: #0070C1">comment</span><span style="color: #000000">] = </span><span style="color: #795E26">hthvParseCommented</span><span style="color: #000000">(</span><span style="color: #A31515">`Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0`</span><span style="color: #000000">);</span>
+<span style="color: #001080">comment</span><span style="color: #000000">.</span><span style="color: #001080">pl</span><span style="color: #000000">.</span><span style="color: #795E26">map</span><span style="color: #000000">(({ </span><span style="color: #001080">n</span><span style="color: #000000">, </span><span style="color: #001080">v</span><span style="color: #000000"> }) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">n</span><span style="color: #000000"> ? </span><span style="color: #A31515">`</span><span style="color: #0000FF">${</span><span style="color: #001080">n</span><span style="color: #0000FF">}</span><span style="color: #A31515">=</span><span style="color: #0000FF">${</span><span style="color: #001080">v</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span><span style="color: #000000"> : </span><span style="color: #001080">v</span><span style="color: #000000">); </span><span style="color: #008000">// [ &#039;Linux x86_64&#039;, &#039;rv=70.0&#039; ]</span>
+</code></pre>
 				<p>Item itself can be a name/value pair.</p>
 				<blockquote>
 					<p><code>Cookie</code>: <strong><code>PHPSESSID=298zf09hf012fh2</code></strong></p>
 				</blockquote>
 				<p>The parser correctly recognizes that.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParse</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParse(<span class="hljs-string">&#x27;PHPSESSID=298zf09hf012fh2&#x27;</span>); <span class="hljs-comment">// { n: &#x27;PHPSESSID&#x27;, v: &#x27;298zf09hf012fh2&#x27; }</span></code></pre>
+<span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;PHPSESSID=298zf09hf012fh2&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// { n: &#039;PHPSESSID&#039;, v: &#039;298zf09hf012fh2&#039; }</span>
+</code></pre>
 				<a href="#quoted-string" id="quoted-string" style="color: inherit; text-decoration: none;">
 					<h3>Quoted String</h3>
 				</a>
@@ -159,18 +159,19 @@ hthvParse(<span class="hljs-string">&#x27;PHPSESSID=298zf09hf012fh2&#x27;</span>
 					<p><code>Clear-Site-Data:</code> <strong><code>&quot;cache&quot;</code></strong> <br><code>Public-Key-Pins:</code> <strong><code>pin-sha256=&quot;M8HztCzM3elUxkcjR2S5P4hhyBNf6lHkmjAHKhpGPWE=&quot;; max-age=5184000; includeSubDomains; report-uri=&quot;https://www.example.org/hpkp-report&quot;</code></strong></p>
 				</blockquote>
 				<p>The returned item contains the value unquoted and unescaped. The type of such item is <code>quoted-string</code>.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParse</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParse(<span class="hljs-string">&#x27;&quot;cache&quot;&#x27;</span>)[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { $: &#x27;quoted-string&#x27;, v: &#x27;cache&#x27; }</span>
+<span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;&quot;cache&quot;&#039;</span><span style="color: #000000">)[</span><span style="color: #098658">0</span><span style="color: #000000">]; </span><span style="color: #008000">// { $: &#039;quoted-string&#039;, v: &#039;cache&#039; }</span>
 
-<span class="hljs-keyword">const</span> [pin] = hthvParse(
-    <span class="hljs-string">&#x27;pin-sha256=&quot;M8HztCzM3elUxkcjR2S5P4hhyBNf6lHkmjAHKhpGPWE=&quot;; &#x27;</span>
-    + <span class="hljs-string">&#x27;max-age=5184000; &#x27;</span>
-    + <span class="hljs-string">&#x27;includeSubDomains; &#x27;</span>
-    + <span class="hljs-string">&#x27;report-uri=&quot;https://www.example.org/hpkp-report&quot;&#x27;</span>
-);
-pin.v;              <span class="hljs-comment">// { $: &#x27;quoted-string&#x27;, n: &#x27;pin-sha256&#x27;, v: &#x27;M8HztCzM3elUxkcjR2S5P4hhyBNf6lHkmjAHKhpGPWE=&#x27; }</span>
-pin.p[<span class="hljs-string">&#x27;report-url&#x27;</span>] <span class="hljs-comment">// { $: &#x27;quoted-string&#x27;, n: &#x27;report-uri&#x27;, v: &#x27;https://www.example.org/hpkp-report&#x27; } </span></code></pre>
+<span style="color: #0000FF">const</span><span style="color: #000000"> [</span><span style="color: #0070C1">pin</span><span style="color: #000000">] = </span><span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span>
+<span style="color: #000000">    </span><span style="color: #A31515">&#039;pin-sha256=&quot;M8HztCzM3elUxkcjR2S5P4hhyBNf6lHkmjAHKhpGPWE=&quot;; &#039;</span>
+<span style="color: #000000">    + </span><span style="color: #A31515">&#039;max-age=5184000; &#039;</span>
+<span style="color: #000000">    + </span><span style="color: #A31515">&#039;includeSubDomains; &#039;</span>
+<span style="color: #000000">    + </span><span style="color: #A31515">&#039;report-uri=&quot;https://www.example.org/hpkp-report&quot;&#039;</span>
+<span style="color: #000000">);</span>
+<span style="color: #001080">pin</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">;              </span><span style="color: #008000">// { $: &#039;quoted-string&#039;, n: &#039;pin-sha256&#039;, v: &#039;M8HztCzM3elUxkcjR2S5P4hhyBNf6lHkmjAHKhpGPWE=&#039; }</span>
+<span style="color: #001080">pin</span><span style="color: #000000">.</span><span style="color: #001080">p</span><span style="color: #000000">[</span><span style="color: #A31515">&#039;report-url&#039;</span><span style="color: #000000">] </span><span style="color: #008000">// { $: &#039;quoted-string&#039;, n: &#039;report-uri&#039;, v: &#039;https://www.example.org/hpkp-report&#039; } </span>
+</code></pre>
 				<a href="#tagged-string" id="tagged-string" style="color: inherit; text-decoration: none;">
 					<h3>Tagged String</h3>
 				</a>
@@ -180,9 +181,10 @@ pin.p[<span class="hljs-string">&#x27;report-url&#x27;</span>] <span class="hljs
 				</blockquote>
 				<p>The parser recognizes such item value (but not the parameter ones!) as <code>HthvItem</code> with type <code>tagged-string</code>, and places
 				the tag into its <code>t</code> property, and unquoted string - into its <code>v</code> property.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParse</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParse(<span class="hljs-string">&#x27;W/&quot;0815&quot;&#x27;</span>)[<span class="hljs-number">0</span>]; <span class="hljs-comment">// { $: &#x27;tagged-string&#x27;, t: &#x27;W/&#x27;, v: &#x27;0815&#x27; }</span></code></pre>
+<span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;W/&quot;0815&quot;&#039;</span><span style="color: #000000">)[</span><span style="color: #098658">0</span><span style="color: #000000">]; </span><span style="color: #008000">// { $: &#039;tagged-string&#039;, t: &#039;W/&#039;, v: &#039;0815&#039; }</span>
+</code></pre>
 				<a href="#angle-brackets" id="angle-brackets" style="color: inherit; text-decoration: none;">
 					<h3>Angle brackets</h3>
 				</a>
@@ -192,17 +194,18 @@ hthvParse(<span class="hljs-string">&#x27;W/&quot;0815&quot;&#x27;</span>)[<span
 				</blockquote>
 				<p>The parser recognizes such item or parameter value as <code>HthvItem</code> with type <code>angle-bracketed-string</code> and value without
 				brackets. Escape sequences not supported inside angle brackets.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParse } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
-hthvParse(<span class="hljs-string">&#x27;&lt;https://example.com/index.html?mode=preconnect&gt;; rel=&quot;preconnect&quot;&#x27;</span>);
-<span class="hljs-comment">// [{ </span>
-<span class="hljs-comment">//   $: &#x27;angle-bracketed-string&#x27;,</span>
-<span class="hljs-comment">//   v: &#x27;https://example.com/index.html?mode=preconnect&#x27;,</span>
-<span class="hljs-comment">//   p: {</span>
-<span class="hljs-comment">//     rel: { $: &#x27;raw&#x27;, n: &#x27;rel&#x27;, v: &#x27;preconnect&#x27; }</span>
-<span class="hljs-comment">//   },</span>
-<span class="hljs-comment">//   pl: [{ $: &#x27;raw&#x27;, n: &#x27;rel&#x27;, v: &#x27;preconnect&#x27; }]</span>
-<span class="hljs-comment">// }]                                        </span>
-<span class="hljs-comment">//</span></code></pre>
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParse</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
+<span style="color: #795E26">hthvParse</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;&lt;https://example.com/index.html?mode=preconnect&gt;; rel=&quot;preconnect&quot;&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// [{ </span>
+<span style="color: #008000">//   $: &#039;angle-bracketed-string&#039;,</span>
+<span style="color: #008000">//   v: &#039;https://example.com/index.html?mode=preconnect&#039;,</span>
+<span style="color: #008000">//   p: {</span>
+<span style="color: #008000">//     rel: { $: &#039;raw&#039;, n: &#039;rel&#039;, v: &#039;preconnect&#039; }</span>
+<span style="color: #008000">//   },</span>
+<span style="color: #008000">//   pl: [{ $: &#039;raw&#039;, n: &#039;rel&#039;, v: &#039;preconnect&#039; }]</span>
+<span style="color: #008000">// }]                                        </span>
+<span style="color: #008000">//</span>
+</code></pre>
 				<a href="#custom-parsers" id="custom-parsers" style="color: inherit; text-decoration: none;">
 					<h2>Custom Parsers</h2>
 				</a>
@@ -219,12 +222,13 @@ hthvParse(<span class="hljs-string">&#x27;&lt;https://example.com/index.html?mod
 				</blockquote>
 				<p>Date/time parsing disabled by default. It can be enabled in a custom parser. Then it would recognize date/time values at
 				top-level and as parameter values. It is typically enough to use an <code>hthvParseDT()</code> parser though.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParseDT } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParseDT</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParseDT(<span class="hljs-string">&#x27;Wed, 21 Oct 2015 07:28:00 GMT&#x27;</span>)[<span class="hljs-number">0</span>].v; <span class="hljs-comment">// { $: &#x27;date-time&#x27;, v: &#x27;Wed, 21 Oct 2015 07:28:00 GMT&#x27; }</span>
+<span style="color: #795E26">hthvParseDT</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Wed, 21 Oct 2015 07:28:00 GMT&#039;</span><span style="color: #000000">)[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">v</span><span style="color: #000000">; </span><span style="color: #008000">// { $: &#039;date-time&#039;, v: &#039;Wed, 21 Oct 2015 07:28:00 GMT&#039; }</span>
 
-hthvParseDT(<span class="hljs-string">&#x27;id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT&#x27;</span>)[<span class="hljs-number">0</span>].p.Expires;
-<span class="hljs-comment">// { $: &#x27;date-time&#x27;, n: &#x27;Expires&#x27;, v: &#x27;Wed, 21 Oct 2015 07:28:00 GMT&#x27; }</span></code></pre>
+<span style="color: #795E26">hthvParseDT</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;id=a3fWa; Expires=Wed, 21 Oct 2015 07:28:00 GMT&#039;</span><span style="color: #000000">)[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">p</span><span style="color: #000000">.</span><span style="color: #001080">Expires</span><span style="color: #000000">;</span>
+<span style="color: #008000">// { $: &#039;date-time&#039;, n: &#039;Expires&#039;, v: &#039;Wed, 21 Oct 2015 07:28:00 GMT&#039; }</span>
+</code></pre>
 				<a href="#comments" id="comments" style="color: inherit; text-decoration: none;">
 					<h3>Comments</h3>
 				</a>
@@ -234,10 +238,11 @@ hthvParseDT(<span class="hljs-string">&#x27;id=a3fWa; Expires=Wed, 21 Oct 2015 0
 				</blockquote>
 				<p>Comments parsing disabled by default. It can be enabled in a custom parser. Then it would recognize top-level comments.
 				It is typically enough to use an <code>hthvParseCommented()</code> parser though.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParseCommented } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParseCommented</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParseCommented(<span class="hljs-string">&#x27;Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0&#x27;</span>)
-    .map(<span class="hljs-function"><span class="hljs-params">item</span> =&gt;</span> item.v); <span class="hljs-comment">// [&#x27;Mozilla/5.0&#x27;, &#x27;X11&#x27;, &#x27;Gecko/20100101&#x27;, &#x27;Firefox/70.0&#x27;];</span></code></pre>
+<span style="color: #795E26">hthvParseCommented</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">map</span><span style="color: #000000">(</span><span style="color: #001080">item</span><span style="color: #000000"> </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> </span><span style="color: #001080">item</span><span style="color: #000000">.</span><span style="color: #001080">v</span><span style="color: #000000">); </span><span style="color: #008000">// [&#039;Mozilla/5.0&#039;, &#039;X11&#039;, &#039;Gecko/20100101&#039;, &#039;Firefox/70.0&#039;];</span>
+</code></pre>
 				<a href="#uris" id="uris" style="color: inherit; text-decoration: none;">
 					<h3>URIs</h3>
 				</a>
@@ -246,10 +251,11 @@ hthvParseCommented(<span class="hljs-string">&#x27;Mozilla/5.0 (X11; Linux x86_6
 					<p><code>Location:</code> <strong><code>http://example.com/matrix;param=(value)?q=some</code></strong></p>
 				</blockquote>
 				<p>The <code>httpParseURIs()</code> parser may be used to parse such header values.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParseURIs } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParseURIs</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParseURIs(<span class="hljs-string">&#x27;http://example.com/matrix;param=(value)?q=some&#x27;</span>);
-<span class="hljs-comment">// { $: &#x27;raw&#x27;, v: &#x27;http://example.com/matrix;param=(value)?q=some&#x27; };</span></code></pre>
+<span style="color: #795E26">hthvParseURIs</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;http://example.com/matrix;param=(value)?q=some&#039;</span><span style="color: #000000">);</span>
+<span style="color: #008000">// { $: &#039;raw&#039;, v: &#039;http://example.com/matrix;param=(value)?q=some&#039; };</span>
+</code></pre>
 				<a href="#cookies" id="cookies" style="color: inherit; text-decoration: none;">
 					<h3>Cookies</h3>
 				</a>
@@ -259,14 +265,15 @@ hthvParseURIs(<span class="hljs-string">&#x27;http://example.com/matrix;param=(v
 				</blockquote>
 				<p>The <code>Set-Cookie</code> value can be parsed by <code>hthvParseDT()</code> parser (as it may contain a date/value). While the <code>Cookie</code>
 				value contains cookies semicolon-separated. The <code>hthvParseSemiSep()</code> parser handles this.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvParseSemiSep } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvParseSemiSep</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvParseSemiSep(<span class="hljs-string">&#x27;id=a3fWa; SESSIONID=fdkafretercvx&#x27;</span>)
-    .reduce(<span class="hljs-function">(<span class="hljs-params">map, { n, v }</span>) =&gt;</span> ({ ...map, [n]: v }), {});
-<span class="hljs-comment">// {</span>
-<span class="hljs-comment">//   id: &#x27;3fWa&#x27;,</span>
-<span class="hljs-comment">//   SESSIONID: &#x27;fdkafretercvx&#x27;</span>
-<span class="hljs-comment">// }</span></code></pre>
+<span style="color: #795E26">hthvParseSemiSep</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;id=a3fWa; SESSIONID=fdkafretercvx&#039;</span><span style="color: #000000">)</span>
+<span style="color: #000000">    .</span><span style="color: #795E26">reduce</span><span style="color: #000000">((</span><span style="color: #001080">map</span><span style="color: #000000">, { </span><span style="color: #001080">n</span><span style="color: #000000">, </span><span style="color: #001080">v</span><span style="color: #000000"> }) </span><span style="color: #0000FF">=&gt;</span><span style="color: #000000"> ({ ...</span><span style="color: #001080">map</span><span style="color: #000000">, </span><span style="color: #001080">[n]:</span><span style="color: #000000"> </span><span style="color: #001080">v</span><span style="color: #000000"> }), {});</span>
+<span style="color: #008000">// {</span>
+<span style="color: #008000">//   id: &#039;3fWa&#039;,</span>
+<span style="color: #008000">//   SESSIONID: &#039;fdkafretercvx&#039;</span>
+<span style="color: #008000">// }</span>
+</code></pre>
 				<a href="#directives" id="directives" style="color: inherit; text-decoration: none;">
 					<h3>Directives</h3>
 				</a>
@@ -276,14 +283,15 @@ hthvParseSemiSep(<span class="hljs-string">&#x27;id=a3fWa; SESSIONID=fdkafreterc
 					<p><code>Content-Security-Policy:</code> <strong><code>default-src &#39;self&#39; http://example.com; connect-src &#39;none&#39;</code></strong> <br><code>Via</code>: <strong><code>HTTP/1.1 GWA, 1.0 fred, 1.1 p.example.net</code></strong></p>
 				</blockquote>
 				<p>The <code>hthvParseDirectives()</code> parser supports this format.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvFlatten, hthvParseDirectives } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvFlatten</span><span style="color: #000000">, </span><span style="color: #001080">hthvParseDirectives</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> { <span class="hljs-attr">map</span>: { defaultSrc, connectSrc } } =
-    hthvFlatten(hthvParseDirectives(<span class="hljs-string">`default-src &#x27;self&#x27; http://example.com; connect-src &#x27;none&#x27;`</span>));
+<span style="color: #0000FF">const</span><span style="color: #000000"> { </span><span style="color: #001080">map</span><span style="color: #000000">: { </span><span style="color: #0070C1">defaultSrc</span><span style="color: #000000">, </span><span style="color: #0070C1">connectSrc</span><span style="color: #000000"> } } =</span>
+<span style="color: #000000">    </span><span style="color: #795E26">hthvFlatten</span><span style="color: #000000">(</span><span style="color: #795E26">hthvParseDirectives</span><span style="color: #000000">(</span><span style="color: #A31515">`default-src &#039;self&#039; http://example.com; connect-src &#039;none&#039;`</span><span style="color: #000000">));</span>
 
-defaultSrc.p[<span class="hljs-number">0</span>].v; <span class="hljs-comment">// &#x27;self&#x27;</span>
-defaultSrc.p[<span class="hljs-number">1</span>].v; <span class="hljs-comment">// http://example.com</span>
-connectSrc.p[<span class="hljs-number">0</span>].v; <span class="hljs-comment">// &#x27;none&#x27;</span></code></pre>
+<span style="color: #001080">defaultSrc</span><span style="color: #000000">.</span><span style="color: #001080">p</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">v</span><span style="color: #000000">; </span><span style="color: #008000">// &#039;self&#039;</span>
+<span style="color: #001080">defaultSrc</span><span style="color: #000000">.</span><span style="color: #001080">p</span><span style="color: #000000">[</span><span style="color: #098658">1</span><span style="color: #000000">].</span><span style="color: #001080">v</span><span style="color: #000000">; </span><span style="color: #008000">// http://example.com</span>
+<span style="color: #001080">connectSrc</span><span style="color: #000000">.</span><span style="color: #001080">p</span><span style="color: #000000">[</span><span style="color: #098658">0</span><span style="color: #000000">].</span><span style="color: #001080">v</span><span style="color: #000000">; </span><span style="color: #008000">// &#039;none&#039;</span>
+</code></pre>
 				<a href="#utilities" id="utilities" style="color: inherit; text-decoration: none;">
 					<h2>Utilities</h2>
 				</a>
@@ -298,30 +306,32 @@ connectSrc.p[<span class="hljs-number">0</span>].v; <span class="hljs-comment">/
 					<li>prefers original items over their parameters,</li>
 					<li>prefers items added first.</li>
 				</ul>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvFlatten, hthvParseSemiSep } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvFlatten</span><span style="color: #000000">, </span><span style="color: #001080">hthvParseSemiSep</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-hthvFlatten(hthvParseSemiSep(<span class="hljs-string">&#x27;id=a3fWa; SESSIONID=fdkafretercvx&#x27;</span>));
-<span class="hljs-comment">// {</span>
-<span class="hljs-comment">//   list: [</span>
-<span class="hljs-comment">//     { $: &#x27;raw&#x27;, n: &#x27;id&#x27;, v: &#x27;a3fWa&#x27; },</span>
-<span class="hljs-comment">//     { $: &#x27;raw&#x27;, n: &#x27;SESSIONID&#x27;, v: &#x27;fdkafretercvx&#x27; },</span>
-<span class="hljs-comment">//   ],</span>
-<span class="hljs-comment">//   map: {</span>
-<span class="hljs-comment">//     id: { $: &#x27;raw&#x27;, n: &#x27;id&#x27;, v: &#x27;a3fWa&#x27; },</span>
-<span class="hljs-comment">//     SESSIONID: { $: &#x27;raw&#x27;, n: &#x27;SESSIONID&#x27;, v: &#x27;fdkafretercvx&#x27; },     </span>
-<span class="hljs-comment">//   },  </span>
-<span class="hljs-comment">// }</span>
+<span style="color: #795E26">hthvFlatten</span><span style="color: #000000">(</span><span style="color: #795E26">hthvParseSemiSep</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;id=a3fWa; SESSIONID=fdkafretercvx&#039;</span><span style="color: #000000">));</span>
+<span style="color: #008000">// {</span>
+<span style="color: #008000">//   list: [</span>
+<span style="color: #008000">//     { $: &#039;raw&#039;, n: &#039;id&#039;, v: &#039;a3fWa&#039; },</span>
+<span style="color: #008000">//     { $: &#039;raw&#039;, n: &#039;SESSIONID&#039;, v: &#039;fdkafretercvx&#039; },</span>
+<span style="color: #008000">//   ],</span>
+<span style="color: #008000">//   map: {</span>
+<span style="color: #008000">//     id: { $: &#039;raw&#039;, n: &#039;id&#039;, v: &#039;a3fWa&#039; },</span>
+<span style="color: #008000">//     SESSIONID: { $: &#039;raw&#039;, n: &#039;SESSIONID&#039;, v: &#039;fdkafretercvx&#039; },     </span>
+<span style="color: #008000">//   },  </span>
+<span style="color: #008000">// }</span>
+
 </code></pre>
 				<a href="#hthvescapeq" id="hthvescapeq" style="color: inherit; text-decoration: none;">
 					<h3>hthvEscapeQ()</h3>
 				</a>
 				<p>Escapes a string to be included into <a href="https://tools.ietf.org/html/rfc7230#section-3.2.6">quoted-string</a> within HTTP header value.</p>
 				<p>Replaces <code>\</code> with <code>\\</code>, and <code>&quot;</code> with <code>\&quot;</code>.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvExcapeQ } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvExcapeQ</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> realm = <span class="hljs-string">&#x27;Access to the &quot;Site&quot;&#x27;</span>;
-<span class="hljs-keyword">const</span> wwwAuthenticate = <span class="hljs-string">`WWW-Authenticate: Basic realm=&quot;<span class="hljs-subst">${hthvExcapeQ(realm)}</span>&quot;`</span>;
-<span class="hljs-comment">// WWW-Authenticate: Basic realm=&quot;Access to the \&quot;Site\&quot;&quot;</span></code></pre>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">realm</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;Access to the &quot;Site&quot;&#039;</span><span style="color: #000000">;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">wwwAuthenticate</span><span style="color: #000000"> = </span><span style="color: #A31515">`WWW-Authenticate: Basic realm=&quot;</span><span style="color: #0000FF">${</span><span style="color: #795E26">hthvExcapeQ</span><span style="color: #000000FF">(</span><span style="color: #001080">realm</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">&quot;`</span><span style="color: #000000">;</span>
+<span style="color: #008000">// WWW-Authenticate: Basic realm=&quot;Access to the \&quot;Site\&quot;&quot;</span>
+</code></pre>
 				<a href="#hthvescapec" id="hthvescapec" style="color: inherit; text-decoration: none;">
 					<h3>hthvEscapeC()</h3>
 				</a>
@@ -329,41 +339,43 @@ hthvFlatten(hthvParseSemiSep(<span class="hljs-string">&#x27;id=a3fWa; SESSIONID
 				<p>Replaces <code>\</code> with <code>\\</code>, <code>&quot;</code> with <code>\&quot;</code>, <code>(</code> with <code>\(</code>, and <code>)</code> with <code>\)</code>.</p>
 				<p>According to <a href="https://tools.ietf.org/html/rfc7230">RFC7230</a> the sender should not escape a double quote in this case. However, it may be necessary
 				to distinguish between raw double quote and nested <a href="https://tools.ietf.org/html/rfc7230#section-3.2.6">quoted-string</a>.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvExcapeC } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvExcapeC</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-keyword">const</span> comment = <span class="hljs-string">&#x27;Custom (&quot;quoted&quot;) comment&#x27;</span>
-<span class="hljs-keyword">const</span> customComment = <span class="hljs-string">`Custom-Comment: (<span class="hljs-subst">${hthvExcapeC(comment)}</span>)`</span>;
-<span class="hljs-comment">// Custom-Comment: (Custom \(\&quot;quoted\&quot;\) comment)</span></code></pre>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">comment</span><span style="color: #000000"> = </span><span style="color: #A31515">&#039;Custom (&quot;quoted&quot;) comment&#039;</span>
+<span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">customComment</span><span style="color: #000000"> = </span><span style="color: #A31515">`Custom-Comment: (</span><span style="color: #0000FF">${</span><span style="color: #795E26">hthvExcapeC</span><span style="color: #000000FF">(</span><span style="color: #001080">comment</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">)`</span><span style="color: #000000">;</span>
+<span style="color: #008000">// Custom-Comment: (Custom \(\&quot;quoted\&quot;\) comment)</span>
+</code></pre>
 				<a href="#hthvquote" id="hthvquote" style="color: inherit; text-decoration: none;">
 					<h3>hthvQuote()</h3>
 				</a>
 				<p>Conditionally encloses HTTP header value or its part into double quotes.</p>
 				<p>Quotes will be added if delimiter or special character is present in input <code>string</code>, or the input <code>string</code> is empty.
 				Escapes <code>&quot;</code> and <code>\</code> symbols.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { hthvQuote } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;@hatsy/http-header-value&#x27;</span>;
+				<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">hthvQuote</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;@hatsy/http-header-value&#039;</span><span style="color: #000000">;</span>
 
-<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">forwardedHeader</span>(<span class="hljs-params">forIp: <span class="hljs-built_in">string</span></span>) </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-string">`Forwarded: For=<span class="hljs-subst">${hthvQuote(forIp)}</span>`</span>
-}
+<span style="color: #0000FF">function</span><span style="color: #000000"> </span><span style="color: #795E26">forwardedHeader</span><span style="color: #000000">(</span><span style="color: #001080">forIp</span><span style="color: #000000">: </span><span style="color: #267F99">string</span><span style="color: #000000">) {</span>
+<span style="color: #000000">    </span><span style="color: #AF00DB">return</span><span style="color: #000000"> </span><span style="color: #A31515">`Forwarded: For=</span><span style="color: #0000FF">${</span><span style="color: #795E26">hthvQuote</span><span style="color: #000000FF">(</span><span style="color: #001080">forIp</span><span style="color: #000000FF">)</span><span style="color: #0000FF">}</span><span style="color: #A31515">`</span>
+<span style="color: #000000">}</span>
 
-forwardedHeader(<span class="hljs-string">&#x27;127.0.0.1&#x27;</span>);                <span class="hljs-comment">// Forwarded: For=127.0.0.1</span>
-forwardedHeader(<span class="hljs-string">&#x27;[2001:db8:cafe::17]:4711&#x27;</span>); <span class="hljs-comment">// Forwarded: For=&quot;[2001:db8:cafe::17]:4711&quot;</span></code></pre>
+<span style="color: #795E26">forwardedHeader</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;127.0.0.1&#039;</span><span style="color: #000000">);                </span><span style="color: #008000">// Forwarded: For=127.0.0.1</span>
+<span style="color: #795E26">forwardedHeader</span><span style="color: #000000">(</span><span style="color: #A31515">&#039;[2001:db8:cafe::17]:4711&#039;</span><span style="color: #000000">); </span><span style="color: #008000">// Forwarded: For=&quot;[2001:db8:cafe::17]:4711&quot;</span>
+</code></pre>
 			</div>
 		</div>
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="modules.html">Modules</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/@hatsy_http-header-value.html">@hatsy/http-<wbr>header-<wbr>value</a>
+						<a href="modules/_hatsy_http_header_value.html">@hatsy/http-<wbr>header-<wbr>value</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/@hatsy_http-header-value_headers.html">@hatsy/http-<wbr>header-<wbr>value/headers</a>
+						<a href="modules/_hatsy_http_header_value_headers.html">@hatsy/http-<wbr>header-<wbr>value/headers</a>
 					</li>
 					<li class=" tsd-kind-module">
-						<a href="modules/@hatsy_http-header-value_node.html">@hatsy/http-<wbr>header-<wbr>value/node</a>
+						<a href="modules/_hatsy_http_header_value_node.html">@hatsy/http-<wbr>header-<wbr>value/node</a>
 					</li>
 				</ul>
 			</nav>
@@ -379,7 +391,7 @@ forwardedHeader(<span class="hljs-string">&#x27;[2001:db8:cafe::17]:4711&#x27;</
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>

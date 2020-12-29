@@ -3,10 +3,11 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Map | HTTP Header Values</title>
+	<title>Values | HTTP Header Values</title>
 	<meta name="description" content="Documentation for HTTP Header Values">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
+	<script async src="../assets/js/search.js" id="search-script"></script>
 </head>
 <body>
 <header>
@@ -51,19 +52,19 @@
 		<div class="container">
 			<ul class="tsd-breadcrumb">
 				<li>
-					<a href="../globals.html">Globals</a>
+					<a href="../modules.html">HTTP Header Values</a>
 				</li>
 				<li>
-					<a href="../modules/@hatsy_http-header-value_headers.html">@hatsy/http-header-value/headers</a>
+					<a href="../modules/_hatsy_http_header_value_headers.html">@hatsy/http-header-value/headers</a>
 				</li>
 				<li>
-					<a href="../modules/@hatsy_http-header-value_headers.HttpContentNegotiator.html">HttpContentNegotiator</a>
+					<a href="../modules/_hatsy_http_header_value_headers.httpforwardtrust.html">HttpForwardTrust</a>
 				</li>
 				<li>
-					<a href="@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html">Map</a>
+					<a href="_hatsy_http_header_value_headers.httpforwardtrust.values.html">Values</a>
 				</li>
 			</ul>
-			<h1>Interface Map&lt;T&gt;</h1>
+			<h1>Interface Values</h1>
 		</div>
 	</div>
 </header>
@@ -73,37 +74,24 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>A map of values corresponding to content negotiation keys.</p>
+						<p>A map of trusted parameter values.</p>
 					</div>
 				</div>
-			</section>
-			<section class="tsd-panel tsd-type-parameters">
-				<h3>Type parameters</h3>
-				<ul class="tsd-type-parameters">
-					<li>
-						<h4>T</h4>
-						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>A type of content.</p>
-							</div>
-						</div>
-					</li>
-				</ul>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Map</span>
+						<span class="target">Values</span>
 					</li>
 				</ul>
 			</section>
-			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter">
+			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-namespace">
 				<h3 class="tsd-before-signature">Indexable</h3>
-				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>key: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><span class="tsd-signature-type">T</span></div>
+				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>value: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="../enums/_hatsy_http_header_value_headers.httpforwardtrustmask.html" class="tsd-signature-type" data-tsd-kind="Enumeration">HttpForwardTrustMask</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Contains a value corresponding to content negotiation key used as property name.</p>
+						<p>Maps forwarding record parameter value to {@link Mask bitwise mask of the trust}.</p>
 					</div>
 				</div>
 			</section>
@@ -111,22 +99,25 @@
 		<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
 			<nav class="tsd-navigation primary">
 				<ul>
-					<li class="globals  ">
-						<a href="../globals.html"><em>Globals</em></a>
+					<li class=" ">
+						<a href="../modules.html">Modules</a>
 					</li>
 				</ul>
 			</nav>
 			<nav class="tsd-navigation secondary menu-sticky">
 				<ul class="before-current">
+					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="_hatsy_http_header_value_headers.httpforwardtrust.params.html" class="tsd-kind-icon">Params</a>
+					</li>
 				</ul>
 				<ul class="current">
-					<li class="current tsd-kind-interface tsd-parent-kind-namespace tsd-has-type-parameter">
-						<a href="@hatsy_http-header-value_headers.HttpContentNegotiator.Map.html" class="tsd-kind-icon">Map</a>
+					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
+						<a href="_hatsy_http_header_value_headers.httpforwardtrust.values.html" class="tsd-kind-icon">Values</a>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
-						<a href="../modules/@hatsy_http-header-value_headers.HttpContentNegotiator.html#Wildcards" class="tsd-kind-icon">Wildcards</a>
+						<a href="../modules/_hatsy_http_header_value_headers.httpforwardtrust.html#checker" class="tsd-kind-icon">Checker</a>
 					</li>
 				</ul>
 			</nav>
@@ -138,7 +129,7 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
+				<li class="tsd-kind-namespace"><span class="tsd-kind-icon">Namespace</span></li>
 				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
 				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
 				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
