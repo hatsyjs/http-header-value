@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Defaults | HTTP Header Values</title>
+	<title>Params | HTTP Header Values</title>
 	<meta name="description" content="Documentation for HTTP Header Values">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -55,16 +55,16 @@
 					<a href="../modules.html">HTTP Header Values</a>
 				</li>
 				<li>
-					<a href="../modules/_hatsy_http_header_value_headers.html">@hatsy/http-header-value/headers</a>
+					<a href="../modules/module__hatsy_http_header_value_headers.html">Module @hatsy/http-header-value/headers</a>
 				</li>
 				<li>
-					<a href="../modules/_hatsy_http_header_value_headers.httpforwardrep.html">HttpForwardRep</a>
+					<a href="../modules/module__hatsy_http_header_value_headers.httpforwardtrust.html">HttpForwardTrust</a>
 				</li>
 				<li>
-					<a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html">Defaults</a>
+					<a href="module__hatsy_http_header_value_headers.httpforwardtrust.params.html">Params</a>
 				</li>
 			</ul>
-			<h1>Interface Defaults</h1>
+			<h1>Interface Params</h1>
 		</div>
 	</div>
 </header>
@@ -74,18 +74,30 @@
 			<section class="tsd-panel tsd-comment">
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>Forwarding info defaults.</p>
+						<p>A map of trusted parameters.</p>
 					</div>
-					<p>This is used to construct the last item in the forwarding info list that is always trusted.</p>
+					<p>The proxy forwarding record is trusted if it contains parameter present in this map, and its value present among
+					corresponding <a href="module__hatsy_http_header_value_headers.httpforwardtrust.values.html">trusted values</a>.</p>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-hierarchy">
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<span class="target">Defaults</span>
+						<span class="target">Params</span>
 					</li>
 				</ul>
+			</section>
+			<section class="tsd-panel tsd-kind-interface tsd-parent-kind-namespace">
+				<h3 class="tsd-before-signature">Indexable</h3>
+				<div class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">[</span>name: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">]: </span><a href="module__hatsy_http_header_value_headers.httpforwardtrust.values.html" class="tsd-signature-type" data-tsd-kind="Interface">Values</a><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span></div>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>Maps forwarding record parameter name to trusted values.</p>
+					</div>
+					<p>The proxy forwarding record is trusted if it contains parameter present in this map, and its value present among
+					corresponding <a href="module__hatsy_http_header_value_headers.httpforwardtrust.values.html">trusted values</a>.</p>
+				</div>
 			</section>
 			<section class="tsd-panel-group tsd-index-group">
 				<h2>Index</h2>
@@ -94,10 +106,8 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html#by" class="tsd-kind-icon">by</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html#for" class="tsd-kind-icon">for</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html#host" class="tsd-kind-icon">host</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html#proto" class="tsd-kind-icon">proto</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="module__hatsy_http_header_value_headers.httpforwardtrust.params.html#by" class="tsd-kind-icon">by</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="module__hatsy_http_header_value_headers.httpforwardtrust.params.html#for" class="tsd-kind-icon">for</a></li>
 							</ul>
 						</section>
 					</div>
@@ -107,64 +117,23 @@
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="by" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> by</h3>
-					<div class="tsd-signature tsd-kind-icon">by<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> by</h3>
+					<div class="tsd-signature tsd-kind-icon">by<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="module__hatsy_http_header_value_headers.httpforwardtrust.values.html" class="tsd-signature-type" data-tsd-kind="Interface">Values</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/796d6e1/src/headers/http-forward-rep.ts#L73">headers/http-forward-rep.ts:73</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/d9820ff/src/headers/http-forward-trust.ts#L64">headers/http-forward-trust.ts:64</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Local address.</p>
-						</div>
-					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="for" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> for</h3>
-					<div class="tsd-signature tsd-kind-icon">for<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+					<h3><span class="tsd-flag ts-flagOptional">Optional</span> <span class="tsd-flag ts-flagReadonly">Readonly</span> for</h3>
+					<div class="tsd-signature tsd-kind-icon">for<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><a href="module__hatsy_http_header_value_headers.httpforwardtrust.values.html" class="tsd-signature-type" data-tsd-kind="Interface">Values</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/796d6e1/src/headers/http-forward-rep.ts#L78">headers/http-forward-rep.ts:78</a></li>
+							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/d9820ff/src/headers/http-forward-trust.ts#L65">headers/http-forward-trust.ts:65</a></li>
 						</ul>
 					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Remote address.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="host" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> host</h3>
-					<div class="tsd-signature tsd-kind-icon">host<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/796d6e1/src/headers/http-forward-rep.ts#L83">headers/http-forward-rep.ts:83</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Either <code>Host</code> header or <code>${localAddress}:S{localPort}</code>.</p>
-						</div>
-					</div>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="proto" class="tsd-anchor"></a>
-					<h3><span class="tsd-flag ts-flagReadonly">Readonly</span> proto</h3>
-					<div class="tsd-signature tsd-kind-icon">proto<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/hatsyjs/http-header-value/blob/796d6e1/src/headers/http-forward-rep.ts#L90">headers/http-forward-rep.ts:90</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Accepting protocol.</p>
-						</div>
-						<p>E.g. <code>req.connection.encrypted ? &#39;https&#39; : &#39;http&#39;</code>.</p>
-					</div>
 				</section>
 			</section>
 		</div>
@@ -181,26 +150,23 @@
 				</ul>
 				<ul class="current">
 					<li class="current tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html" class="tsd-kind-icon">Defaults</a>
+						<a href="module__hatsy_http_header_value_headers.httpforwardtrust.params.html" class="tsd-kind-icon">Params</a>
 						<ul>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html#by" class="tsd-kind-icon">by</a>
+								<a href="module__hatsy_http_header_value_headers.httpforwardtrust.params.html#by" class="tsd-kind-icon">by</a>
 							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html#for" class="tsd-kind-icon">for</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html#host" class="tsd-kind-icon">host</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="_hatsy_http_header_value_headers.httpforwardrep.defaults.html#proto" class="tsd-kind-icon">proto</a>
+								<a href="module__hatsy_http_header_value_headers.httpforwardtrust.params.html#for" class="tsd-kind-icon">for</a>
 							</li>
 						</ul>
 					</li>
 				</ul>
 				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-parent-kind-namespace">
-						<a href="_hatsy_http_header_value_headers.httpforwardrep.headers.html" class="tsd-kind-icon">Headers</a>
+						<a href="module__hatsy_http_header_value_headers.httpforwardtrust.values.html" class="tsd-kind-icon">Values</a>
+					</li>
+					<li class=" tsd-kind-type-alias tsd-parent-kind-namespace">
+						<a href="../modules/module__hatsy_http_header_value_headers.httpforwardtrust.html#checker" class="tsd-kind-icon">Checker</a>
 					</li>
 				</ul>
 			</nav>
