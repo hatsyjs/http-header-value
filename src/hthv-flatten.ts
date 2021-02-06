@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @hatsy/http-header-value
- */
 import type { HthvItem } from './hthv-item';
 
 /**

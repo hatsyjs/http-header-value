@@ -1,8 +1,4 @@
 /**
- * @packageDocumentation
- * @module @hatsy/http-header-value
- */
-/**
  * Item value type.
  *
  * This is one of:

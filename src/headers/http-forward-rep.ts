@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @hatsy/http-header-value/headers
- */
 import type { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
 import { hthvParse } from '../hthv-parse';
 import { hthvItem, hthvParseFirstTrivial, hthvParseTrivial } from '../impl';

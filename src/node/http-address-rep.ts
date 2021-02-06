@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @hatsy/http-header-value/node
- */
 import type { IncomingHttpHeaders, IncomingMessage } from 'http';
 import type { Socket } from 'net';
 import type { TLSSocket } from 'tls';

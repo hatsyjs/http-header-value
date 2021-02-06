@@ -1,8 +1,4 @@
 /**
- * @packageDocumentation
- * @module @hatsy/http-header-value
- */
-/**
  * Constants for various kinds of delimiters.
  *
  * Each value is a bit mask that can be used to check whether the given delimiter kind corresponds to it.

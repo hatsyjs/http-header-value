@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @hatsy/http-header-value
- */
 import { HthvParser, newHthvParser } from './hthv-parser';
 
 /**

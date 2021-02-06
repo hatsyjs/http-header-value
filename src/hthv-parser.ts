@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @hatsy/http-header-value
- */
 import type { HthvDelimiterChar } from './hthv-delimiter';
 import type { HthvItem } from './hthv-item';
 import { hthvItem } from './impl';

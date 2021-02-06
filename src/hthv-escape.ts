@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @hatsy/http-header-value
- */
 import { HthvDelimiter } from './hthv-delimiter';
 import { commentParserConfig, defaultParserConfig, ParserConfig } from './parser';
 

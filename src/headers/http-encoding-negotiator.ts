@@ -1,7 +1,3 @@
-/**
- * @packageDocumentation
- * @module @hatsy/http-header-value/headers
- */
 import { httpContentNegotiator, HttpContentNegotiator } from './http-content-negotiator';
 
 /**
