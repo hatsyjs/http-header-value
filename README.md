@@ -3,7 +3,6 @@ HTTP Header Value Parser
 
 [![NPM][npm-image]][npm-url]
 [![Build Status][build-status-img]][build-status-link]
-[![codecov][codecov-image]][codecov-url]
 [![GitHub Project][github-image]][github-url]
 [![API Documentation][api-docs-image]][api-docs-url]
 
@@ -30,8 +29,6 @@ version.v;        // Firefox/70.0
 [npm-url]: https://www.npmjs.com/package/@hatsy/http-header-value
 [build-status-img]: https://github.com/hatsyjs/http-header-value/workflows/Build/badge.svg
 [build-status-link]: https://github.com/hatsyjs/http-header-value/actions?query=workflow%3ABuild
-[codecov-image]: https://codecov.io/gh/hatsyjs/http-header-value/branch/master/graph/badge.svg
-[codecov-url]: https://codecov.io/gh/hatsyjs/http-header-value
 [github-image]: https://img.shields.io/static/v1?logo=github&label=GitHub&message=project&color=informational
 [github-url]: https://github.com/hatsyjs/http-header-value
 [api-docs-image]: https://img.shields.io/static/v1?logo=typescript&label=API&message=docs&color=informational
