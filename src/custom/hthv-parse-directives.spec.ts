@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { items, paramItem } from '../spec/items';
 import { hthvParseDirectives } from './hthv-parse-directives';
 

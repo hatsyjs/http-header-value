@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { hthvQuote } from './hthv-quote';
 
 describe('hthvQuote', () => {

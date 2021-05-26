@@ -1,5 +1,4 @@
 {
-  "main": "../dist/http-header-value.node.cjs",
-  "module": "../dist/http-header-value.node.js",
+  "main": "../dist/http-header-value.node.js",
   "types": "./index.d.ts"
 }

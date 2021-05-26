@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from '@jest/globals';
 import type { IncomingHttpHeaders, IncomingMessage } from 'http';
 import type { URL } from 'url';
 import type { HttpForwardTrust } from '../headers';
