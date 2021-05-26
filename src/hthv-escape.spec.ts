@@ -1,3 +1,4 @@
+import { describe, expect, it } from '@jest/globals';
 import { hthvEscapeC, hthvEscapeQ } from './hthv-escape';
 
 describe('hthvEscapeQ', () => {

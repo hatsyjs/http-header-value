@@ -36,37 +36,28 @@ export default {
     }
     return 'http-header-value';
   },
-  output: [
-    {
-      dir: 'dist',
-      format: 'cjs',
-      sourcemap: true,
-      entryFileNames: '[name].cjs',
-      chunkFileNames: '_[name].cjs',
-    },
-    {
-      dir: '.',
-      format: 'esm',
-      sourcemap: true,
-      entryFileNames: 'dist/[name].js',
-      chunkFileNames: 'dist/_[name].js',
-      plugins: [
-        flatDts({
-          tsconfig: 'tsconfig.main.json',
-          lib: true,
-          compilerOptions: {
-            declarationMap: true,
+  output: {
+    dir: '.',
+    format: 'esm',
+    sourcemap: true,
+    entryFileNames: 'dist/[name].js',
+    chunkFileNames: 'dist/_[name].js',
+    plugins: [
+      flatDts({
+        tsconfig: 'tsconfig.main.json',
+        lib: true,
+        compilerOptions: {
+          declarationMap: true,
+        },
+        entries: {
+          headers: {
+            file: 'headers/index.d.ts',
           },
-          entries: {
-            headers: {
-              file: 'headers/index.d.ts',
-            },
-            node: {
-              file: 'node/index.d.ts',
-            },
+          node: {
+            file: 'node/index.d.ts',
           },
-        }),
-      ],
-    },
-  ],
+        },
+      }),
+    ],
+  },
 };

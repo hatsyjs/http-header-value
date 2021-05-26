@@ -1,5 +1,6 @@
+import { describe, expect, it } from '@jest/globals';
 import { hthvFlatten } from './hthv-flatten';
-import { hthvItem } from './impl/hthv-item';
+import { hthvItem } from './impl';
 import { paramItem } from './spec/items';
 
 describe('hthvFlatten', () => {

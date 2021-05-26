@@ -1,3 +1,4 @@
+import { beforeEach, describe, expect, it } from '@jest/globals';
 import { hthvParse } from '../hthv-parse';
 import { HttpForwardRep } from './http-forward-rep';
 import { HttpForwardTrustMask } from './http-forward-trust';
