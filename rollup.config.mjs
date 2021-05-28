@@ -1,4 +1,3 @@
-import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
 import { externalModules } from '@run-z/rollup-helpers';
 import path from 'path';
@@ -14,7 +13,6 @@ export default {
     'http-header-value.node': './src/node/index.ts',
   },
   plugins: [
-    commonjs(),
     ts({
       typescript,
       tsconfig: 'tsconfig.main.json',
