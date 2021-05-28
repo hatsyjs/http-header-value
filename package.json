@@ -1,6 +1,6 @@
 {
   "name": "@hatsy/http-header-value",
-  "version": "3.5.3",
+  "version": "3.6.0",
   "description": "HTTP header value parser",
   "keywords": [
     "http",
