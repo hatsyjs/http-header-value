@@ -243,4 +243,3 @@ function hthvXForwardedItems(headers: HttpForwardRep.Headers): HthvItem[] {
 
   return items;
 }
-
