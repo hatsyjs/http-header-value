@@ -32,7 +32,7 @@ export function commentParser(config: ParserConfig): (input: ParserInput, out: (
     let result: HthvItem | undefined;
 
     // noinspection StatementWithEmptyBodyJS
-    while ( // eslint-disable-line curly
+    while (
         skipSpaces(input)
         || parseParam(
             input,
@@ -44,7 +44,7 @@ export function commentParser(config: ParserConfig): (input: ParserInput, out: (
             },
         )
         || parseItem(input, item => result = item)
-        );
+        ); // eslint-disable-line curly
 
     ++input.i; // closing parent
     out(result || hthvItem({ $: 'raw', v: '' }));
