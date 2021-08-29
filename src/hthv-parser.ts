@@ -47,21 +47,21 @@ export interface HthvParserConfig {
    * An object literal with {@link HthvDelimiterChar supported delimiter characters} as keys
    * and corresponding {@link HthvDelimiter delimiters} as values.
    */
-  readonly delimit?: HthvDelimitConfig;
+  readonly delimit?: HthvDelimitConfig | undefined;
 
   /**
    * Whether to parse date/time values.
    *
    * @default `false`
    */
-  readonly dateTime?: boolean;
+  readonly dateTime?: boolean | undefined;
 
   /**
    * Whether to parse comments.
    *
    * @default `false`.
    */
-  readonly comments?: boolean;
+  readonly comments?: boolean | undefined;
 
 }
 
@@ -73,7 +73,7 @@ export interface HthvParserConfig {
  *
  * The default delimiter configuration is used for omitted characters.
  */
-export type HthvDelimitConfig = { readonly [char in HthvDelimiterChar]?: number };
+export type HthvDelimitConfig = { readonly [char in HthvDelimiterChar]?: number | undefined };
 
 /**
  * Creates and configures new HTTP header value parser.

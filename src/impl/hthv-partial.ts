@@ -4,11 +4,11 @@ import type { HthvItem } from '../hthv-item';
  * @internal
  */
 export interface HthvPartial<TItem extends HthvItem<any, any, any> = HthvItem> {
-  $?: TItem['$'];
-  n?: TItem['n'];
-  t?: TItem['t'];
+  $?: TItem['$'] | undefined;
+  n?: TItem['n'] | undefined;
+  t?: TItem['t'] | undefined;
   v: TItem['v'];
-  x?: TItem['x'];
-  p?: TItem['p'];
-  pl?: TItem['pl'];
+  x?: TItem['x'] | undefined;
+  p?: TItem['p'] | undefined;
+  pl?: TItem['pl'] | undefined;
 }

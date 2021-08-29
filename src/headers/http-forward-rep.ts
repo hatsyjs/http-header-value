@@ -30,22 +30,22 @@ export namespace HttpForwardRep {
     /**
      * [Forwarded](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Forwarded) header value.
      */
-    readonly forwarded?: string | Iterable<string>;
+    readonly forwarded?: string | Iterable<string> | undefined;
 
     /**
      * [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For) header value.
      */
-    readonly 'x-forwarded-for'?: string | Iterable<string>;
+    readonly 'x-forwarded-for'?: string | Iterable<string> | undefined;
 
     /**
      * [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host) header value.
      */
-    readonly 'x-forwarded-host'?: string | Iterable<string>;
+    readonly 'x-forwarded-host'?: string | Iterable<string> | undefined;
 
     /**
      * [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto) header value.
      */
-    readonly 'x-forwarded-proto'?: string | Iterable<string>;
+    readonly 'x-forwarded-proto'?: string | Iterable<string> | undefined;
 
     /**
      * Header value with its lower-case name as property name.

@@ -13,10 +13,10 @@ import { quotedStringParser } from './quoted-string-parser';
  * @internal
  */
 export interface ItemParserConfig {
-  named?: boolean;
-  tagged?: boolean;
-  extra?: boolean;
-  next?: (input: ParserInput) => string;
+  named?: boolean | undefined;
+  tagged?: boolean | undefined;
+  extra?: boolean | undefined;
+  next?: ((this: void, input: ParserInput) => string) | undefined;
 }
 
 /**

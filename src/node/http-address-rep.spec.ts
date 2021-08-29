@@ -9,7 +9,12 @@ describe('HthvAddressRep', () => {
   let url: string | undefined;
   let request: IncomingMessage;
   let headers: IncomingHttpHeaders;
-  let connection: { encrypted?: boolean; localAddress: string; localPort: number; remoteAddress?: string };
+  let connection: {
+    encrypted?: boolean | undefined;
+    localAddress: string | undefined;
+    localPort: number;
+    remoteAddress?: string | undefined;
+  };
 
   beforeEach(() => {
     headers = {};

@@ -32,7 +32,7 @@ export interface HttpForwardTrust {
    *
    * @default `true` which means these headers are processed.
    */
-  readonly xForwarded?: boolean;
+  readonly xForwarded?: boolean | undefined;
 
 }
 
@@ -61,8 +61,8 @@ export namespace HttpForwardTrust {
    */
   export interface Params {
 
-    readonly by?: Values;
-    readonly for?: Values;
+    readonly by?: Values | undefined;
+    readonly for?: Values | undefined;
 
     /**
      * Maps forwarding record parameter name to trusted values.

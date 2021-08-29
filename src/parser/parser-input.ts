@@ -4,5 +4,5 @@
 export interface ParserInput {
   i: number;
   s: string;
-  d?: number;
+  d?: number | undefined;
 }
