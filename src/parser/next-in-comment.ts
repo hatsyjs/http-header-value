@@ -12,6 +12,7 @@ export function nextInComment({ delimiterOf }: ParserConfig): (input: ParserInpu
 
     if (c !== '\\') {
       input.d = delimiterOf(c);
+
       return c;
     }
 

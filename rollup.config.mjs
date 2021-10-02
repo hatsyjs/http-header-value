@@ -33,6 +33,7 @@ export default defineConfig({
     if (id.startsWith(path.resolve('src', 'impl') + path.sep)) {
       return 'http-header-value.base';
     }
+
     return 'http-header-value';
   },
   output: {

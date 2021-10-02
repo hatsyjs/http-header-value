@@ -18,7 +18,9 @@ function parseDateTime(input: ParserInput, out: (value: string) => void): boolea
   input.i = 0;
   if (datePattern.test(input.s)) {
     out(input.s.substring(input.i, input.i += 29));
+
     return true;
   }
+
   return false;
 }

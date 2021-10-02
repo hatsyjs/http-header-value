@@ -56,6 +56,7 @@ export function itemParser(
           if (input.d & HthvDelimiter.Assignment) {
             value = name ? '' : c;
             ++input.i;
+
             continue;
           }
           if (input.d & HthvDelimiter.Quote) {
@@ -63,6 +64,7 @@ export function itemParser(
               parseQuotedString(input, v => {
                 if (name) {
                   type = 'tagged-string';
+
                   tag = name;
                 } else {
                   type = 'quoted-string';
@@ -71,10 +73,12 @@ export function itemParser(
                 value = v;
               });
             }
+
             break;
           }
           if (!name && parseAngleBrackets(input, v => {
             type = 'angle-bracketed-string';
+
             value = v;
           })) {
             break;
@@ -86,6 +90,7 @@ export function itemParser(
             parseQuotedString(input, v => {
               if (value) {
                 type = 'tagged-string';
+
                 tag = value;
               } else {
                 type = 'quoted-string';
@@ -93,9 +98,11 @@ export function itemParser(
               value = v;
             });
           }
+
           break;
         } else if (!value && parseAngleBrackets(input, v => {
           type = 'angle-bracketed-string';
+
           value = v;
         })) {
           break;
@@ -105,6 +112,7 @@ export function itemParser(
       if (value == null) {
         if (!name && parseDateTime(input, v => value = v)) {
           type = 'date-time';
+
           break;
         }
         if (named) {
@@ -114,6 +122,7 @@ export function itemParser(
         }
       } else if (!value && parseDateTime(input, v => value = v)) {
         type = 'date-time';
+
         break;
       } else {
         value += c;

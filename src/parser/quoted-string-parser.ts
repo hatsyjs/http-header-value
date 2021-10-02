@@ -29,6 +29,7 @@ export function quotedStringParser(
       } else if (delimiterOf(c) & HthvDelimiter.Quote) {
         ++input.i;
         out(unquoted);
+
         return;
       } else {
         unquoted += c;

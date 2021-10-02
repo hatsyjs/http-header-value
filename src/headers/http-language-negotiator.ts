@@ -42,6 +42,7 @@ function httpLanguageNegotiationWildcards(key: string): readonly [string, ...str
 
     if (idx < 0) {
       wildcards.push(key, httpLanguageWildcard);
+
       break;
     }
     key = key.substr(0, idx);

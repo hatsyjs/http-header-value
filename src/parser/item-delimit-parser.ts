@@ -15,8 +15,10 @@ export function itemDelimitParser(config: ParserConfig): (input: ParserInput) =>
     if (delimiterOf(input.s[input.i]) & HthvDelimiter.Item) {
       input.i++;
       skipSpaces(input);
+
       return true;
     }
+
     return false;
   };
 }
