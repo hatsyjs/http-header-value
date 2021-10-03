@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module Module @hatsy/http-header-value/headers
+ * @module @hatsy/http-header-value/headers
  */
 export * from './http-content-negotiator';
 export * from './http-encoding-negotiator';

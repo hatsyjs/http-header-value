@@ -1,6 +1,6 @@
 /**
  * @packageDocumentation
- * @module Module @hatsy/http-header-value
+ * @module @hatsy/http-header-value
  */
 export * from './custom';
 export * from './hthv-escape';
