@@ -122,6 +122,7 @@ export const HttpForwardRep = {
       p: { host: lastHost, proto: lastProto },
       pl: [lastHost, lastProto],
     });
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     let trustedFlag = trustChecker(trusted, 0); // The last item is always trusted
     let index = 0;
 
@@ -231,10 +232,12 @@ function hthvXForwardedItems(headers: HttpForwardRep.Headers): HthvItem[] {
 
     if (host) {
       p.host = host;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       pl.push(host);
     }
     if (proto) {
       p.proto = proto;
+      // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
       pl.push(proto);
     }
 

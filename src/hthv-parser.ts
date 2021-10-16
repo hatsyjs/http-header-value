@@ -113,6 +113,7 @@ export function newHthvParser(config?: HthvParserConfig): HthvParser {
               },
           )
           || parseComment(input, item => result.push(item))
+          // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
           || parseItem(input, item => result.push(item))
       );
     }

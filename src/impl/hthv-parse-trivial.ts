@@ -29,5 +29,5 @@ export function hthvParseFirstTrivial(value: string | Iterable<string> | undefin
     return (commaIdx >= 0 ? value.substr(0, commaIdx) : value).trim();
   }
 
-  return hthvParseFirstTrivial(value[Symbol.iterator]().next().value);
+  return hthvParseFirstTrivial(value[Symbol.iterator]().next().value as string | undefined);
 }

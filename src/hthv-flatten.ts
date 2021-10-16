@@ -57,6 +57,7 @@ export function hthvFlatten<
   const depths: { [name: string]: number } = {};
 
   const put = (item: HthvItem<any, any, any>, depth: number): void => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     list.push(item);
 
     const key = item.n as string || item.v;

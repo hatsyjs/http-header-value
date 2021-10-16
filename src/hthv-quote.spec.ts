@@ -9,7 +9,7 @@ describe('hthvQuote', () => {
     expect(hthvQuote('')).toBe('""');
   });
   it('quotes a string with delimiter', () => {
-    expect(hthvQuote('a;b=c')).toEqual('"a;b=c"');
+    expect(hthvQuote('a;b=c')).toBe('"a;b=c"');
   });
   it('quotes a string with DEL char', () => {
     expect(hthvQuote('some\u007f')).toBe('"some\u007f"');
