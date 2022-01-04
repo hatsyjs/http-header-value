@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from '@jest/globals';
-import type { IncomingHttpHeaders, IncomingMessage } from 'http';
-import type { URL } from 'url';
+import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
+import type { URL } from 'node:url';
 import type { HttpForwardTrust } from '../headers';
 import { HttpAddressRep } from './http-address-rep';
 

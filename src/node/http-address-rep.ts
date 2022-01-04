@@ -1,7 +1,7 @@
-import type { IncomingHttpHeaders, IncomingMessage } from 'http';
-import type { Socket } from 'net';
-import type { TLSSocket } from 'tls';
-import { URL } from 'url';
+import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
+import type { Socket } from 'node:net';
+import type { TLSSocket } from 'node:tls';
+import { URL } from 'node:url';
 import { HttpForwardRep, HttpForwardTrust } from '../headers';
 
 /**
