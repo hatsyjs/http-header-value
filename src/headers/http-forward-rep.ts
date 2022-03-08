@@ -35,16 +35,19 @@ export namespace HttpForwardRep {
     /**
      * [X-Forwarded-For](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-For) header value.
      */
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     readonly 'x-forwarded-for'?: string | Iterable<string> | undefined;
 
     /**
      * [X-Forwarded-Host](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Host) header value.
      */
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     readonly 'x-forwarded-host'?: string | Iterable<string> | undefined;
 
     /**
      * [X-Forwarded-Proto](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Forwarded-Proto) header value.
      */
+    // eslint-disable-next-line @typescript-eslint/naming-convention
     readonly 'x-forwarded-proto'?: string | Iterable<string> | undefined;
 
     /**
