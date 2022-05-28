@@ -11,8 +11,8 @@ describe('HthvAddressRep', () => {
   let headers: IncomingHttpHeaders;
   let connection: {
     encrypted?: boolean | undefined;
-    localAddress: string | undefined;
-    localPort: number;
+    localAddress?: string | undefined;
+    localPort?: number | undefined;
     remoteAddress?: string | undefined;
   };
 
@@ -33,9 +33,17 @@ describe('HthvAddressRep', () => {
     it('detects host name by local address by default', () => {
       expect(requestURL().href).toBe('http://127.0.0.1/');
     });
+    it('makes host name `unknown` without host and local address', () => {
+      connection.localAddress = undefined;
+      expect(requestURL().href).toBe('http://unknown/');
+    });
     it('detects port by local port by default', () => {
       connection.localPort = 8080;
       expect(requestURL().href).toBe('http://127.0.0.1:8080/');
+    });
+    it('ignores missing local port', () => {
+      connection.localPort = undefined;
+      expect(requestURL().href).toBe('http://127.0.0.1/');
     });
     it('detects host by `Host` header when present', () => {
       headers.host = 'test-host';

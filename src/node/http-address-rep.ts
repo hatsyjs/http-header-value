@@ -49,10 +49,12 @@ export const HttpAddressRep = {
       headers: IncomingHttpHeaders;
     } = request;
 
+    const { localAddress, localPort, remoteAddress = 'unknown' } = connection;
+
     return {
-      by: connection.localAddress,
-      for: connection.remoteAddress || 'unknown',
-      host: headers.host || (`${connection.localAddress}:${connection.localPort}`),
+      by: localAddress || 'unknown',
+      for: remoteAddress,
+      host: headers.host || (localAddress ? (localPort ? `${localAddress}:${localPort}` : localAddress) : 'unknown'),
       proto: ((connection as TLSSocket).encrypted ? 'https' : 'http'),
     };
   },
