@@ -26,11 +26,11 @@
  * [date-time]: https://tools.ietf.org/html/rfc7231#section-7.1.1.1
  */
 export type HthvItemType =
-    | 'raw'
-    | 'quoted-string'
-    | 'tagged-string'
-    | 'angle-bracketed-string'
-    | 'date-time';
+  | 'raw'
+  | 'quoted-string'
+  | 'tagged-string'
+  | 'angle-bracketed-string'
+  | 'date-time';
 
 /**
  * Parsed HTTP header value item.
@@ -47,10 +47,10 @@ export type HthvItemType =
  * @typeParam TParamsMode - Whether this item has {@link p parameters}.
  */
 export interface HthvItem<
-    TNameMode extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
-    TTagMode extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
-    TParamsMode extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> {
-
+  TNameMode extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
+  TTagMode extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
+  TParamsMode extends 'has-params' | 'no-params' = 'has-params' | 'no-params',
+> {
   /**
    * Item value type.
    */
@@ -63,14 +63,22 @@ export interface HthvItem<
    *
    * [token]: https://tools.ietf.org/html/rfc7230#section-3.2.6
    */
-  n: 'has-name' extends TNameMode ? ('no-name' extends TNameMode ? string | undefined : string) : undefined;
+  n: 'has-name' extends TNameMode
+    ? 'no-name' extends TNameMode
+      ? string | undefined
+      : string
+    : undefined;
 
   /**
    * A tag of tagged string.
    *
    * This is only set for `tagged-string` item type.
    */
-  t: 'has-tag' extends TTagMode ? ('no-tag' extends TTagMode ? string | undefined : string) : undefined;
+  t: 'has-tag' extends TTagMode
+    ? 'no-tag' extends TTagMode
+      ? string | undefined
+      : string
+    : undefined;
 
   /**
    * Item value.
@@ -93,7 +101,6 @@ export interface HthvItem<
    * A list of all item parameters.
    */
   pl: 'has-params' extends TParamsMode ? HthvParamItem[] : [];
-
 }
 
 /**

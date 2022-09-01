@@ -5,7 +5,6 @@ import { paramItem } from './spec/items';
 
 describe('hthvFlatten', () => {
   it('adds items in order', () => {
-
     const item1 = hthvItem({ $: 'raw', v: 'item1' });
     const item2 = hthvItem({ $: 'raw', v: 'item2' });
 
@@ -15,7 +14,6 @@ describe('hthvFlatten', () => {
     });
   });
   it('flattens items', () => {
-
     const p11 = paramItem({ $: 'raw', v: 'p11' });
     const item1 = hthvItem({ $: 'raw', v: 'item1', pl: [p11] });
     const p21 = paramItem({ $: 'raw', v: 'p21' });
@@ -27,7 +25,6 @@ describe('hthvFlatten', () => {
     });
   });
   it('prefers named items added first', () => {
-
     const p11 = paramItem({ $: 'raw', n: 'item2', v: 'p11' });
     const item1 = hthvItem({ $: 'raw', v: 'item1', pl: [p11] });
     const p21 = paramItem({ $: 'raw', v: 'p21' });
@@ -39,7 +36,6 @@ describe('hthvFlatten', () => {
     });
   });
   it('prefers named items added later', () => {
-
     const p11 = paramItem({ $: 'raw', v: 'p11' });
     const item1 = hthvItem({ $: 'raw', v: 'item1', pl: [p11] });
     const p21 = paramItem({ $: 'raw', n: 'item1', v: 'p21' });
@@ -51,7 +47,6 @@ describe('hthvFlatten', () => {
     });
   });
   it('prefers higher level items', () => {
-
     const p11 = paramItem({ $: 'raw', n: 'item1', v: 'p11' });
     const item1 = hthvItem({ $: 'raw', v: 'item1', pl: [p11] });
     const p21 = paramItem({ $: 'raw', n: 'item1', v: 'p21' });
@@ -63,7 +58,6 @@ describe('hthvFlatten', () => {
     });
   });
   it('prefers higher level nameless items added first', () => {
-
     const p11 = paramItem({ $: 'raw', v: 'p11' });
     const item1 = hthvItem({ $: 'raw', v: 'item1', pl: [p11] });
     const p21 = paramItem({ $: 'quoted-string', v: 'item1' });
@@ -75,7 +69,6 @@ describe('hthvFlatten', () => {
     });
   });
   it('prefers higher level nameless items added later', () => {
-
     const p11 = paramItem({ $: 'raw', v: 'p11' });
     const item1 = hthvItem({ $: 'raw', v: 'item1', pl: [p11] });
     const p21 = paramItem({ $: 'raw', v: 'p21' });

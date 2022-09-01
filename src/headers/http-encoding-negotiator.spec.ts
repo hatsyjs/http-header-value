@@ -3,7 +3,6 @@ import { httpEncodingNegotiator } from './http-encoding-negotiator';
 
 describe('httpEncodingNegotiator', () => {
   describe('*', () => {
-
     const negotiator = httpEncodingNegotiator({ '*': 'raw' });
 
     it('does not match arbitrary request', () => {
@@ -18,7 +17,6 @@ describe('httpEncodingNegotiator', () => {
   });
 
   describe('gzip', () => {
-
     const negotiator = httpEncodingNegotiator({
       gzip: 'zipped',
     });

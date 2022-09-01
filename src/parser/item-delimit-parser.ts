@@ -7,7 +7,6 @@ import { spacesParser } from './spaces-parser';
  * @internal
  */
 export function itemDelimitParser(config: ParserConfig): (input: ParserInput) => boolean {
-
   const { delimiterOf } = config;
   const skipSpaces = spacesParser(config);
 

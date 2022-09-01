@@ -21,7 +21,6 @@ export function hthvQuote(string: string): string {
   let quote = false;
 
   for (let i = 0; i < string.length; ++i) {
-
     const c = string[i];
     const delimiter = delimiterOf(c);
 

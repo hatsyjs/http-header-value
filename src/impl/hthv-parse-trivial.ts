@@ -18,12 +18,13 @@ export function hthvParseTrivial(value: string | Iterable<string>): string[] {
 /**
  * @internal
  */
-export function hthvParseFirstTrivial(value: string | Iterable<string> | undefined): string | undefined {
+export function hthvParseFirstTrivial(
+  value: string | Iterable<string> | undefined,
+): string | undefined {
   if (!value) {
     return value;
   }
   if (typeof value === 'string') {
-
     const commaIdx = value.indexOf(',');
 
     return (commaIdx >= 0 ? value.substr(0, commaIdx) : value).trim();

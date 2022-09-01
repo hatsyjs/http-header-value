@@ -9,10 +9,9 @@ import { spacesParser } from './spaces-parser';
  * @internal
  */
 export function paramParser(
-    config: ParserConfig,
-    opts: ItemParserConfig = {},
+  config: ParserConfig,
+  opts: ItemParserConfig = {},
 ): (input: ParserInput, out: (param: HthvParamItem) => void) => boolean {
-
   const { delimiterOf } = config;
   const skipSpaces = spacesParser(config);
   const parseItem = itemParser(config, { ...opts, tagged: false });

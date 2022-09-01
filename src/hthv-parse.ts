@@ -15,7 +15,7 @@ import { HthvParser, newHthvParser } from './hthv-parser';
  *
  * @returns An array of comma- or space- separated value items.
  */
-export const hthvParse: HthvParser = (/*#__PURE__*/ newHthvParser());
+export const hthvParse: HthvParser = /*#__PURE__*/ newHthvParser();
 
 /**
  * Parses HTTP header value that may contain date/time.
@@ -36,4 +36,4 @@ export const hthvParse: HthvParser = (/*#__PURE__*/ newHthvParser());
  *
  * @returns An array of comma- or space- separated value items.
  */
-export const hthvParseDT: HthvParser = (/*#__PURE__*/ newHthvParser({ dateTime: true }));
+export const hthvParseDT: HthvParser = /*#__PURE__*/ newHthvParser({ dateTime: true });

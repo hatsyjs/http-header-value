@@ -4,7 +4,6 @@
  * Each value is a bit mask that can be used to check whether the given delimiter kind corresponds to it.
  */
 export const enum HthvDelimiter {
-
   /**
    * Not a delimiter.
    *
@@ -81,29 +80,28 @@ export const enum HthvDelimiter {
    * This is a `>` sign by default.
    */
   AngleBracketEnd = 0x80000,
-
 }
 
 /**
  * Supported delimiter character.
  */
 export type HthvDelimiterChar =
-    | ' '
-    | '\t'
-    | ','
-    | ';'
-    | '"'
-    | '\\'
-    | '('
-    | ')'
-    | '/'
-    | ':'
-    | '<'
-    | '='
-    | '>'
-    | '?'
-    | '@'
-    | '['
-    | ']'
-    | '{'
-    | '}';
+  | ' '
+  | '\t'
+  | ','
+  | ';'
+  | '"'
+  | '\\'
+  | '('
+  | ')'
+  | '/'
+  | ':'
+  | '<'
+  | '='
+  | '>'
+  | '?'
+  | '@'
+  | '['
+  | ']'
+  | '{'
+  | '}';

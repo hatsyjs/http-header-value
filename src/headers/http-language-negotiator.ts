@@ -12,7 +12,9 @@ import { httpContentNegotiator, HttpContentNegotiator } from './http-content-neg
  *
  * @returns New requested language negotiator function.
  */
-export function httpLanguageNegotiator<T>(map: HttpContentNegotiator.Map<T>): HttpContentNegotiator<T> {
+export function httpLanguageNegotiator<T>(
+  map: HttpContentNegotiator.Map<T>,
+): HttpContentNegotiator<T> {
   return httpContentNegotiator(httpLanguageNegotiationWildcards, map);
 }
 
@@ -37,7 +39,6 @@ function httpLanguageNegotiationWildcards(key: string): readonly [string, ...str
   const wildcards: [string, ...string[]] = [key];
 
   for (;;) {
-
     const idx = key.lastIndexOf('-');
 
     if (idx < 0) {

@@ -12,10 +12,10 @@ import type { HthvItem } from './hthv-item';
  * @typeParam TParamsMode - Whether items has {@link p parameters}.
  */
 export interface HthvItems<
-    TNameMode extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
-    TTagMode extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
-    TParamsMode extends 'has-params' | 'no-params' = 'has-params' | 'no-params'> {
-
+  TNameMode extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
+  TTagMode extends 'has-tag' | 'no-tag' = 'has-tag' | 'no-tag',
+  TParamsMode extends 'has-params' | 'no-params' = 'has-params' | 'no-params',
+> {
   /**
    * A map of HTTP header value items.
    *
@@ -27,7 +27,6 @@ export interface HthvItems<
    * A list of items and their parameters.
    */
   list: HthvItem<TNameMode, TTagMode, TParamsMode>[];
-
 }
 
 /**
@@ -46,12 +45,12 @@ export interface HthvItems<
  * @param items Items collection.
  */
 export function hthvFlatten<
-    TNameMode extends 'has-name' | 'no-name',
-    TTagMode extends 'has-tag' | 'no-tag',
-    TParamsMode extends 'has-params' | 'no-params'>(
-    items: HthvItem<TNameMode, TTagMode, TParamsMode>[],
+  TNameMode extends 'has-name' | 'no-name',
+  TTagMode extends 'has-tag' | 'no-tag',
+  TParamsMode extends 'has-params' | 'no-params',
+>(
+  items: HthvItem<TNameMode, TTagMode, TParamsMode>[],
 ): HthvItems<TNameMode, TTagMode, TParamsMode> {
-
   const map: { [name: string]: HthvItem<TNameMode, TTagMode, TParamsMode> } = {};
   const list: HthvItem<TNameMode, TTagMode, TParamsMode>[] = [];
   const depths: { [name: string]: number } = {};
@@ -60,7 +59,7 @@ export function hthvFlatten<
     // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     list.push(item);
 
-    const key = item.n as string || item.v;
+    const key = (item.n as string) || item.v;
     const prev = map[key];
 
     // eslint-disable-next-line @typescript-eslint/no-unnecessary-condition

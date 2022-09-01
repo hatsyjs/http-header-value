@@ -3,7 +3,6 @@ import { httpLanguageNegotiator } from './http-language-negotiator';
 
 describe('httpLanguageNegotiator', () => {
   describe('*', () => {
-
     const negotiator = httpLanguageNegotiator({ '*': 'any' });
 
     it('does not match arbitrary request', () => {
@@ -18,7 +17,6 @@ describe('httpLanguageNegotiator', () => {
   });
 
   describe('en', () => {
-
     const negotiator = httpLanguageNegotiator({
       en: 'hello',
     });
@@ -41,7 +39,6 @@ describe('httpLanguageNegotiator', () => {
   });
 
   describe('en-US', () => {
-
     const negotiator = httpLanguageNegotiator({
       'en-US': 'hi',
     });

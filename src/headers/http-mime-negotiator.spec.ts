@@ -4,7 +4,6 @@ import { httpMimeNegotiator } from './http-mime-negotiator';
 
 describe('httpMimeNegotiator', () => {
   describe('*/*', () => {
-
     const negotiator = httpMimeNegotiator({
       '*/*': 'any',
     });
@@ -24,7 +23,6 @@ describe('httpMimeNegotiator', () => {
   });
 
   describe('text/*', () => {
-
     const negotiator = httpMimeNegotiator({
       'text/*': 'text',
     });
@@ -55,7 +53,6 @@ describe('httpMimeNegotiator', () => {
   });
 
   describe('text/html', () => {
-
     const negotiator = httpMimeNegotiator({
       'text/html': 'html',
     });
@@ -85,35 +82,30 @@ describe('httpMimeNegotiator', () => {
 
   describe('Q-factor', () => {
     it('prefers request with higher Q-factor', () => {
-
       const negotiator = httpMimeNegotiator({ 'text/html': 'html', 'text/plain': 'text' });
 
       expect(negotiator('text/html;q=0.8,text/plain')).toBe('text');
       expect(negotiator('text/plain,text/html;q=0.8')).toBe('text');
     });
     it('prefers wildcard request with higher Q-factor', () => {
-
       const negotiator = httpMimeNegotiator({ 'text/html': 'html', 'text/*': 'text' });
 
       expect(negotiator('text/html;q=0.8,text/*')).toBe('text');
       expect(negotiator('text/*,text/html;q=0.8')).toBe('text');
     });
     it('prefers exact match over wildcard with the same Q-factor', () => {
-
       const negotiator = httpMimeNegotiator({ 'text/html': 'html', 'text/*': 'text' });
 
       expect(negotiator('text/html,text/*')).toBe('html');
       expect(negotiator('text/*,text/html')).toBe('html');
     });
     it('treats too big Q-factor as `1`', () => {
-
       const negotiator = httpMimeNegotiator({ 'text/html': 'html', 'text/plain': 'text' });
 
       expect(negotiator('text/html;q=99,text/plain')).toBe('html');
       expect(negotiator('text/plain,text/html;q=99')).toBe('text');
     });
     it('treats negative Q-factor as `0`', () => {
-
       const negotiator = httpMimeNegotiator({ 'text/html': 'html', 'text/plain': 'text' });
 
       expect(negotiator('text/html;q=-99,text/plain')).toBe('text');

@@ -12,7 +12,9 @@ import { httpContentNegotiator, HttpContentNegotiator } from './http-content-neg
  *
  * @returns New requested content encoding negotiator function.
  */
-export function httpEncodingNegotiator<T>(map: HttpContentNegotiator.Map<T>): HttpContentNegotiator<T> {
+export function httpEncodingNegotiator<T>(
+  map: HttpContentNegotiator.Map<T>,
+): HttpContentNegotiator<T> {
   return httpContentNegotiator(httpEncodingNegotiationWildcards, map);
 }
 

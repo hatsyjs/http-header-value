@@ -42,20 +42,18 @@ export const defaultDelimit: DelimitConfig = {
 /**
  * @internal
  */
-export function buildParserConfig(
-    {
-      delimit,
-      dateTime,
-    }: HthvParserConfig = {},
-): ParserConfig {
-
+export function buildParserConfig({ delimit, dateTime }: HthvParserConfig = {}): ParserConfig {
   const delimitConfig: DelimitConfig = delimit ? { ...defaultDelimit, ...delimit } : defaultDelimit;
 
   return {
     dateTime,
     delimiterOf(c) {
-      return delimitConfig[c as HthvDelimiterChar]
-          || (c >= '\u0000' && c <= ' ' || c === '\u007f' ? HthvDelimiter.NonToken : HthvDelimiter.None);
+      return (
+        delimitConfig[c as HthvDelimiterChar]
+        || ((c >= '\u0000' && c <= ' ') || c === '\u007f'
+          ? HthvDelimiter.NonToken
+          : HthvDelimiter.None)
+      );
     },
   };
 }
@@ -63,12 +61,12 @@ export function buildParserConfig(
 /**
  * @internal
  */
-export const defaultParserConfig = (/*#__PURE__*/ buildParserConfig());
+export const defaultParserConfig = /*#__PURE__*/ buildParserConfig();
 
 /**
  * @internal
  */
-export const commentParserConfig = (/*#__PURE__*/ buildParserConfig({
+export const commentParserConfig = /*#__PURE__*/ buildParserConfig({
   delimit: {
     ':': HthvDelimiter.NonToken | HthvDelimiter.Assignment,
     '(': HthvDelimiter.NonToken | HthvDelimiter.Escaped | HthvDelimiter.Comment,
@@ -78,4 +76,4 @@ export const commentParserConfig = (/*#__PURE__*/ buildParserConfig({
     '=': HthvDelimiter.NonToken,
     ',': HthvDelimiter.NonToken,
   },
-}));
+});

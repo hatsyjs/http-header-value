@@ -5,7 +5,6 @@ import type { HttpForwardTrust } from '../headers';
 import { HttpAddressRep } from './http-address-rep';
 
 describe('HthvAddressRep', () => {
-
   let url: string | undefined;
   let request: IncomingMessage;
   let headers: IncomingHttpHeaders;
@@ -23,9 +22,15 @@ describe('HthvAddressRep', () => {
       localPort: 80,
     };
     request = {
-      get url() { return url; },
-      get connection() { return connection; },
-      get headers() { return headers; },
+      get url() {
+        return url;
+      },
+      get connection() {
+        return connection;
+      },
+      get headers() {
+        return headers;
+      },
     } as IncomingMessage;
   });
 

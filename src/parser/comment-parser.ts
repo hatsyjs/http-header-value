@@ -12,8 +12,9 @@ import { spacesParser } from './spaces-parser';
 /**
  * @internal
  */
-export function commentParser(config: ParserConfig): (input: ParserInput, out: (item: HthvItem) => void) => boolean {
-
+export function commentParser(
+  config: ParserConfig,
+): (input: ParserInput, out: (item: HthvItem) => void) => boolean {
   const { delimiterOf } = config;
   const skipSpaces = spacesParser(config);
   const commentParserConfig: ItemParserConfig = {
@@ -33,18 +34,15 @@ export function commentParser(config: ParserConfig): (input: ParserInput, out: (
 
     // noinspection StatementWithEmptyBodyJS
     while (
-        skipSpaces(input)
-        || parseParam(
-            input,
-            param => {
-              if (!result) {
-                result = hthvItem({ $: 'raw', v: '' });
-              }
-              addParam(result, param);
-            },
-        )
-        || parseItem(input, item => result = item)
-        ); // eslint-disable-line curly
+      skipSpaces(input)
+      || parseParam(input, param => {
+        if (!result) {
+          result = hthvItem({ $: 'raw', v: '' });
+        }
+        addParam(result, param);
+      })
+      || parseItem(input, item => (result = item))
+    ); // eslint-disable-line curly
 
     ++input.i; // closing parent
     out(result || hthvItem({ $: 'raw', v: '' }));

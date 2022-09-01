@@ -7,7 +7,6 @@ import type { ParserInput } from './parser-input';
  */
 export function nextInComment({ delimiterOf }: ParserConfig): (input: ParserInput) => string {
   return input => {
-
     let c = input.s[input.i];
 
     if (c !== '\\') {

@@ -39,11 +39,9 @@ export function hthvEscapeC(string: string): string {
  * @internal
  */
 function hthvEscape(string: string, { delimiterOf }: ParserConfig): string {
-
   let escaped: undefined | string;
 
   for (let i = 0; i < string.length; ++i) {
-
     const c = string[i];
 
     if (delimiterOf(c) & HthvDelimiter.Escaped) {

@@ -6,7 +6,6 @@ import type { HthvItem } from '../hthv-item';
  * Defines how to treat proxy forwarding information contained in request headers.
  */
 export interface HttpForwardTrust {
-
   /**
    * Whether the forwarding records in HTTP request headers are trusted.
    *
@@ -18,12 +17,9 @@ export interface HttpForwardTrust {
    * - a {@link HttpForwardTrust.Checker trust checker function},
    * - a {@link HttpForwardTrust.Params trusted parameters map}.
    *
-   * @default `false` which means the `Forwarded` and `X-Forwarded-...` headers won't be parsed.
+   * @defaultValue `false` which means the `Forwarded` and `X-Forwarded-...` headers won't be parsed.
    */
-  readonly trusted?:
-      | boolean
-      | HttpForwardTrust.Checker
-      | HttpForwardTrust.Params;
+  readonly trusted?: boolean | HttpForwardTrust.Checker | HttpForwardTrust.Params;
 
   /**
    * Whether to consider `X-Forwarded-...` headers if `Forwarded` is absent.
@@ -33,25 +29,21 @@ export interface HttpForwardTrust {
    * @default `true` which means these headers are processed.
    */
   readonly xForwarded?: boolean | undefined;
-
 }
 
 export namespace HttpForwardTrust {
-
   /**
    * Signature of function that checks whether the forwarding record value can be trusted.
    *
    * This function is called for each forwarding record in reverse order. The very last record is always trusted
    * as it contains local address info.
-   */
-  export type Checker =
-  /**
+   *
    * @param item - An item of the `Forwarded` header value containing a record to check.
    * @param index - Reverse `item` index. I.e. the last one has `0` index.
    *
    * @returns Bitwise {@link HttpForwardTrustMask mask} of the trust.
    */
-      (this: void, item: HthvItem, index: number) => HttpForwardTrustMask;
+  export type Checker = (this: void, item: HthvItem, index: number) => HttpForwardTrustMask;
 
   /**
    * A map of trusted parameters.
@@ -60,7 +52,6 @@ export namespace HttpForwardTrust {
    * corresponding {@link Values trusted values}.
    */
   export interface Params {
-
     readonly by?: Values | undefined;
     readonly for?: Values | undefined;
 
@@ -68,28 +59,23 @@ export namespace HttpForwardTrust {
      * Maps forwarding record parameter name to trusted values.
      */
     readonly [name: string]: Values | undefined;
-
   }
 
   /**
    * A map of trusted parameter values.
    */
   export interface Values {
-
     /**
      * Maps forwarding record parameter value to {@link Mask bitwise mask of the trust}.
      */
     readonly [value: string]: HttpForwardTrustMask | undefined;
-
   }
-
 }
 
 /**
  * Bitwise mask of the trust to proxy forwarding information.
  */
 export const enum HttpForwardTrustMask {
-
   /**
    * Do not trust mask.
    */
@@ -109,11 +95,9 @@ export const enum HttpForwardTrustMask {
    * Always trust mask.
    */
   AlwaysTrust = TrustCurrent | TrustPrevious,
-
 }
 
 export const HttpForwardTrust = {
-
   /**
    * Builds HTTP request forwarding trust checker function by forwarding info trust policy.
    *
@@ -122,33 +106,31 @@ export const HttpForwardTrust = {
    * @returns Constructed trust predicate function.
    */
   by(this: void, trust: HttpForwardTrust = {}): HttpForwardTrust.Checker {
-
     const { trusted = false } = trust;
 
     if (typeof trusted === 'function') {
       return trusted; // Already a function.
     }
     if (typeof trusted === 'boolean') {
-
       const mask = trusted ? HttpForwardTrustMask.AlwaysTrust : HttpForwardTrustMask.DontTrust;
 
       return () => mask;
     }
 
     const params: HttpForwardTrust.Params = trusted;
-    const checkItem = ({ n, v }: HthvItem<any, any, any>): HttpForwardTrustMask => (n && params[n]?.[v])
-        || HttpForwardTrustMask.DontTrust;
 
     return item => {
-
-      let result = checkItem(item);
+      let result = itemTrustMask(item);
 
       for (const p of item.pl) {
-        result |= checkItem(p);
+        result |= itemTrustMask(p);
       }
 
       return result;
     };
-  },
 
+    function itemTrustMask({ n, v }: HthvItem<any, any, any>): HttpForwardTrustMask {
+      return (n && params[n]?.[v]) || HttpForwardTrustMask.DontTrust;
+    }
+  },
 };

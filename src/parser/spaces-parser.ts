@@ -7,11 +7,9 @@ import type { ParserInput } from './parser-input';
  */
 export function spacesParser({ delimiterOf }: ParserConfig): (input: ParserInput) => boolean {
   return input => {
-
     const start = input.i;
 
     do {
-
       const c = input.s[input.i];
 
       if (!(delimiterOf(c) & HthvDelimiter.Space)) {

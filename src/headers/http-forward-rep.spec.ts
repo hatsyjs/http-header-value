@@ -4,7 +4,6 @@ import { HttpForwardRep } from './http-forward-rep';
 import { HttpForwardTrustMask } from './http-forward-trust';
 
 describe('HttpForwardRep', () => {
-
   let headers: HttpForwardRep.Headers;
   let defaults: HttpForwardRep.Defaults;
 
@@ -30,21 +29,20 @@ describe('HttpForwardRep', () => {
   });
   it('extracts trusted source record', () => {
     headers = {
-      forwarded: 'host=test;proto=http,'
-          + 'by=proxy1;host=test1;proto=http,'
-          + 'by=proxy2;host=test2;proto=https',
+      forwarded:
+        'host=test;proto=http,'
+        + 'by=proxy1;host=test1;proto=http,'
+        + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: {
-            by: {
-              proxy2: HttpForwardTrustMask.TrustCurrent,
-            },
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: {
+          by: {
+            proxy2: HttpForwardTrustMask.TrustCurrent,
           },
         },
-    )).toEqual({
+      }),
+    ).toEqual({
       ...defaults,
       by: 'proxy2',
       host: 'test2',
@@ -53,17 +51,16 @@ describe('HttpForwardRep', () => {
   });
   it('extracts record trusted by next one', () => {
     headers = {
-      forwarded: 'host=test;proto=http,'
-          + 'by=proxy1;host=test1;proto=http,'
-          + 'by=proxy2;host=test2;proto=https',
+      forwarded:
+        'host=test;proto=http,'
+        + 'by=proxy1;host=test1;proto=http,'
+        + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: { for: { [defaults.for]: HttpForwardTrustMask.TrustPrevious } },
-        },
-    )).toEqual({
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: { for: { [defaults.for]: HttpForwardTrustMask.TrustPrevious } },
+      }),
+    ).toEqual({
       ...defaults,
       by: 'proxy2',
       host: 'test2',
@@ -72,19 +69,18 @@ describe('HttpForwardRep', () => {
   });
   it('extracts record trusted by checker', () => {
     headers = {
-      forwarded: 'host=test;proto=http,'
-          + 'by=proxy1;host=test1;proto=http,'
-          + 'by=proxy2;host=test2;proto=https',
+      forwarded:
+        'host=test;proto=http,'
+        + 'by=proxy1;host=test1;proto=http,'
+        + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted(_, index) {
-            return index <= 2 ? HttpForwardTrustMask.TrustCurrent : HttpForwardTrustMask.DontTrust;
-          },
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted(_, index) {
+          return index <= 2 ? HttpForwardTrustMask.TrustCurrent : HttpForwardTrustMask.DontTrust;
         },
-    )).toEqual({
+      }),
+    ).toEqual({
       ...defaults,
       by: 'proxy1',
       host: 'test1',
@@ -93,22 +89,21 @@ describe('HttpForwardRep', () => {
   });
   it('extracts first of the trusted source records', () => {
     headers = {
-      forwarded: 'host=test;proto=http,'
-          + 'by=proxy1;host=test1;proto=http,'
-          + 'by=proxy2;host=test2;proto=https',
+      forwarded:
+        'host=test;proto=http,'
+        + 'by=proxy1;host=test1;proto=http,'
+        + 'by=proxy2;host=test2;proto=https',
     };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: {
-            by: {
-              proxy1: HttpForwardTrustMask.TrustCurrent,
-              proxy2: HttpForwardTrustMask.TrustCurrent,
-            },
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: {
+          by: {
+            proxy1: HttpForwardTrustMask.TrustCurrent,
+            proxy2: HttpForwardTrustMask.TrustCurrent,
           },
         },
-    )).toEqual({
+      }),
+    ).toEqual({
       ...defaults,
       by: 'proxy1',
       host: 'test1',
@@ -116,14 +111,14 @@ describe('HttpForwardRep', () => {
     });
   });
   it('extracts first trusted record with requested key', () => {
-    headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;host=test2;proto=https;secret=some' };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: { secret: { some: HttpForwardTrustMask.TrustCurrent } },
-        },
-    )).toEqual({
+    headers = {
+      forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;host=test2;proto=https;secret=some',
+    };
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: { secret: { some: HttpForwardTrustMask.TrustCurrent } },
+      }),
+    ).toEqual({
       ...defaults,
       by: 'proxy2',
       host: 'test2',
@@ -132,14 +127,14 @@ describe('HttpForwardRep', () => {
     });
   });
   it('does not extract untrusted records', () => {
-    headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;host=test2;proto=https;secret=some' };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: { secret: { other: HttpForwardTrustMask.TrustCurrent } },
-        },
-    )).toEqual(defaults);
+    headers = {
+      forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;host=test2;proto=https;secret=some',
+    };
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: { secret: { other: HttpForwardTrustMask.TrustCurrent } },
+      }),
+    ).toEqual(defaults);
   });
   it('extracts first trusted record after trust chain broken', () => {
     headers = {
@@ -149,13 +144,11 @@ describe('HttpForwardRep', () => {
         'by=proxy3;host=test3;proto=https;secret=some',
       ],
     };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: { secret: { some: HttpForwardTrustMask.TrustCurrent } },
-        },
-    )).toEqual({
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: { secret: { some: HttpForwardTrustMask.TrustCurrent } },
+      }),
+    ).toEqual({
       ...defaults,
       by: 'proxy3',
       host: 'test3',
@@ -164,14 +157,14 @@ describe('HttpForwardRep', () => {
     });
   });
   it('handles items without names', () => {
-    headers = { forwarded: 'by=proxy1;host=test1;proto=http,wrong;host=test2;proto=https;secret=some' };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: { secret: { some: HttpForwardTrustMask.TrustCurrent } },
-        },
-    )).toEqual({
+    headers = {
+      forwarded: 'by=proxy1;host=test1;proto=http,wrong;host=test2;proto=https;secret=some',
+    };
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: { secret: { some: HttpForwardTrustMask.TrustCurrent } },
+      }),
+    ).toEqual({
       ...defaults,
       host: 'test2',
       proto: 'https',
@@ -179,14 +172,15 @@ describe('HttpForwardRep', () => {
     });
   });
   it('handles parameters without names', () => {
-    headers = { forwarded: 'by=proxy1;host=test1;proto=http,by=proxy2;wrong;host=test2;proto=https;secret=some' };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: { secret: { some: HttpForwardTrustMask.TrustCurrent } },
-        },
-    )).toEqual({
+    headers = {
+      forwarded:
+        'by=proxy1;host=test1;proto=http,by=proxy2;wrong;host=test2;proto=https;secret=some',
+    };
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: { secret: { some: HttpForwardTrustMask.TrustCurrent } },
+      }),
+    ).toEqual({
       ...defaults,
       by: 'proxy2',
       host: 'test2',
@@ -196,43 +190,41 @@ describe('HttpForwardRep', () => {
   });
   it('parses `X-Forwarded-For` header by default', () => {
     headers = { 'x-forwarded-for': 'proxy1,proxy2,proxy3' };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: {
-            for: {
-              [defaults.for]: HttpForwardTrustMask.TrustPrevious,
-              proxy3: HttpForwardTrustMask.TrustPrevious,
-            },
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: {
+          for: {
+            [defaults.for]: HttpForwardTrustMask.TrustPrevious,
+            proxy3: HttpForwardTrustMask.TrustPrevious,
           },
         },
-    )).toEqual({
+      }),
+    ).toEqual({
       ...defaults,
       for: 'proxy2',
     });
   });
   it('parses all `X-Forwarded-For` headers', () => {
     headers = { 'x-forwarded-for': ['proxy1,proxy2', 'proxy3'] };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: {
-            for: {
-              [defaults.for]: HttpForwardTrustMask.TrustPrevious,
-              proxy3: HttpForwardTrustMask.TrustPrevious,
-            },
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: {
+          for: {
+            [defaults.for]: HttpForwardTrustMask.TrustPrevious,
+            proxy3: HttpForwardTrustMask.TrustPrevious,
           },
         },
-    )).toEqual({
+      }),
+    ).toEqual({
       ...defaults,
       for: 'proxy2',
     });
   });
   it('does not parse `X-Forwarded-For` header when disabled', () => {
     headers = { 'x-forwarded-for': 'proxy1,proxy2,proxy3' };
-    expect(HttpForwardRep.by(headers, defaults, { trusted: true, xForwarded: false })).toEqual(defaults);
+    expect(HttpForwardRep.by(headers, defaults, { trusted: true, xForwarded: false })).toEqual(
+      defaults,
+    );
   });
   it('does not extract forwarding info if there is no `X-Forwarded-For` header', () => {
     expect(HttpForwardRep.by(headers, defaults, { trusted: true })).toEqual(defaults);
@@ -242,18 +234,16 @@ describe('HttpForwardRep', () => {
       'x-forwarded-for': 'proxy1, proxy2, proxy3',
       'x-forwarded-host': ['host1, host2', 'host3', 'host4'],
     };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: {
-            for: {
-              [defaults.for]: HttpForwardTrustMask.TrustPrevious,
-              proxy3: HttpForwardTrustMask.TrustPrevious,
-            },
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: {
+          for: {
+            [defaults.for]: HttpForwardTrustMask.TrustPrevious,
+            proxy3: HttpForwardTrustMask.TrustPrevious,
           },
         },
-    )).toEqual({
+      }),
+    ).toEqual({
       ...defaults,
       for: 'proxy2',
       host: 'host1',
@@ -265,18 +255,16 @@ describe('HttpForwardRep', () => {
       'x-forwarded-host': 'host1, host2',
       'x-forwarded-proto': ['https', 'http'],
     };
-    expect(HttpForwardRep.by(
-        headers,
-        defaults,
-        {
-          trusted: {
-            for: {
-              [defaults.for]: HttpForwardTrustMask.TrustPrevious,
-              proxy3: HttpForwardTrustMask.TrustPrevious,
-            },
+    expect(
+      HttpForwardRep.by(headers, defaults, {
+        trusted: {
+          for: {
+            [defaults.for]: HttpForwardTrustMask.TrustPrevious,
+            proxy3: HttpForwardTrustMask.TrustPrevious,
           },
         },
-    )).toEqual({
+      }),
+    ).toEqual({
       ...defaults,
       for: 'proxy2',
       host: 'host1',

@@ -23,29 +23,23 @@ export interface ItemParserConfig {
  * @internal
  */
 export function itemParser(
-    config: ParserConfig,
-    {
-      named = true,
-      tagged = true,
-      extra = true,
-      next = nextInItem(config),
-    }: ItemParserConfig = {},
+  config: ParserConfig,
+  { named = true, tagged = true, extra = true, next = nextInItem(config) }: ItemParserConfig = {},
 ): (input: ParserInput, out: (param: HthvItem<any, any, any>) => void) => boolean {
-
   const parseAngleBrackets = angleBracketsParser(config);
   const parseDateTime = dateTimeParser(config);
   const parseQuotedString = quotedStringParser(config);
-  const parseExtra = extra ? itemParser(config, { next, tagged: false, named: false, extra: false }) : parseNone;
+  const parseExtra = extra
+    ? itemParser(config, { next, tagged: false, named: false, extra: false })
+    : parseNone;
 
   return (input, out) => {
-
     let name = '';
     let type: HthvItemType = 'raw';
     let tag: string | undefined;
     let value: string | undefined;
 
     while (input.i < input.s.length) {
-
       const c = next(input);
 
       if (input.d) {
@@ -76,11 +70,14 @@ export function itemParser(
 
             break;
           }
-          if (!name && parseAngleBrackets(input, v => {
-            type = 'angle-bracketed-string';
+          if (
+            !name
+            && parseAngleBrackets(input, v => {
+              type = 'angle-bracketed-string';
 
-            value = v;
-          })) {
+              value = v;
+            })
+          ) {
             break;
           }
           value = name;
@@ -100,17 +97,20 @@ export function itemParser(
           }
 
           break;
-        } else if (!value && parseAngleBrackets(input, v => {
-          type = 'angle-bracketed-string';
+        } else if (
+          !value
+          && parseAngleBrackets(input, v => {
+            type = 'angle-bracketed-string';
 
-          value = v;
-        })) {
+            value = v;
+          })
+        ) {
           break;
         }
       }
 
       if (value == null) {
-        if (!name && parseDateTime(input, v => value = v)) {
+        if (!name && parseDateTime(input, v => (value = v))) {
           type = 'date-time';
 
           break;
@@ -120,7 +120,7 @@ export function itemParser(
         } else {
           value = c;
         }
-      } else if (!value && parseDateTime(input, v => value = v)) {
+      } else if (!value && parseDateTime(input, v => (value = v))) {
         type = 'date-time';
 
         break;

@@ -6,7 +6,6 @@ import type { ParserInput } from './parser-input';
  */
 export function nextInItem({ delimiterOf }: ParserConfig): (input: ParserInput) => string {
   return input => {
-
     const c = input.s[input.i];
 
     input.d = delimiterOf(c);
