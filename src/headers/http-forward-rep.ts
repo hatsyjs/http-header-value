@@ -118,8 +118,8 @@ export const HttpForwardRep = {
       const item = items[i];
 
       // Either explicitly trusted or trusted by previous item.
-      trustedFlag
-        = trustChecker(item, ++index) | ((trustedFlag & HttpForwardTrustMask.TrustPrevious) >>> 1);
+      trustedFlag =
+        trustChecker(item, ++index) | ((trustedFlag & HttpForwardTrustMask.TrustPrevious) >>> 1);
 
       if (!(trustedFlag & HttpForwardTrustMask.TrustCurrent)) {
         break; // Current record is not trusted even though the previous could be trusted here.
