@@ -15,8 +15,8 @@ import { hthvParse } from '../hthv-parse';
  * [Accept-Language]: https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language
  *
  * @typeParam T - A type of the matching value.
- * @param request - Content negotiation request. This an `Accept...` header value, either {@link hthvParse parsed}, or
- * as a raw string.
+ * @param request - Content negotiation request. This an `Accept...` header value, either
+ * {@link @hatsy/http-header-value!hthvParse parsed}, or as a raw string.
  *
  * @returns The best matching value, `undefined` if there is no matching value, or `0` is the matching
  * value is explicitly prohibited (i.e. `;q=0` is used in matching request item).

@@ -1,4 +1,0 @@
-{
-  "main": "../dist/http-header-value.headers.js",
-  "index": "./index.d.ts"
-}

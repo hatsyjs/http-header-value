@@ -28,7 +28,8 @@ export interface HttpAddressRep {
 
 export const HttpAddressRep = {
   /**
-   * Collects {@link HttpForwardRep.Defaults proxy forwarding defaults} from HTTP request.
+   * Collects {@link @hatsy/http-header-value/headers!HttpForwardRep.Defaults proxy forwarding defaults} from HTTP
+   * request.
    *
    * This information does not rely on proxy forwarding information.
    *
@@ -60,7 +61,8 @@ export const HttpAddressRep = {
   /**
    * Builds addressing report by HTTP request.
    *
-   * Uses {@link HttpForwardRep.by} to collect trusted proxy forwarding information.
+   * Uses {@link @hatsy/http-header-value/headers!HttpForwardRep#by HttpForwardRep.by()} to collect trusted proxy
+   * forwarding information.
    *
    * @param request - HTTP request to collect information from.
    * @param trust - A trust policy to proxy forwarding records.

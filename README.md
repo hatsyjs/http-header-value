@@ -363,9 +363,7 @@ Escapes `"` and `\` symbols.
 ```typescript
 import { hthvQuote } from '@hatsy/http-header-value';
 
-function forwardedHeader(forIp: string) {
-  return `Forwarded: For=${hthvQuote(forIp)}`;
-}
+const forwardedHeader = (forIp: string) => 'Forwarded: For=' + hthvQuote(forIp)};
 
 forwardedHeader('127.0.0.1'); // Forwarded: For=127.0.0.1
 forwardedHeader('[2001:db8:cafe::17]:4711'); // Forwarded: For="[2001:db8:cafe::17]:4711"

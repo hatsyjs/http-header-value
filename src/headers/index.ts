@@ -1,5 +1,4 @@
 /**
- * @packageDocumentation
  * @module @hatsy/http-header-value/headers
  */
 export * from './http-content-negotiator';

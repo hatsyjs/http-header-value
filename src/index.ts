@@ -1,8 +1,8 @@
 /**
- * @packageDocumentation
  * @module @hatsy/http-header-value
  */
 export * from './custom';
+export * from './hthv-delimiter';
 export * from './hthv-escape';
 export * from './hthv-flatten';
 export * from './hthv-item';

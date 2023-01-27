@@ -1,6 +1,5 @@
 {
   "entryPoints": ["src/index.ts", "src/headers/index.ts", "src/node/index.ts"],
   "name": "HTTP Header Values",
-  "out": "./target/typedoc",
-  "tsconfig": "tsconfig.main.json"
+  "out": "./target/typedoc"
 }

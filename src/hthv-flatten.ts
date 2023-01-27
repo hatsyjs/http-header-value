@@ -7,9 +7,9 @@ import type { HthvItem } from './hthv-item';
  *
  * This is constructed by {@link hthvFlatten} function.
  *
- * @typeParam TNameMode - Whether items has a {@link n name}.
- * @typeParam TTagMode - Whether items has a {@link t tag}.
- * @typeParam TParamsMode - Whether items has {@link p parameters}.
+ * @typeParam TNameMode - Whether items has a {@link HthvItem#n name}.
+ * @typeParam TTagMode - Whether items has a {@link HthvItem#t tag}.
+ * @typeParam TParamsMode - Whether items has {@link HthvItem#p parameters}.
  */
 export interface HthvItems<
   TNameMode extends 'has-name' | 'no-name' = 'has-name' | 'no-name',
@@ -39,9 +39,9 @@ export interface HthvItems<
  * - prefers original items over their parameters,
  * - prefers items added first.
  *
- * @typeParam TNameMode - Whether items has a {@link n name}.
- * @typeParam TTagMode - Whether items has a {@link t tag}.
- * @typeParam TParamsMode - Whether items has {@link p parameters}.
+ * @typeParam TNameMode - Whether items has a {@link HthvItem#n name}.
+ * @typeParam TTagMode - Whether items has a {@link HthvItem#t tag}.
+ * @typeParam TParamsMode - Whether items has {@link HthvItem#p parameters}.
  * @param items Items collection.
  */
 export function hthvFlatten<
