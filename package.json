@@ -42,6 +42,7 @@
       "default": "./dist/http-header-value.node.js"
     }
   },
+  "sideEffects": false,
   "engines": {
     "node": ">=12"
   },
