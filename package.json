@@ -14,7 +14,7 @@
   "license": "MIT",
   "author": "Ruslan Lopatin <ruslan.lopatin@gmail.com>",
   "bugs": {
-    "url": "https://github.com/hatsyjs/fun-events/issues"
+    "url": "https://github.com/hatsyjs/http-header-values/issues"
   },
   "type": "module",
   "types": "./dist/http-header-value.d.ts",
