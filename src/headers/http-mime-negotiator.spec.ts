@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { hthvParse } from '../hthv-parse';
-import { httpMimeNegotiator } from './http-mime-negotiator';
+import { hthvParse } from '../hthv-parse.js';
+import { httpMimeNegotiator } from './http-mime-negotiator.js';
 
 describe('httpMimeNegotiator', () => {
   describe('*/*', () => {

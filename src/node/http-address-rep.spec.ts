@@ -1,8 +1,8 @@
 import { beforeEach, describe, expect, it } from '@jest/globals';
 import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
 import type { URL } from 'node:url';
-import type { HttpForwardTrust } from '../headers';
-import { HttpAddressRep } from './http-address-rep';
+import type { HttpForwardTrust } from '../headers/http-forward-trust.js';
+import { HttpAddressRep } from './http-address-rep.js';
 
 describe('HthvAddressRep', () => {
   let url: string | undefined;

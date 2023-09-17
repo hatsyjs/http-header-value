@@ -1,4 +1,4 @@
-import type { HthvItem } from '../hthv-item';
+import type { HthvItem } from '../hthv-item.js';
 
 /**
  * A trust policy to HTTP proxy forwarding records.
@@ -24,7 +24,7 @@ export interface HttpForwardTrust {
   /**
    * Whether to consider `X-Forwarded-...` headers if `Forwarded` is absent.
    *
-   * An {@link @hatsy/http-header-value!HthvItem}s corresponding to `Forwarded` records are constructed by these record
+   * An {@link http-header-value!HthvItem}s corresponding to `Forwarded` records are constructed by these record
    * values.
    *
    * @default `true` which means these headers are processed.

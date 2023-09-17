@@ -1,6 +1,6 @@
-import { parseNone } from './parse-none';
-import type { ParserConfig } from './parser-config';
-import type { ParserInput } from './parser-input';
+import { parseNone } from './parse-none.js';
+import type { ParserConfig } from './parser-config.js';
+import type { ParserInput } from './parser-input.js';
 
 const datePattern =
   /^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d\d (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d\d\d\d \d\d:\d\d:\d\d GMT/;

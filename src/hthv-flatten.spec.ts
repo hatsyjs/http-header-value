@@ -1,7 +1,7 @@
 import { describe, expect, it } from '@jest/globals';
-import { hthvFlatten } from './hthv-flatten';
-import { hthvItem } from './impl';
-import { paramItem } from './spec/items';
+import { hthvFlatten } from './hthv-flatten.js';
+import { hthvItem } from './impl/hthv-item.js';
+import { paramItem } from './spec/items.js';
 
 describe('hthvFlatten', () => {
   it('adds items in order', () => {

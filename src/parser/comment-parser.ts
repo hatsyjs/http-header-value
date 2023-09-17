@@ -1,13 +1,13 @@
-import { HthvDelimiter } from '../hthv-delimiter';
-import type { HthvItem } from '../hthv-item';
-import { hthvItem } from '../impl';
-import { addParam } from './add-param';
-import { itemParser, ItemParserConfig } from './item-parser';
-import { nextInComment } from './next-in-comment';
-import { paramParser } from './param-parser';
-import type { ParserConfig } from './parser-config';
-import type { ParserInput } from './parser-input';
-import { spacesParser } from './spaces-parser';
+import { HthvDelimiter } from '../hthv-delimiter.js';
+import { HthvItem } from '../hthv-item.js';
+import { hthvItem } from '../impl/hthv-item.js';
+import { addParam } from './add-param.js';
+import { ItemParserConfig, itemParser } from './item-parser.js';
+import { nextInComment } from './next-in-comment.js';
+import { paramParser } from './param-parser.js';
+import { ParserConfig } from './parser-config.js';
+import { ParserInput } from './parser-input.js';
+import { spacesParser } from './spaces-parser.js';
 
 /**
  * @internal

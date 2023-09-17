@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { httpEncodingNegotiator } from './http-encoding-negotiator';
+import { httpEncodingNegotiator } from './http-encoding-negotiator.js';
 
 describe('httpEncodingNegotiator', () => {
   describe('*', () => {

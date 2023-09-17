@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { hthvQuote } from './hthv-quote';
+import { hthvQuote } from './hthv-quote.js';
 
 describe('hthvQuote', () => {
   it('does not alter safe string', () => {

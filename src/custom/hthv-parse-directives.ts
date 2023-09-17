@@ -1,5 +1,5 @@
-import { HthvDelimiter } from '../hthv-delimiter';
-import { HthvParser, newHthvParser } from '../hthv-parser';
+import { HthvDelimiter } from '../hthv-delimiter.js';
+import { HthvParser, newHthvParser } from '../hthv-parser.js';
 
 /**
  * Parses HTTP header values containing directives.

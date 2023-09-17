@@ -1,5 +1,5 @@
-import { HthvDelimiter } from './hthv-delimiter';
-import { defaultParserConfig } from './parser';
+import { HthvDelimiter } from './hthv-delimiter.js';
+import { defaultParserConfig } from './parser/parser-config.js';
 
 /**
  * Conditionally encloses HTTP header value or its part into double quotes.

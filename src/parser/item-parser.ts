@@ -1,13 +1,13 @@
-import { HthvDelimiter } from '../hthv-delimiter';
-import type { HthvExtraItem, HthvItem, HthvItemType } from '../hthv-item';
-import { hthvItem } from '../impl';
-import { angleBracketsParser } from './angle-brackets-parser';
-import { dateTimeParser } from './date-time-parser';
-import { nextInItem } from './next-in-item';
-import { parseNone } from './parse-none';
-import type { ParserConfig } from './parser-config';
-import type { ParserInput } from './parser-input';
-import { quotedStringParser } from './quoted-string-parser';
+import { HthvDelimiter } from '../hthv-delimiter.js';
+import type { HthvExtraItem, HthvItem, HthvItemType } from '../hthv-item.js';
+import { hthvItem } from '../impl/hthv-item.js';
+import { angleBracketsParser } from './angle-brackets-parser.js';
+import { dateTimeParser } from './date-time-parser.js';
+import { nextInItem } from './next-in-item.js';
+import { parseNone } from './parse-none.js';
+import type { ParserConfig } from './parser-config.js';
+import type { ParserInput } from './parser-input.js';
+import { quotedStringParser } from './quoted-string-parser.js';
 
 /**
  * @internal

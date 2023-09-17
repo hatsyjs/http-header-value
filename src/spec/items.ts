@@ -1,5 +1,6 @@
-import type { HthvExtraItem, HthvItem, HthvParamItem } from '../hthv-item';
-import { hthvItem, HthvPartial } from '../impl';
+import type { HthvExtraItem, HthvItem, HthvParamItem } from '../hthv-item.js';
+import { hthvItem } from '../impl/hthv-item.js';
+import { HthvPartial } from '../impl/hthv-partial.js';
 
 /**
  * @internal

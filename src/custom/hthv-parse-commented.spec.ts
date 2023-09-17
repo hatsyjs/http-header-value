@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { items, paramItem } from '../spec/items';
-import { hthvParseCommented } from './hthv-parse-commented';
+import { items, paramItem } from '../spec/items.js';
+import { hthvParseCommented } from './hthv-parse-commented.js';
 
 describe('hthvParseCommented', () => {
   it('recognizes empty comment', () => {
