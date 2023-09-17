@@ -1,6 +1,6 @@
 {
   "name": "http-header-value",
-  "version": "4.0.0-pre.0",
+  "version": "4.0.0",
   "description": "HTTP header value parser",
   "keywords": [
     "http",
