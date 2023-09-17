@@ -1,5 +1,5 @@
-import { HthvDelimiter } from './hthv-delimiter';
-import { commentParserConfig, defaultParserConfig, ParserConfig } from './parser';
+import { HthvDelimiter } from './hthv-delimiter.js';
+import { ParserConfig, commentParserConfig, defaultParserConfig } from './parser/parser-config.js';
 
 /**
  * Escapes a `string` to be included into [quoted-string](https://tools.ietf.org/html/rfc7230#section-3.2.6) within HTTP

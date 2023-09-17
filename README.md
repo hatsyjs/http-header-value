@@ -10,7 +10,7 @@
 Parse HTTP header value:
 
 ```typescript
-import { hthvParse, hthvParseCommented } from '@hatsy/http-header-value';
+import { hthvParse, hthvParseCommented } from 'http-header-value';
 
 const [contentType] = hthvParse('text/html;charset=utf-8');
 contentType.v; // text/html
@@ -28,8 +28,8 @@ platform.v; // Gecko/20100101
 version.v; // Firefox/70.0
 ```
 
-[npm-image]: https://img.shields.io/npm/v/@hatsy/http-header-value.svg?logo=npm
-[npm-url]: https://www.npmjs.com/package/@hatsy/http-header-value
+[npm-image]: https://img.shields.io/npm/v/http-header-value.svg?logo=npm
+[npm-url]: https://www.npmjs.com/package/http-header-value
 [build-status-img]: https://github.com/hatsyjs/http-header-value/workflows/Build/badge.svg
 [build-status-link]: https://github.com/hatsyjs/http-header-value/actions?query=workflow:Build
 [quality-img]: https://app.codacy.com/project/badge/Grade/fe1f7996f009467c80291fefad627745
@@ -74,7 +74,7 @@ Header value may consist of multiple comma- or space- separated items:
 That's why the parser returns an array of items.
 
 ```typescript
-import { hthvParse } from '@hatsy/http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('GET, POST, HEAD').map(item => item.v); // ['GET', 'POST', 'HEAD']
 hthvParse('Basic YWxhZGRpbjpvcGVuc2VzYW1l').map(item => item.v); // ['Basic', 'YWxhZGRpbjpvcGVuc2VzYW1l'];
@@ -94,7 +94,7 @@ that contains an array of all parameters.
 Each parameter is represented as `HthvItem` too. Parameter name is available from its `n` property.
 
 ```typescript
-import { hthvParse, hthvParseCommented } from '@hatsy/http-header-value';
+import { hthvParse, hthvParseCommented } from 'http-header-value';
 
 hthvParse('text/html, application/xhtml+xml, application/xml;q=0.9, image/webp, */*;q=0.8').map(({ v, p: { q } }) => ({
   contentType: v,
@@ -119,7 +119,7 @@ Item itself can be a name/value pair.
 The parser correctly recognizes that.
 
 ```typescript
-import { hthvParse } from '@hatsy/http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('PHPSESSID=298zf09hf012fh2'); // { n: 'PHPSESSID', v: '298zf09hf012fh2' }
 ```
@@ -134,7 +134,7 @@ Values can be enclosed into double quotes. This works both for item values and f
 The returned item contains the value unquoted and unescaped. The type of such item is `quoted-string`.
 
 ```typescript
-import { hthvParse } from '@hatsy/http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('"cache"')[0]; // { $: 'quoted-string', v: 'cache' }
 
@@ -158,7 +158,7 @@ The parser recognizes such item value (but not the parameter ones!) as `HthvItem
 the tag into its `t` property, and unquoted string - into its `v` property.
 
 ```typescript
-import { hthvParse } from '@hatsy/http-header-value';
+import { hthvParse } from 'http-header-value';
 
 hthvParse('W/"0815"')[0]; // { $: 'tagged-string', t: 'W/', v: '0815' }
 ```
@@ -173,7 +173,7 @@ The parser recognizes such item or parameter value as `HthvItem` with type `angl
 brackets. Escape sequences not supported inside angle brackets.
 
 ```typescript
-import { hthvParse } from '@hatsy/http-header-value';
+import { hthvParse } from 'http-header-value';
 hthvParse('<https://example.com/index.html?mode=preconnect>; rel="preconnect"');
 // [{
 //   $: 'angle-bracketed-string',
@@ -207,7 +207,7 @@ Date/time parsing disabled by default. It can be enabled in a custom parser. The
 top-level and as parameter values. It is typically enough to use an `hthvParseDT()` parser though.
 
 ```typescript
-import { hthvParseDT } from '@hatsy/http-header-value';
+import { hthvParseDT } from 'http-header-value';
 
 hthvParseDT('Wed, 21 Oct 2015 07:28:00 GMT')[0].v; // { $: 'date-time', v: 'Wed, 21 Oct 2015 07:28:00 GMT' }
 
@@ -225,7 +225,7 @@ Comments parsing disabled by default. It can be enabled in a custom parser. Then
 It is typically enough to use an `hthvParseCommented()` parser though.
 
 ```typescript
-import { hthvParseCommented } from '@hatsy/http-header-value';
+import { hthvParseCommented } from 'http-header-value';
 
 hthvParseCommented('Mozilla/5.0 (X11; Linux x86_64; rv:70.0) Gecko/20100101 Firefox/70.0').map(item => item.v); // ['Mozilla/5.0', 'X11', 'Gecko/20100101', 'Firefox/70.0'];
 ```
@@ -239,7 +239,7 @@ URLs may contain `,`, `;`, '(', ')', and `=` symbols, that treated specially by 
 The `httpParseURIs()` parser may be used to parse such header values.
 
 ```typescript
-import { hthvParseURIs } from '@hatsy/http-header-value';
+import { hthvParseURIs } from 'http-header-value';
 
 hthvParseURIs('http://example.com/matrix;param=(value)?q=some');
 // { $: 'raw', v: 'http://example.com/matrix;param=(value)?q=some' };
@@ -256,7 +256,7 @@ The `Set-Cookie` value can be parsed by `hthvParseDT()` parser (as it may contai
 value contains cookies semicolon-separated. The `hthvParseSemiSep()` parser handles this.
 
 ```typescript
-import { hthvParseSemiSep } from '@hatsy/http-header-value';
+import { hthvParseSemiSep } from 'http-header-value';
 
 hthvParseSemiSep('id=a3fWa; SESSIONID=fdkafretercvx').reduce((map, { n, v }) => ({ ...map, [n]: v }), {});
 // {
@@ -276,7 +276,7 @@ parameters. While semicolons and colons delimit items.
 The `hthvParseDirectives()` parser supports this format.
 
 ```typescript
-import { hthvFlatten, hthvParseDirectives } from '@hatsy/http-header-value';
+import { hthvFlatten, hthvParseDirectives } from 'http-header-value';
 
 const {
   map: { defaultSrc, connectSrc },
@@ -302,7 +302,7 @@ Recursively places `items` and their parameters to result map in their original 
 - prefers items added first.
 
 ```typescript
-import { hthvFlatten, hthvParseSemiSep } from '@hatsy/http-header-value';
+import { hthvFlatten, hthvParseSemiSep } from 'http-header-value';
 
 hthvFlatten(hthvParseSemiSep('id=a3fWa; SESSIONID=fdkafretercvx'));
 // {
@@ -324,7 +324,7 @@ Escapes a string to be included into [quoted-string] within HTTP header value.
 Replaces `\` with `\\`, and `"` with `\"`.
 
 ```typescript
-import { hthvExcapeQ } from '@hatsy/http-header-value';
+import { hthvExcapeQ } from 'http-header-value';
 
 const realm = 'Access to the "Site"';
 const wwwAuthenticate = `WWW-Authenticate: Basic realm="${hthvExcapeQ(realm)}"`;
@@ -343,7 +343,7 @@ According to [RFC7230] the sender should not escape a double quote in this case.
 to distinguish between raw double quote and nested [quoted-string].
 
 ```typescript
-import { hthvExcapeC } from '@hatsy/http-header-value';
+import { hthvExcapeC } from 'http-header-value';
 
 const comment = 'Custom ("quoted") comment';
 const customComment = `Custom-Comment: (${hthvExcapeC(comment)})`;
@@ -361,7 +361,7 @@ Quotes will be added if delimiter or special character is present in input `stri
 Escapes `"` and `\` symbols.
 
 ```typescript
-import { hthvQuote } from '@hatsy/http-header-value';
+import { hthvQuote } from 'http-header-value';
 
 const forwardedHeader = (forIp: string) => 'Forwarded: For=' + hthvQuote(forIp)};
 

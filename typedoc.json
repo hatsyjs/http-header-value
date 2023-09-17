@@ -1,5 +1,6 @@
 {
-  "entryPoints": ["src/index.ts", "src/headers/index.ts", "src/node/index.ts"],
+  "entryPoints": ["src/mod.ts", "src/headers/mod.ts", "src/node/mod.ts"],
   "name": "HTTP Header Values",
+  "sort": ["static-first", "visibility", "enum-value-ascending", "alphabetical", "kind"],
   "out": "./target/typedoc"
 }

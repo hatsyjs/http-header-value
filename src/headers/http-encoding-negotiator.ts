@@ -1,4 +1,4 @@
-import { httpContentNegotiator, HttpContentNegotiator } from './http-content-negotiator';
+import { httpContentNegotiator, HttpContentNegotiator } from './http-content-negotiator.js';
 
 /**
  * Builds requested content encoding negotiator.

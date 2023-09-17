@@ -1,7 +1,8 @@
-import type { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item';
-import { hthvParse } from '../hthv-parse';
-import { hthvItem, hthvParseFirstTrivial, hthvParseTrivial } from '../impl';
-import { HttpForwardTrust, HttpForwardTrustMask } from './http-forward-trust';
+import type { HthvItem, HthvParamItem, HthvParamMap } from '../hthv-item.js';
+import { hthvParse } from '../hthv-parse.js';
+import { hthvItem } from '../impl/hthv-item.js';
+import { hthvParseFirstTrivial, hthvParseTrivial } from '../impl/hthv-parse-trivial.js';
+import { HttpForwardTrust, HttpForwardTrustMask } from './http-forward-trust.js';
 
 /**
  * HTTP request forwarding report.

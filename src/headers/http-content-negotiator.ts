@@ -1,5 +1,5 @@
-import type { HthvItem } from '../hthv-item';
-import { hthvParse } from '../hthv-parse';
+import type { HthvItem } from '../hthv-item.js';
+import { hthvParse } from '../hthv-parse.js';
 
 /**
  * HTTP content negotiator signature.
@@ -16,7 +16,7 @@ import { hthvParse } from '../hthv-parse';
  *
  * @typeParam T - A type of the matching value.
  * @param request - Content negotiation request. This an `Accept...` header value, either
- * {@link @hatsy/http-header-value!hthvParse parsed}, or as a raw string.
+ * {@link http-header-value!hthvParse parsed}, or as a raw string.
  *
  * @returns The best matching value, `undefined` if there is no matching value, or `0` is the matching
  * value is explicitly prohibited (i.e. `;q=0` is used in matching request item).

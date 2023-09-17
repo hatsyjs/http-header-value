@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { HttpForwardTrust, HttpForwardTrustMask } from './http-forward-trust';
+import { HttpForwardTrust, HttpForwardTrustMask } from './http-forward-trust.js';
 
 describe('HttpForwardTrust', () => {
   describe('by', () => {

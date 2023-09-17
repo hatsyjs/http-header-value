@@ -1,5 +1,5 @@
 import { describe, expect, it } from '@jest/globals';
-import { hthvEscapeC, hthvEscapeQ } from './hthv-escape';
+import { hthvEscapeC, hthvEscapeQ } from './hthv-escape.js';
 
 describe('hthvEscapeQ', () => {
   it('does not alter safe string', () => {

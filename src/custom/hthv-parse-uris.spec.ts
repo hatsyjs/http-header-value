@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { items } from '../spec/items';
-import { hthvParseURIs } from './hthv-parse-uris';
+import { items } from '../spec/items.js';
+import { hthvParseURIs } from './hthv-parse-uris.js';
 
 describe('hthvParseURIs', () => {
   it('recognizes URL with comma, semicolon and equality sign', () => {

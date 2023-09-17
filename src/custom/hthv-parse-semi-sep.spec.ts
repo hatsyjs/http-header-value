@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { items } from '../spec/items';
-import { hthvParseSemiSep } from './hthv-parse-semi-sep';
+import { items } from '../spec/items.js';
+import { hthvParseSemiSep } from './hthv-parse-semi-sep.js';
 
 describe('hthvParseSemiSep', () => {
   it('recognizes semicolon- and colon- separated items', () => {

@@ -1,5 +1,5 @@
-import { HthvDelimiter, HthvDelimiterChar } from '../hthv-delimiter';
-import type { HthvParserConfig } from '../hthv-parser';
+import { HthvDelimiter, HthvDelimiterChar } from '../hthv-delimiter.js';
+import type { HthvParserConfig } from '../hthv-parser.js';
 
 /**
  * @internal

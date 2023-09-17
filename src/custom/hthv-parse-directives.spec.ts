@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { items, paramItem } from '../spec/items';
-import { hthvParseDirectives } from './hthv-parse-directives';
+import { items, paramItem } from '../spec/items.js';
+import { hthvParseDirectives } from './hthv-parse-directives.js';
 
 describe('hthvParseDirectives', () => {
   it('recognizes colon-separated directives', () => {

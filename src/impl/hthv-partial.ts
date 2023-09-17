@@ -1,4 +1,4 @@
-import type { HthvItem } from '../hthv-item';
+import type { HthvItem } from '../hthv-item.js';
 
 /**
  * @internal

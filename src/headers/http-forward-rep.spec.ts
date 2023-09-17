@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it } from '@jest/globals';
-import { hthvParse } from '../hthv-parse';
-import { HttpForwardRep } from './http-forward-rep';
-import { HttpForwardTrustMask } from './http-forward-trust';
+import { hthvParse } from '../hthv-parse.js';
+import { HttpForwardRep } from './http-forward-rep.js';
+import { HttpForwardTrustMask } from './http-forward-trust.js';
 
 describe('HttpForwardRep', () => {
   let headers: HttpForwardRep.Headers;

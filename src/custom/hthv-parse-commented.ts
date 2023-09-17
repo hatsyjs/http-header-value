@@ -1,4 +1,4 @@
-import { HthvParser, newHthvParser } from '../hthv-parser';
+import { HthvParser, newHthvParser } from '../hthv-parser.js';
 
 /**
  * Parses HTTP header value that may contain comments.

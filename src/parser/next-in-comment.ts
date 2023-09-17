@@ -1,6 +1,6 @@
-import { HthvDelimiter } from '../hthv-delimiter';
-import type { ParserConfig } from './parser-config';
-import type { ParserInput } from './parser-input';
+import { HthvDelimiter } from '../hthv-delimiter.js';
+import type { ParserConfig } from './parser-config.js';
+import type { ParserInput } from './parser-input.js';
 
 /**
  * @internal

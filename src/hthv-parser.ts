@@ -1,18 +1,18 @@
-import type { HthvDelimiterChar } from './hthv-delimiter';
-import type { HthvItem } from './hthv-item';
-import { hthvItem } from './impl';
+import type { HthvDelimiterChar } from './hthv-delimiter.js';
+import type { HthvItem } from './hthv-item.js';
+import { hthvItem } from './impl/hthv-item.js';
+import { addParam } from './parser/add-param.js';
+import { commentParser } from './parser/comment-parser.js';
+import { itemDelimitParser } from './parser/item-delimit-parser.js';
+import { itemParser } from './parser/item-parser.js';
+import { paramParser } from './parser/param-parser.js';
+import { parseNone } from './parser/parse-none.js';
 import {
-  addParam,
   buildParserConfig,
-  commentParser,
   commentParserConfig,
   defaultParserConfig,
-  itemDelimitParser,
-  itemParser,
-  paramParser,
-  parseNone,
-  ParserInput,
-} from './parser';
+} from './parser/parser-config.js';
+import { ParserInput } from './parser/parser-input.js';
 
 /**
  * HTTP header value parser signature.

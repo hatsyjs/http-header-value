@@ -2,7 +2,8 @@ import type { IncomingHttpHeaders, IncomingMessage } from 'node:http';
 import type { Socket } from 'node:net';
 import type { TLSSocket } from 'node:tls';
 import { URL } from 'node:url';
-import { HttpForwardRep, HttpForwardTrust } from '../headers';
+import { HttpForwardRep } from '../headers/http-forward-rep.js';
+import { HttpForwardTrust } from '../headers/http-forward-trust.js';
 
 /**
  * HTTP request addressing report.
@@ -28,7 +29,7 @@ export interface HttpAddressRep {
 
 export const HttpAddressRep = {
   /**
-   * Collects {@link @hatsy/http-header-value/headers!HttpForwardRep.Defaults proxy forwarding defaults} from HTTP
+   * Collects {@link http-header-value/headers.js!HttpForwardRep.Defaults proxy forwarding defaults} from HTTP
    * request.
    *
    * This information does not rely on proxy forwarding information.
@@ -61,7 +62,7 @@ export const HttpAddressRep = {
   /**
    * Builds addressing report by HTTP request.
    *
-   * Uses {@link @hatsy/http-header-value/headers!HttpForwardRep#by HttpForwardRep.by()} to collect trusted proxy
+   * Uses {@link http-header-value/headers.js!HttpForwardRep#by HttpForwardRep.by()} to collect trusted proxy
    * forwarding information.
    *
    * @param request - HTTP request to collect information from.

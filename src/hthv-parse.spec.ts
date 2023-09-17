@@ -1,6 +1,6 @@
 import { describe, expect, it } from '@jest/globals';
-import { hthvParse, hthvParseDT } from './hthv-parse';
-import { extras, items, paramItem } from './spec/items';
+import { hthvParse, hthvParseDT } from './hthv-parse.js';
+import { extras, items, paramItem } from './spec/items.js';
 
 describe('hthvParse', () => {
   it('does not recognizes date/time', () => {

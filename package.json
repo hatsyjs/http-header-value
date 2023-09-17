@@ -1,6 +1,6 @@
 {
-  "name": "@hatsy/http-header-value",
-  "version": "3.7.1",
+  "name": "http-header-value",
+  "version": "4.0.0-pre.0",
   "description": "HTTP header value parser",
   "keywords": [
     "http",
@@ -20,10 +20,10 @@
   "types": "./dist/http-header-value.d.ts",
   "typesVersions": {
     "*": {
-      "headers": [
+      "headers.js": [
         "./dist/http-header-value.headers.d.ts"
       ],
-      "node": [
+      "node.js": [
         "./dist/http-header-value.node.d.ts"
       ]
     }
@@ -33,19 +33,16 @@
       "types": "./dist/http-header-value.d.ts",
       "default": "./dist/http-header-value.js"
     },
-    "./headers": {
+    "./headers.js": {
       "types": "./dist/http-header-value.headers.d.ts",
       "default": "./dist/http-header-value.headers.js"
     },
-    "./node": {
+    "./node.js": {
       "types": "./dist/http-header-value.node.d.ts",
       "default": "./dist/http-header-value.node.js"
     }
   },
   "sideEffects": false,
-  "engines": {
-    "node": ">=12"
-  },
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@run-z/eslint-config": "^3.5.0",
