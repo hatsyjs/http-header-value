@@ -66,7 +66,8 @@ export function httpContentNegotiator<T>(
 ): HttpContentNegotiator<T> {
   const negotiationMap = httpContentNegotiationMap(wildcards, map);
 
-  return request => httpContentNegotiation(
+  return request =>
+    httpContentNegotiation(
       negotiationMap,
       typeof request === 'string' ? hthvParse(request) : request,
     );

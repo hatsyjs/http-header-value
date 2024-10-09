@@ -34,14 +34,14 @@ export function commentParser(
 
     // noinspection StatementWithEmptyBodyJS
     while (
-      skipSpaces(input)
-      || parseParam(input, param => {
+      skipSpaces(input) ||
+      parseParam(input, param => {
         if (!result) {
           result = hthvItem({ $: 'raw', v: '' });
         }
         addParam(result, param);
-      })
-      || parseItem(input, item => (result = item))
+      }) ||
+      parseItem(input, item => (result = item))
     ); // eslint-disable-line curly
 
     ++input.i; // closing parent

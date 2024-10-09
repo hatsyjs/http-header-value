@@ -30,9 +30,9 @@ describe('HttpForwardRep', () => {
   it('extracts trusted source record', () => {
     headers = {
       forwarded:
-        'host=test;proto=http,'
-        + 'by=proxy1;host=test1;proto=http,'
-        + 'by=proxy2;host=test2;proto=https',
+        'host=test;proto=http,' +
+        'by=proxy1;host=test1;proto=http,' +
+        'by=proxy2;host=test2;proto=https',
     };
     expect(
       HttpForwardRep.by(headers, defaults, {
@@ -52,9 +52,9 @@ describe('HttpForwardRep', () => {
   it('extracts record trusted by next one', () => {
     headers = {
       forwarded:
-        'host=test;proto=http,'
-        + 'by=proxy1;host=test1;proto=http,'
-        + 'by=proxy2;host=test2;proto=https',
+        'host=test;proto=http,' +
+        'by=proxy1;host=test1;proto=http,' +
+        'by=proxy2;host=test2;proto=https',
     };
     expect(
       HttpForwardRep.by(headers, defaults, {
@@ -70,9 +70,9 @@ describe('HttpForwardRep', () => {
   it('extracts record trusted by checker', () => {
     headers = {
       forwarded:
-        'host=test;proto=http,'
-        + 'by=proxy1;host=test1;proto=http,'
-        + 'by=proxy2;host=test2;proto=https',
+        'host=test;proto=http,' +
+        'by=proxy1;host=test1;proto=http,' +
+        'by=proxy2;host=test2;proto=https',
     };
     expect(
       HttpForwardRep.by(headers, defaults, {
@@ -90,9 +90,9 @@ describe('HttpForwardRep', () => {
   it('extracts first of the trusted source records', () => {
     headers = {
       forwarded:
-        'host=test;proto=http,'
-        + 'by=proxy1;host=test1;proto=http,'
-        + 'by=proxy2;host=test2;proto=https',
+        'host=test;proto=http,' +
+        'by=proxy1;host=test1;proto=http,' +
+        'by=proxy2;host=test2;proto=https',
     };
     expect(
       HttpForwardRep.by(headers, defaults, {

@@ -53,8 +53,8 @@ export const HttpAddressRep = {
       by: localAddress || 'unknown',
       for: remoteAddress,
       host:
-        headers.host
-        || (localAddress ? (localPort ? `${localAddress}:${localPort}` : localAddress) : 'unknown'),
+        headers.host ||
+        (localAddress ? (localPort ? `${localAddress}:${localPort}` : localAddress) : 'unknown'),
       proto: (connection as TLSSocket).encrypted ? 'https' : 'http',
     };
   },
@@ -80,8 +80,8 @@ export const HttpAddressRep = {
       ip: forwarded.for,
       get url(): URL {
         return (
-          requestURL
-          || (requestURL = new URL(request.url || '', `${forwarded.proto}://${forwarded.host}`))
+          requestURL ||
+          (requestURL = new URL(request.url || '', `${forwarded.proto}://${forwarded.host}`))
         );
       },
     };

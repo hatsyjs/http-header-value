@@ -99,17 +99,17 @@ export function newHthvParser(config?: HthvParserConfig): HthvParser {
 
     function parseTopLevelItem(): boolean {
       return (
-        input.i < input.s.length
-        && (parseItemDelimit(input)
-          || parseParam(input, param => {
+        input.i < input.s.length &&
+        (parseItemDelimit(input) ||
+          parseParam(input, param => {
             if (!result.length) {
               result.push(hthvItem({ $: 'raw', v: '' }));
             }
             addParam(result[result.length - 1], param);
-          })
-          || parseComment(input, item => result.push(item))
+          }) ||
+          parseComment(input, item => result.push(item)) ||
           // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
-          || parseItem(input, item => result.push(item)))
+          parseItem(input, item => result.push(item)))
       );
     }
   };

@@ -71,8 +71,8 @@ export function itemParser(
             break;
           }
           if (
-            !name
-            && parseAngleBrackets(input, v => {
+            !name &&
+            parseAngleBrackets(input, v => {
               type = 'angle-bracketed-string';
 
               value = v;
@@ -98,8 +98,8 @@ export function itemParser(
 
           break;
         } else if (
-          !value
-          && parseAngleBrackets(input, v => {
+          !value &&
+          parseAngleBrackets(input, v => {
             type = 'angle-bracketed-string';
 
             value = v;

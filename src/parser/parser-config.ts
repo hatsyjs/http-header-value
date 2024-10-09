@@ -49,8 +49,8 @@ export function buildParserConfig({ delimit, dateTime }: HthvParserConfig = {}):
     dateTime,
     delimiterOf(c) {
       return (
-        delimitConfig[c as HthvDelimiterChar]
-        || ((c >= '\u0000' && c <= ' ') || c === '\u007f'
+        delimitConfig[c as HthvDelimiterChar] ||
+        ((c >= '\u0000' && c <= ' ') || c === '\u007f'
           ? HthvDelimiter.NonToken
           : HthvDelimiter.None)
       );
